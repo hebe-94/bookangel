@@ -1,0 +1,120 @@
+@charset "UTF-8";
+/* 상단바 */
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: right;
+    padding: 1.5em 0 1.5em 0;
+    z-index: 1;
+    overflow: hidden;
+    background-image: url(../../../app/images/bookHeader.jpg);
+}
+/*끝  */
+
+.ViewWrapper {
+    background: #fff;
+    margin: 0 0 2em 0;
+    padding: 6em 0 0 0;
+    width: 50%;
+    margin: auto;
+}
+
+
+#content{
+    min-height: 3em;
+}
+
+
+#viewBtn input[type="button"]{
+    position: relative;
+    display: flex;
+    background: #df7366;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.5em;
+    text-decoration: none;
+    padding: 0.65em 3em 0.65em 3em;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    font-weight: 300;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-content: stretch;
+    align-items: stretch;
+    -moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    -webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    -ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-family: 'Gowun Dodum', sans-serif;
+   	font-size:12px;
+    width:14px;
+}
+
+#viewBtn input[type="button"]:hover{
+    color: #fff;
+    background: #ef8376;
+}
+
+ul.actions li {
+    display: inline-block;
+    margin: 0 -0.25em 0 0.75em;
+    padding-left: 0;
+}
+
+
+#register{
+    position: relative;
+    display: flex;
+    background: #df7366;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.5em;
+    text-decoration: none;
+    padding: 0.65em 3em 0.65em 3em;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    font-weight: 300;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-content: stretch;
+    align-items: stretch;
+    -moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    -webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    -ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-family: 'Gowun Dodum', sans-serif;
+   	font-size:12px;
+    width:14px;
+}
+
+#register :hover{
+    color: #fff;
+    background: #ef8376;
+}
+
+#replyBtn{
+	display: flex;
+    justify-content: flex-end;
+    padding: 0.65em 0em 0.65em 3em;
+}
+
+#replyBtn :hover{
+    color: #fff;
+    background: #ef8376;
+}

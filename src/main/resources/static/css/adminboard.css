@@ -1,0 +1,154 @@
+@charset "UTF-8";
+#header {
+    position: relative;
+    background-image: url(../../../app/images/bookHeader.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    color: #fff;
+    text-align: center;
+    padding: 0em 0 2em 0;
+    cursor: default;
+}
+
+/* 상단바 */
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: right;
+    padding: 1.5em 0 1.5em 0;
+    z-index: 1;
+    overflow: hidden;
+    background-image: url(../../../app/images/bookHeader.jpg);
+}
+
+/* 후원기관 테이블 */
+
+/* Table */
+
+   .table-wrapper {
+      -webkit-overflow-scrolling: touch;
+      overflow-x: auto;
+   }
+
+   table {
+      margin: 0 0 2em 0;
+      width: 100%;
+   }
+
+      table tbody tr {
+         border: solid 1px;
+         border-left: 0;
+         border-right: 0;
+         text-align: center;
+      }
+
+      table td {
+         padding: 0.75em 0.75em;
+      }
+
+      table th {
+         font-size: 0.9em;
+         font-weight: 500;
+         padding: 0 0.75em -0.25em 0.75em;
+         text-align: left;
+      }
+
+      table thead {
+         border-bottom: solid 2px;
+      }
+
+      table tfoot {
+         border-top: solid 2px;
+      }
+
+      table.alt {
+         border-collapse: separate;
+      }
+
+         table.alt tbody tr td {
+            border: solid 1px;
+            border-left-width: 0;
+            border-top-width: 0;
+         }
+
+            table.alt tbody tr td:first-child {
+               border-left-width: 1px;
+            }
+
+         table.alt tbody tr:first-child td {
+            border-top-width: 1px;
+         }
+
+         table.alt thead {
+            border-bottom: 0;
+         }
+
+         table.alt tfoot {
+            border-top: 0;
+         }
+
+   table tbody tr {
+      border-color: rgba(67, 75, 86, 0.25);
+   }
+
+      table tbody tr:nth-child(2n + 1) {
+         background-color: rgba(67, 75, 86, 0.05);
+      }
+
+   table th {
+      color: #434b56;
+   }
+
+   table thead {
+      border-bottom-color: rgba(67, 75, 86, 0.25);
+   }
+
+   table tfoot {
+      border-top-color: rgba(67, 75, 86, 0.25);
+   }
+
+   table.alt tbody tr td {
+      border-color: rgba(67, 75, 86, 0.25);
+   }
+   
+   
+ /*버튼*/
+ #writebutton{
+ 		style="left: 100%;"
+ }
+ 
+/*  게시판 간격조절 */
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    justify-content: center;
+    margin-top: -6%;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    padding: 4% 2%;
+    box-sizing: unset;
+    height: 61vh;
+    margin-top: -5%;
+}
+
+#main {
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    padding: 4% 2%;
+    box-sizing: border-box;
+    height: 100vh;
+    margin-top: -2%;
+}
+
+.btn-outline-success a{
+	text-decoration-line : none;
+	text-decoration : none;
+}
