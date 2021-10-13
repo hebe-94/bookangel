@@ -1,4 +1,4 @@
-package com.example.board.mybatis;
+package com.example.bookangel.mybatis;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -16,7 +16,7 @@ import java.io.IOException;
 
 @Configuration
 @RequiredArgsConstructor
-@MapperScan("com.example.board.mappers")
+@MapperScan("com.example.bookangel.mappers")
 public class MyBatisConfig {
     private final ApplicationContext applicationContext;
 
@@ -33,8 +33,8 @@ public class MyBatisConfig {
     public SqlSessionFactory sqlSessionFactory() throws IOException {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource());
-        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:/mappers/*.xml"));
-        sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:/config/MyBatisConfig.xml"));
+//        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:/mappers/*.xml"));
+//        sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:/config/MyBatisConfig.xml"));
         try {
             SqlSessionFactory factory=sqlSessionFactoryBean.getObject();
             factory.getConfiguration().setMapUnderscoreToCamelCase(true);
