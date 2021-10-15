@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@media (min-width: 1200px)
+@media (min-width: 1200px){}
 
 /* 상단바 */
 #nav {
@@ -11,7 +11,7 @@
     padding: 1.5em 0 1.5em 0;
     z-index: 1;
     overflow: hidden;
-    background-image: url(../../../app/images/bookHeader.jpg);
+    background-image: url("/images/bookHeader.jpg");
 }
 
 /*끝  */
@@ -55,13 +55,13 @@ legend {
 
 body {
     margin: 0;
-    font-family: var(--bs-body-font-family);
-    font-size: var(--bs-body-font-size);
-    font-weight: var(--bs-body-font-weight);
-    line-height: var(--bs-body-line-height);
-    color: var(--bs-body-color);
-    text-align: var(--bs-body-text-align);
-    background-color: var(--bs-body-bg);
+    /*font-family: var(--bs-body-font-family);*/
+    /*font-size: var(--bs-body-font-size);*/
+    /*font-weight: var(--bs-body-font-weight);*/
+    /*line-height: var(--bs-body-line-height);*/
+    /*color: var(--bs-body-color);*/
+    /*text-align: var(--bs-body-text-align);*/
+    /*background-color: var(--bs-body-bg);*/
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -178,17 +178,17 @@ textarea {
 
 textarea {
     -webkit-writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
+    /*font-style: ;*/
+    /*font-variant-ligatures: ;*/
+    /*font-variant-caps: ;*/
+    /*font-variant-numeric: ;*/
+    /*font-variant-east-asian: ;*/
+    /*font-weight: ;*/
+    /*font-stretch: ;*/
+    /*font-size: ;*/
     font-family: monospace;
     text-rendering: auto;
-    color: -internal-light-dark(black, white);
+    /*color: -internal-light-dark(black, white);*/
     letter-spacing: normal;
     word-spacing: normal;
     line-height: normal;
@@ -199,16 +199,16 @@ textarea {
     text-align: start;
     appearance: auto;
     -webkit-rtl-ordering: logical;
-    resize: auto;
+    /*resize: auto;*/
     cursor: text;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    /*background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));*/
     column-count: initial !important;
     margin: 0em;
     border-width: 1px;
     border-style: solid;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    /*border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));*/
     border-image: initial;
     padding: 2px;
 }

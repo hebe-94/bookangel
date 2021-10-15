@@ -1,7 +1,7 @@
 @charset "UTF-8";
 #header {
     position: relative;
-    background-image: url(../../../app/images/bookHeader.jpg);
+    background-image: url("/images/bookHeader.jpg");
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
@@ -21,7 +21,7 @@
     padding: 1.5em 0 1.5em 0;
     z-index: 1;
     overflow: hidden;
-    background-image: url(../../../app/images/bookHeader.jpg);
+    background-image: url("/images/bookHeader.jpg");
 }
 
 /* 후원기관 테이블 */
@@ -117,7 +117,7 @@
    
  /*버튼*/
  #writebutton{
- 		style="left: 100%;"
+ 		style:"left: 100%;"
  }
  
 /*  게시판 간격조절 */

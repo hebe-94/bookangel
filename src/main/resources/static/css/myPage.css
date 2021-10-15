@@ -1855,7 +1855,7 @@ header .icon.circled {
 /* 이미지, fixed, color 바꾸기 */
 #header {
 	position: relative;
-	background-image: url("../../../app/images/bookHeader.jpg");
+	background-image: url("/images/bookHeader.jpg");
 	background-size: cover;
 	background-position: center center;
 	background-attachment: fixed;
@@ -2056,7 +2056,7 @@ button {
     padding: 1.5em 0 1.5em 0;
     z-index: 1;
     overflow: hidden;
-    background-image: url(../../../app/images/bookHeader.jpg);
+    background-image: url("/images/bookHeader.jpg");
 }
 
 /* 여기까지 경훈님이 수정해서 준내용 */
@@ -2447,7 +2447,7 @@ button {
 		line-height: 1.75em;
 	} */
 	
-@media screen and (max-width: 1680px)
+@media screen and (max-width: 1680px){
 .carousel article {
     width: 13em;
     margin: 0px -1.75em 0 0;
@@ -2736,7 +2736,7 @@ button {
 		top: 0;
 		width: 100%;
 		height: 100%;
-		background: url("images/overlay.png");
+		/*background: url("/images/overlay.png");*/
 		background-size: 128px 128px;
 	}
 	#navPanel .link {
@@ -2897,8 +2897,8 @@ table tr{
 table{
 	width:65%;
 	border-bottom: 1px solid;
-	margin-top: 10px auto;
-	margin-bottom: 30px auto;
+	margin-top: 10px;
+	margin-bottom: 30px;
 	margin-right: auto;
 	margin-left: auto;
 	

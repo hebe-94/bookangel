@@ -1,6 +1,6 @@
 @charset "UTF-8";
-@media (min-width: 1200px)
-@media (min-heigth: 900px)
+@media (min-width: 1200px){}
+@media (min-height: 900px){}
 @import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,400,600|Tulpen+One&display=swap');
  :root {
    /* colors */
@@ -14,7 +14,7 @@
     --book-title: 'Tulpen One', sans-serif;
     --title: 'Cormorant Garamond', serif;
     --body: 'Cormorant Garamond', serif;
-    --base-size: var(--baseline) * 1.2;
+    /*--base-size: var(--baseline) * 1.2;*/
 }
  * {
     box-sizing: border-box;
