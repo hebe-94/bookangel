@@ -1908,7 +1908,7 @@ header .icon.circled {
 }
 
 #header .button {
-	버튼 모양 동그랗게: border-radius: 100%;
+	border-radius: 100%;
 	position: fixed;
 	bottom: 20px;
 	z-index: 1000;
