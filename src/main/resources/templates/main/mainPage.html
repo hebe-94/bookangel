@@ -1,0 +1,1921 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>당신의 기북천사</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
+    <script src="https://kit.frontawesome.com/무료코드.js"></script> <!-- 검색창 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- 헤더 -->
+    <!-- 책 접었다 폈다 더보기 부분 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Codrops" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <script src="/js/modernizr.custom.js"></script>
+    <!-- logo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+    <!-- underLogo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+    <!-- 기본 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+</head>
+<style>
+    /* body 기본 폰트 전체 적용 */
+    body{
+        font-family: 'Gowun Dodum', sans-serif;
+    }
+    #logo{
+        font-family: 'East Sea Dokdo', cursive;
+        font-size:100px;
+    }
+    #underLogo{
+        font-family: 'Yeon Sung', cursive;
+        font-size:100px;
+    }
+    #category{
+        font-family:'Gowun Dodum', sans-serif;
+        font-size:30px;
+        margin-left: 2%;
+    }
+</style>
+<body class="homepage is-preload">
+
+<!-- jstl을 위해 세션에 있는 값을 변수로 넣어놓기! -->
+
+
+<div id="page-wrapper">
+
+    <!--    <c:set var="session_sub_status" value="${session_sub_status}"/>-->
+    <!--    <c:set var="session_accountType" value="${session_accountType}" />-->
+    <!--    <c:set var="sessionName" value="${session_name}" />-->
+    <!--    <c:set var="totalCnt" value="${totalCnt}"/>-->
+    <!--    <c:set var="realEndPage" value="${realEndPage}"/>-->
+    <!--    <c:set var="startPage" value="${startPage}"/>-->
+    <!--    <c:set var="endPage" value="${endPage}"/>-->
+    <!--    <c:set var="nowPage" value="${nowPage}"/>-->
+    <!--    <c:set var="getOkList" value="${getOkList}"/>-->
+    <!--    <c:set var="boardList" value="${boardList}"/>-->
+
+    <!--  Header -->
+    <div id="header">
+
+        <!-- Inner -->
+        <div class="inner">
+            <header>
+                <h1 id="logo" style="font-size: 100px;">기북천사</h1>
+                <hr />
+                <p id="underLogo">
+                    “독서할 때 당신은 항상 가장 좋은 친구와 함께 있다.” – 시드니 스미스<br>
+                    기북천사와 함께 가장 좋은 친구를 나누세요</p>
+            </header>
+            <p style="text-align: center;">
+                <a href="#banner"><img src="/images/down.gif" style="width: 80px;margin: 10px;"></a>
+            </p>
+            <footer>
+                <a href="/member/gudok" class="button circled scrolly">구독하기</a>
+            </footer>
+        </div>
+
+        <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
+        <nav id="nav">
+
+            <!-- 기북천사 로고 -->
+            <div>
+                <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
+                    <img id="logoImg"></a>
+            </div>
+
+            <ul>
+
+                <!-- 검색 -->
+                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
+                    <div class="search" style="float: left; display:inline-block">
+                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
+                    </div>
+                    <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                        <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
+                             4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
+                             vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
+                             4PSIwIDAgMzAuMjM5IDMwLjIzOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzAuMjM5IDMwLjIzOTsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZD0iTTIwLjE5NCwzLjQ2Yy00LjYxMy00LjYxMy0xMi4xMjEtNC42MTMtMTYuNzM0LDB
+                             jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
+                             JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
+                             zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+                    </button>
+                </form>
+
+                <!-- 회원정보 -->
+                <li>
+                    <a href="#">📖
+                        <th:choose>
+                            <th:when test="${session_id  eq '' || empty session_id}">
+                                <c:out value="비회원"/>
+                            </th:when>
+
+                            <th:otherwise>
+                                <c:out value="${session_name}"/>
+                            </th:otherwise>
+                        </th:choose>
+                    </a>
+                    <ul>
+                        <th:choose>
+                            <th:when test="${session_id  eq '' || empty session_id}">
+                                <li id="loginTab"><a href="/member/MemberLogin">로그인</a></li>
+                            </th:when>
+                        </th:choose>
+
+                        <th:choose>
+                            <th:when test="${session_id  ne '' && not empty session_id}">
+                                <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                    <ul>
+                                        <li><a href="/member/MemberMyPage">내정보 보기</a></li>
+                                        <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                        <li id="applyTab"><a href="/board/BoardList">신청게시판</a></li><!-- 관리자 전용 -->
+                                        <li><a  href="/member/Withdraw">회원탈퇴</a></li>
+                                    </ul>
+                                </li>
+                            </th:when>
+                        </th:choose>
+                        <li><a  href="/member/QnA">Q&A</a></li>
+                        <th:choose>
+                            <th:when test="${session_id  ne '' && not empty session_id}">
+                                <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                            </th:when>
+                        </th:choose>
+
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+
+
+    <!-- Banner -->
+    <section id="banner" name="banner">
+        <header>
+            <p>기북천사의 북카드 🎁 </p>
+            <p style="font-size:15px">기북천사의 북카드에서 마음에 드는 책을 읽어보세요!</p>
+        </header>
+        <div class="container">
+            <!-- img src 주소는 임의로 작성됨 -->
+            <div class="box">
+                <span>소설</span>
+                <img src="/images/knovel.jpg">
+            </div>
+            <div class="box">
+                <span>여행</span>
+                <img src="/images/travel.jpg">
+            </div>
+            <div class="box">
+                <span>인문/교양</span>
+                <img src="/images/essay.jpg">
+            </div>
+            <div class="box">
+                <span>고전</span>
+                <img src="/images/novel.jpg">
+            </div>
+            <div class="box">
+                <span>정치/사회</span>
+                <img src="/images/society.jpg">
+            </div>
+        </div>
+
+    </section>
+
+    <hr>
+
+    <!--  Carousel -->
+
+    <!-- 베스트 셀러 -->
+
+    <!--    <section id="basketForm" class="carousel">-->
+    <!--        <p id="category" style="font-size: 30px; margin-left: 2.5%;">나의 책가방</p>-->
+    <!--        <div class="reel">-->
+
+    <!--            <c:forEach var="book" items="${books}" varStatus="status">-->
+    <!--                <article class="grid cs-style-4">-->
+    <!--                    <figure>-->
+    <!--                        <div>-->
+    <!--                            <img src="${pageContext.request.contextPath}/app/images/${book.getBook_image_src() }" height="262" width="175" alt="">-->
+    <!--                        </div>-->
+    <!--                        <figcaption>-->
+    <!--                            <div style="margin-top: 50%;">-->
+    <!--										<span>-->
+    <!--											<p style="margin-bottom: 0;">바로읽기</p> -->
+    <!--											<a id="read" href="#popUp" target="_self" onclick="openPop()">-->
+    <!--											<img src="${pageContext.request.contextPath}/app/images/ebookread.png" /></a>-->
+    <!--										</span>-->
+    <!--                                <%&#45;&#45; <span>-->
+    <!--											<p style="margin-bottom: 0;">상세보기</p> <a id="more" href="#"><img-->
+    <!--                                    src="${pageContext.request.contextPath}/app/images/bookinfo.png" /></a>-->
+    <!--										</span> &#45;&#45;%>-->
+    <!--                            </div>-->
+    <!--                        </figcaption>-->
+    <!--                    </figure>-->
+    <!--                </article>-->
+    <!--            </c:forEach>-->
+    <!--        </div>-->
+    <!--    </section>-->
+
+    <section class="carousel">
+        <p id="category">🏆 베스트 셀러 🏆 </p>
+        <div class="reel">
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="/images/${book.getBook_image_src()}"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+	                   <!-- 버튼 누르면  아이디로 값을 받아온다(src값) 그리고 그걸 request에 담아서 프런트 컨트롤러로 전달-->
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more" onclick="addBookBasket('01dream2.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/02dream.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('02dream.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/03express.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('03express.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/01tonight.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('01tonight.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/05swan.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('05swan.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/06sunset.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('06sunset.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/07korea.jpg" height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('07korea.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/08midnight.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('08midnight.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/09fully.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('09fully.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/10earth.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('10earth.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/11onepiece.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('11onepiece.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/12uncom.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('12uncom.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/13asset.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('13asset.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/14sibiling.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('14sibiling.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/15future.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('15future.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/16lucky.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('16lucky.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+        </div>
+    </section>
+
+    <br> <!-- 한국소설 베스트 -->
+
+    <section class="carousel">
+        <p id="category"> 한국소설 베스트 📖</p>
+        <div class="reel">
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/09fully.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('09fully.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/01dream2.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('01dream2.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/02dream.jpg.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('02dream.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/12uncom.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('12uncom.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/05brightnight.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('05brightnight.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/06amond.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('06amond.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/07species.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('07species.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/08wings.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('08wings.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/09lights.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('09lights.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/10summer.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('10summer.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/11vegetarian.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('11vegetarian.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/12joyandsad.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('12joyandsad.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/13dancingman.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('13dancingman.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/14night.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('14night.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/15from.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('15from.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/16blue.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('16blue.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+        </div>
+    </section>
+
+    <br> <!-- 영미소설 베스트  -->
+
+    <section class="carousel">
+        <p id="category"> 영미소설 베스트 📖</p>
+        <div class="reel">
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/08midnight.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('01midnight.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/02why.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('02why.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/03franken.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('03franken.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/04dun.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('04dun.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/05nice.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('05nice.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/06kite.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('06kite.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/07sherlock.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('07sherlock.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/08stephen.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('08stephen.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/09girl.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('09girl.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/10demian.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('10demian.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/11project.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('11project.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/12oldman.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('12oldman.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/13andnobody.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('13andnobody.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/14drake.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('14drake.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/15moon.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('15moon.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/16animal.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('16animal.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/17after.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('17after.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+        </div>
+    </section>
+
+    <br> <!-- 일본소설 베스트 -->
+
+    <section class="carousel">
+        <p id="category"> 일본소설 베스트 📖</p>
+        <div class="reel">
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/01tonight.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('01tonight.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/02yoriko.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('02yoriko.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/05swan.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('05swan.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/04human.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('04human.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/05knife.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('05knife.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/06namiya.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('06namiya.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/07norway.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('07norway.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/08sweet.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('08sweet.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/09promise.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('09promise.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/10hotel.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('10hotel.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/11summer.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('11summer.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/12snow.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('12snow.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/13konbini.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('13konbini.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/141q84.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('141q84.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/15kitakita.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('15kitakita.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+        </div>
+    </section>
+
+    <br> <!-- 프로그래밍 베스트  -->
+
+    <section class="carousel">
+        <p id="category">IT, 프로그래밍 베스트 💻</p>
+        <div class="reel">
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/01imagine.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('01imagine.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/02handson.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('02handson.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/03onebook.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('03onebook.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/04clean.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('04clean.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/05data.jpg"  height="262" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('05data.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/06infor.jpg"  height="262" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('06infor.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/07bottom.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('07bottom.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/08english.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('08english.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/09doit.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('09doit.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/10easy.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('10easy.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/11itknow.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('11itknow.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/12deepdive.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('12deepdive.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/13doitHCJ.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('13doitHCJ.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/14ptest.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('14ptest.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+
+            <article class="grid cs-style-4">
+                <figure>
+                    <div><img src="${pageContext.request.contextPath}/app/images/15notion.jpg"  height="262" width="175" alt=""></div>
+                    <figcaption>
+                        <div style="margin-top: 20%;">
+                       <span>
+						<p style="margin-bottom: 0;">바로읽기</p>
+						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/img/ebookread.png"/></a>
+                       </span>
+                            <span>
+						<p style="margin-bottom: 0;">책가방에 넣기</p>
+                        <a id="more"  onclick="addBookBasket('15notion.jpg')"><img src="/img/backpack.png"/></a>
+                       </span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+        </div>
+    </section>
+
+    <br> <!-- 함께하기 -->
+
+    <hr>
+
+
+    <!-- Main -->
+    <div class="wrapper style2">
+
+        <article id="main" class="container special">
+            <p id="category" style="text-align: center;margin-top: -2%;">함께하기 <img src="/images/qna.png" width="40" height="60"></p>
+            <br>
+            <a href="#" class="image featured"><img src="/images/mainPhoto.png" alt="" /></a>
+            <header>
+            </header>
+
+            <br>
+            <div style="font-size: 27px;text-align: center;padding-bottom: 2%;">
+                <c:choose>
+                    <c:when test="${totalCnt != null and totalCnt > 0}">
+                        <c:out value="기북천사와 함께하는 친구들은 ${totalCnt}명입니다."/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:out value="아직 함께 하고 있는 친구가 없습니다😥"/>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+
+
+
+
+            <!-- 후원기관 리스트(승인된 기관만) -->
+
+            <div class="table-wrapper" style="margin: auto; width: 70%;">
+                <!-- <div style="display:flex; justify-content:space-between;">
+                </div> -->
+                <table style="text-align: center";>
+                    <!--                                  <caption style="text-align:left; margin-bottom:3%;"> -->
+                    </caption>
+                    <thead>
+                    <tr style="background-color:#ceb980">
+                        <th style="width: 150px;">번호</th>
+                        <th style="width: 300px;">기관명</th>
+                        <th style="width: 300px;">사이트 주소</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:choose>
+                        <c:when test="${getOkList != null and fn:length(getOkList) > 0}">
+                            <c:forEach var="board" items="${getOkList}" varStatus="stat">
+                                <tr>
+                                    <td>${stat.count}</td>
+                                    <td>${board.getC_member_id()}</td> <!-- 기업 이름 -->
+                                    <td>${board.getSite_link()}</td> <!-- 기업 사이트 주소 -->
+                                </tr>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <tr>
+                                <td colspan="5" align="center">함께하는 기관이 아직 없습니다.</td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose>
+                    </tbody>
+                </table>
+
+                <table style="font-size:1.3rem">
+                    <tr align="center" valign="middle">
+                    </tr>
+                </table>
+                <div>
+                    <ul class="pagination pagination-sm">
+                        <c:if test="${nowPage > 1}">
+                            <li class="page-item disabled">
+                                <a id="pagLink" class="page-link" href="${pageContext.request.contextPath}/main/main.ma?page=${nowPage-1}">&laquo;</a>
+                            </li>
+                        </c:if>
+                        <c:forEach var="i" begin="${startPage}" end="${endPage}">
+                            <c:choose>
+                                <c:when test="${i eq nowPage}">
+                                    <div id="pagLink" class="page-link" ><c:out value="${i}"/>&nbsp;</div>
+                                </c:when>
+                                <c:otherwise>
+                                    <li class="page-item">
+                                        <a id="pagLink" class="page-link" href="${pageContext.request.contextPath}/main/main.ma?page=${i}"><c:out value="${i}"/></a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                        <c:if test="${nowPage != realEndPage}">
+                            <li class="page-item">
+                                <a id="pagLink" class="page-link" href="${pageContext.request.contextPath}/main/main.ma?page=${nowPage+1}">&raquo;</a>
+                            </li>
+                        </c:if>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+
+    <!-- Features -->
+    <div class="wrapper style1">
+
+        <section id="features" class="container special">
+
+    </div>
+    </section>
+
+</div>
+</section>
+<hr>
+<!--  Copyright -->
+<div class="copyright">
+    <ul class="menu">
+        <li>&copy; Kibook Angel. All rights reserved.</li>
+    </ul>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- <script>
+var loginTab = document.getElementById("loginTab");
+var myPageTab = document.getElementById("myPageTab");
+var logoutTab = document.getElementById("logoutTab");
+
+if(${session_id  eq '' || empty session_id}){
+ console.log("로그인 안됨");
+ logoutTab.style.display="none";
+ myPageTab.style.display="none";
+}else{
+ console.log("로그인 됨");
+ loginTab.style.display="none";
+}
+</script> -->
+
+<script>
+
+    // 책 바스켓에 넣기
+    function addBookBasket(img_src){
+        if(${session_num eq '' || empty session_num}){
+            // 비회원이라면
+            alert("책가방 담기는 로그인 후 가능합니다.")
+            location.href="/member/MemberLogin";
+
+        }else{
+            /*  alert(img_src); */
+            location.href="/book/addBookBasket.oo?img_src=" + img_src;
+
+        }
+
+
+    }
+
+
+
+    var applyTab = document.getElementById("applyTab");
+
+    if(${session_accountType eq 0}){
+        applyTab.style.display="none";
+    }
+</script>
+
+<script type="text/javascript">
+    function openPop(){
+        if(${session_sub_status eq 0 || session_id  eq '' || empty session_id}){
+            alert("구독한 회원만 읽을 수 있습니다.");
+        }
+
+        if(${session_sub_status eq 1}){
+            var popup = window.open('/book/bookViewer', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
+        }
+
+    }
+</script>
+
+<script>
+    $(document).ready(function(){
+        $("#nav").css("background" , "#00ff0000");
+        $("#nav").css("color" , "white");
+        $("#logoImg").attr("src", "/images/kibookLogo.png");
+        $(window).scroll(function(){
+            var $page = $('#banner');
+            var scroll = $(window).scrollTop();
+            var pageOffsetTop = $page.offset().top;
+            if (scroll > pageOffsetTop) {
+                $("#nav").css("background" , "#ceb980");
+                $("#nav").css("color" , "black");
+                $("#logoImg").attr("src", "/images/kibookLogoBlack.png");
+            }
+            else{
+                $("#nav").css("background" , "#00ff0000");
+                $("#nav").css("color" , "white");
+                $("#logoImg").attr("src", "/images/kibookLogo.png");
+            }
+        })
+    })
+</script>
+
+
+<!-- <script>
+function checkSearch(){
+   var form = document.searchForm;
+   if(!form.search_text.value){
+      alert("검색어를 입력해주세요.");
+      return;
+   }
+   form.submit();
+}
+</script> -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/toucheffects.js"></script> <!-- 책 접었다 폈다 상세보기 관련 js -->
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script> <!-- 헤더 -->
+</body>
+</html>
