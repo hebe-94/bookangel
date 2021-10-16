@@ -1,10 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
+    <title>기북천사 | 친구되기</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/adminboard.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/default.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/adminBoardApply.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/adminBoardView.css" type="text/css"/>
+    <noscript><link rel="stylesheet" href="/css/noscript.css" type="text/css"/></noscript>
+    <!-- logo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+    <!-- underLogo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+    <!-- 기본 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <style>
+        .big-width {display: block;}
+        .small-width {display: none;}
+
+        @media (max-width: 918px) {
+            .writer {display: none;}
+            .regDate {display: none;}
+            .updateDate {display: none;}
+        }
+
+        /* body 기본 폰트 전체 적용 */
+        body{
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+        #logo{
+            font-family: 'East Sea Dokdo', cursive;
+            font-size:100px;
+        }
+        #underLogo{
+            font-family: 'Yeon Sung', cursive;
+            font-size:100px;
+        }
+        #category{
+            font-family:'Gowun Dodum', sans-serif;
+            font-size:30px;
+            text-align: center;
+        }
+
+    </style>
+<body class="no-sidebar is-preload">
+<div id="page-wrapper">
+    <div id="header">
+        <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
+        <nav id="nav">
+
+            <!-- 기북천사 로고 -->
+            <div>
+                <a href="#"> <!-- 로고 클릭시 메인페이지로 이동 -->
+                    <img id="logoImg" src="#"></a>
+            </div>
+            <ul>
+                <!-- 검색 -->
+                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="" name="searchForm">
+                    <div class="search" style="float: left; display:inline-block">
+                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="">
+                    </div>
+                    <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                        <img id="searchImg" style="margin-top: -8%; width: 26px;" src="" />
+                    </button>
+                </form>
+                <li>
+                    <a href="#">📖 홍길동</a>
+                    <ul>
+                        <li id="loginTab"><a href="#">로그인</a></li>
+                        <li id="myPageTab"><a>마이페이지&hellip;</a>
+                            <ul>
+                                <li><a href="#">내정보 보기</a></li>
+                                <li><a href="#">회원정보 수정</a></li>
+                                <li id="applyTab"><a href="#">신청게시판</a></li><!-- 관리자 전용 -->
+                                <li><a  href="#">회원탈퇴</a></li>
+                            </ul>
+                        </li>
+                        <li><a  href="#">Q&A</a></li>
+                        <!-- 여기서부터 작업(세훈) 로그인/로그아웃시 탭의 내용 띄우는것, 페이지 이동 -->
+                        <li id="logoutTab"><a  href="#">로그아웃</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+    <!-- 작성 글 보기-->
+    <div class="ViewWrapper">
+        <div class="inner">
+            <section class="main">
+                <header class="major">
+                    <div class="form" >
+                        <form method="post" action="/board/remove">
+                            <div class="fields" th:object="${board}">
+                                <div class="field">
+                                    <h2 style="text-align:left; font-size: 1.5em;"><a th:field="*{boardTitle}"></a></h2>
+                                    <p style="text-align:left; font-size:1em" th:field="*{memberNum}">작성자</p>
+                </header>
+                <div>
+                    첨부파일
+                </div>
+                <a href="#"><!--<c:out value="${file.getFile_name_original()}"/>--></a>
+                <br>
+                <hr style=" top: 0.5em;   margin-bottom: 1em;">
+                <div ><label for="exampleTextarea" class="form-label mt-4">홈페이지 주소 : </label>
+                    <span th:field="*{siteLink}"></span></div>
+                <div style="display: inline-block;margin-top: 2%;">
+                    <h3 style= "font-size:15px;"><pre th:text="*{boardContent}"></pre></h3>
+                </div>
+                <div class="col-12"  id="viewBtn">
+                    <ul class="actions" style="display:flex; justify-content:flex-end;">
+										<span id="adminbtn" style="margin-right: 58%;">
+										<li><input type="button" id="adminOkbtn" value="승인" onclick="" style="z-index: 0;"/></li>
+										</span>
+
+                        <li ><a id="goList" href="javascript:void(0)"><input type="button" value="목록" class="primary" style="z-index: 0;"/></a></li>
+                        <li><input type="button" value="수정" onclick="goUpdate()" style="z-index: 0;"/></li>
+                        <li><input type="submit" value="삭제" style="z-index: 0;"/></li>
+                    </ul>
+                </div>
+            </section>
+            <hr style="top: 3.5em;margin-bottom: 1em;">
+            <section class="main accent2" style=" margin-top: 9%;">
+                <h2 style="font-size:20px; margin-bottom: 12px;">승인여부</h2>
+
+                <form method="post" action="#" class="combined" style="width:auto;">
+                    <textarea name="content" id="content" placeholder="KibookAngel과 함께하세요" class="invert" rows="2" style="border-radius:0; resize:none; font-size:15px; font-family: 'Gowun Dodum', sans-serif; width: 88%;"></textarea>
+                    <div  id="replyBtn" style="margin-left: 47%;">
+                        <input id="register" type="button" name="content" class="primary" value="등록" onclick="comment()"  style="margin-top: -24%; height: 70px;  margin-right: 1%;"/>
+                    </div>
+                </form>
+
+                <form id="replies">
+                    <header class="major" style="text-align:left;">
+
+                    </header>
+                </form>
+                <form id="repliess" class="combined" style="flex-direction:column; margin:0; display:contents;">
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <hr>
+</div>
+<!-- Copyright -->
+<div class="copyright">
+    <ul class="menu">
+        <li>&copy; Kibook Angel. All rights reserved.</li>
+    </ul>
+</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script	src="/js/jquery.min.js"></script>
+<script	src="/js/jquery.dropotron.min.js"></script>
+<script	src="/js/jquery.scrolly.min.js"></script>
+<script	src="/js/jquery.scrollex.min.js"></script>
+<script	src="/js/browser.min.js"></script>
+<script	src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/modernizr.custom.js"></script>
+<script src="/js/toucheffects.js"></script>
+
+<script th:inline="javascript">
+    let boardNum = [[${board.getBoardNum()}]];
+    let paging = [[${criteria.listLink}]];
+
+    function goUpdate(){
+        location.href = "/board/modify" + paging + "&boardNum=" + boardNum;
+    }
+
+
+    $("a#goList").on("click", function(){
+        location.href = "/board/list" + paging;
+    });
+</script>
 </html>
