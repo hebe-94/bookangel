@@ -102,25 +102,29 @@
 
     <!-- 신청하기 form 작성란 -->
     <div>
-        <form action="" name="writeForm" method="post" enctype="multipart/form-data">
+        <form action="/board/register" id="registForm" name="writeForm" method="post" enctype="multipart/form-data">
             <fieldset id="applyForm">
+                <div class="fields">
                 <legend>신청하기</legend>
-                <p id="writer" style="margin-left: -2%;">작성자 : 아이디가져오기</p>
+                <!--<p id="writer" style="margin-left: -2%;" name="boardMemberNum">작성자 : 아이디가져오기</p>-->
+                    <div class="field">
+                <input id="boardMemberNum" name="boardMemberNum" th:text="${board.memberNum}"  type="text" style=" z-index: 0;"/>
+                    </div>
                 <!--<input type="hidden" name="c_memeber_id" value="${session_id}">-->
                 <div class="form-group">
                     <label for="exampleTextarea" class="form-label mt-4">제목</label>
-                    <input id="board_title" name="board_title" type="text" placeholder="제목 입력" style=" z-index: 0;">
+                    <input id="boardTitle" name="boardTitle"  type="text" placeholder="제목 입력" style=" z-index: 0;">
                 </div>
                 <br>
                 <br>
                 <div class="form-group">
                     <label for="exampleTextarea" class="form-label mt-4">홈페이지 주소</label>
-                    <input type="text" name="site_link" class="form-control" aria-describedby="emailHelp" placeholder="예)www.kibookAngel.com" style="font-family: 'Gowun Dodum', sans-serif; z-index:0;">
+                    <input type="text" id="siteLink" name="siteLink" class="form-control" aria-describedby="emailHelp" placeholder="예)www.kibookAngel.com" style="font-family: 'Gowun Dodum', sans-serif; z-index:0;">
                     <small id="emailHelp" class="form-text text-muted" style="font-size:13px;">기관 홈페이지 주소를 정확하게 입력해주세요.</small>
                 </div>
                 <div class="form-group">
-                    <label for="exampleTextarea" class="form-label mt-4" >내용</label>
-                    <textarea class="form-control" id="exampleTextarea" name="board_content" rows="10" style="resize: none; font-family: 'Gowun Dodum', sans-serif;" >신청 기관 명 :
+                    <label for="exampleTextarea" class="form-label mt-4">내용</label>
+                    <textarea class="form-control" id="exampleTextarea" name="boardContent" rows="10" style="resize: none; font-family: 'Gowun Dodum', sans-serif;" >신청 기관 명 :
 신청 지역 :
 담당자 연락처 :
 담당자 이메일 :
@@ -141,6 +145,7 @@
                 <div>
                     <input type="button" value="신청" class="btn btn-primary" style="left: 29%; font-family: 'Gowun Dodum', sans-serif;display: flex;align-items: center;border-radius: 5px;" id="ModifySubmit" onclick="send()">
                     <input type="button" value="취소"  class="btn btn-primary" style="left: 35%; font-family: 'Gowun Dodum', sans-serif; display: flex;align-items: center;border-radius: 5px;" id="ModifyCancel" onclick="javascript:history.back(); return false;">
+                        </div>
                 </div>
             </fieldset>
         </form>
@@ -171,15 +176,15 @@
 <script>
     function send(){
 
-        if(!$("input#board_title").val()){
+        if(!$("input#boardTitle").val()){
             alert("제목을 작성해주세요.");
             return;
         }
-        if(!$("input[name='site_link']").val()){
+        if(!$("input[name='siteLink']").val()){
             alert("홈페이지 주소를 입력해주세요.");
             return;
         }
-        if(!$("textarea[name='board_content']").val()){
+        if(!$("textarea[name='boardContent']").val()){
             alert("내용을 작성해주세요.");
             return;
         }

@@ -36,7 +36,7 @@ public class BoardController {
     }
 
     @PostMapping("register")
-    public RedirectView register(BoardVO boardVO, RedirectAttributes rttr){
+    public RedirectView register(BoardVO boardVO, RedirectAttributes rttr, Model model){
         log.info("-------------------------------");
         log.info("register : " + boardVO.toString());
         log.info("-------------------------------");
@@ -44,8 +44,9 @@ public class BoardController {
         boardService.register(boardVO);
 
 //        쿼리 스트링으로 전달
-//        rttr.addAttribute("bno", boardVO.getBno());
+//        rttr.addAttribute("boardNum", boardVO.getboardNum());
 //        세션의 flash영역을 이용하여 전달
+      /*  model.addAttribute("memberNum",boardVO.getMemberNum("41"));*/
         rttr.addFlashAttribute("boardNum", boardVO.getBoardNum());
 //        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
         return new RedirectView("list");

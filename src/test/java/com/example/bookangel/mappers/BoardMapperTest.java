@@ -22,22 +22,24 @@ public class BoardMapperTest {
         mapper.getList(cri).forEach(board -> log.info(board.toString()));
     }
 
-/*    @Test
+    @Test
     public void testInsert(){
         BoardVO board = new BoardVO();
-        board.setTitle("새로 작성한 글 제목");
-        board.setContent("새로 작성한 글 내용");
-        board.setWriter("user01");
+        board.setBoardNum(58L);
+        board.setMemberNum(41L);
+        board.setBoardTitle("새 제목");
+        board.setSiteLink("새로 작성한 사이트");
+        board.setBoardContent("새로 할 내용");
         mapper.insert(board);
     }
 
-    @Test
+/*    @Test
     public void testInsertSelectKey_bno(){
         BoardVO board = new BoardVO();
-        board.setTitle("새로 작성한 글 제목2");
-        board.setContent("새로 작성한 글 내용2");
-        board.setWriter("user02");
-        mapper.insertSelectKey_bno(board);
+        board.setBoardTitle("새로 작성한 글 제목2");
+        board.setSiteLink("새로 작성한 사이트");
+        board.setBoardContent("새로 할 내용");
+        mapper.insertSelectKey_boardNum(board);
     }*/
 
     @Test

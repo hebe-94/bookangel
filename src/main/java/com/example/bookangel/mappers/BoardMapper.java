@@ -13,7 +13,7 @@ public interface BoardMapper {
     //    게시글 추가
     public void insert(BoardVO board);
     //    게시글 추가(PK가져오기)
-    public void insertSelectKey_bno(BoardVO board);
+    public void insertSelectKey_boardNum(BoardVO board);
     //    게시글 상세보기(특정 게시글 정보)
     public BoardVO read(Long boardNum);
     //    게시글 수정
