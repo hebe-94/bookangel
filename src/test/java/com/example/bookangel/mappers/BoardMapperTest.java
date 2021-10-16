@@ -1,4 +1,4 @@
 package com.example.bookangel.mappers;
 
-public class mappersDummy {
+public class BoardMapperTest {
 }
