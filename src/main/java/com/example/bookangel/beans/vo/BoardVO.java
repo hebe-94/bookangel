@@ -13,4 +13,6 @@ public class BoardVO {
     private String siteLink;
     private String cBoardDate;
     private String cBoardApplyOk;
+    private int rowNum;
+    private String memberName;
 }

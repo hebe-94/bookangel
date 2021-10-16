@@ -24,14 +24,15 @@
 
     <select id="getList" resultType="boardVO">
         <![CDATA[
-        SELECT BOARDNUM, MEMBERNUM, BOARDTITLE, BOARDCONTENT, SITELINK, CBOARDDATE, CBOARDAPPLYOK
+        SELECT BOARDNUM, BOARDTITLE, MEMBERNAME, CBOARDDATE
         FROM
         (
             /*알리아스를 붙인 컬럼에 WHERE절에서 접근할 때에는 FROM절에 작성된 테이블의 컬럼과 동일한 이름으로만 사용이 가능하다.*/
             SELECT /*+ INDEX_DESC(BOOK_C_APPLY_BOARD APPLY_BOARD_PK) */
-            ROWNUM R,BOARDNUM, MEMBERNUM, BOARDTITLE, BOARDCONTENT, SITELINK, CBOARDDATE, CBOARDAPPLYOK
-            FROM BOOK_C_APPLY_BOARD
-            WHERE
+             ROWNUM R,BOOK_C_APPLY_BOARD.BOARDNUM, BOOK_C_APPLY_BOARD.BOARDTITLE,
+             BOOK_MEMBER.MEMBERNAME, BOOK_C_APPLY_BOARD.CBOARDDATE
+            FROM BOOK_C_APPLY_BOARD JOIN BOOK_MEMBER
+            ON BOOK_MEMBER.MEMBERNUM = BOOK_C_APPLY_BOARD.MEMBERNUM AND
         ]]>
         <include refid="search"></include>
         <![CDATA[
@@ -70,7 +71,7 @@
 
     <update id="update">
         UPDATE BOOK_C_APPLY_BOARD
-        SET BOARDTITLE = #{boardTitle},MEMBERNUM = #{memberNum}, SITELINK = #{siteLink}, BOARDCONTENT = #{boardContent}
+        SET BOARDTITLE = #{boardTitle},MEMBERNUM = #{memberNum}, SITELINK = #{siteLink}, BOARDCONTENT = #{boardContent}, cBoardDate = SYSDATE
         WHERE BOARDNUM = #{boardNum}
     </update>
 

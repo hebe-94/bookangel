@@ -120,6 +120,7 @@
                     <textarea class="form-control" th:text="${board.boardContent}" id="Textarea" rows="10" style="resize: none; font-family: 'Gowun Dodum', sans-serif;" name="boardContent"/>
                 </div>
                 <input type="hidden" name="boardRemove" th:field="${board.boardNum}">
+                <input type="hidden" name="boardRemove" th:field="${board.cBoardDate}">
                 <div class="form-group">
                     <label for="formFile" class="form-label mt-4">첨부파일</label>
                 </div>
