@@ -19,7 +19,7 @@ public interface BoardMapper {
     //    게시글 수정
     public int update(BoardVO board);
     //    게시글 삭제
-    public int delete(Long boardNum);
+    public int remove(Long boardNum);
     //    게시글 전체 개수
     public int getTotal(Criteria criteria);
 }

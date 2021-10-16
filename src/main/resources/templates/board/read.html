@@ -104,50 +104,57 @@
                     <div class="form" >
                         <form method="post" action="/board/remove">
                             <div class="fields" th:object="${board}">
-                                <div class="field">
-                                    <h2 style="text-align:left; font-size: 1.5em;"><a th:field="*{boardTitle}"></a></h2>
-                                    <p style="text-align:left; font-size:1em" th:field="*{memberNum}">작성자</p>
-                </header>
+                                <!--<a class="field">-->
+                                   <input name="boardTitle" type="text" th:field="*{boardTitle}" style="padding: 0;background: white; text-align:left; font-size: 1.5em; border: none;" readonly/>
+                                   <input name="boardMemberNum" type="text" th:field="*{memberNum}" style="text-align:left; background: white; font-size: 1em; border: none;" readonly/>
+                                    <!--<h2 style="text-align:left; font-size: 1.5em;"><a th:field="*{boardTitle}"></a></h2>-->
+                                    <!--<a style="text-align:left; font-size:1em" th:field="*{memberNum}">작성자</a>-->
+                <!--</header>-->
                 <div>
                     첨부파일
                 </div>
                 <a href="#"><!--<c:out value="${file.getFile_name_original()}"/>--></a>
                 <br>
                 <hr style=" top: 0.5em;   margin-bottom: 1em;">
-                <div ><label for="exampleTextarea" class="form-label mt-4">홈페이지 주소 : </label>
-                    <span th:field="*{siteLink}"></span></div>
-                <div style="display: inline-block;margin-top: 2%;">
-                    <h3 style= "font-size:15px;"><pre th:text="*{boardContent}"></pre></h3>
+                    <input name="siteLink" type="text" th:field="*{siteLink}" style="font-size: 1em;background: white; border: none;" readonly/>
+                    </div>
+                <div class="form-group">
+                    <label for="exampleTextarea" class="form-label mt-4">
+                    <input name="boardContent" type="text" th:text="${board.boardContent}" style="font-size: 1em;background: white; border: none;" readonly/>
+                    </label>
                 </div>
+                <input type="hidden" name="boardRemove" th:field="${board.boardNum}">
+                <br>
                 <div class="col-12"  id="viewBtn">
                     <ul class="actions" style="display:flex; justify-content:flex-end;">
-										<span id="adminbtn" style="margin-right: 58%;">
-										<li><input type="button" id="adminOkbtn" value="승인" onclick="" style="z-index: 0;"/></li>
-										</span>
+                        <span id="adminbtn" >
+                        <li><input type="button" id="adminOkbtn" value="승인" onclick="" style="z-index: 0;"/></li>
 
                         <li ><a id="goList" href="javascript:void(0)"><input type="button" value="목록" class="primary" style="z-index: 0;"/></a></li>
                         <li><input type="button" value="수정" onclick="goUpdate()" style="z-index: 0;"/></li>
-                        <li><input type="submit" value="삭제" style="z-index: 0;"/></li>
+                        <li><input type="submit" value="삭제" style="z-index: 0;width: 0%;padding: 0.65em 2.5em 0.65em 2.5em;border-radius: 0.5em;font-size: 14px;display: inline-grid;"></li>
+                        </span>
                     </ul>
                 </div>
-            </section>
-            <hr style="top: 3.5em;margin-bottom: 1em;">
-            <section class="main accent2" style=" margin-top: 9%;">
-                <h2 style="font-size:20px; margin-bottom: 12px;">승인여부</h2>
+            </form>
+            <hr style="top: 2.5em;margin-bottom: 4em;">
+            <form class="main accent2" style=" margin-top: 9%;">
+                <h2 style="font-size:20px; margin-bottom: 20px;">승인여부</h2>
 
-                <form method="post" action="#" class="combined" style="width:auto;">
-                    <textarea name="content" id="content" placeholder="KibookAngel과 함께하세요" class="invert" rows="2" style="border-radius:0; resize:none; font-size:15px; font-family: 'Gowun Dodum', sans-serif; width: 88%;"></textarea>
-                    <div  id="replyBtn" style="margin-left: 47%;">
-                        <input id="register" type="button" name="content" class="primary" value="등록" onclick="comment()"  style="margin-top: -24%; height: 70px;  margin-right: 1%;"/>
-                    </div>
-                </form>
+                        <form method="post" action="#" class="combined" style="width:auto;">
+                            <textarea name="content" id="content" placeholder="KibookAngel과 함께하세요" class="invert" rows="2" style="border-radius:0; resize:none; font-size:15px; font-family: 'Gowun Dodum', sans-serif; width: 88%;"></textarea>
+                            <div  id="replyBtn" style="margin-left: 47%;">
+                                <input id="register" type="button" name="content" class="primary" value="등록" onclick="comment()"  style="margin-top: -24%; height: 70px;  margin-right: 1%;"/>
+                            </div>
+                        </form>
 
-                <form id="replies">
-                    <header class="major" style="text-align:left;">
+                        <form id="replies">
+                            <header class="major" style="text-align:left;">
 
-                    </header>
-                </form>
-                <form id="repliess" class="combined" style="flex-direction:column; margin:0; display:contents;">
+                            </header>
+                        </form>
+                    <form id="repliess" class="combined" style="flex-direction:column; margin:0; display:contents;">
+                    </form>
                 </form>
             </section>
         </div>

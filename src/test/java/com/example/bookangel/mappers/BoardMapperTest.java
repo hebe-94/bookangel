@@ -1,5 +1,6 @@
 package com.example.bookangel.mappers;
 
+import com.example.bookangel.beans.vo.BoardVO;
 import com.example.bookangel.beans.vo.Criteria;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -44,25 +45,26 @@ public class BoardMapperTest {
         log.info(mapper.read(23L).toString());
     }
 
-   /* @Test
+    @Test
     public void testUpdate(){
-        if(mapper.read(100L) == null){
+        if(mapper.read(46L) == null){
             log.info("***********NO SUCH BOARD***********");
         }else{
             BoardVO board = new BoardVO();
-            board.setBno(100L);
-            board.setTitle("수정된 글 제목");
-            board.setContent("수정된 글 내용");
+            board.setBoardNum(46L);
+            board.setBoardTitle("수정된 글 제목");
+            board.setBoardContent("수정된 글 내용");
+            board.setSiteLink("수정 된 사이트");
             log.info("UPDATE COUNT : " + mapper.update(board));
         }
     }
 
     @Test
     public void testDelete(){
-        if(mapper.read(4L) == null){
+        if(mapper.read(45L) == null){
             log.info("***********NO SUCH BOARD***********");
         }else{
-            log.info("DELETE COUNT : " + mapper.delete(4L));
+            log.info("DELETE COUNT : " + mapper.remove(45L));
         }
-    }*/
+    }
 }

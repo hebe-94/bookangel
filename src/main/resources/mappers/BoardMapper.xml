@@ -70,11 +70,11 @@
 
     <update id="update">
         UPDATE BOOK_C_APPLY_BOARD
-        SET BOARDTITLE = #{boardTitle}, BOARDCONTENT = #{boardContent}, SITELINK = #{siteLink}, CBOARDDATE = SYSDATE
+        SET BOARDTITLE = #{boardTitle},MEMBERNUM = #{memberNum}, SITELINK = #{siteLink}, BOARDCONTENT = #{boardContent}
         WHERE BOARDNUM = #{boardNum}
     </update>
 
-    <delete id="delete">
+    <delete id="remove">
         DELETE FROM BOOK_C_APPLY_BOARD WHERE BOARDNUM = #{boardNum}
     </delete>
 

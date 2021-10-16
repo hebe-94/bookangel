@@ -102,31 +102,36 @@
     <div>
         <form action="/board/modify" method="post" name="writeForm">
             <fieldset id="applyForm">
-
+                <div class="fields" th:object="${board}">
+                    <div class="field">
                 <div class="form-group row">
-                    <input id="board_title" name="board_title" type="text" placeholder="제목 입력" value="수정 전 기존 제목" style="text-align:left;font-size:1.5em;margin-bottom: 3%;margin-top: 8%;z-index: 0;">
-                    <p id="writer">작성자 :</p>
+                    <input id="board_title" name="board_title" type="text" th:field="${board.boardTitle}" style="text-align:left;background: white; font-size:1.5em; margin-bottom:3%; margin-top:8%; z-index: 0;">
+                    <input name="boardMemberNum" type="text" th:field="${board.memberNum}" style="text-align:left; background: white; font-size: 1em; border: none; z-index: 0;" readonly/>
+                   <!-- <p id="writer">작성자 :</p>-->
                     <!-- <input type="hidden" name="board_id" value="${session_id}">-->
                 </div>
                 <div class="form-group">
                     <label for="exampleTextarea" class="form-label mt-4">홈페이지 주소</label>
-                    <input type="text" class="form-control" id="exampleTextarea" aria-describedby="emailHelp" placeholder="기존 홈페이지 주소" style="font-family: 'Gowun Dodum', sans-serif;" name="site_link">
+                    <input type="text" class="form-control" id="exampleTextarea" th:field="${board.siteLink}" aria-describedby="emailHelp" placeholder="기존 홈페이지 주소" style="font-family: 'Gowun Dodum', sans-serif;background: white;" name="sitelink">
                     <small id="emailHelp" class="form-text text-muted" style="font-size:13px;">기관 홈페이지 주소를 정확하게 입력해주세요.</small>
                 </div>
                 <div class="form-group">
-                    <label for="exampleTextarea" class="form-label mt-4">내용 작성</label>
-                    <textarea class="form-control" id="Textarea" rows="10" style="resize: none; font-family: 'Gowun Dodum', sans-serif;" name="board_content">기존 텍스트 내용</textarea>
+                    <label for="exampleTextarea" class="form-label mt-4"></label>
+                    <textarea class="form-control" th:text="${board.boardContent}" id="Textarea" rows="10" style="resize: none; font-family: 'Gowun Dodum', sans-serif;" name="boardContent"/>
                 </div>
+                <input type="hidden" name="boardRemove" th:field="${board.boardNum}">
                 <div class="form-group">
                     <label for="formFile" class="form-label mt-4">첨부파일</label>
                 </div>
                 <input class="form-control" type="file" name ="formFile" id="formFile" style="font-family: 'Gowun Dodum', sans-serif;">
                 <div>
-                    <form action="" name="writeForm" method="post" enctype="multipart/form-data">
+                    <!--<form action="" name="writeForm" method="post" enctype="multipart/form-data">-->
                         <input type="hidden" name="boardNum" value="">
-                        <input type="button" value="수정" class="btn btn-primary" style="left: 29%; font-family: 'Gowun Dodum', sans-serif;display: flex;align-items: center;border-radius: 5px;" id="ModifySubmit" onclick="">
+                        <input type="submit" value="수정" class="btn btn-primary" style="left: 29%; font-family: 'Gowun Dodum', sans-serif;display: flex;align-items: center;border-radius: 5px;" id="ModifySubmit">
                         <input type="button" value="취소"  class="btn btn-primary" style="left: 35%; font-family: 'Gowun Dodum', sans-serif; display: flex;align-items: center;border-radius: 5px;" id="ModifyCancel" onclick="javascript:history.back(); return false;">
-                    </form>
+                   <!-- </form>-->
+                    </div>
+                </div>
                 </div>
             </fieldset>
         </form>

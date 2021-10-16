@@ -80,7 +80,7 @@ public class BoardControllerTest {
 
     @Test
     public void testRemove() throws Exception {
-        String result = mockMvc.perform(MockMvcRequestBuilders.post("/board/remove").param("boardNum", "5"))
+        String result = mockMvc.perform(MockMvcRequestBuilders.post("/board/remove").param("boardNum", "44"))
                 .andReturn().getFlashMap().toString();
         log.info(result);
     }

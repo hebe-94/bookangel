@@ -28,7 +28,7 @@ public class BoardDAO {
     }
 
     public boolean remove(Long boardNum){
-        return mapper.delete(boardNum) == 1;
+        return mapper.remove(boardNum) == 1;
     }
 
     public List<BoardVO> getList(Criteria criteria){

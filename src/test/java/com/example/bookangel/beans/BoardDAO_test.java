@@ -49,10 +49,10 @@ public class BoardDAO_test {
 
     @Test
     public void testRemove(){
-        if (boardDAO.get(3L) == null) {
+        if (boardDAO.get(43L) == null) {
             log.info("***********NO SUCH BOARD***********");
         }else{
-            log.info("REMOVE : " + boardDAO.remove(3L));
+            log.info("REMOVE : " + boardDAO.remove(43L));
         }
     }
 
