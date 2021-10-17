@@ -52,6 +52,11 @@
             text-align: center;
         }
 
+        a{
+            color: #ef8376;
+            text-decoration: none;
+        }
+
     </style>
 <body class="no-sidebar is-preload">
 <div id="page-wrapper">
@@ -111,8 +116,8 @@
                 <header>
                     <h3 style="margin-top:-3%; font-size: 30px;">기북천사와 친구되기</h3>
                 </header>
-                <button type="button"  class="btn btn-outline-success" style=" left: 80%; border-radius: 5px 5px 5px 5px; margin-top: 5px; width: 74px; top: -2%;"
-                ><a href="/board/register" style="color: black; text-decoration: none;">글쓰기</a></button>
+                <button type="button" class="btn btn-outline-success" style="left: 80%;border-radius: 5px 5px 5px 5px;margin-top: 5px;width: 74px;top: -2%;margin-bottom: 14px;"><a href="/board/register" style="color: black; text-decoration: none;">
+                    글쓰기</a></button>
                 <div class="table-wrapper" style="margin: auto;">
                     <table style="text-align: center";>
                         <thead  style ="position: sticky; top:0;">
@@ -141,25 +146,32 @@
                         <tr align="center" valign="middle">
                         </tr>
                     </table>
-                    <div>
-                        <ul class="pagination pagination-sm">
-                            <li class="page-item disabled">
-                                <a id="pagLink" class="page-link" href="${pageContext.request.contextPath}/board/BoardList.bo?page=${nowPage-1}">&laquo;</a>
-                            </li>
-                            <div id="pagLink" class="page-link" >&nbsp;</div>
-                            <!-- <li class="page-item">
-                                 <a id="pagLink" class="page-link" href="${pageContext.request.contextPath}/board/BoardList.bo?page=${i}"></a>
-                             </li>-->
-                            <li class="page-item">
-                                <a id="pagLink" class="page-link" href="${pageContext.request.contextPath}/board/BoardList.bo?page=${nowPage+1}">&raquo;</a>
-                            </li>
-                        </ul>
+                    <div th:object="${pageMaker}">
+                        <div class="big-width" style="text-align: center">
+                            <a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}"><code>&lt;</code></a>
+                            <th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
+                                <code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
+                                <a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>
+                            </th:block>
+                            <a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><code>&gt;</code></a>
+                        </div>
+
+                        <div class="small-width" style="text-align: center">
+                            <a class="changePage" th:if="*{criteria.pageNum > 1}" th:href="*{criteria.pageNum - 1}"><code>&lt;</code></a>
+                            <code th:text="*{criteria.pageNum}"></code>
+                            <a class="changePage" th:if="*{criteria.pageNum < realEnd}" th:href="*{criteria.pageNum + 1}"><code>&gt;</code></a>
+                        </div>
+
+                        <form action="/board/list" th:object="${criteria}" name="pageForm">
+                            <input type="hidden" name="pageNum" th:field="*{pageNum}">
+                            <input type="hidden" name="amount" th:field="*{amount}">
+                        </form>
                     </div>
                 </div>
             </article>
         </div>
     </div>
-    <hr />
+    <hr style="margin-bottom: 15em;  height: 4px; top: 14.5em;">
 </div>
 <!-- Copyright -->
 <div class="copyright">
