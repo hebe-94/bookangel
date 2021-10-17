@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<!--
+   Helios by Pixelarity
+   pixelarity.com | hello@pixelarity.com
+   License: pixelarity.com/license
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>기북천사 | 회원가입</title>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Codrops" />
+    <!--<link rel="shortcut icon" href="../favicon.icon">-->
+    <link rel="stylesheet" type="text/css" href="/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/couponList.css" />
+    <script src="/js/modernizr.custom.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
+
+    <!-- logo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap"
+          rel="stylesheet">
+    <!-- underLogo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap"
+          rel="stylesheet">
+    <!-- 기본 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+          rel="stylesheet">
+</head>
+<style>
+    /* body 기본 폰트 전체 적용 */
+
+    body {
+        font-family: 'Gowun Dodum', sans-serif;
+    }
+
+    #logo {
+        font-family: 'East Sea Dokdo', cursive;
+        font-size: 100px;
+    }
+
+    #underLogo {
+        font-family: 'Yeon Sung', cursive;
+        font-size: 100px;
+    }
+
+    summary {
+        cursor: pointer;
+        list-style: none;
+        outline: none;
+        padding:15px;
+        border: solid 1px;
+        border-radius: 3px;
+        border-color:#e8e8e8;
+        margin-bottom: 3px;
+        background-color: #f5f5f5;
+    }
+
+    #help{
+        margin: 5% 19% 7% 16%
+    }
+
+    #help2{
+        border-top: solid 11px;
+        border-color: #f5f4f3;
+        padding: 30px;
+    }
+
+    .helpinfo{
+        margin: 2% 2% 0 2%;
+        text-align: left;
+    }
+
+    .qw{
+        padding: inherit;
+        margin: 1% 0 2% 0;
+        width: 40%;
+        margin-right: 60%;
+        margin-left: 2%;
+        position: inherit;
+    }
+
+    #message{
+        resize: none; padding:inherit; width: 95%; margin: 1% 20% 3% 2%; positon:inherit;
+    }
+
+    #nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: right;
+        padding: 1.5em 0 1.5em 0;
+        z-index: 1;
+        overflow: hidden;
+    }
+</style>
+<body class="no-sidebar is-preload" style="background-color: white;">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <div id="header">
+
+
+
+        <!-- Nav -->
+        <nav id="nav">
+
+            <!-- 기북천사 로고 -->
+            <div>
+                <a href="${pageContext.request.contextPath}/main/main.ma"> <!-- 로고 클릭시 메인페이지로 이동 -->
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
+            </div>
+
+            <ul>
+
+                <!-- 검색 -->
+                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="${pageContext.request.contextPath}/book/BookSearchOk.oo" name="searchForm">
+                    <div class="search" style="float: left; display:inline-block">
+                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {checkSearch();}">
+                    </div>
+                    <button onclick="checkSearch();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                        <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
+                             4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
+                             vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
+                             4PSIwIDAgMzAuMjM5IDMwLjIzOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzAuMjM5IDMwLjIzOTsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZD0iTTIwLjE5NCwzLjQ2Yy00LjYxMy00LjYxMy0xMi4xMjEtNC42MTMtMTYuNzM0LDB
+                             jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
+                             JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
+                             zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+                    </button>
+                </form>
+
+                <!-- 회원정보 -->
+                <li>
+                    <a href="#">📖
+                        <c:choose>
+                            <c:when test="${session_id  eq '' || empty session_id}">
+                                <c:out value="비회원"/>
+                            </c:when>
+
+                            <c:otherwise>
+                                <c:out value="${session_name}"/>
+                            </c:otherwise>
+                        </c:choose>
+                    </a>
+                    <ul>
+                        <c:choose>
+                            <c:when test="${session_id  eq '' || empty session_id}">
+                                <li id="loginTab"><a href="${pageContext.request.contextPath}/app/member/login.jsp">로그인</a></li>
+                            </c:when>
+                        </c:choose>
+
+                        <c:choose>
+                            <c:when test="${session_id  ne '' && not empty session_id}">
+                                <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                    <ul>
+                                        <li><a href="${pageContext.request.contextPath}/member/MemberMyPage.me">내정보 보기</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/member/AllModify.me">회원정보 수정</a></li>
+                                        <li id="applyTab"><a href="${pageContext.request.contextPath}/board/BoardList.bo">신청게시판</a></li><!-- 관리자 전용 -->
+                                        <li><a  href="${pageContext.request.contextPath}/member/Withdraw.me">회원탈퇴</a></li>
+                                    </ul>
+                                </li>
+                            </c:when>
+                        </c:choose>
+                        <li><a  href="${pageContext.request.contextPath}/member/QnA.me">Q&A</a></li>
+                        <c:choose>
+                            <c:when test="${session_id  ne '' && not empty session_id}">
+                                <li id="logoutTab"><a  href="${pageContext.request.contextPath}/member/MemberLogout.me">로그아웃</a></li>
+                            </c:when>
+                        </c:choose>
+
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</div>
+
+<!-- Main -->
+<div class="joinWrapper style1" style="padding-top: 0px;">
+
+    <!-- 					<div class="container" style="display: inherit;">
+                            <article style="margin-bottom: 700px;" id="main" class="special" >
+                                <header>
+                                    <h2><a href="#">회원가입</a></h2>
+                                        <p style="text-align : center;margin-bottom: -10%;">
+                                            환영합니다 고객님<br>
+                                            회원가입 후 정상적인 서비스를 이용하실 수 있습니다.
+                                        </p>
+                                    <hr>
+                                </header> -->
+
+    <section class="main">
+        <header class="major">
+            <h1 style="text-align:center;padding-bottom: 3%;font-size:40px;margin: 8% 23% 0px 28%;">기북천사 회원가입<img src="/images/qna.png" width="40" height="60"></h1>
+            <p style="text-align : center;margin: -16px 30% -4em 30%;font-size: 18px;">
+                환영합니다 고객님<br>
+                회원가입 후 정상적인 서비스를 <br>이용하실 수 있습니다.
+            </p>
+            <br>
+            <br>
+            <p style="text-align : center;margin: 20px 32% -1em 32%;border-bottom: solid 7px #F5F4F5;text-align:right;">
+                <span style="text-align:right; font-size:15px;">(<span style="color:red;"> * </span>)는 필수입력사항입니다.</span>
+            </p>
+        </header>
+
+        <form method="post" action="${pageContext.request.contextPath}/member/MemberJoinOk.me" name="joinForm">
+            <div style="display:flex; justify-content:space-evenly; color:black;">
+                <div style="width: 35%;">
+                    <div>
+                        <div class="col-6 col-12-xsmall" style="width:100%">
+
+
+                            <label style="margin: 5% 0 2% 0;"><input type="radio" name="chk_info" value="0" checked="checked" style=" -webkit-appearance: radio;width:5%;height: 20px; position:inherit;">일반회원</label>
+                            <label style="margin: 2% 0 2% 0;"><input type="radio" name="chk_info" value="1" style="-webkit-appearance: radio;width:5%;height: 20px; position:inherit;">기업회원</label>
+
+
+                            <p style="margin-bottom: 2%;margin-top: 5%;margin-right: 0%;text-align:left;width: 100%;font-size: 25px;"><span style="color:red;">*</span> 아이디   <span id="idCheck_text" style="font-size:0.7em; font-weight:bold;"></span></p>
+                            <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="member_id" id="member_id" value="" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"/>
+
+                            <p style="margin-bottom: 2%;text-align:left; font-size: 25px;"><span style="color:red;">*</span> 비밀번호</p>
+                            <input type="password" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="member_pw" id="member_pw" value="" placeholder="영문 4자 이상, 최대 20자"/>
+
+                            <p style="margin-bottom: 2%;border-bottom: solid 7px #f5F3f3;padding: 33px;margin-bottom: 5%;"></p>
+
+                            <p style="margin-bottom: 2%; text-align:left; font-size: 25px;"><span style="color:red;">*</span> 이름</p>
+                            <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="member_name" id="member_name" value=""/>
+
+                            <p style="margin-bottom: 2%; text-align:left; font-size: 25px;"><span style="color:red;">*</span> 핸드폰 번호</p>
+                            <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="member_tel" id="member_tel" value="" placeholder="- 없이 입력해주세요"/>
+
+                            <p style="margin-bottom: 2%; text-align:left; font-size: 25px;"><span style="color:red;">*</span> 이메일</p>
+                            <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="member_email" id="member_email" value="" placeholder="abc@gmail.com"/>
+
+                            <p style="margin-bottom: 2%;border-bottom: solid 7px #f5F3f3;padding: 33px;margin-bottom: 5%;"></p>
+                        </div>
+
+                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;">우편번호</p>
+
+                        <div style="display: -webkit-inline-box;justify-content: space-between; position: inherit; ">
+                            <input style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;width: 102%;" type="text" name="member_zipcode" id="member_zipcode" class="postcodify_postcode5" value="" />
+
+                            <ul class="actions">
+                                <li>
+                                    <input type="button" id="postcodify_search_button" class="button primary" style="margin-bottom: 5%;font-family:inherit;font-size: 15px;position: inherit;width: 100%;margin-left: 10%;" value="검색">
+                                </li>
+                            </ul>
+                        </div>
+
+                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;">주소</p>
+                        <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="member_address" id="member_address" class="postcodify_address" value=""/>
+
+                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;">상세주소</p>
+                        <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="member_address_detail" id="member_address_detail" class="postcodify_details" value=""/>
+
+                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;">참고항목</p>
+                        <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="member_address_etc" id="member_address_etc" class="postcodify_extra_info" value="" />
+
+                        <p style="margin-bottom: 2%;border-bottom: solid 7px #f5F3f3; padding: 27px;margin-bottom: 5%;"></p>
+                        <div>
+                            <input type="button" value="완료" class="primary" style="width: 48%;font-size: 18px;font-family: inherit;margin-right: 2%;cursor:pointer;" onclick="formSubmit()"/>
+                            <input type="button" value="취소" class="primary" style="width: 48%;font-size: 18px;font-family: inherit;margin-left: 2%;cursor:pointer;" onclick="history.back()"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+
+
+    <hr>
+    <div class="copyright">
+        <ul class="menu">
+            <li>&copy; Kibook Angel. All rights reserved.</li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Scripts -->
+<script>
+    if($('input[name="chk_info"]:checked').val() == '0'){
+        //회원
+        console.log("회원");
+        form.method="post";
+        form.tartget="_self";
+        form. action="${pageContext.request.contextPath}/member/MemberJoinOk.me" ;
+    }else{
+        //기업
+        console.log("기업");
+        form.method="post";
+        form.tartget="_self";
+        form. action="${pageContext.request.contextPath}/c_member/c_MemberJoinOk.co" ;
+    }
+
+    form.submit();
+
+</script>
+
+<script>
+    function checkSearch(){
+        var form = document.searchForm;
+        if(!form.search_text.value){
+            alert("검색어를 입력해주세요.");
+            return;
+        }
+        form.submit();
+    }
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
+<script>var contextPath = "${pageContext.request.contextPath}";</script>
+<script src="/js/join.js"></script>
+
+</body>
+</html>

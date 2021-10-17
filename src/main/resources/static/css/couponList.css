@@ -1866,7 +1866,7 @@ header .icon.circled {
 
 #header {
 	position: relative;
-	background-image: url("../../../app/images/bookHeader.jpg");
+	background-image: url("/images/bookHeader.jpg");
 	color: #fff;
 	text-align: center;
 	padding: 0em 0 0em 0;
@@ -2066,7 +2066,7 @@ button {
 	padding: 1.5em 0 1.5em 0;
 	z-index: 1;
 	overflow: hidden;
-	background-image: url("../../../app/images/bookHeader.jpg");
+	background-image: url("/images/bookHeader.jpg");
 }
 
 /* 여기까지 경훈님이 수정해서 준내용 */
