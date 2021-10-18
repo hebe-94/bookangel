@@ -1708,14 +1708,13 @@
 
             <br>
             <div style="font-size: 27px;text-align: center;padding-bottom: 2%;">
-                <c:choose>
-                    <c:when test="${totalCnt != null and totalCnt > 0}">
-                        <c:out value="기북천사와 함께하는 친구들은 ${totalCnt}명입니다."/>
-                    </c:when>
-                    <c:otherwise>
-                        <c:out value="아직 함께 하고 있는 친구가 없습니다😥"/>
-                    </c:otherwise>
-                </c:choose>
+                <th:block th:if="${total != null and total > 0}">
+                    <th:block th:text="|기북천사와 함께하는 친구들은 ${total}명입니다.|"/>
+                </th:block>
+                <th:block th:if="${total == null and total <= 0}">
+                    <th:block th:text="아직 함께 하고 있는 친구가 없습니다😥"/>
+                </th:block>
+                </th:block>
             </div>
 
 
@@ -1737,22 +1736,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:choose>
-                        <c:when test="${getOkList != null and fn:length(getOkList) > 0}">
-                            <c:forEach var="board" items="${getOkList}" varStatus="stat">
-                                <tr>
-                                    <td>${stat.count}</td>
-                                    <td>${board.getC_member_id()}</td> <!-- 기업 이름 -->
-                                    <td>${board.getSite_link()}</td> <!-- 기업 사이트 주소 -->
-                                </tr>
-                            </c:forEach>
-                        </c:when>
-                        <c:otherwise>
-                            <tr>
-                                <td colspan="5" align="center">함께하는 기관이 아직 없습니다.</td>
+                    <th:block th:if="${list != null and list.size() > 0}">
+                        <th:block th:each="i : ${#numbers.sequence(list.size()-1, 0, -1)}">
+                            <tr class="tBody" th:object="${list[i]}">
+                                <td class="rowNum" th:text="*{rowNum}"></td>
+                                <td class="memberName" th:text="*{memberName}"></td>
+                                <td class="siteLink" th:text="*{siteLink}"></td>
                             </tr>
-                        </c:otherwise>
-                    </c:choose>
+                        </th:block>
+                    </th:block>
+                    <th:block th:if="${list == null and list.size() <= 0}">
+                        <tr>
+                            <td colspan="5" align="center">함께하는 기관이 아직 없습니다.</td>
+                        </tr>
+                    </th:block>
+                    </tbody>
                     </tbody>
                 </table>
 

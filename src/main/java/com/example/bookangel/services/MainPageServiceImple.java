@@ -18,5 +18,5 @@ public class MainPageServiceImple implements MainPageService {
         return mainPageDAO.getOkList(criteria); }
 
     @Override
-    public int getTotal(Criteria criteria) { return mainPageDAO.getTotal(criteria); }
+    public int getOkTotal(Criteria criteria) { return mainPageDAO.getOkTotal(criteria); }
 }

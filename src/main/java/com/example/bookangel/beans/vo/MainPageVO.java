@@ -12,4 +12,6 @@ public class MainPageVO {
     private String boardContent;
     private String siteLink;
     private String cBoardApplyOk;
+    private int rowNum;
+    private String memberName;
 }

@@ -17,18 +17,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainPageController {
     private final MainPageService mainPageService;
 
-    @GetMapping("mainPage")
-    public String mainPage(){
-        return "main/mainPage";
-    }
+//    @GetMapping("mainPage")
+//    public String mainPage(){
+//        return "main/mainPage";
+//    }
 
-    @GetMapping("list")
+    @GetMapping("mainPage")
     public String list(Criteria criteria, Model model){
         log.info("-------------------------------");
-        log.info("list");
+        log.info("mainPage");
         log.info("-------------------------------");
         model.addAttribute("list", mainPageService.getOkList(criteria));
-        model.addAttribute("pageMaker", new PageDTO(mainPageService.getTotal(criteria), 10, criteria));
+        model.addAttribute("total", mainPageService.getOkTotal(criteria));
+        model.addAttribute("pageMaker", new PageDTO(mainPageService.getOkTotal(criteria), 10, criteria));
         return "main/mainPage";
     }
 

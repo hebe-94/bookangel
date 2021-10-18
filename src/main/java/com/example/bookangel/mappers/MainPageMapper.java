@@ -12,5 +12,5 @@ public interface MainPageMapper {
     public List<MainPageVO> getOkList(Criteria criteria);
 
     //    게시글 전체 개수
-    public int getTotal(Criteria criteria);
+    public int getOkTotal(Criteria criteria);
 }

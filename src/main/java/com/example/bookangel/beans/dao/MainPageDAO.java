@@ -17,5 +17,5 @@ public class MainPageDAO {
         return mainPageMapper.getOkList(criteria);
     }
 
-    public int getTotal(Criteria criteria){ return mainPageMapper.getTotal(criteria); }
+    public int getOkTotal(Criteria criteria){ return mainPageMapper.getOkTotal(criteria); }
 }
