@@ -4,5 +4,6 @@
     <typeAliases>
         <typeAlias type="com.example.bookangel.beans.vo.BoardVO" alias="boardVO"/>
         <typeAlias type="com.example.bookangel.beans.vo.MainPageVO" alias="mainPageVO"/>
+<!--        <typeAlias type="com.example.bookangel.VO.MemberVO" alias="memberVO"/>-->
     </typeAliases>
 </configuration>
