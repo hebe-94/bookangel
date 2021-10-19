@@ -87,4 +87,10 @@
             </trim>
         </where>
     </select>
+
+    <update id="updateOk">
+       UPDATE BOOK_C_APPLY_BOARD
+       SET CBOARDAPPLYOK = '1'
+       WHERE BOARDNUM = #{boardNum}
+   </update>
 </mapper>

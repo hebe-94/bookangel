@@ -39,4 +39,7 @@ public class BoardServiceImple implements BoardService{
 
     @Override
     public int getTotal(Criteria criteria) { return boardDAO.getTotal(criteria); }
+
+    @Override
+    public boolean updateOk(Long boardNum) {  return boardDAO.updateOk(boardNum); }
 }

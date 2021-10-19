@@ -36,4 +36,6 @@ public class BoardDAO {
     }
 
     public int getTotal(Criteria criteria){ return mapper.getTotal(criteria); }
+
+    public boolean updateOk(Long boardNum) {return  mapper.updateOk(boardNum) == 1; }
 }
