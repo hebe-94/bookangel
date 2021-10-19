@@ -1,10 +1,9 @@
 package com.example.bookangel.controller;
 
-import com.example.bookangel.VO.MemberVO;
+import com.example.bookangel.beans.vo.MemberVO;
 import com.example.bookangel.services.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -77,15 +76,14 @@ public class MemberController {
         HttpSession session = request.getSession();
         MemberVO vo = memberService.login(memberVO);
         boolean ckeck = vo != null;
-        System.out.println(ckeck);
         if (ckeck) {
             session.setAttribute("memberType", vo.getMemberType());
             session.setAttribute("memberId", vo.getMemberId());
-            return "main";
+            return "redirect:/main/mainPage";
         }
         else{
             model.addAttribute("flag","false");
-            return "/member/login";
+            return "member/login";
         }
     }
 }
