@@ -15,6 +15,9 @@
                             <when test="type == 'C'.toString()">
                                 (BOARD_CONTENT LIKE '%'||#{keyword}||'%')
                             </when>
+                            <when test="type == 'W'.toString()">
+                                (MEMBERNAME LIKE '%'||#{keyword}||'%')
+                            </when>
                         </choose>
                     </trim>
                 </foreach>
@@ -31,7 +34,8 @@
             SELECT /*+ INDEX_DESC(BOOK_C_APPLY_BOARD APPLY_BOARD_PK) */
              ROWNUM R,BOOK_C_APPLY_BOARD.BOARDNUM, BOOK_C_APPLY_BOARD.BOARDTITLE,
              BOOK_MEMBER.MEMBERNAME, BOOK_C_APPLY_BOARD.CBOARDDATE
-            FROM BOOK_C_APPLY_BOARD JOIN BOOK_MEMBER
+            FROM BOOK_C_APPLY_BOARD
+            JOIN BOOK_MEMBER
             ON BOOK_MEMBER.MEMBERNUM = BOOK_C_APPLY_BOARD.MEMBERNUM AND
         ]]>
         <include refid="search"></include>
