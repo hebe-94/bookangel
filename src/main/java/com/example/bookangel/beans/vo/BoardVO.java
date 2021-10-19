@@ -5,12 +5,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class MainPageVO {
+public class BoardVO {
     private Long boardNum;
-    private String memberNum;
+    private Long memberNum;
     private String boardTitle;
     private String boardContent;
     private String siteLink;
+    private String cBoardDate;
     private String cBoardApplyOk;
     private int rowNum;
     private String memberName;
