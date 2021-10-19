@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class MainPageVO {
     private Long boardNum;
     private String memberNum;
+    private String memberTel;
     private String boardTitle;
     private String boardContent;
     private String siteLink;
