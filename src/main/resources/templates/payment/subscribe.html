@@ -57,21 +57,22 @@
 <body class="homepage is-preload" style="background-color:white;">
 <div id="page-wrapper">
 
-    &lt;!&ndash;  Header &ndash;&gt;
+    <!--Header-->
     <div id="header">
-        &lt;!&ndash; 상단 탭 &ndash;&gt;
-        &lt;!&ndash; Nav &ndash;&gt; &lt;!&ndash; 상단탭(아마 모든 분들이 쓰셔야 할 코드..) &ndash;&gt;
+        <!--상단 탭-->
+        <!--Nav 상단탭(아마 모든 분들이 쓰셔야 할 코드..)-->
         <nav id="nav">
 
-            &lt;!&ndash; 기북천사 로고 &ndash;&gt;
+            <!--기북천사 로고-->
             <div>
-                <a href=""> &lt;!&ndash; 로고 클릭시 메인페이지로 이동 &ndash;&gt;
+                <a href="">
+                    <!--로고 클릭시 메인페이지로 이동-->
                     <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
 
             <ul>
 
-                &lt;!&ndash; 검색 &ndash;&gt;
+                <!--검색-->
                 <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="${pageContext.request.contextPath}/book/BookSearchOk.oo" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
@@ -88,7 +89,7 @@
                     </button>
                 </form>
 
-                 회원정보
+                 <!--회원정보-->
                 <li>
                     <a href="#">📖비회원</a>
                     <ul>
@@ -138,7 +139,7 @@
             <div style="margin-left: 15px;"><span style="font-size:15px;">&nbsp;기북천사에 제공하는 콘텐츠를 <span style="-webkit-text-emphasis-style: dot;"><b>무제한</b></span>으로</span></div>
             <button
                     style="width: 100%;margin: 20px 0px 0px 50px;border-radius: 10px;color: black;font-size: inherit;font-family: 'Gowun Dodum';"
-                    onclick="location.href=''">
+                    onclick="iamport()">
                 첫 달 무료 시작하기
             </button>
         </fieldset>
@@ -162,5 +163,41 @@
 <script	src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+
+<!-- 결제 관련 api -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script>
+    function iamport(){
+        //가맹점 식별코드
+        IMP.init('imp77982928');
+        IMP.request_pay({
+            pg : 'kcp',
+            pay_method : 'card',
+            merchant_uid : 'merchant_' + new Date().getTime(),
+            name : '기북천사 구독신청' , //결제창에서 보여질 이름
+            amount : 100, //실제 결제되는 가격
+            buyer_email : 'iszzon@gmail.com',
+            buyer_name : '신세훈',
+            buyer_tel : '010-4759-2499',
+            buyer_addr : '경기도 성남시 분당구',
+            buyer_postcode : '123-456'
+        }, function(rsp) {
+            console.log(rsp);
+            if ( rsp.success ) {
+                var msg = '결제가 완료되었습니다.';
+                msg += '고유ID : ' + rsp.imp_uid;
+                msg += '상점 거래ID : ' + rsp.merchant_uid;
+                msg += '결제 금액 : ' + rsp.paid_amount;
+                msg += '카드 승인번호 : ' + rsp.apply_num;
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+            }
+            alert(msg);
+        });
+    }
+    </script>
 </body>
 </html>
