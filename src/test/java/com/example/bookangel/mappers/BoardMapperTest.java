@@ -69,4 +69,12 @@ public class BoardMapperTest {
             log.info("DELETE COUNT : " + mapper.remove(45L));
         }
     }
+    @Test
+    public void testUpdateOk(){
+        if(mapper.read(70L) == null){
+            log.info("***********NO SUCH BOARD***********");
+        }else{
+            log.info("updateOk COUNT : " + mapper.updateOk(70L));
+        }
+    }
 }

@@ -97,4 +97,12 @@ public class BoardControllerTest {
                 .andReturn().getModelAndView().getModelMap().toString();
         log.info(result);
     }
+
+    @Test
+    public void updateOk() throws Exception{
+        log.info("===================================");
+        String result = mockMvc.perform(MockMvcRequestBuilders.post("/board/read").param("boardNum", "70"))
+                .andReturn().getFlashMap().toString();
+        log.info("=========test======"+result);
+    }
 }

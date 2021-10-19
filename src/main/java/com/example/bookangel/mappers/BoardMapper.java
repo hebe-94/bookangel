@@ -22,4 +22,7 @@ public interface BoardMapper {
     public int remove(Long boardNum);
     //    게시글 전체 개수
     public int getTotal(Criteria criteria);
+
+    //  회원 상태 바꾸기
+    public int updateOk(Long boardNum);
 }

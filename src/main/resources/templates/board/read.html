@@ -134,8 +134,12 @@
                 <br>
                 <div class="col-12"  id="viewBtn">
                     <ul class="actions" style="display:flex; justify-content:flex-end;">
-                        <span id="adminbtn" >
-                        <li><input type="button" id="adminOkbtn" value="승인" onclick="" style="z-index: 0;"/></li>
+                        <span id="adminbtn">
+<!--                        <form method="post" action="/board/read" name="updateOk" th:value="${boardNum}">-->
+<!--                        <li><input type="button" value="승인" name="updateOk" onclick="showPopup()" style="z-index: 0;"></li>-->
+                            <li><input type="submit" method="post" th:text="${boardNum}" value="승인" formaction="/board/read"  name="updateOk" onclick="showPopup()" style="z-index: 0;"></li>
+<!--                        </form>-->
+
 
                         <li ><a id="goList" href="javascript:void(0)"><input type="button" value="목록" class="primary" style="z-index: 0;"/></a></li>
                         <li><input type="button" value="수정" onclick="goUpdate()" style="z-index: 0;"/></li>
@@ -145,7 +149,7 @@
                 </div>
             </form>
             <hr style="top: 2.5em;margin-bottom: 4em;">
-            <form class="main accent2" style=" margin-top: 9%;">
+<!--            <form class="main accent2" style=" margin-top: 9%;">
                 <h2 style="font-size:20px; margin-bottom: 20px;">승인여부</h2>
 
                         <form method="post" action="#" class="combined" style="width:auto;">
@@ -162,7 +166,7 @@
                         </form>
                     <form id="repliess" class="combined" style="flex-direction:column; margin:0; display:contents;">
                     </form>
-                </form>
+                </form>-->
             </section>
         </div>
     </div>
@@ -202,5 +206,10 @@
     $("a#goList").on("click", function(){
         location.href = "/board/list" + paging;
     });
+</script>
+<script language="javascript">
+    function showPopup() {
+        window.open("mail", "sendmail", "width=500, height=500, left=300, top=50");
+    }
 </script>
 </html>

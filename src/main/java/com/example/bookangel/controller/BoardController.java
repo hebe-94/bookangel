@@ -115,4 +115,16 @@ public class BoardController {
     @GetMapping("register")
     public void register(){}
 
+    @PostMapping("read")
+    public RedirectView updateOk(Long boardNum,BoardVO boardVO, RedirectAttributes rttr){
+        log.info("-------------------------------");
+        log.info("updateOk : " + boardNum);
+        log.info("-------------------------------");
+
+        if(boardService.updateOk(boardNum)){
+            rttr.addAttribute("result", "success");
+            rttr.addAttribute("boardNum", boardVO.getBoardNum());
+        }
+        return new RedirectView("read");
+    }
 }
