@@ -14,4 +14,5 @@ public class MemberService {
     private final MemberDAO memberDAO;
     public void join(MemberVO memberVO){memberDAO.join(memberVO);}
     public int checkId(String memberId){return memberDAO.checkId(memberId);}
+    public MemberVO login(MemberVO memberVO){return memberDAO.login(memberVO);}
 }

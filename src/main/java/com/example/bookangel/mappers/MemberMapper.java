@@ -8,5 +8,7 @@ public interface MemberMapper {
     //회원가입
     public void insert(MemberVO memberVO);
     //아이디 중복검사
-    public int select(String memberId);
+    public int count(String memberId);
+    //로그인
+    public MemberVO select(MemberVO memberVO);
 }

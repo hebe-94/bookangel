@@ -15,11 +15,11 @@ public class MemberServiceTest {
     @Test
     public void testJoin(){
         MemberVO memberVO = new MemberVO();
-        memberVO.setMemberId("hamsh");
-        memberVO.setMemberPw("hamse0606");
+        memberVO.setMemberId("1233");
+        memberVO.setMemberPw("1234");
         memberVO.setMemberName("함세훈123");
-        memberVO.setMemberEmail("hamsh95@nav.com");
-        memberVO.setMemberTel("010-5559-9403");
+        memberVO.setMemberEmail("123@nav.com");
+        memberVO.setMemberTel("010-1111-9403");
         memberVO.setMemberZipcode("12345");
         memberVO.setMemberAddress("서울시");
         memberVO.setMemberAddressDetail("강남구");
@@ -27,5 +27,12 @@ public class MemberServiceTest {
         memberVO.setMemberStatus(0);
         memberVO.setMemberType(0);
         memberService.join(memberVO);
+    }
+    @Test
+    public void testLogin(){
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberId("1233");
+        memberVO.setMemberPw("1234");
+        memberService.login(memberVO);
     }
 }

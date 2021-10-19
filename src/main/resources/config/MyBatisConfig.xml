@@ -3,5 +3,6 @@
 <configuration>
     <typeAliases>
         <!--<typeAlias type="com.example.board.beans.vo.BoardVO" alias="boardVO"/>-->
+        <typeAlias type="com.example.bookangel.VO.MemberVO" alias="memberVO"/>
     </typeAliases>
 </configuration>

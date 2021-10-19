@@ -7,9 +7,13 @@
         (MEMBERNUM, MEMBERID, MEMBERPW, MEMBERNAME, MEMBERTEL, MEMBEREMAIL, MEMBERZIPCODE, MEMBERADDRESS, MEMBERADDRESSDETAIL, MEMBERADDRESSETC, MEMBERSTATUS, MEMBERTYPE)
         VALUES(MEMBER_SEQ.NEXTVAL, #{memberId}, #{memberPw}, #{memberName}, #{memberTel}, #{memberEmail}, #{memberZipcode}, #{memberAddress}, #{memberAddressDetail}, #{memberAddressEtc}, #{memberStatus}, #{memberType})
     </insert>
-    <select id="select" resultType="_int">
+    <select id="count" resultType="_int">
        SELECT COUNT(MEMBERNUM)
         FROM BOOK_MEMBER
         WHERE MEMBERID = #{memberId}
+    </select>
+    <select id="select" resultType="memberVO">
+        SELECT *  FROM BOOK_MEMBER
+        WHERE MEMBERID = #{memberId} AND MEMBERPW = #{memberPw}
     </select>
 </mapper>

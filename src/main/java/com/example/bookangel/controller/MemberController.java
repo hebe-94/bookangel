@@ -6,7 +6,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
@@ -53,6 +57,7 @@ public class MemberController {
     public String join(MemberVO memberVO){
         memberService.join(memberVO);
         return "/member/login";
+
     }
 
     // ID중복검사
@@ -66,6 +71,22 @@ public class MemberController {
             }else{
                 return "success";
             }
+    }
+    @PostMapping("login")
+    public String login(MemberVO memberVO, HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        MemberVO vo = memberService.login(memberVO);
+        boolean ckeck = vo != null;
+        System.out.println(ckeck);
+        if (ckeck) {
+            session.setAttribute("memberType", vo.getMemberType());
+            session.setAttribute("memberId", vo.getMemberId());
+            return "main";
+        }
+        else{
+            model.addAttribute("flag","false");
+            return "/member/login";
         }
     }
+}
 
