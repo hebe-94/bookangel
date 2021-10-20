@@ -1865,6 +1865,7 @@ if(${session_id  eq '' || empty session_id}){
 
 <script th:inline="javascript">
     $(document).ready(function(){
+        alert([[${sessionId}]]);
         $("#nav").css("background" , "#00ff0000");
         $("#nav").css("color" , "white");
         $("#logoImg").attr("src", "/images/kibookLogo.png");
@@ -1884,6 +1885,7 @@ if(${session_id  eq '' || empty session_id}){
             }
         })
     })
+
 </script>
 
 <script src="/js/jquery.min.js"></script>

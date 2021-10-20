@@ -131,10 +131,10 @@
                         <tbody>
                         <th:block th:each="board : ${list}">
                             <tr class="tBody" th:object="${board}">
-                                <td th:text="*{boardNum}"></td>
-                                <td><a id="goRead" th:href="*{boardNum}" th:text="*{boardTitle}"></a></td>
-                                <td th:text="*{memberName}"></td>
-                                <td th:text="*{cBoardDate}"></td>
+                                <td class="boarNum" th:text="*{boardNum}"></td>
+                                <td class="boardTitle"><a id="goRead" th:href="*{boardNum}" th:text="*{boardTitle}"></a></td>
+                                <td class="memberName" th:text="*{memberName}"></td>
+                                <td class="cBoardDate" th:text="*{cBoardDate}"></td>
                                 <!--   <tr>
                                        <td colspan="5" align="center">등록된 게시물이 없습니다.</td>
                                    </tr>-->
