@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
@@ -26,28 +27,38 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("list")
-    public String list(Criteria criteria, Model model){
+    public String list(Criteria criteria, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        log.info((String) session.getAttribute("memberId"));
         log.info("-------------------------------");
         log.info("list");
         log.info("-------------------------------");
         model.addAttribute("list", boardService.getList(criteria));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("sessionId", session.getAttribute("memberId"));
         model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
         return "board/list";
     }
 
     @PostMapping("register")
-    public RedirectView register(BoardVO boardVO, RedirectAttributes rttr, Model model){
-        log.info("-------------------------------");
+    public RedirectView register(BoardVO boardVO, RedirectAttributes rttr, Model model,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        log.info((String) session.getAttribute("memberId"));
+        log.info("-------------현재 멤버------------------");
         log.info("register : " + boardVO.toString());
         log.info("-------------------------------");
 
+
+        model.addAttribute("sessionId", session.getAttribute("memberId"));
+
+        log.info("--------------------현재 멤버222222---------------------------");
+        log.info((String) session.getAttribute("memberId"));
+        log.info("-----------------------------------------------");
+
         boardService.register(boardVO);
 
-//        쿼리 스트링으로 전달
-//        rttr.addAttribute("boardNum", boardVO.getboardNum());
-//        세션의 flash영역을 이용하여 전달
-      /*  model.addAttribute("memberNum",boardVO.getMemberNum("41"));*/
         rttr.addFlashAttribute("boardNum", boardVO.getBoardNum());
+
 //        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
         return new RedirectView("list");
     }

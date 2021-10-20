@@ -133,7 +133,7 @@
                     <ul>
                         <th:choose>
                             <th:when test="${session_id  eq '' || empty session_id}">
-                                <li id="loginTab"><a href="/member/MemberLogin">로그인</a></li>
+                                <li id="loginTab"><a href="/member/login">로그인</a></li>
                             </th:when>
                         </th:choose>
 
@@ -143,7 +143,7 @@
                                     <ul>
                                         <li><a href="/member/MemberMyPage">내정보 보기</a></li>
                                         <li><a href="/member/AllModify">회원정보 수정</a></li>
-                                        <li id="applyTab"><a href="/board/BoardList">신청게시판</a></li><!-- 관리자 전용 -->
+                                        <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
                                         <li><a  href="/member/Withdraw">회원탈퇴</a></li>
                                     </ul>
                                 </li>
@@ -1838,7 +1838,7 @@ if(${session_id  eq '' || empty session_id}){
         if(${session_num eq '' || empty session_num}){
             // 비회원이라면
             alert("책가방 담기는 로그인 후 가능합니다.")
-            location.href="/member/MemberLogin";
+            location.href="/member/login";
 
         }else{
             /*  alert(img_src); */
