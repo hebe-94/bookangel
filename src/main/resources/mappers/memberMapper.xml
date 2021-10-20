@@ -16,4 +16,8 @@
         SELECT *  FROM BOOK_MEMBER
         WHERE MEMBERID = #{memberId} AND MEMBERPW = #{memberPw}
     </select>
+    <select id="info" resultType="memberVO">
+        SELECT *  FROM BOOK_MEMBER
+        WHERE MEMBERID = #{memberId}
+    </select>
 </mapper>

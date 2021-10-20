@@ -1,6 +1,7 @@
 package com.example.bookangel.dao;
 
-import com.example.bookangel.VO.MemberVO;
+import com.example.bookangel.beans.dao.MemberDAO;
+import com.example.bookangel.beans.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,9 @@ public class MemberDAOTest {
         memberVO.setMemberId("1233");
         memberVO.setMemberPw("1234");
         memberDAO.login(memberVO);
+    }
+    @Test
+    public void testGetMyInfo(){
+        memberDAO.getMyInfo("hamsh95");
     }
 }

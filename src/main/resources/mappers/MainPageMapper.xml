@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.bookangel.mappers.MainPageMapper">
+
+    <sql id="search">
+        <if test="type != null and keyword != null">
+            <trim prefix="(" suffix=") AND " prefixOverrides="OR">
+                <foreach item="type" collection="typeArr">
+                    <trim prefix="OR">
+                        <choose>
+                            <when test="type == 'T'.toString()">
+                                (BOARD_TITLE LIKE '%'||#{keyword}||'%')
+                            </when>
+                            <when test="type == 'C'.toString()">
+                                (BOARD_CONTENT LIKE '%'||#{keyword}||'%')
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        </if>
+    </sql>
+
+    <select id="getOkList" resultType="mainPageVO">
+        <![CDATA[
+        SELECT /*+ INDEX_DESC(BOOK_C_APPLY_BOARD APPLY_BOARD_PK) */
+        ROWNUM, MEMBERNAME, SITELINK
+        FROM
+        (
+            /*알리아스를 붙인 컬럼에 WHERE절에서 접근할 때에는 FROM절에 작성된 테이블의 컬럼과 동일한 이름으로만 사용이 가능하다.*/
+            SELECT /*+ INDEX_DESC(BOOK_C_APPLY_BOARD APPLY_BOARD_PK) */
+            ROWNUM R, BOOK_MEMBER.MEMBERNAME, BOOK_C_APPLY_BOARD.SITELINK
+            FROM BOOK_C_APPLY_BOARD JOIN BOOK_MEMBER
+            ON BOOK_C_APPLY_BOARD.CBOARDAPPLYOK = 1 AND BOOK_MEMBER.MEMBERNUM = BOOK_C_APPLY_BOARD.MEMBERNUM AND
+        ]]>
+        <include refid="search"></include>
+        <![CDATA[
+        ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE R > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="getOkTotal" resultType="_int">
+        SELECT COUNT(BOARDNUM) FROM (
+        SELECT * FROM BOOK_C_APPLY_BOARD
+        WHERE BOOK_C_APPLY_BOARD.CBOARDAPPLYOK = 1 )
+        <where>
+            <trim suffixOverrides="AND">
+                <include refid="search"></include>
+            </trim>
+        </where>
+    </select>
+
+    <!--    <select id="getMainBookImg" parameterType="bookVO" resultType="bookVO">-->
+    <!--        SELECT BOOKIMAGESRC FROM BOOK-->
+    <!--        WHERE BOOKNAME = #{bookName}-->
+    <!--    </select>-->
+
+</mapper>

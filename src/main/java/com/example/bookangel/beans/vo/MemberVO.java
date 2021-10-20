@@ -1,4 +1,4 @@
-package com.example.bookangel.VO;
+package com.example.bookangel.beans.vo;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;

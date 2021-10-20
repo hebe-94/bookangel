@@ -2,6 +2,8 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="com.example.bookangel.VO.MemberVO" alias="memberVO"/>
+        <typeAlias type="com.example.bookangel.beans.vo.BoardVO" alias="boardVO"/>
+        <typeAlias type="com.example.bookangel.beans.vo.MainPageVO" alias="mainPageVO"/>
+        <typeAlias type="com.example.bookangel.beans.vo.MemberVO" alias="memberVO"/>
     </typeAliases>
 </configuration>

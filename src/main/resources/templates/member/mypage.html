@@ -107,7 +107,7 @@
                 <!--회원정보-->
                 <li>
                     <a href="#">📖
-                        <c:choose>
+                        <:choose>
                             <c:when test="${session_id  eq '' || empty session_id}">
                                 <c:out value="비회원"/>
                             </c:when>
@@ -115,7 +115,7 @@
                             <c:otherwise>
                                 <c:out value="${session_name}"/>
                             </c:otherwise>
-                        </c:choose>
+                        </:choose>
                     </a>
                     <ul>
                         <c:choose>
@@ -162,7 +162,7 @@
                           </div> -->
 
         <!-- 개인/기관 회원 정보 -->
-        <table style="text-align: center; ">
+        <table style="text-align: center; " th:object="${myInfo}">
             <!--                                  <caption style="text-align:left; margin-bottom:3%;">
             </caption>-->
 
@@ -170,7 +170,7 @@
             <tr>
                 <td rowspan="5" class="col" style="background-color: #CEB980;"></td>
                 <td class="tdFirst">아이디</td>
-                <td>hds1234</td>
+                <td th:text="*{}">hds1234</td>
                 <td rowspan="5" class="col" style="background-color: #CEB980;"></td>
             </tr>
             <tr>

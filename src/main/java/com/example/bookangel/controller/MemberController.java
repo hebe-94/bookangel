@@ -20,7 +20,11 @@ public class MemberController {
 
     // 페이지 이동
     @GetMapping("mypage")
-    public void mypage(){}
+    public void mypage(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        String memberId = (String)session.getAttribute("memberId");
+        model.addAttribute("myInfo", memberService.getMyInfo(memberId));
+    }
 
     @GetMapping("withdraw")
     public void withdraw(){}

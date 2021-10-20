@@ -1,6 +1,6 @@
 package com.example.bookangel.mappers;
 
-import com.example.bookangel.VO.MemberVO;
+import com.example.bookangel.beans.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +39,10 @@ public class MemberMapperTest {
         memberVO.setMemberId("1233");
         memberVO.setMemberPw("1234");
         mapper.select(memberVO);
+    }
+    @Test
+    public void testInfo(){
+        mapper.info("hamsh95");
     }
 
 }

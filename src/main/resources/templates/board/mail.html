@@ -1,0 +1,15 @@
+<form th:action="@{/mail}" method="post" id="sendForm">
+    <input name="address" placeholder="이메일 주소"> <br>
+    <input name="title" placeholder="제목"> <br>
+    <textarea name="message" placeholder="메일 내용을 입력해주세요." cols="60" rows="20"></textarea>
+    <!--    <button name="send" id="send">발송</button>-->
+    <input type="button" name="send" id="send" value="발송" onclick="sendEmail()">
+    <input type="button" id="close" name="close" value="닫기"  onclick="window.close()">
+</form>
+</body>
+<script language="javascript">
+    let sendForm = document.getElementById("sendForm");
+    function sendEmail(){
+        alert("발송 완료");
+        sendForm.submit();}
+</script>

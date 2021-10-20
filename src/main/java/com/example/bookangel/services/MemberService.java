@@ -1,7 +1,7 @@
 package com.example.bookangel.services;
 
-import com.example.bookangel.VO.MemberVO;
-import com.example.bookangel.dao.MemberDAO;
+import com.example.bookangel.beans.vo.MemberVO;
+import com.example.bookangel.beans.dao.MemberDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,4 +15,5 @@ public class MemberService {
     public void join(MemberVO memberVO){memberDAO.join(memberVO);}
     public int checkId(String memberId){return memberDAO.checkId(memberId);}
     public MemberVO login(MemberVO memberVO){return memberDAO.login(memberVO);}
+    public MemberVO getMyInfo(String memberId){return memberDAO.getMyInfo(memberId);}
 }

@@ -1,6 +1,6 @@
 package com.example.bookangel.mappers;
 
-import com.example.bookangel.VO.MemberVO;
+import com.example.bookangel.beans.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -11,4 +11,6 @@ public interface MemberMapper {
     public int count(String memberId);
     //로그인
     public MemberVO select(MemberVO memberVO);
+    //내 정보
+    public MemberVO info(String memberId);
 }
