@@ -1871,8 +1871,9 @@ if(${session_id  eq '' || empty session_id}){
     }
 </script>
 
-<script>
+<script th:inline="javascript">
     $(document).ready(function(){
+        alert([[${sessionId}]]);
         $("#nav").css("background" , "#00ff0000");
         $("#nav").css("color" , "white");
         $("#logoImg").attr("src", "/images/kibookLogo.png");
@@ -1892,8 +1893,20 @@ if(${session_id  eq '' || empty session_id}){
             }
         })
     })
+
 </script>
 
+
+<!-- <script>
+function checkSearch(){
+   var form = document.searchForm;
+   if(!form.search_text.value){
+      alert("검색어를 입력해주세요.");
+      return;
+   }
+   form.submit();
+}
+</script> -->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/jquery.scrolly.min.js"></script>
