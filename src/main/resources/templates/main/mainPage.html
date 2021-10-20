@@ -122,11 +122,11 @@
                     <a href="#">📖
                         <th:choose>
                             <th:when test="${session_id  eq '' || empty session_id}">
-                                <c:out value="비회원"/>
+                                <th:block th:text="비회원"/>
                             </th:when>
 
                             <th:otherwise>
-                                <c:out value="${session_name}"/>
+                                <th:block th:text="${session_name}"/>
                             </th:otherwise>
                         </th:choose>
                     </a>
