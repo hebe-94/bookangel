@@ -25,4 +25,9 @@
         FROM BOOK_MEMBER
         WHERE MEMBERPW = #{memberPw} AND MEMBERID = #{memberId}
     </select>
+    <update id="status">
+        UPDATE BOOK_MEMBER
+        SET MEMBERSTATUS=1
+        WHERE MEMBERNUM=#{memberNum}
+    </update>
 </mapper>

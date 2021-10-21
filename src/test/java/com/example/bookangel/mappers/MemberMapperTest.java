@@ -44,5 +44,12 @@ public class MemberMapperTest {
     public void testInfo(){
         mapper.info("hamsh95");
     }
+    @Test
+    public void testCheck(){
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberPw("1234");
+        memberVO.setMemberId("1234");
+        mapper.check(memberVO);
+    }
 
 }

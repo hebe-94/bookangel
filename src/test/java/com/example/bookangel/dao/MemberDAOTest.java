@@ -40,4 +40,5 @@ public class MemberDAOTest {
     public void testGetMyInfo(){
         memberDAO.getMyInfo("hamsh95");
     }
+
 }
