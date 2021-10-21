@@ -85,7 +85,7 @@
                 <a href="#banner"><img src="/images/down.gif" style="width: 80px;margin: 10px;"></a>
             </p>
             <footer>
-                <a href="/member/gudok" class="button circled scrolly">구독하기</a>
+                <a href="/payment/subscribe" class="button circled scrolly">구독하기</a>
             </footer>
         </div>
 
@@ -123,6 +123,7 @@
                             <th:block th:if= "${memberNum} == null" th:text="비회원"/>
 
                             <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
+                            <input type="hidden" name="sessionType" value="${sessionType}">
 
                     </a>
                     <ul>
@@ -137,7 +138,7 @@
                                 <li><a href="/member/mypage">내정보 보기</a></li>
                                 <li><a href="/member/AllModify">회원정보 수정</a></li>
                                 <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
-                                <li><a  href="/member/Withdraw">회원탈퇴</a></li>
+                                <li><a  href="/member/withdraw">회원탈퇴</a></li>
                             </ul>
                         </li>
                             <li><a  href="/member/QnA">Q&A</a></li>
@@ -1728,7 +1729,7 @@
                         <th:block th:each="board : ${list}">
                             <tr class="tBody" th:object="${board}">
                                 <td class="memberName" id="memberName" th:text="*{memberName}"></td>
-                                <td class="memberName" id="memberTel" th:text="*{memberTel}"></td>
+                                <td class="memberTel" id="memberTel" th:text="*{memberTel}"></td>
                                 <td class="siteLink"  id= "siteLink" th:text="*{siteLink}"></td>
                             </tr>
                         </th:block>
@@ -1814,11 +1815,12 @@ if(${session_id  eq '' || empty session_id}){
 }
 </script> -->
 
-<script>
+<script th:inline="javascript">
 
     // 책 바스켓에 넣기
     function addBookBasket(img_src){
-        if(${session_num eq '' || empty session_num}){
+        let memberNum = [[${memberNum}]];
+        if(memberNum == null){
             // 비회원이라면
             alert("책가방 담기는 로그인 후 가능합니다.")
             location.href="/member/login";
@@ -1831,13 +1833,17 @@ if(${session_id  eq '' || empty session_id}){
 
 
     }
+</script>
 
 
-
+<script th:inline="javascript">
+    let sessionType = [[${sessionType}]];
     var applyTab = document.getElementById("applyTab");
 
-    if(${session_accountType eq 0}){
+    if(sessionType == 0){
         applyTab.style.display="none";
+    } else if(sessionType == 1){
+        applyTab.style.display="inline";
     }
 </script>
 
