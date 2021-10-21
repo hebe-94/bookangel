@@ -52,7 +52,10 @@
             font-size:30px;
             text-align: center;
         }
-
+        ul{
+            list-style:none;
+            padding-left: 0px
+        }
     </style>
 <body class="no-sidebar is-preload">
 <div id="page-wrapper">
@@ -65,14 +68,18 @@
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
                     <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
             </div>
-            <ul>
-                <!-- 검색 -->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
-                    <div class="search" style="float: left; display:inline-block">
-                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
-                    </div>
-                    <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
-                        <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
+            m);
+            $.getJSON("/board/getAttachList", {boardNum: boardNum},
+                function(arr){
+                    console.log(arr);
+                    let str =<ul>
+            <!-- 검색 -->
+            <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
+                <div class="search" style="float: left; display:inline-block">
+                    <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
+                </div>
+                <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                    <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
                              4PSIwIDAgMzAuMjM5IDMwLjIzOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzAuMjM5IDMwLjIzOTsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZD0iTTIwLjE5NCwzLjQ2Yy00LjYxMy00LjYxMy0xMi4xMjEtNC42MTMtMTYuNzM0LDB
@@ -80,109 +87,72 @@
                              JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
                              zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
                              8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
-                    </button>
-                </form>
-                <li>
-                    <a href="#">📖
-                        <th:block th:text="${memberName}" />
-                        <input type="hidden" name="sessionType" value="${sessionType}">
-                    </a>
-                    <ul>
-                        <th:block th:if="${memberNum} == null">
-                            <li id="loginTab"><a href="/member/login">로그인</a></li>
-                            <li><a  href="/member/QnA">Q&A</a></li>
-                        </th:block>
+                </button>
+            </form>
+            <li>
+                <a href="#">📖
+                    <th:block th:text="${memberName}" />
+                    <input type="hidden" name="sessionType" value="${sessionType}">
+                </a>
+                <ul>
+                    <th:block th:if="${memberNum} == null">
+                        <li id="loginTab"><a href="/member/login">로그인</a></li>
+                        <li><a  href="/member/QnA">Q&A</a></li>
+                    </th:block>
 
-                        <th:block th:if="${memberNum} != null">
-                            <li id="myPageTab"><a>마이페이지&hellip;</a>
-                                <ul>
-                                    <li><a href="/member/mypage">내정보 보기</a></li>
-                                    <li><a href="/member/AllModify">회원정보 수정</a></li>
-                                    <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
-                                    <li><a  href="/member/withdraw">회원탈퇴</a></li>
-                                </ul>
-                            </li>
-                            <li><a  href="/member/QnA">Q&A</a></li>
-                            <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
-                        </th:block>
+                    <th:block th:if="${memberNum} != null">
+                        <li id="myPageTab"><a>마이페이지&hellip;</a>
+                            <ul>
+                                <li><a href="/member/mypage">내정보 보기</a></li>
+                                <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
+                                <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                            </ul>
+                        </li>
+                        <li><a  href="/member/QnA">Q&A</a></li>
+                        <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                    </th:block>
 
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <br>
-    <br>
-    <!-- 신청하기 form 작성란  enctype="multipart/form-data"-->
-    <div>
-        <form action="/board/modify" method="post" name="writeForm">
-            <fieldset id="applyForm" >
-                <div class="fields" th:object="${board}">
-                    <div class="field">
-                <div class="form-group row">
-                    <input id="board_title" name="board_title" type="text" th:field="${board.boardTitle}" style="text-align:left;background: white; font-size:1.5em; margin-bottom:3%; margin-top:8%; z-index: 0;">
-                    <input name="boardMemberNum" type="hidden" th:field="${board.memberNum}" style="text-align:left; background: white; font-size: 1em; border: none; z-index: 0;" readonly/>
-                   <!-- <p id="writer">작성자 :</p>-->
-                    <!-- <input type="hidden" name="board_id" value="${session_id}">-->
-                </div>
-                <div class="form-group">
-                    <label for="exampleTextarea" class="form-label mt-4">홈페이지 주소</label>
-                    <input type="text" class="form-control" id="exampleTextarea" th:field="${board.siteLink}" aria-describedby="emailHelp" placeholder="기존 홈페이지 주소" style="font-family: 'Gowun Dodum', sans-serif;background: white;" name="sitelink">
-                    <small id="emailHelp" class="form-text text-muted" style="font-size:13px;">기관 홈페이지 주소를 정확하게 입력해주세요.</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleTextarea" class="form-label mt-4"></label>
-                    <textarea class="form-control" th:text="${board.boardContent}" id="Textarea" rows="10" style="resize: none; font-family: 'Gowun Dodum', sans-serif;" name="boardContent"/>
-                </div>
-                <input type="hidden" name="boardRemove" th:field="${board.boardNum}">
-                <input type="hidden" name="boardRemove" th:field="${board.cBoardDate}">
-                <div class="form-group">
-                    <label for="formFile" class="form-label mt-4">첨부파일</label>
-                </div>
-                <input class="form-control" type="file" name ="formFile" id="formFile" style="font-family: 'Gowun Dodum', sans-serif;">
-                <div>
-                    <!--<form action="" name="writeForm" method="post" enctype="multipart/form-data">-->
-                        <input type="hidden" name="boardNum" value="">
-                        <input type="submit" value="수정" class="btn btn-primary" style="left: 29%; font-family: 'Gowun Dodum', sans-serif;display: flex;align-items: center;border-radius: 5px;" id="ModifySubmit">
-                        <input type="button" value="취소"  class="btn btn-primary" style="left: 35%; font-family: 'Gowun Dodum', sans-serif; display: flex;align-items: center;border-radius: 5px;" id="ModifyCancel" onclick="javascript:history.back(); return false;">
-                   <!-- </form>-->
-                    </div>
-                </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-    <hr />
-</div>
-<!-- Copyright -->
-<div class="copyright">
-    <ul class="menu">
-        <li>&copy; Kibook Angel. All rights reserved.</li>
-    </ul>
-</div>
+                </ul>
+            </li>
+        </ul>
+        </nav> "";
 
-</body>
+                    $(arr).each(function(i, attach){
+                        if(!attach.image){
+                            let fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
+                            str += "<li data-path='" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-name='" + attach.fileName.substring(attach.fileName.indexOf("_") + 1) + "' data-type='" + attach.image +"'>";
+                            str += "<div>";
+                            str += "<a href='/upload/download?fileName=" + fileCallPath + "'>";
+                            str += "<img src='/images/attach.png' width='30px'>" + attach.fileName.substring(attach.fileName.indexOf("_") + 1);
+                            str += "</a>"
+                            str += "<span data-file='" + fileCallPath + "' data-type='image'>x</span>";
+                            str += "</div>";
+                            str += "</li>";
+                        }else{
+                            let fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+                            let originPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
 
-<script	src="/js/jquery.min.js"></script>
-<script	src="/js/jquery.dropotron.min.js"></script>
-<script	src="/js/jquery.scrolly.min.js"></script>
-<script	src="/js/jquery.scrollex.min.js"></script>
-<script	src="/js/browser.min.js"></script>
-<script	src="/js/breakpoints.min.js"></script>
-<script src="/js/util.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/modernizr.custom.js"></script>
-<script src="/js/toucheffects.js"></script>
+                            str += "<li data-path='" + attach.uploadPath + "' data-uuid='" + attach.uuid + "' data-name='" + attach.fileName.substring(attach.fileName.indexOf("_") + 1) + "' data-type='" + attach.image +"'>";
+                            str += "<div>";
+                            str += "<a href=\"javascript:showImage(\'" + originPath + "\')\">";
+                            str += "<img src='/upload/display?fileName=" + fileCallPath + "'>" + attach.fileName.substring(attach.fileName.indexOf("_") + 1);
+                            str += "</a>";
+                            str += "<span data-file='" + fileCallPath + "' data-type='image'>x</span>";
+                            str += "</div>";
+                            str += "</li>";
+                        }
+                    });
+                    uploadResult.html(str);
+                });//getJSON
+        })();
+    });
 
-<script th:inline="javascript">
-    let paging = [[${criteria.listLink}]];
-
-    $("a#goList").on("click", function(){
-        location.href = "/board/list" + paging;
+    $(".uploadResult").on("click", "span", function(){
+        let targetFile = $(this).data("file");
+        let type = $(this).data("type");
+        let li = $(this).parents("li");
+        li.remove();
     });
 </script>
-<!--<script th:inline="javascript">
-    $(document).ready(function(){
-        alert([[${memberNum}]])});
-</script>-->
 </html>

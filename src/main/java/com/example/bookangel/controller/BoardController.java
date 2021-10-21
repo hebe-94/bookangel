@@ -1,23 +1,26 @@
 package com.example.bookangel.controller;
 
 
+import com.example.bookangel.beans.vo.AttachFileVO;
 import com.example.bookangel.beans.vo.BoardVO;
 import com.example.bookangel.beans.vo.Criteria;
 import com.example.bookangel.beans.vo.PageDTO;
 import com.example.bookangel.services.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -54,6 +57,10 @@ public class BoardController {
         log.info("memberNum : " + session.getAttribute("memberNum"));
         log.info("-------------------------------");
 
+
+        if(boardVO.getAttachList() != null){
+            boardVO.getAttachList().forEach(attach -> log.info(attach.toString()));
+        }
 
         boardService.register(boardVO);
 
@@ -134,12 +141,41 @@ public class BoardController {
         log.info("remove : " + boardNum);
         log.info("-------------------------------");
 
+        List<AttachFileVO> attachList = boardService.getAttachList(boardNum);
+
         if (boardService.remove(boardNum)) {
+            deleteFiles(attachList);
             rttr.addFlashAttribute("result", "success");
         } else {
             rttr.addFlashAttribute("result", "fail");
         }
         return new RedirectView("list");
+    }
+
+
+    private void deleteFiles(List<AttachFileVO> attachList){
+        if(attachList == null || attachList.size() == 0){
+            return;
+        }
+
+        log.info("delete attach files...........");
+        log.info(attachList.toString());
+
+        attachList.forEach(attach -> {
+            try {
+                Path file = Paths.get("C:/bookAngel/" + attach.getUploadPath() + "/" + attach.getUuid() + "_" + attach.getFileName());
+                Files.delete(file);
+
+                if(Files.probeContentType(file).startsWith("image")){
+                    Path thumbnail = Paths.get("C:/bookAngel/" + attach.getUploadPath() + "/s_" + attach.getUuid() + "_" + attach.getFileName());
+                    Files.delete(thumbnail);
+                }
+            } catch (Exception e) {
+                log.error("delete file error " + e.getMessage());
+            }
+        });
+
+
     }
 
     @GetMapping("register")
@@ -166,5 +202,13 @@ public class BoardController {
             rttr.addAttribute("boardNum", boardVO.getBoardNum());
         }
         return new RedirectView("read");
+    }
+
+    //    게시글 첨부파일
+    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<AttachFileVO> getAttachList(Long boardNum){
+        log.info("getAttachList " + boardNum);
+        return boardService.getAttachList(boardNum);
     }
 }

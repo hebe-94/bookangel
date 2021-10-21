@@ -1,5 +1,6 @@
 package com.example.bookangel.services;
 
+import com.example.bookangel.beans.vo.AttachFileVO;
 import com.example.bookangel.beans.vo.BoardVO;
 import com.example.bookangel.beans.vo.Criteria;
 import org.springframework.stereotype.Service;
@@ -15,4 +16,5 @@ public interface BoardService {
     public List<BoardVO> getList(Criteria criteria);
     public int getTotal(Criteria criteria);
     public boolean updateOk(Long boardNum);
+    public List<AttachFileVO> getAttachList(Long boardNum);
 }

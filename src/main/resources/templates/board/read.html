@@ -52,6 +52,11 @@
             text-align: center;
         }
 
+        ul{
+            list-style:none;
+            padding-left: 0px
+        }
+
     </style>
 <body class="no-sidebar is-preload">
 <div id="page-wrapper">
@@ -64,9 +69,7 @@
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
                     <img id="logoImg"></a>
             </div>
-
             <ul>
-
                 <!-- 검색 -->
                 <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
@@ -80,13 +83,15 @@
                              jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
                              JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
                              zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
-                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
                     </button>
                 </form>
-
-                <!-- 회원정보 -->
                 <li>
-                     <ul>
+                    <a href="#">📖
+                        <th:block th:text="${memberName}" />
+                        <input type="hidden" name="sessionType" value="${sessionType}">
+                    </a>
+                    <ul>
                         <th:block th:if="${memberNum} == null">
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
                             <li><a  href="/member/QnA">Q&A</a></li>
@@ -122,13 +127,18 @@
                                 <!--<a class="field">-->
                                    <input name="boardTitle" type="text" th:field="*{boardTitle}" style="padding: 0;background: white; text-align:left; font-size: 1.5em; border: none; z-index: 0;" readonly/>
                                    <input name="boardMemberNum" type="hidden" th:field="*{memberNum}" style="text-align:left; background: white; font-size: 1em; border: none;" readonly/>
+                                    <input name="boardNum" type="hidden" th:field="*{boardNum}"/>
                                     <!--<h2 style="text-align:left; font-size: 1.5em;"><a th:field="*{boardTitle}"></a></h2>-->
                                     <!--<a style="text-align:left; font-size:1em" th:field="*{memberNum}">작성자</a>-->
                 <!--</header>-->
-                <div>
-                    첨부파일
-                </div>
-                <a href="#"><!--<c:out value="${file.getFile_name_original()}"/>--></a>
+                                <div class="field">
+                                    <h4>첨부파일</h4>
+                                </div>
+                                <div class="field">
+                                    <div class="uploadResult">
+                                        <ul style="none"></ul>
+                                    </div>
+                                </div>
                 <br>
                 <hr style=" top: 0.5em;   margin-bottom: 1em;">
                     <input name="siteLink" type="text" th:field="*{siteLink}" style="font-size: 1em;background: white; border: none; z-index: 0;" readonly/>
@@ -229,4 +239,48 @@
         applyTab.style.display="inline";
     }
 </script>
+
+
+<script th:inline="javascript">
+    let uploadResult = $(".uploadResult ul");
+    let pageNum = 1;
+
+
+
+    $(document).ready(function(){
+        (function(){
+            console.log(boardNum);
+            $.getJSON("/board/getAttachList", {boardNum: boardNum},
+                function(arr){
+                    console.log(arr);
+                    let str = "";
+
+                    $(arr).each(function(i, attach){
+                        if(!attach.image){
+                            let fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
+                            str += "<li>";
+                            str += "<div>";
+                            str += "<a href='/upload/download?fileName=" + fileCallPath + "'>";
+                            str += "<img src='/images/attach.png' width='30px'>" + attach.fileName.substring(attach.fileName.indexOf("_") + 1);
+                            str += "</a>"
+                            str += "</div>";
+                            str += "</li>";
+                        }else{
+                            let fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+                            let originPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
+
+                            str += "<li>";
+                            str += "<div>";
+                            str += "<a href=\"javascript:showImage(\'" + originPath + "\')\">";
+                            str += "<img src='/upload/display?fileName=" + fileCallPath + "'>" + attach.fileName.substring(attach.fileName.indexOf("_") + 1);
+                            str += "</a>";
+                            str += "</div>";
+                            str += "</li>";
+                        }
+                    });
+                    uploadResult.html(str);
+                });//getJSON
+        })();
+    });
+    </script>
 </html>
