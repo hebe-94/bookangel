@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="/css/default.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-    <script src="../assets/js/modernizr.custom.js"></script>
+    <script src="/js/modernizr.custom.js"></script>
     <!-- logo 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -266,7 +266,7 @@
     <script src="/js/main.js"></script>
     <script src="/js/modernizr.custom.js"></script>
     <script src="/js/toucheffects.js"></script>
-    <script src="jquery-3.5.1.min.js"></script>
+    <!--<script src="jquery-3.5.1.min.js"></script>-->
     <script src="/js/login.js"></script>
 
 </body>
@@ -282,10 +282,16 @@
             check(); // do something
         }
     });
+    var status = [[${withDraw}]];
+    var flag = [[${flag}]];
     $(document).ready(function(){
-        if([[${flag}]]=="false") {
+        if(status=="withDraw"){
+            alert("탈퇴한 회원입니다.");
+            status=null;
+        }
+        if(flag=="false") {
             alert("아이디 또는 비밀번호가 틀렸습니다.");
-            history.replaceState
+            flag=null;
         }
     })
 </script>

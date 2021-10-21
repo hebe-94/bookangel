@@ -32,12 +32,12 @@ public class MainPageController {
         log.info("-------------------------------");
         log.info("mainPage");
         log.info("-------------------------------");
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
         model.addAttribute("sessionType", session.getAttribute("memberType"));
-        model.addAttribute("sessionId", session.getAttribute("memberId"));
+//        model.addAttribute("sessionId", session.getAttribute("memberId"));
         model.addAttribute("list", mainPageService.getOkList(criteria));
         model.addAttribute("total", mainPageService.getOkTotal(criteria));
         model.addAttribute("pageMaker", new PageDTO(mainPageService.getOkTotal(criteria), 10, criteria));
         return "main/mainPage";
     }
-
 }

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
@@ -26,30 +27,44 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("list")
-    public String list(Criteria criteria, Model model){
+    public String list(Criteria criteria, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
         log.info("-------------------------------");
         log.info("list");
         log.info("-------------------------------");
         model.addAttribute("list", boardService.getList(criteria));
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
         model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
         return "board/list";
     }
 
     @PostMapping("register")
-    public RedirectView register(BoardVO boardVO, RedirectAttributes rttr, Model model){
-        log.info("-------------------------------");
+    public RedirectView register(BoardVO boardVO, RedirectAttributes rttr, Model model,HttpServletRequest request){
+        log.info("-------------현재 멤버------------------");
         log.info("register : " + boardVO.toString());
         log.info("-------------------------------");
 
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        log.info("-------------멤버 확인------------------");
+        log.info("memberNum : " + session.getAttribute("memberNum"));
+        log.info("-------------------------------");
+
+
         boardService.register(boardVO);
 
-//        쿼리 스트링으로 전달
-//        rttr.addAttribute("boardNum", boardVO.getboardNum());
-//        세션의 flash영역을 이용하여 전달
-      /*  model.addAttribute("memberNum",boardVO.getMemberNum("41"));*/
+
         rttr.addFlashAttribute("boardNum", boardVO.getBoardNum());
+        log.info("------------------다시 뽑기----------------------");
+        log.info("register : " + boardVO.toString());
+        log.info("-------------------------------");
+//        model.addAttribute("memberNum", boardVO.getMemberNum());
+
 //        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
+
+
         return new RedirectView("list");
+
     }
 
     //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
@@ -62,6 +77,9 @@ public class BoardController {
         log.info("-------------------------------");
         log.info(reqType + " : " + boardNum);
         log.info("-------------------------------");
+
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
 
         model.addAttribute("board", boardService.get(boardNum));
         model.addAttribute("criteria", criteria);
@@ -82,10 +100,14 @@ public class BoardController {
 //    수정 성공시 result에 "success"를 담아서 전달한다.
 //    단위 테스트로 View에 전달할 파라미터를 조회한다.
     @PostMapping("modify")
-    public RedirectView modify(BoardVO boardVO, RedirectAttributes rttr){
+    public RedirectView modify(BoardVO boardVO, RedirectAttributes rttr, HttpServletRequest request,Model model){
         log.info("-------------------------------");
         log.info("modify : " + boardVO.toString());
         log.info("-------------------------------");
+
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+
 
         if(boardService.modify(boardVO)){
             rttr.addAttribute("result", "success");
@@ -113,7 +135,10 @@ public class BoardController {
     }
 
     @GetMapping("register")
-    public void register(){}
+    public void register(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+    }
 
     @PostMapping("read")
     public RedirectView updateOk(Long boardNum,BoardVO boardVO, RedirectAttributes rttr){

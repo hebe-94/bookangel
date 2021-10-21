@@ -13,4 +13,6 @@ public interface MemberMapper {
     public MemberVO select(MemberVO memberVO);
     //내 정보
     public MemberVO info(String memberId);
+    //탈퇴 비밀번호 확인
+    public int check(MemberVO memberVO);
 }

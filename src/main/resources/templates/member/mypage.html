@@ -153,16 +153,16 @@
     <!-- 마이페이지(회원 및 기업 정보표시) -->
 
 
-    <div class="table-wrapper" style="margin-top: 7%; margin-bottom: 7%;margin-left:auto; margin-right:auto; width: 80%">
+    <div class="table-wrapper" style="margin-top: 7%; margin-bottom: 7%;margin-left:auto; margin-right:auto; width: 80%"  th:object="${myInfo}">
         <div>
-            <h2 style="font-size: 25px; display: inline;padding:1% 1% 1% 18%; display: inline; float: left">hds1234님의 정보입니다. 변경을 원하시면 정보수정을 눌러주세요</h2>
+            <h2 style="font-size: 25px; display: inline;padding:1% 1% 1% 18%; display: inline; float: left" th:text="|*{memberId}님의 정보입니다. 변경을 원하시면 정보수정을 눌러주세요|"></h2>
         </div>
-        <input class="btn" type="button" value="수정하기" style=" display: inline; float: right; position: absolute; margin-top: 1%; margin-left: 1%;" onclick="location.href='${pageContext.request.contextPath}/member/AllModify.me'">
+        <input class="btn" type="button" value="수정하기" style=" display: inline; float: right; position: absolute; margin-top: 1%; margin-left: 1%;" onclick="location.href='/member/memberModify'">
         <!-- <div style="display:flex; justify-content:space-between;">
                           </div> -->
 
         <!-- 개인/기관 회원 정보 -->
-        <table style="text-align: center; " th:object="${myInfo}">
+        <table style="text-align: center; ">
             <!--                                  <caption style="text-align:left; margin-bottom:3%;">
             </caption>-->
 
@@ -170,24 +170,24 @@
             <tr>
                 <td rowspan="5" class="col" style="background-color: #CEB980;"></td>
                 <td class="tdFirst">아이디</td>
-                <td th:text="*{}">hds1234</td>
+                <td th:text="*{memberId}"></td>
                 <td rowspan="5" class="col" style="background-color: #CEB980;"></td>
             </tr>
             <tr>
                 <td class="tdFirst">이름</td>
-                <td>한동석</td>
+                <td th:text="*{memberName}"></td>
             </tr>
             <tr>
                 <td class="tdFirst">전화번호</td>
-                <td>010-1234-1234</td>
+                <td th:text="*{memberTel}"></td>
             </tr>
             <tr>
                 <td class="tdFirst">이메일</td>
-                <td>email@email.com</td>
+                <td th:text="*{memberEmail}"></td>
             </tr>
             <tr>
                 <td class="tdFirst">주소</td>
-                <td>서울시 강남구 테헤란로</td>
+                <td th:text="|*{memberAddress} *{memberAddressDetail}|"></td>
             </tr>
             </tbody>
         </table>

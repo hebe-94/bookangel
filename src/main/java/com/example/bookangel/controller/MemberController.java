@@ -27,7 +27,10 @@ public class MemberController {
     }
 
     @GetMapping("withdraw")
-    public void withdraw(){}
+    public void withdraw(HttpServletRequest request ,Model model){
+        HttpSession session = request.getSession();
+        model.addAttribute("memberId", session.getAttribute("memberId"));
+    }
 
     @GetMapping("memberModify")
     public void memberModify(){}
@@ -79,16 +82,46 @@ public class MemberController {
     public String login(MemberVO memberVO, HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         MemberVO vo = memberService.login(memberVO);
+
         boolean ckeck = vo != null;
         if (ckeck) {
-            session.setAttribute("memberType", vo.getMemberType());
-            session.setAttribute("memberId", vo.getMemberId());
-            return "redirect:/main/mainPage";
+            boolean status = vo.getMemberStatus()==1;
+            if(status){
+                model.addAttribute("withDraw","withDraw");
+                return "/member/login";
+            }else {
+                session.setAttribute("memberNum", vo.getMemberNum());
+                session.setAttribute("memberType", vo.getMemberType());
+                session.setAttribute("memberId", vo.getMemberId());
+                return "redirect:/main/mainPage";
+            }
         }
         else{
             model.addAttribute("flag","false");
-            return "member/login";
+            return "/member/login";
         }
+    }
+    @PostMapping("withdrawcheck")
+    @ResponseBody
+    public String withdrawcheck(@RequestParam("memberPw") String memberPw, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberId((String)session.getAttribute("memberId"));
+        memberVO.setMemberPw(memberPw);
+        int cnt = memberService.withDrawCheck(memberVO);
+        log.info("cnt : "+ cnt);
+        if (cnt == 1){
+            return"success";
+        }else{
+            return "fail";
+        }
+    }
+    @PostMapping("withdraw")
+    public void withdraw(MemberVO memberVO, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String memberPw = memberVO.getMemberPw();
+
+
     }
 }
 
