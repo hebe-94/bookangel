@@ -17,4 +17,5 @@ public class MemberService {
     public MemberVO login(MemberVO memberVO){return memberDAO.login(memberVO);}
     public MemberVO getMyInfo(String memberId){return memberDAO.getMyInfo(memberId);}
     public int withDrawCheck(MemberVO memberVO){return memberDAO.withDrawCheck(memberVO);}
+    public void withDraw(int memberNum){memberDAO.withDraw(memberNum);}
 }
