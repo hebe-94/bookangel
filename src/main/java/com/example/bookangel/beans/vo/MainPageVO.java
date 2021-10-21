@@ -14,4 +14,5 @@ public class MainPageVO {
     private String cBoardApplyOk;
     private int rowNum;
     private String memberName;
+    private String memberTel;
 }
