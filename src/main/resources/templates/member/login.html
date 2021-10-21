@@ -282,10 +282,16 @@
             check(); // do something
         }
     });
+    var status = [[${withDraw}]];
+    var flag = [[${flag}]];
     $(document).ready(function(){
-        if([[${flag}]]=="false") {
+        if(status=="withDraw"){
+            alert("탈퇴한 회원입니다.");
+            status=null;
+        }
+        if(flag=="false") {
             alert("아이디 또는 비밀번호가 틀렸습니다.");
-            history.replaceState
+            flag=null;
         }
     })
 </script>
