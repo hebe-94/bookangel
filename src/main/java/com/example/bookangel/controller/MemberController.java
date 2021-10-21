@@ -109,7 +109,6 @@ public class MemberController {
         memberVO.setMemberId((String)session.getAttribute("memberId"));
         memberVO.setMemberPw(memberPw);
         int cnt = memberService.withDrawCheck(memberVO);
-        log.info("cnt : "+ cnt);
         if (cnt == 1){
             return"success";
         }else{
@@ -117,10 +116,12 @@ public class MemberController {
         }
     }
     @PostMapping("withdraw")
-    public void withdraw(MemberVO memberVO, Model model, HttpServletRequest request){
+    public String withdraw(HttpServletRequest request){
         HttpSession session = request.getSession();
-        String memberPw = memberVO.getMemberPw();
-
+        int memberNum = (int)session.getAttribute("memberNum");
+        memberService.withDraw(memberNum);
+        session.invalidate();
+        return "member/login";
 
     }
 }

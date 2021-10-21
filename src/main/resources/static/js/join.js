@@ -63,6 +63,25 @@ function formSubmit(){
         $("input#memberId").focus();
         return;
     }
+
+    var patt = new RegExp("[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}");
+    var res = patt.test( $("input#memberTel").val());
+
+    if(!res){
+        alert("010-0000-0000 형식으로 입력해 주세요.");
+        $("input#memberTel").val("");
+        $("input#memberTel").focus();
+        return;
+    }
+    var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    var email = regex.test($("input#memberEmail").val());
+    if(!email){
+        alert("abc@abc.com 형식으로 작성해 주세요.");
+        $("input#memberEmail").val("");
+        $("input#memberEmail").focus();
+        return;
+    }
+
     alert("회원가입이 완료되었습니다! 기북천사에 오신걸 환영합니다 ");
     form.submit();
 }
