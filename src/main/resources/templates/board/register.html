@@ -109,15 +109,18 @@
 
     <!-- 신청하기 form 작성란 -->
     <div>
-        <form action="/board/register" id="registForm" name="writeForm" method="post" enctype="multipart/form-data">
+        <form action="/board/register" id="registForm" name="writeForm" method="post">
             <fieldset id="applyForm">
                 <div class="fields">
                 <legend>신청하기</legend>
                 <!--<p id="writer" style="margin-left: -2%;" name="boardMemberNum">작성자 : 아이디가져오기</p>-->
                     <div class="field">
-                <input id="memberNum" name="memberNum" type="hidden" style=" z-index: 0;"/>
+                        <input name="memberNum" type="hidden" th:value="${memberNum}" style=" z-index: 0;"/>
                     </div>
+
                 <!--<input type="hidden" name="c_memeber_id" value="${session_id}">-->
+                    <!--<input name="memberNum" type="hidden" th:text="${memberNum}" style="text-align:left; background: white; font-size: 1em; border: none; z-index: 0;" readonly/>-->
+
                 <div class="form-group">
                     <label for="exampleTextarea" class="form-label mt-4">제목</label>
                     <input id="boardTitle" name="boardTitle"  type="text" placeholder="제목 입력" style=" z-index: 0;">
@@ -150,7 +153,7 @@
                     <input class="form-control" type="file" name="formFile" id="formFile" style="font-family: 'Gowun Dodum', sans-serif;">
                 </div>
                 <div>
-                    <input type="button" value="신청" class="btn btn-primary" style="left: 29%; font-family: 'Gowun Dodum', sans-serif;display: flex;align-items: center;border-radius: 5px;" id="ModifySubmit" onclick="send()">
+                    <input type="submit" value="신청" class="btn btn-primary" style="left: 29%; font-family: 'Gowun Dodum', sans-serif;display: flex;align-items: center;border-radius: 5px;" id="ModifySubmit" onclick="send()">
                     <input type="button" value="취소"  class="btn btn-primary" style="left: 35%; font-family: 'Gowun Dodum', sans-serif; display: flex;align-items: center;border-radius: 5px;" id="ModifyCancel" onclick="javascript:history.back(); return false;">
                         </div>
                 </div>
@@ -180,9 +183,8 @@
 <script src="/js/modernizr.custom.js"></script>
 <script src="/js/toucheffects.js"></script>
 <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
-<script>
+<!--<script th:inline="javascript">
     function send(){
-
         if(!$("input#boardTitle").val()){
             alert("제목을 작성해주세요.");
             return;
@@ -198,9 +200,10 @@
         document.writeForm.submit();
     }
 
-</script>
-<script th:inline="javascript">
+</script>-->
+
+<!--<script th:inline="javascript">
     $(document).ready(function(){
-        alert([[${sessionId}]])});
-</script>
+        alert([[${memberNum}]])});
+</script>-->
 </html>

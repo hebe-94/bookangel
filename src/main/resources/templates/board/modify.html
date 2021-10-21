@@ -108,7 +108,7 @@
     <!-- 신청하기 form 작성란  enctype="multipart/form-data"-->
     <div>
         <form action="/board/modify" method="post" name="writeForm">
-            <fieldset id="applyForm">
+            <fieldset id="applyForm" >
                 <div class="fields" th:object="${board}">
                     <div class="field">
                 <div class="form-group row">
@@ -172,5 +172,9 @@
     $("a#goList").on("click", function(){
         location.href = "/board/list" + paging;
     });
+</script>
+<script th:inline="javascript">
+    $(document).ready(function(){
+        alert([[${memberNum}]])});
 </script>
 </html>
