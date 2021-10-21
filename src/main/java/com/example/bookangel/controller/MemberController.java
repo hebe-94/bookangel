@@ -93,6 +93,7 @@ public class MemberController {
                 session.setAttribute("memberNum", vo.getMemberNum());
                 session.setAttribute("memberType", vo.getMemberType());
                 session.setAttribute("memberId", vo.getMemberId());
+                session.setAttribute("memberName", vo.getMemberName());
                 return "redirect:/main/mainPage";
             }
         }
