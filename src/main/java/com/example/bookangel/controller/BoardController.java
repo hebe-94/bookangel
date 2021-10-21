@@ -34,6 +34,8 @@ public class BoardController {
         log.info("-------------------------------");
         model.addAttribute("list", boardService.getList(criteria));
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
         model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
         return "board/list";
     }
@@ -46,6 +48,8 @@ public class BoardController {
 
         HttpSession session = request.getSession();
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
         log.info("-------------멤버 확인------------------");
         log.info("memberNum : " + session.getAttribute("memberNum"));
         log.info("-------------------------------");
@@ -80,6 +84,8 @@ public class BoardController {
 
         HttpSession session = request.getSession();
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
 
         model.addAttribute("board", boardService.get(boardNum));
         model.addAttribute("criteria", criteria);
@@ -107,6 +113,8 @@ public class BoardController {
 
         HttpSession session = request.getSession();
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
 
 
         if(boardService.modify(boardVO)){
@@ -138,13 +146,20 @@ public class BoardController {
     public void register(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
     }
 
     @PostMapping("read")
-    public RedirectView updateOk(Long boardNum,BoardVO boardVO, RedirectAttributes rttr){
+    public RedirectView updateOk(Long boardNum,BoardVO boardVO, RedirectAttributes rttr,HttpServletRequest request,Model model){
         log.info("-------------------------------");
         log.info("updateOk : " + boardNum);
         log.info("-------------------------------");
+
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
 
         if(boardService.updateOk(boardNum)){
             rttr.addAttribute("result", "success");
