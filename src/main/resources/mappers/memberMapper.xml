@@ -20,4 +20,9 @@
         SELECT *  FROM BOOK_MEMBER
         WHERE MEMBERID = #{memberId}
     </select>
+    <select id="check" resultType="_int">
+        SELECT COUNT(MEMBERNUM)
+        FROM BOOK_MEMBER
+        WHERE MEMBERPW = #{memberPw} AND MEMBERID = #{memberId}
+    </select>
 </mapper>

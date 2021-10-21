@@ -141,7 +141,7 @@
                             <th:when test="${session_id  ne '' && not empty session_id}">
                                 <li id="myPageTab"><a>마이페이지&hellip;</a>
                                     <ul>
-                                        <li><a href="/member/MemberMyPage">내정보 보기</a></li>
+                                        <li><a href="/member/mypage">내정보 보기</a></li>
                                         <li><a href="/member/AllModify">회원정보 수정</a></li>
                                         <li id="applyTab"><a href="/board/BoardList">신청게시판</a></li><!-- 관리자 전용 -->
                                         <li><a  href="/member/Withdraw">회원탈퇴</a></li>
@@ -1873,7 +1873,6 @@ if(${session_id  eq '' || empty session_id}){
 
 <script th:inline="javascript">
     $(document).ready(function(){
-        alert([[${sessionId}]]);
         $("#nav").css("background" , "#00ff0000");
         $("#nav").css("color" , "white");
         $("#logoImg").attr("src", "/images/kibookLogo.png");
