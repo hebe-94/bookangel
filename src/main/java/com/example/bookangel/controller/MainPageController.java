@@ -42,4 +42,9 @@ public class MainPageController {
         model.addAttribute("pageMaker", new PageDTO(mainPageService.getOkTotal(criteria), 10, criteria));
         return "main/mainPage";
     }
+
+    @GetMapping("qna")
+    public String qna(){
+        return "main/qna";
+    }
 }

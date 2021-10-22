@@ -129,7 +129,7 @@
                     <ul>
                         <th:block th:if="${memberNum} == null">
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
-                            <li><a  href="/member/QnA">Q&A</a></li>
+                            <li><a  href="/main/qna">Q&A</a></li>
                         </th:block>
 
                         <th:block th:if="${memberNum} != null">
@@ -141,7 +141,7 @@
                                     <li><a  href="/member/withdraw">회원탈퇴</a></li>
                                 </ul>
                             </li>
-                            <li><a  href="/member/QnA">Q&A</a></li>
+                            <li><a  href="/main/qna">Q&A</a></li>
                             <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
                         </th:block>
 
