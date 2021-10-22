@@ -44,7 +44,11 @@ public class MainPageController {
     }
 
     @GetMapping("qna")
-    public String qna(){
+    public String qna(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
         return "main/qna";
     }
 }
