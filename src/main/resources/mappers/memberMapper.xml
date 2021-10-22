@@ -35,4 +35,9 @@
         SET MEMBERPW = #{memberPw}
         WHERE MEMBERID=#{memberId} AND MEMBERTEL = #{memberTel}
     </update>
+    <select id="getId" resultType="string">
+        SELECT MEMBERID
+        FROM BOOK_MEMBER
+        WHERE MEMBERNAME = #{memberName} AND MEMBERTEL = #{memberTel}
+    </select>
 </mapper>

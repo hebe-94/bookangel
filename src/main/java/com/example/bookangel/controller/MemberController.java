@@ -179,5 +179,17 @@ public class MemberController {
         memberService.modifyPw(memberVO);
         return "member/login";
     }
+    @PostMapping("findID")
+    public void findID(MemberVO memberVO){
+        String memberTel = memberVO.getMemberTel();
+        String result = "";
+        if(memberTel.length() == 10) {
+            result = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            result = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        memberVO.setMemberTel(result);
+        log.info(memberService.findId(memberVO));
+    }
 }
 

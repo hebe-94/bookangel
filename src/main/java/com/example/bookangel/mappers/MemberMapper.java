@@ -19,4 +19,6 @@ public interface MemberMapper {
     public void status(int memberNum);
     //비밀번호 변경
     public void change(MemberVO memberVO);
+    //아이디 찾기
+    public String getId(MemberVO memberVO);
 }

@@ -18,4 +18,5 @@ public class MemberDAO {
     public int withDrawCheck(MemberVO memberVO){return memberMapper.check(memberVO);}
     public void withDraw(int memberNum){memberMapper.status(memberNum);}
     public void modifyPw(MemberVO memberVO){memberMapper.change(memberVO);}
+    public String findId(MemberVO memberVO){return memberMapper.getId(memberVO);}
 }

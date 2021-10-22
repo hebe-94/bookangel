@@ -19,4 +19,5 @@ public class MemberService {
     public int withDrawCheck(MemberVO memberVO){return memberDAO.withDrawCheck(memberVO);}
     public void withDraw(int memberNum){memberDAO.withDraw(memberNum);}
     public void modifyPw(MemberVO memberVO){memberDAO.modifyPw(memberVO);}
+    public String findId(MemberVO memberVO){return memberDAO.findId(memberVO);}
 }
