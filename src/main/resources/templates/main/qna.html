@@ -14,7 +14,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="Codrops" />
-    <%-- <link rel="shortcut icon" href="../favicon.icon">  --%>
+    <!--<%&#45;&#45; <link rel="shortcut icon" href="../favicon.icon">  &#45;&#45;%>-->
     <link rel="stylesheet" type="text/css" href="/css/default.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <link rel="stylesheet" href="/css/main.css" />
@@ -112,11 +112,6 @@
     <!--  Header -->
     <div id="header">
         <!-- 상단 탭 -->
-        <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
-        <div id="header">
-
-
-
             <!-- Nav -->
             <nav id="nav">
 
@@ -349,29 +344,23 @@
                         통화 연결이 어려우니 1:1 문의하기를 이용해주세요.</p>
             </footer>
             </article>
+        </div>
     </section>
 
 
 
 
 
-    <hr>
+    <hr/>
     <!--  Copyright -->
     <div class="copyright">
         <ul class="menu">
             <li>&copy; Kibook Angel. All rights reserved.</li>
         </ul>
     </div>
-
+</body>
 
     <!-- Scripts -->
-    <script th:inline="javascript">
-        /*    function btn(){
-              alert('문의 해주셔서 감사합니다.');
-
-           } */
-
-    </script>
     <script th:inline="javascript">
         let sessionType = [[${sessionType}]];
         var applyTab = document.getElementById("applyTab");
@@ -394,5 +383,5 @@
     <script src="/js/main.js"></script>
     <script src="/js/modernizr.custom.js"></script>
     <script src="/js/toucheffects.js"></script>
-</body>
+
 </html>
