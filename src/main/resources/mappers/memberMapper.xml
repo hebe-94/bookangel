@@ -30,4 +30,9 @@
         SET MEMBERSTATUS=1
         WHERE MEMBERNUM=#{memberNum}
     </update>
+    <update id="change">
+        UPDATE BOOK_MEMBER
+        SET MEMBERPW = #{memberPw}
+        WHERE MEMBERID=#{memberId} AND MEMBERTEL = #{memberTel}
+    </update>
 </mapper>

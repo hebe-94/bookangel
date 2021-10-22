@@ -140,14 +140,15 @@
                 <h1 style="text-align:center;font-size:30px;margin-bottom: 30px;">비밀번호 변경</h1>
                 <p style="text-align:center;padding-bottom: 35px;margin: 0px 30% 20px 30%;border-bottom: solid 7px #f5f4f3;font-size: 18px;">다른 아이디나 사이트에서 사용한 적 없는 <br><span style="color:green;">안전한 비밀번호</span>로 변경해 주세요</p>
             </header>
-            <form method="post" id="modifyPW" name="modifyPW">
+            <form method="post" id="modifyPW" name="modifyPW" >
                 <div style="display:flex; justify-content:center; color:black;">
                     <div style="width:40%">
 
                         <div class="col-6 col-12-xsmall" style="width:100%">
-                            <input type="password" style="margin-bottom: 3%;font-size:20px;text-align:center;margin: 0 0 3% 0%;border-color: #df7366;width: 74%;margin-left: 13%;" name="member_pw" id="member_pw" value="${member_pw}" placeholder="영문 4자 이상, 최대 20자"/>
-                            <input type="password" style="margin-bottom: 3%;font-size:20px;text-align:center;margin: 0 0 3% 0%;border-color: #df7366;width: 74%;margin-left: 13%;" name="member_pw" id="member_new_pw" value="${member_pw}" placeholder="새 비밀번호 확인"/>
-
+                            <input type="password" style="margin-bottom: 3%;font-size:20px;text-align:center;margin: 0 0 3% 0%;border-color: #df7366;width: 74%;margin-left: 13%;" name="memberPw" id="memberPw" value="" placeholder="영문 4자 이상, 최대 20자"/>
+                            <input type="password" style="margin-bottom: 3%;font-size:20px;text-align:center;margin: 0 0 3% 0%;border-color: #df7366;width: 74%;margin-left: 13%;" name="memberNewPw" id="memberNewPw" value="" placeholder="새 비밀번호 확인" />
+                            <input type="hidden" name="memberId" id="memberId" th:value="${memberId}">
+                            <input type="hidden" name="memberTel" id="memberTel" th:value="${memberTel}">
                             <p style="border-bottom: solid 7px #f5F3f3;padding-bottom: 10px;margin-top: 4%;"><br><br><br><br><br></p>
                         </div>
                         <div>
@@ -170,24 +171,7 @@
 
 
 <!-- Scripts -->
-<script>
-    function ModifyPW(){
-        var frm = document.modifyPW;
 
-        /* 		if(frm.member_pw.value.length < 1){
-                   alert("비밀번호를 입력하세요");
-                   return;
-                }
-         */
-
-
-        frm.method = "post";
-        frm.action = "${pageContext.request.contextPath}/member/FindModify.me";
-        frm.submit();
-
-    }
-
-</script>
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
@@ -199,13 +183,21 @@
 <script src="/js/main.js"></script>
 </body>
 <script>
-    function modifyPW(){
+    function ModifyPW(){
+        memberPw = $("input#memberPw").val();
+        memberNewPw = $("input#memberNewPw").val();
+        var frm = document.modifyPW;
+        if (memberPw==memberNewPw){
+            frm.method = "post";
+            frm.action = "/member/modifypw";
+            frm.submit();
+        }else{
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
 
-        var pw = document.getElementById("member_pw").value;
 
-        console.log("비밀번호 : "+pw);
 
-        form.submit();
 
     }
 </script>
