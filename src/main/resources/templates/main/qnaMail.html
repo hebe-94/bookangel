@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/qna.css" type="text/css"/>
+<!-- 기본 폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+      rel="stylesheet">
+<div class="inner">
+    <br>
+    <h3 style="font-family: 'Gowun Dodum', sans-serif; text-align: center;">기북천사</h3>
 
-<form th:action="@{/mail}" method="post" id="sendForm">
-    <input name="address" type="hidden" placeholder="이메일 주소" value="mirae1686@gmail.com" readonly/> <br>
-    <input name="title" placeholder="제목"> <br>
-    <textarea name="message" placeholder="메일 내용을 입력해주세요." cols="60" rows="20"></textarea>
-    <!--    <button name="send" id="send">발송</button>-->
-    <input type="button" name="send" id="send" value="발송" onclick="sendEmail()">
-    <input type="button" id="close" name="close" value="닫기"  onclick="window.close()">
-</form>
+    <form th:action="@{/mail}" method="post" id="sendForm">
+        <input name="address" type="hidden" placeholder="이메일 주소" value="mirae1686@gmail.com" readonly/> <br>
+        <div class="field half first">
+            <label style="font-family: 'Gowun Dodum', sans-serif;" >제목</label>
+            <input name="title" placeholder="제목" style="font-family: 'Gowun Dodum', sans-serif;outline:none;"  > <br>
+        </div>
+        <div class="field half">
+            <label style="font-family: 'Gowun Dodum', sans-serif;" >내용</label>
+            <textarea name="message" cols="60" rows="20" style="resize: none; font-family: 'Gowun Dodum', sans-serif;">답장 받으실 메일 주소 :
+문의 내용
+            </textarea>
+        </div>
+        <ul class="actions" style="text-align: center;">
+            <li><input type="button" name="send" id="send" value="발송" onclick="sendEmail()" style="font-family: 'Gowun Dodum', sans-serif;outline:none;" ></li>
+            <li><input  type="button" id="close" name="close" value="닫기"  onclick="window.close()" style="font-family: 'Gowun Dodum', sans-serif;outline:none;" ></li>
+        </ul>
+    </form>
+</div>
+
+
+
 </body>
 <script language="javascript">
     let sendForm = document.getElementById("sendForm");

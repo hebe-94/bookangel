@@ -287,41 +287,11 @@
         <article style="text-align:center; color:black;">
             <div id="help2" style="margin: 0px 0px 50px 77px;">
                 <p style="text-align:center;">
-                    <span style="font-weight:bold; font-size:30px; ">찾으시는 내용이 없나요? </span><br><br>1:1문의를 이용해 주시면 자세한 답변을 드려요.
+                    <span style="font-weight:bold; font-size:25px;"> 찾으시는 내용이 없다면 1:1문의를 이용해주세요. </span>
                 </p>
-
-                <details>
-                    <input type="button" onclick="showPopup()" style="  margin: auto;  width: 32%; margin-bottom: 3%;">1:1 문의하기</input>
-
-
-<!--                    <form class="gform" action="https://script.google.com/macros/s/AKfycbwfMCD1nb0HgcfEvGRtPR6K94dG_nW6Xk-BETjqrftjF8NrLOuge1_hnL3usiaSmdmypA/exec" method="post" style="background-color:#f5f5f5;padding-bottom: 2%;">
-                        <fieldset>
-                            <label for="name" class="pure-group" id="name">이름</label>
-                            <input type="text" id="name" name="name" class="qw" placeholder="이름을 입력하세요."  style="padding: inherit;width: 50%;font-family:inherit;padding-left: 10px;" required/>
-
-                            <label for="email" class="pure-group" id="email">이메일</label>
-                            <input type="email"  id="email" name="email" class="qw" placeholder="abc@gmail.com" style="padding: inherit;width: 50%;font-family:inherit;padding-left: 10px;" required/>
-                            <p></p>
-                            <label for="tel" class="pure-group" id="tel">핸드폰번호</label>
-                            <input type="tel" id="tel" name="tel"  class="qw" placeholder="- 없이 입력해주세요" style="padding: inherit;width: 50%;font-family:inherit;padding-left: 10px;" required/>
-
-                            <label for="message" class="pure-group" id="message">문의 내용</label>
-                            <textarea id="message" name="message" style="font-family: 'Gowun Dodum', sans-serif;padding-left: 10px;padding-top: 5px;" placeholder=" &#13;&#10;&nbsp;&nbsp;어떤 문제가 있으신가요? &#13;&#10;&#13;&#10;&nbsp;&nbsp;내용을 자세히 적어주시면 문제를 더욱 빨리  확인할 수 있습니다."  required></textarea>
-
-                        </fieldset>
-
-                        <button type="submit" style="margin: auto;position: inherit;width: 32%;padding: 4px;font-family: inherit;margin-left: 40%;margin-right: 40%;border-radius: 5px;"><i class="fa fa-paper-plane"></i>&nbsp;1:1문의하기</button>
-                        <div style="display:none" class="thankyou_message">
-
-                            &lt;!&ndash; You can customize the thankyou message by editing the code below &ndash;&gt;
-                            <h2 style="margin:5%;"><em>1:1문의가 접수되었습니다 !</em><br><span style="font-size:20px;">접수된 문의는, 순차답변예정입니다.</span>
-                            </h2>
-                        </div>
-                    </form>-->
-                  <!--  <script src="/js/form-submission-handler.js"></script>-->
-                </details>
-
-
+                <div style="display: flex;">
+                    <input type="button" onclick="showPopup()" style="  margin: auto;  width: 32%; margin-bottom: 3%;" value="문의하기"/>
+                </div>
             </div>
         </article>
     </div>
@@ -329,7 +299,7 @@
     <div>
         <footer>
             <article class="col-4 col-12-mobile special" style="text-align:center;">
-                <p style="font-size: 15px;margin-top: -7%;margin-left: 3%;">※코로나19로 인해 고객센터 운영을 최소화 하고 있습니다.<br>
+                <p style="font-size: 15px;margin-top: -8%;margin-left: 3%;">※코로나19로 인해 고객센터 운영을 최소화 하고 있습니다.<br>
                     통화 연결이 어려우니 1:1 문의하기를 이용해주세요.</p>
             </article>
         </footer>
@@ -357,7 +327,7 @@
 
 <script language="javascript">
     function showPopup() {
-        window.open("qnaMail", "sendmail", "width=500, height=500, left=300, top=50");
+        window.open("qnaMail", "sendmail", "width=500, height=650, left=300, top=50");
     }
 </script>
 
