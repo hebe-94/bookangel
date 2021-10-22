@@ -1,115 +1,105 @@
 /**
  * 	회원가입
  */
-
-
-
-$("#term").on("click", function(){
-    if($(this).is(":checked")){
-        //체크가 되어 있다면,
-        $(".terms").prop("checked", true);
-    }else{
-        //체크되어 있지 않다면
-        $(".terms").prop("checked", false);
-    }
-})
-
-
-
-var check = false;
-
+var check =false;
+var form = document.joinForm;
 function formSubmit(){
-    var form = document.joinForm;
-
-    if(!form.member_id.value || !check){
-        alert("아이디를 확인해주세요");
-        member_id.focus();
+    if(form.memberId.value==null&&form.memberId.value==""){
+        alert("아이디를 입력해 주세요");
+        form.memberId.focus();
+        return;
+    }
+    if(form.memberPw.value==null&&form.memberPw.value==""){
+        alert("비밀번호를를 입력해 주세요");
+        form.memberPw.focus();
+        return;
+    }
+    if(form.memberName.value==null&&form.memberName.value==""){
+        alert("이름을 입력해 주세요");
+        form.memberName.focus();
+        return;
+    }
+    if(form.memberTel.value==null&&form.memberTel.value==""){
+        alert("전화번호를 입력해 주세요");
+        form.memberTel.focus();
+        return;
+    }
+    if(form.memberEmail.value==null&&form.memberEmail.value==""){
+        alert("이메일을 입력해 주세요");
+        form.memberEmail.focus();
+        return;
+    }
+    if(form.memberZipcode.value==null&&form.memberZipcode.value==""){
+        alert("우편번호를 입력해 주세요");
+        form.memberZipcode.focus();
+        return;
+    }
+    if(form.memberAddress.value==null&&form.memberAddress.value==""){
+        alert("주소를 입력해 주세요");
+        form.memberAddress.focus();
+        return;
+    }
+    if(form.memberAddressDetail.value==null&&form.memberAddressDetail.value==""){
+        alert("상세주소를 입력해 주세요");
+        form.memberAddressDetail.focus();
+        return;
+    }
+    if(form.memberAddressEtc.value==null&&form.memberAddressEtc.value==""){
+        alert("참고항목을 입력해 주세요");
+        form.memberAddressEtc.focus();
         return;
     }
 
-
-    if(!form.member_pw.value || !check){
-        alert("비밀번호를 확인해주세요");
-        member_pw.focus();
-        return;
-    }
 
     var pwCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
 
-    if (!pwCheck.test(form.member_pw.value)) {
+    if (!pwCheck.test(form.memberPw.value)) {
         alert("비밀번호는 영문자+숫자 조합으로 8~20자리 사용해야 합니다");
-        form.member_pw.focus();
-        return false;
-    };
-
-
-    if(!form.member_name.value || !check){
-        alert("이름을 확인해주세요");
+        form.memberPw.focus();
+        return;
+    }
+    if(!check){
+        alert("중복된 아이디 입니다.");
+        $("input#memberId").focus();
         return;
     }
 
-    if(!form.member_tel.value || !check){
-        alert("핸드폰 번호를 확인해주세요");
+    var patt = new RegExp("[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}");
+    var res = patt.test( $("input#memberTel").val());
+
+    if(!res){
+        alert("010-0000-0000 형식으로 입력해 주세요.");
+        $("input#memberTel").val("");
+        $("input#memberTel").focus();
+        return;
+    }
+    var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    var email = regex.test($("input#memberEmail").val());
+    if(!email){
+        alert("abc@abc.com 형식으로 작성해 주세요.");
+        $("input#memberEmail").val("");
+        $("input#memberEmail").focus();
         return;
     }
 
-    if(!form.member_email.value || !check){
-        alert("이메일을 확인해주세요");
-        return;
-    }
-
-    if(!form.member_zipcode.value || !check){
-        alert("우편번호를 확인해주세요");
-        return;
-    }
-
-    if(!form.member_address.value || !check){
-        alert("주소를 확인해주세요");
-        return;
-    }
-
-    if(!form.member_address_detail.value || !check){
-        alert("상세주소를 확인해주세요");
-        return;
-    }
-
-    if(!form.member_address_etc.value || !check){
-        alert("참고항목을 확인해주세요");
-        return;
-    }
-
-    check = false;
-
-    $.each($(".terms"), function(index, item){
-        if(!$(item).is(":checked")){
-            check = true;
-        }
-    });
-
-    if(check){
-        alert("이용약관 동의가 필요합니다.");
-        return;
-    }
     alert("회원가입이 완료되었습니다! 기북천사에 오신걸 환영합니다 ");
     form.submit();
 }
 
-function checkId(id){
-    check = false;
+function checkId(memberId){
 
-    if(id == ""){
+    check = false;
+    if(memberId == ""){
         $("#idCheck_text").text("");
         return;
     }
 
-
-
     $.ajax({
-        url:contextPath+"/member/MemberCheckIdOk.me?id=" + id,
-        type:"get",
-        dataType:"json",
+        url:"/member/checkId",
+        type:"post",
+        data:{"memberId":memberId},
         success:function(result){
-            if(result.status == "ok"){
+            if(result=="success"){
                 //DOM
                 $("#idCheck_text").text("사용 가능");
                 $("#idCheck_text").css("color", "blue");
@@ -126,7 +116,7 @@ function checkId(id){
     });
 }
 
-$("input[name='member_id']").keyup(function(){
+$("input[name='memberId']").keyup(function(){
     //중복 검사
     checkId($(this).val())
 })

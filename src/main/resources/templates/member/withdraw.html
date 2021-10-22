@@ -137,10 +137,10 @@
             <div style="display:flex; justify-content:space-evenly; color:black;">
                 <div style="width:40%;margin-bottom: 70px;">
                     <div>
-                        <form method="post" name="withdraw" id="withdraw">
+                        <form name="withdraw" id="withdraw">
                             <div class="col-6 col-12-xsmall" style="width:100%">
                                 <p style="margin-bottom: 2%;">비밀번호 재확인</p>
-                                <input type="password" style="margin-bottom: 3%; position:inherit;" name="member_pw" id="member_pw" value=""/>
+                                <input type="password" style="margin-bottom: 3%; position:inherit;" name="memberPw" id="memberPw" value=""/>
                             </div>
                         </form>
                     </div>
@@ -165,17 +165,7 @@
 </div>
 
 <!-- Scripts -->
-<script>
-    function check(){
-        var frm = document.withdraw;
 
-        frm.method = "post";
-        frm.action = "${pageContext.request.contextPath}/member/withdraw.me";
-        frm.submit();
-
-    }
-
-</script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/jquery.scrolly.min.js"></script>
@@ -185,4 +175,46 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 </body>
+<script>
+    $("input#memberPw").keydown(function (e) {
+        if(e.keyCode==13){
+            e.preventDefault();
+            check();
+        }
+    })
+
+    function check(){
+        var memberPw = $("input#memberPw").val();
+        $.ajax({
+            url : "/member/withdrawcheck",
+            type : "post",
+            data :{"memberPw" : memberPw},
+            success : function (result) {
+                console.log(result);
+                if(result=="success"){
+                    if(confirm("정말로 탈퇴하시겠습니까?"))
+                    {
+                        alert("탈퇴가 완료되었습니다.");
+                        var frm = document.withdraw;
+
+                        frm.method = "post";
+                        frm.action = "/member/withdraw";
+                        frm.submit();
+                        return;
+                    }
+                    else{return;}
+                }
+                else{
+                    alert("잘못된 비밀번호 입니다.");
+                    return;
+                }
+            }
+        })
+
+
+
+
+    }
+
+</script>
 </html>

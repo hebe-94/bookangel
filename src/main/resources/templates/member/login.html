@@ -211,28 +211,28 @@
                         <h1 style="text-align:center;padding-bottom: 3%;font-size:30px;margin: 0 30% 0 30%; border-bottom: solid 7px #F5F4F5;">기북천사 로그인<img src="/images/qna.png" width="40" height="60"></h1>
                     </header>
 
-                    <form method="post" name="loginForm">
+                    <form method="post" name="loginForm" action="/member/login">
                         <div style="display:flex; justify-content:space-evenly; color:black;">
 
                             <div>
                                 <div class="col-6 col-12-xsmall" style="width:100%">
-                                    <label style="display:inline;float:left; width:47%; background: #df7366; border-radius: 0.5em; color: white;"><input type="radio" name="chk_info" value="0" checked="checked" style=" -webkit-appearance: radio;margin-left: -1.5em;"><span style="vertical-align: middle; margin-left: -25px; ">일반회원</span></label>
-                                    <label style="display:inline;float:right; width:47%; background: #df7366; border-radius: 0.5em; color: white;"><input type="radio" name="chk_info" value="1" style="-webkit-appearance: radio;margin-left: -1.5em;"><span style="vertical-align: middle; margin-left: -25px">기업회원</span></label>
+                                    <label style="display:inline;float:left; width:47%; background: #df7366; border-radius: 0.5em; color: white;"><input type="radio" name="memberType" value="0" checked="checked" style=" -webkit-appearance: radio;margin-left: -1.5em;"><span style="vertical-align: middle; margin-left: -25px; ">일반회원</span></label>
+                                    <label style="display:inline;float:right; width:47%; background: #df7366; border-radius: 0.5em; color: white;"><input type="radio" name="memberType" value="1" style="-webkit-appearance: radio;margin-left: -1.5em;"><span style="vertical-align: middle; margin-left: -25px">기업회원</span></label>
 
                                     <p style="margin-bottom: 2%;"></p>
-                                    <input type="text" style="margin-bottom: 3%; font-family:inherit; font-size:25px;" name="member_id" id="member_id" value="" placeholder="아이디" onkeydown="tryLogin()">
+                                    <input type="text" style="margin-bottom: 3%; font-family:inherit; font-size:25px;" name="memberId" id="memberId" value="" placeholder="아이디"/>
 
                                     <p style="margin-bottom: 2%;"></p>
 
-                                    <input type="password" style="margin-bottom: 5%; font-family:inherit; font-size:25px;" name="member_pw" id="member_pw" value="" placeholder="비밀번호" onkeydown="tryLogin()"/>
-                                    <input class="primary" type="button" value="로그인" style="width: 38%;font-size: 20px;font-family: inherit;margin-bottom: 3%;cursor:pointer;text-align: center;margin-top: 5%; margin-left: 30%;" onclick="loginBTN()"/>
+                                    <input type="password" style="margin-bottom: 5%; font-family:inherit; font-size:25px;" name="memberPw" id="memberPw" value="" placeholder="비밀번호"/>
+                                    <input class="primary" type="button" value="로그인" style="width: 38%;font-size: 20px;font-family: inherit;margin-bottom: 3%;cursor:pointer;text-align: center;margin-top: 5%; margin-left: 30%;" onclick="check()"/>
                                     <p style="margin-bottom: 2%;"></p>
                                 </div>
 
                                 <div>
                                     <input type="button" value="아이디 찾기" class="primary" style="width: 30%;font-size: 18px;font-family: inherit;margin-right: 2.5%; color: #746d96;background-color: white; cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/app/member/findID.jsp'"/>
-                                    <input type="button" value="비밀번호 찾기" class="primary" style="width: 30%;font-size: 18px;font-family: inherit;margin-left: 2.5%; color: #746d96;background-color: white;margin-right: 2.5%;cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/app/member/findPW.jsp'"/>
-                                    <input type="button" value="회원가입" class="primary" style="width: 30%;font-size: 18px;font-family: inherit;margin-left: 2.5%; color: #746d96;background-color: white;cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/app/member/join.jsp'"/>
+                                    <input type="button" value="비밀번호 찾기" class="primary" style="width: 30%;font-size: 18px;font-family: inherit;margin-left: 2.5%; color: #746d96;background-color: white;margin-right: 2.5%;cursor:pointer;" onclick="location.href='/member/findPW'"/>
+                                    <input type="button" value="회원가입" class="primary" style="width: 30%;font-size: 18px;font-family: inherit;margin-left: 2.5%; color: #746d96;background-color: white;cursor:pointer;" onclick="location.href='/member/join'"/>
                                 </div>
                             </div>
 
@@ -256,111 +256,6 @@
         </ul>
     </div>
 
-
-    <!-- Scripts -->
-    <script>
-
-       /* if(${not empty session_num || session_num >= 0} ){
-            // 회원
-            alert('이미 로그인 되어있습니다.');
-            location.href="${pageContext.request.contextPath}/app/home/mainPage.jsp";
-
-        }*/
-
-
-        // Tab Old code (By 세훈)
-        /* var loginTab = document.getElementById("loginTab");
-        var myPageTab = document.getElementById("myPageTab");
-        var logoutTab = document.getElementById("logoutTab");
-
-        if(${session_id  eq '' || empty session_id}){
-            console.log("로그인 안됨");
-           logoutTab.style.display = "none";
-           myPageTab.style.display = "none";
-        }else{
-            console.log("로그인 됨");
-           loginTab.style.display = "none";
-
-        } */
-
-
-
-
-        /* 	// 경훈님 코드
-           function enterkey() {
-                if (window.event.keyCode == 13) {
-                   searchData();
-                  }
-           }
-
-           function searchData(){
-              location.href="${pageContext.request.contextPath}/app/book/searchResult.jsp";
-           }
-
-           // 여기 까지 경훈님 */
-
-
-
-        $("#member_id").keypress(function(e) {
-            if (e.keyCode === 13) {
-                loginBTN(); // do something
-            }
-        });
-
-        $("#member_pw").keypress(function(e) {
-            if (e.keyCode === 13) {
-                loginBTN(); // do something
-            }
-        });
-
-
-
-        /* var idInput = document.getElementById("member_id");
-         var pwInput = document.getElementById("member_pw"); */
-
-        function tryLogin(){
-            if(event.keyCode == 13){
-                loginBTN();
-            }
-        }
-
-
-        // 이걸 동작시켜야 함!
-        function loginBTN(){
-
-            var form = document.loginForm;
-
-            if(!form.member_id.value){
-                alert("아이디를 입력해주세요.");
-                return;
-            }
-
-            if(!form.member_pw.value){
-                alert("비밀번호를 입력해주세요.");
-                return ;
-            }
-
-            /* 		<label><input type="radio" name="chk_info" value="0" checked="checked" style=" -webkit-appearance: radio;">일반회원</label>
-                    <label><input type="radio" name="chk_info" value="1" style="-webkit-appearance: radio;">기업회원</label>
-             */
-
-            if($('input[name="chk_info"]:checked').val() == '0'){
-                //회원
-                console.log("회원");
-                form.method="post";
-                form.tartget="_self";
-                form. action="${pageContext.request.contextPath}/member/MemberLoginOk.me" ;
-            }else{
-                //기업
-                console.log("기업");
-                form.method="post";
-                form.tartget="_self";
-                form.action="${pageContext.request.contextPath}/c_member/c_MemberLoginOk.co" ;
-            }
-
-            form.submit();
-        }
-    </script>
     <script	src="/js/jquery.min.js"></script>
     <script	src="/js/jquery.dropotron.min.js"></script>
     <script	src="/js/jquery.scrolly.min.js"></script>
@@ -371,13 +266,33 @@
     <script src="/js/main.js"></script>
     <script src="/js/modernizr.custom.js"></script>
     <script src="/js/toucheffects.js"></script>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="/js/login.js"></script>
 
-   <!-- <script>
-        console.log("${param.code}");
-        if(${param.code} == 1){
-            alert("로그인 정보를 확인해 주세요");
-        }
-
-    </script>-->
 </body>
+<script th:inline="javascript">
+    $("input#memberId").keypress(function(e) {
+        if (e.keyCode === 13) {
+            check(); // do something
+        }
+    });
+
+    $("input#memberPw").keypress(function(e) {
+        if (e.keyCode === 13) {
+            check(); // do something
+        }
+    });
+    var status = [[${withDraw}]];
+    var flag = [[${flag}]];
+    $(document).ready(function(){
+        if(status=="withDraw"){
+            alert("탈퇴한 회원입니다.");
+            status=null;
+        }
+        if(flag=="false") {
+            alert("아이디 또는 비밀번호가 틀렸습니다.");
+            flag=null;
+        }
+    })
+</script>
 </html>
