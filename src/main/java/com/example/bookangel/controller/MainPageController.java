@@ -1,14 +1,18 @@
 package com.example.bookangel.controller;
 
 import com.example.bookangel.beans.vo.Criteria;
+import com.example.bookangel.beans.vo.MailVO;
 import com.example.bookangel.beans.vo.MainPageVO;
 import com.example.bookangel.beans.vo.PageDTO;
+import com.example.bookangel.services.MailService;
 import com.example.bookangel.services.MainPageService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +24,7 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class MainPageController {
     private final MainPageService mainPageService;
-
+    private final MailService mailService;
 //    @GetMapping("mainPage")
 //    public String mainPage(){
 //        return "main/mainPage";
@@ -50,5 +54,17 @@ public class MainPageController {
         model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberName", session.getAttribute("memberName"));
         return "main/qna";
+    }
+
+    @GetMapping("/main/qnaMail")
+    public String qnaMail() {
+        return "/main/qnaMail";
+    }
+
+    @PostMapping("/main/qnaMail")
+    public String qnaEMail(MailVO mailVO) {
+        // 메일 발송
+        mailService.mailSend(mailVO);
+        return "/main/qnaMail";
     }
 }
