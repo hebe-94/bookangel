@@ -53,6 +53,14 @@
         font-size: 100px;
     }
 
+    .subscribeBTN{
+        width: 48%;
+        border-radius: 10px;
+        color: black;
+        font-size: inherit;
+        display: inline;
+        font-family: 'Gowun Dodum';
+    }
 </style>
 <body class="homepage is-preload" style="background-color:white;">
 <div id="page-wrapper">
@@ -129,21 +137,25 @@
 <div class="wrapper style2">
 
     <article style="width: 50em; margin: auto;">
-        <fieldset style="border-radius: 10px;background-color: antiquewhite; padding:27px; margin-bottom: 10%;">
-            <legend style="font-size:30px; color:black;">전자책 정기구독</legend><br>
-            <div style="background-image: url('/images/gudok.gif'); padding-top:inherit; background-position: left; background-size: inherit; border-radius:15px; margin-bottom:10px; color:white;">
-                <div style="margin-left: 15px;">&nbsp;월 <span style="font-weight:bold; font-size:40px; "><i><span style="color:#999900;">9,900&nbsp;</span></i><span style="font-size:20px;">원</span></span><br><br></div>
-                <div style="margin: 0 0 5px 20px;"><span style="font-size:15px;"><i>118,800</i></span>&nbsp;&nbsp;<span style="font-size:15px; background-color:salmon; font-weight:bold; border-radius:5px"><i>16.6%↓</i></span><br></div>
-                <div style="margin-left: 15px;">&nbsp;연 <span style="font-weight:bold; font-size:40px;"><i><span style="color:#999900;">99,900&nbsp;</span></i><span style="font-size:20px;">원</span></span><br><br></div>
-            </div>
-            <div style="margin-left: 15px;"><span style="font-size:15px;">&nbsp;기북천사에 제공하는 콘텐츠를 <span style="-webkit-text-emphasis-style: dot;"><b>무제한</b></span>으로</span></div>
-            <button
-                    style="width: 100%;margin: 20px 0px 0px 50px;border-radius: 10px;color: black;font-size: inherit;font-family: 'Gowun Dodum';"
-                    onclick="iamport()">
-                첫 달 무료 시작하기
-            </button>
-        </fieldset>
+        <div>
+            <fieldset style="border-radius: 10px;background-color: antiquewhite; padding:27px; margin-bottom: 10%;">
+                <legend style="font-size:30px; color:black;">전자책 정기구독</legend><br>
+                <div style="background-image: url('/images/gudok.gif'); padding-top:inherit; background-position: left; background-size: inherit; border-radius:15px; margin-bottom:10px; color:white;">
+                    <div style="margin-left: 15px;">&nbsp;월 <span style="font-weight:bold; font-size:40px; "><i><span style="color:#999900;">9,900&nbsp;</span></i><span style="font-size:20px;">원</span></span><br><br></div>
+                    <div style="margin: 0 0 5px 20px;"><span style="font-size:15px;"><i>118,800</i></span>&nbsp;&nbsp;<span style="font-size:15px; background-color:salmon; font-weight:bold; border-radius:5px"><i>16.6%↓</i></span><br></div>
+                    <div style="margin-left: 15px;">&nbsp;연 <span style="font-weight:bold; font-size:40px;"><i><span style="color:#999900;">99,900&nbsp;</span></i><span style="font-size:20px;">원</span></span><br><br></div>
+                </div>
+                <div style="margin-left: 15px;"><span style="font-size:15px;">&nbsp;기북천사에 제공하는 콘텐츠를 <span style="-webkit-text-emphasis-style: dot;"><b>무제한</b></span>으로</span></div>
+                <form id="subscribeForm">
+                    <input type="button" class="subscribeBTN" value="1개월 &nbsp&nbsp&nbsp 9.900원 첫달 무료" style="float: left" onclick="subscribe(1)">
+                    <input type="button" class="subscribeBTN" value="1년 &nbsp&nbsp&nbsp 99.900원 첫달 무료" style="float: right" onclick="subscribe(12)">
+                    <input type="hidden" name="monthType" value="" id="monthType">
+                </form>
+            </fieldset>
+
+        </div>
     </article>
+
 </div>
 
 <!--<hr>
@@ -163,41 +175,30 @@
 <script	src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-
-<!-- 결제 관련 api -->
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script>
-    function iamport(){
-        //가맹점 식별코드
-        IMP.init('imp77982928');
-        IMP.request_pay({
-            pg : 'kcp',
-            pay_method : 'card',
-            merchant_uid : 'merchant_' + new Date().getTime(),
-            name : '기북천사 구독신청' , //결제창에서 보여질 이름
-            amount : 100, //실제 결제되는 가격
-            buyer_email : 'iszzon@gmail.com',
-            buyer_name : '신세훈',
-            buyer_tel : '010-4759-2499',
-            buyer_addr : '경기도 성남시 분당구',
-            buyer_postcode : '123-456'
-        }, function(rsp) {
-            console.log(rsp);
-            if ( rsp.success ) {
-                var msg = '결제가 완료되었습니다.';
-                msg += '고유ID : ' + rsp.imp_uid;
-                msg += '상점 거래ID : ' + rsp.merchant_uid;
-                msg += '결제 금액 : ' + rsp.paid_amount;
-                msg += '카드 승인번호 : ' + rsp.apply_num;
-            } else {
-                var msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
-            }
-            alert(msg);
-        });
+    alert("1년구독은 쿠폰으로 결제가 불가능합니다.");
+
+    function subscribe(monthType) {
+        if(monthType == 1){//1개월
+            $("#monthType").val(1);
+        }else if(monthType == 12){//1년
+            $("#monthType").val(12);
+        }else{
+            console.log("입력값 잘못됨");
+            return;
+        }
+        console.log("들어간 값 : "+$("#monthType").val());
+        $("#subscribeForm").attr('method','post');
+        $("#subscribeForm").attr('action','/payment/subscribeDetail').submit();
     }
-    </script>
+
+
+
+    $(document).ready(function(){
+
+
+    });
+
+</script>
 </body>
 </html>
