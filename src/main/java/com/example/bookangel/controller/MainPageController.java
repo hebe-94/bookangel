@@ -72,4 +72,8 @@ public class MainPageController {
     public String express(){
         return "book/expressView";
   }
+    @GetMapping("dreamBook")
+    public String dreamView(){
+        return "book/dreamView";
+    }
 }
