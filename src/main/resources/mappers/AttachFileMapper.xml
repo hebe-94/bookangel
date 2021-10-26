@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.bookangel.mappers.AttachFileMapper">
+    <insert id="insert">
+        INSERT INTO BOOK_APPLY_FILE (UUID, UPLOADPATH, FILENAME, IMAGE, BOARDNUM)
+        VALUES (#{uuid}, #{uploadPath}, #{fileName}, #{image}, #{boardNum})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM BOOK_APPLY_FILE WHERE UUID = #{uuid}
+    </delete>
+
+    <select id="findByBoardNum" resultType="attachFileVO">
+        SELECT UUID, UPLOADPATH, FILENAME, IMAGE, BOARDNUM
+        FROM BOOK_APPLY_FILE
+        WHERE BOARDNUM = #{boardNum}
+    </select>
+
+    <delete id="deleteAll">
+        DELETE FROM BOOK_APPLY_FILE WHERE BOARDNUM = #{boardNum}
+    </delete>
+
+    <select id="getOldFiles" resultType="attachFileVO">
+        SELECT UUID, UPLOADPATH, FILENAME, IMAGE, BOARDNUM
+        FROM BOOK_APPLY_FILE
+        WHERE UPLOADPATH = TO_CHAR(SYSDATE - 1, 'YYYY/MM/DD')
+    </select>
+</mapper>

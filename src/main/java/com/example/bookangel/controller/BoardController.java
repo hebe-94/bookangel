@@ -1,22 +1,26 @@
 package com.example.bookangel.controller;
 
 
+import com.example.bookangel.beans.vo.AttachFileVO;
 import com.example.bookangel.beans.vo.BoardVO;
 import com.example.bookangel.beans.vo.Criteria;
 import com.example.bookangel.beans.vo.PageDTO;
 import com.example.bookangel.services.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -26,30 +30,52 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("list")
-    public String list(Criteria criteria, Model model){
+    public String list(Criteria criteria, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
         log.info("-------------------------------");
         log.info("list");
         log.info("-------------------------------");
         model.addAttribute("list", boardService.getList(criteria));
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
         model.addAttribute("pageMaker", new PageDTO(boardService.getTotal(criteria), 10, criteria));
         return "board/list";
     }
 
     @PostMapping("register")
-    public RedirectView register(BoardVO boardVO, RedirectAttributes rttr, Model model){
-        log.info("-------------------------------");
+    public RedirectView register(BoardVO boardVO, RedirectAttributes rttr, Model model,HttpServletRequest request){
+        log.info("-------------현재 멤버------------------");
         log.info("register : " + boardVO.toString());
         log.info("-------------------------------");
 
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
+        log.info("-------------멤버 확인------------------");
+        log.info("memberNum : " + session.getAttribute("memberNum"));
+        log.info("-------------------------------");
+
+
+        if(boardVO.getAttachList() != null){
+            boardVO.getAttachList().forEach(attach -> log.info(attach.toString()));
+        }
+
         boardService.register(boardVO);
 
-//        쿼리 스트링으로 전달
-//        rttr.addAttribute("boardNum", boardVO.getboardNum());
-//        세션의 flash영역을 이용하여 전달
-      /*  model.addAttribute("memberNum",boardVO.getMemberNum("41"));*/
+
         rttr.addFlashAttribute("boardNum", boardVO.getBoardNum());
+        log.info("------------------다시 뽑기----------------------");
+        log.info("register : " + boardVO.toString());
+        log.info("-------------------------------");
+//        model.addAttribute("memberNum", boardVO.getMemberNum());
+
 //        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
+
+
         return new RedirectView("list");
+
     }
 
     //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
@@ -62,6 +88,11 @@ public class BoardController {
         log.info("-------------------------------");
         log.info(reqType + " : " + boardNum);
         log.info("-------------------------------");
+
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
 
         model.addAttribute("board", boardService.get(boardNum));
         model.addAttribute("criteria", criteria);
@@ -82,10 +113,16 @@ public class BoardController {
 //    수정 성공시 result에 "success"를 담아서 전달한다.
 //    단위 테스트로 View에 전달할 파라미터를 조회한다.
     @PostMapping("modify")
-    public RedirectView modify(BoardVO boardVO, RedirectAttributes rttr){
+    public RedirectView modify(BoardVO boardVO, RedirectAttributes rttr, HttpServletRequest request,Model model){
         log.info("-------------------------------");
         log.info("modify : " + boardVO.toString());
         log.info("-------------------------------");
+
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
+
 
         if(boardService.modify(boardVO)){
             rttr.addAttribute("result", "success");
@@ -104,7 +141,10 @@ public class BoardController {
         log.info("remove : " + boardNum);
         log.info("-------------------------------");
 
+        List<AttachFileVO> attachList = boardService.getAttachList(boardNum);
+
         if (boardService.remove(boardNum)) {
+            deleteFiles(attachList);
             rttr.addFlashAttribute("result", "success");
         } else {
             rttr.addFlashAttribute("result", "fail");
@@ -112,19 +152,63 @@ public class BoardController {
         return new RedirectView("list");
     }
 
+
+    private void deleteFiles(List<AttachFileVO> attachList){
+        if(attachList == null || attachList.size() == 0){
+            return;
+        }
+
+        log.info("delete attach files...........");
+        log.info(attachList.toString());
+
+        attachList.forEach(attach -> {
+            try {
+                Path file = Paths.get("C:/bookAngel/" + attach.getUploadPath() + "/" + attach.getUuid() + "_" + attach.getFileName());
+                Files.delete(file);
+
+                if(Files.probeContentType(file).startsWith("image")){
+                    Path thumbnail = Paths.get("C:/bookAngel/" + attach.getUploadPath() + "/s_" + attach.getUuid() + "_" + attach.getFileName());
+                    Files.delete(thumbnail);
+                }
+            } catch (Exception e) {
+                log.error("delete file error " + e.getMessage());
+            }
+        });
+
+
+    }
+
     @GetMapping("register")
-    public void register(){}
+    public void register(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
+    }
 
     @PostMapping("read")
-    public RedirectView updateOk(Long boardNum,BoardVO boardVO, RedirectAttributes rttr){
+    public RedirectView updateOk(Long boardNum,BoardVO boardVO, RedirectAttributes rttr,HttpServletRequest request,Model model){
         log.info("-------------------------------");
         log.info("updateOk : " + boardNum);
         log.info("-------------------------------");
+
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
 
         if(boardService.updateOk(boardNum)){
             rttr.addAttribute("result", "success");
             rttr.addAttribute("boardNum", boardVO.getBoardNum());
         }
         return new RedirectView("read");
+    }
+
+    //    게시글 첨부파일
+    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<AttachFileVO> getAttachList(Long boardNum){
+        log.info("getAttachList " + boardNum);
+        return boardService.getAttachList(boardNum);
     }
 }

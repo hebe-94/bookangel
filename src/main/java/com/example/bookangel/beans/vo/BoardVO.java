@@ -3,6 +3,8 @@ package com.example.bookangel.beans.vo;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Data
 public class BoardVO {
@@ -15,4 +17,5 @@ public class BoardVO {
     private String cBoardApplyOk;
     private int rowNum;
     private String memberName;
+    private List<AttachFileVO> attachList;
 }

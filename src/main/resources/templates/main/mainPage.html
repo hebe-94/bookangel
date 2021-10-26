@@ -71,35 +71,15 @@
 
     <!--  Header -->
     <div id="header">
-
-        <!-- Inner -->
-        <div class="inner">
-            <header>
-                <h1 id="logo" style="font-size: 100px;">기북천사</h1>
-                <hr />
-                <p id="underLogo">
-                    “독서할 때 당신은 항상 가장 좋은 친구와 함께 있다.” – 시드니 스미스<br>
-                    기북천사와 함께 가장 좋은 친구를 나누세요</p>
-            </header>
-            <p style="text-align: center;">
-                <a href="#banner"><img src="/images/down.gif" style="width: 80px;margin: 10px;"></a>
-            </p>
-            <footer>
-                <a href="/member/gudok" class="button circled scrolly">구독하기</a>
-            </footer>
-        </div>
-
         <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
         <nav id="nav">
 
             <!-- 기북천사 로고 -->
             <div>
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg"></a>
+                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
             </div>
-
             <ul>
-
                 <!-- 검색 -->
                 <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
@@ -113,49 +93,32 @@
                              jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
                              JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
                              zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
-                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
                     </button>
                 </form>
-
-                <!-- 회원정보 -->
                 <li>
                     <a href="#">📖
-                        <th:choose>
-                            <th:when test="${session_id  eq '' || empty session_id}">
-                                <c:out value="비회원"/>
-                            </th:when>
-
-                            <th:otherwise>
-                                <c:out value="${session_name}"/>
-                            </th:otherwise>
-                        </th:choose>
+                        <th:block th:text="${memberName}" />
+                        <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
                     <ul>
-                        <th:choose>
-                            <th:when test="${session_id  eq '' || empty session_id}">
-                                <li id="loginTab"><a href="/member/MemberLogin">로그인</a></li>
-                            </th:when>
-                        </th:choose>
+                        <th:block th:if="${memberNum} == null">
+                            <li id="loginTab"><a href="/member/login">로그인</a></li>
+                            <li><a  href="/member/QnA">Q&A</a></li>
+                        </th:block>
 
-                        <th:choose>
-                            <th:when test="${session_id  ne '' && not empty session_id}">
-                                <li id="myPageTab"><a>마이페이지&hellip;</a>
-                                    <ul>
-                                        <li><a href="/member/mypage">내정보 보기</a></li>
-                                        <li><a href="/member/AllModify">회원정보 수정</a></li>
-                                        <li id="applyTab"><a href="/board/BoardList">신청게시판</a></li><!-- 관리자 전용 -->
-                                        <li><a  href="/member/withdraw">회원탈퇴</a></li>
-                                    </ul>
-                                </li>
-                            </th:when>
-                        </th:choose>
-                        <li><a  href="/member/QnA">Q&A</a></li>
-                        <th:choose>
-                            <th:when test="${session_id  ne '' && not empty session_id}">
-                                <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
-                            </th:when>
-                        </th:choose>
-
+                        <th:block th:if="${memberNum} != null">
+                            <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                <ul>
+                                    <li><a href="/member/mypage">내정보 보기</a></li>
+                                    <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                    <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
+                                    <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                                </ul>
+                            </li>
+                            <li><a  href="/member/QnA">Q&A</a></li>
+                            <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
+                        </th:block>
 
                     </ul>
                 </li>
@@ -1730,25 +1693,26 @@
                     </caption>
                     <thead>
                     <tr style="background-color:#ceb980">
-                        <th style="width: 150px;">번호</th>
                         <th style="width: 300px;">기관명</th>
+                        <th style="width: 300px;">전화번호</th>
                         <th style="width: 300px;">사이트 주소</th>
                     </tr>
                     </thead>
                     <tbody>
                     <th:block th:if="${list != null and list.size() > 0}">
-                        <th:block th:each="i : ${#numbers.sequence(list.size()-1, 0, -1)}">
-                            <tr class="tBody" th:object="${list[i]}">
-                                <td class="rowNum" th:text="*{rowNum}"></td>
-                                <td class="memberName" th:text="*{memberName}"></td>
-                                <td class="siteLink" th:text="*{siteLink}"></td>
+                        <!--                            <th:block th:each="i : ${#numbers.sequence(list.size()-1, 0, -1)}"> -->
+                        <th:block th:each="board : ${list}">
+                            <tr class="tBody" th:object="${board}">
+                                <td class="memberName" id="memberName" th:text="*{memberName}"></td>
+                                <td class="memberTel" id="memberTel" th:text="*{memberTel}"></td>
+                                <td class="siteLink"  id= "siteLink" th:text="*{siteLink}"></td>
                             </tr>
                         </th:block>
                     </th:block>
-                    <th:block th:if="${list == null and list.size() <= 0}">
-                        <tr>
-                            <td colspan="5" align="center">함께하는 기관이 아직 없습니다.</td>
-                        </tr>
+                    <th:block th:if="${list == null and list.size() <= 0}" th:text="함께하는 기관이 아직 없습니다.">
+<!--                        <tr>-->
+<!--                            <td colspan="5" align="center">함께하는 기관이 아직 없습니다.</td>-->
+<!--                        </tr>-->
                     </th:block>
                     </tbody>
                     </tbody>
@@ -1758,31 +1722,26 @@
                     <tr align="center" valign="middle">
                     </tr>
                 </table>
-                <div>
-                    <ul class="pagination pagination-sm">
-                        <c:if test="${nowPage > 1}">
-                            <li class="page-item disabled">
-                                <a id="pagLink" class="page-link" href="${pageContext.request.contextPath}/main/main.ma?page=${nowPage-1}">&laquo;</a>
-                            </li>
-                        </c:if>
-                        <c:forEach var="i" begin="${startPage}" end="${endPage}">
-                            <c:choose>
-                                <c:when test="${i eq nowPage}">
-                                    <div id="pagLink" class="page-link" ><c:out value="${i}"/>&nbsp;</div>
-                                </c:when>
-                                <c:otherwise>
-                                    <li class="page-item">
-                                        <a id="pagLink" class="page-link" href="${pageContext.request.contextPath}/main/main.ma?page=${i}"><c:out value="${i}"/></a>
-                                    </li>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                        <c:if test="${nowPage != realEndPage}">
-                            <li class="page-item">
-                                <a id="pagLink" class="page-link" href="${pageContext.request.contextPath}/main/main.ma?page=${nowPage+1}">&raquo;</a>
-                            </li>
-                        </c:if>
-                    </ul>
+                <div th:object="${pageMaker}">
+                    <div class="pagination pagination-sm page-item disabled" style="text-align: center">
+                        <a id="pagLink" class="changePage page-link" th:if="*{prev}" th:href="|/main/mainPage?pageNum=*{startPage - 1}|"><code>&lt;</code></a>
+                        <th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
+                            <code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
+                            <a id="pagLink" class="changePage page-link" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="|/main/mainPage?pageNum=${num}|"><code th:text="${num}"></code></a>
+                        </th:block>
+                        <a id="pagLink" class="changePage page-link" th:if="*{next}" th:href="|/main/mainPage?pageNum=*{endPage + 1}|"><code>&gt;</code></a>
+                    </div>
+                    <!--                    <div class="small-width" style="text-align: center">-->
+                    <!--                        <a class="changePage" th:if="*{criteria.pageNum > 1}" th:href="*{criteria.pageNum - 1}"><code>&lt;</code></a>-->
+                    <!--                        <code th:text="*{criteria.pageNum}"></code>-->
+                    <!--                        <a class="changePage" th:if="*{criteria.pageNum < realEnd}" th:href="*{criteria.pageNum + 1}"><code>&gt;</code></a>-->
+                    <!--                    </div>-->
+                    <form action="/main/mainPage" th:object="${criteria}" name="pageForm">
+                        <input type="hidden" name="pageNum" th:field="*{pageNum}">
+                        <input type="hidden" name="amount" th:field="*{amount}">
+                        <input type="hidden" name="type" th:field="*{type}">
+                        <input type="hidden" name="keyword" th:field="*{keyword}">
+                    </form>
                 </div>
             </div>
         </article>
@@ -1831,14 +1790,15 @@ if(${session_id  eq '' || empty session_id}){
 }
 </script> -->
 
-<script>
+<script th:inline="javascript">
 
     // 책 바스켓에 넣기
     function addBookBasket(img_src){
-        if(${session_num eq '' || empty session_num}){
+        let memberNum = [[${memberNum}]];
+        if(memberNum == null){
             // 비회원이라면
             alert("책가방 담기는 로그인 후 가능합니다.")
-            location.href="/member/MemberLogin";
+            location.href="/member/login";
 
         }else{
             /*  alert(img_src); */
@@ -1848,17 +1808,21 @@ if(${session_id  eq '' || empty session_id}){
 
 
     }
+</script>
 
 
-
+<script th:inline="javascript">
+    let sessionType = [[${sessionType}]];
     var applyTab = document.getElementById("applyTab");
 
-    if(${session_accountType eq 0}){
+    if(sessionType == 0){
         applyTab.style.display="none";
+    } else if(sessionType == 1){
+        applyTab.style.display="inline";
     }
 </script>
 
-<script type="text/javascript">
+<script th:inline="javascript">
     function openPop(){
         if(${session_sub_status eq 0 || session_id  eq '' || empty session_id}){
             alert("구독한 회원만 읽을 수 있습니다.");

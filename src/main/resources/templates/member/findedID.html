@@ -6,11 +6,13 @@
 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>기북천사 | 아이디 목록 </title>
+    <title>기북천사 | 아이디 찾기</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="/css/couponList.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/couponList.css" />
+    <link rel="stylesheet" type="text/css" href="/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
     <!-- logo 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,28 +42,35 @@
         font-family: 'Yeon Sung', cursive;
         font-size:100px;
     }
+
+    /*    #nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: right;
+        padding: 1.5em 0 1.5em 0;
+        z-index: 1;
+        overflow: hidden;
+        background-image: url(../../../app/images/bookHeader.jpg);
+    } */
 </style>
 <body class="no-sidebar is-preload" style="background-color: white;">
 <div id="page-wrapper">
 
     <!-- Header -->
     <div id="header">
-
-
-
-        <!-- Nav -->
+        <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
         <nav id="nav">
 
             <!-- 기북천사 로고 -->
             <div>
-                <a href="${pageContext.request.contextPath}/main/main.ma"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg" src="/images/kibookLogo.png"></a>
+                <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
+                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
             </div>
-
             <ul>
-
                 <!-- 검색 -->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="${pageContext.request.contextPath}/book/BookSearchOk.oo" name="searchForm">
+                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
                     </div>
@@ -73,49 +82,32 @@
                              jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
                              JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
                              zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
-                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
                     </button>
                 </form>
-
-                <!-- 회원정보 -->
                 <li>
                     <a href="#">📖
-                        <c:choose>
-                            <c:when test="${session_id  eq '' || empty session_id}">
-                                <c:out value="비회원"/>
-                            </c:when>
-
-                            <c:otherwise>
-                                <c:out value="${session_name}"/>
-                            </c:otherwise>
-                        </c:choose>
+                        <th:block th:text="${memberName}" />
+                        <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
                     <ul>
-                        <c:choose>
-                            <c:when test="${session_id  eq '' || empty session_id}">
-                                <li id="loginTab"><a href="${pageContext.request.contextPath}/app/member/login.jsp">로그인</a></li>
-                            </c:when>
-                        </c:choose>
+                        <th:block th:if="${memberNum} == null">
+                            <li id="loginTab"><a href="/member/login">로그인</a></li>
+                            <li><a  href="/member/QnA">Q&A</a></li>
+                        </th:block>
 
-                        <c:choose>
-                            <c:when test="${session_id  ne '' && not empty session_id}">
-                                <li id="myPageTab"><a>마이페이지&hellip;</a>
-                                    <ul>
-                                        <li><a href="${pageContext.request.contextPath}/member/MemberMyPage.me">내정보 보기</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/member/AllModify.me">회원정보 수정</a></li>
-                                        <li id="applyTab"><a href="${pageContext.request.contextPath}/board/BoardList.bo">신청게시판</a></li><!-- 관리자 전용 -->
-                                        <li><a  href="${pageContext.request.contextPath}/member/Withdraw.me">회원탈퇴</a></li>
-                                    </ul>
-                                </li>
-                            </c:when>
-                        </c:choose>
-                        <li><a  href="${pageContext.request.contextPath}/member/QnA.me">Q&A</a></li>
-                        <c:choose>
-                            <c:when test="${session_id  ne '' && not empty session_id}">
-                                <li id="logoutTab"><a  href="${pageContext.request.contextPath}/member/MemberLogout.me">로그아웃</a></li>
-                            </c:when>
-                        </c:choose>
-
+                        <th:block th:if="${memberNum} != null">
+                            <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                <ul>
+                                    <li><a href="/member/mypage">내정보 보기</a></li>
+                                    <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                    <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
+                                    <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                                </ul>
+                            </li>
+                            <li><a  href="/member/QnA">Q&A</a></li>
+                            <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
+                        </th:block>
 
                     </ul>
                 </li>
@@ -123,40 +115,43 @@
         </nav>
 
     </div>
-</div>
+
 
 <!-- Main -->
 <div class="wrapper">
-    <div class="inner">
+    <div class="inner" style="margin-left: 21%;margin-right: 10%;">
 
         <!-- Main -->
-        <section class="main">
+        <section class="main" style="width: 70%;margin-left: 10%;margin-right: 10%;border: solid;border-color: #fff;border-radius: 15px;background-color: #c3c2bd17;">
 
-            <header class="major" style="width: 74%; margin-left: 14%;">
-                <a href="#" class="image main"><img src="/images/login01.png" alt="" /></a>
+            <header class="major">
+                <!--
+                                <a href="#" class="image main"><img src="/images/login01.png" alt="" /></a>
+                -->
                 <h1 style="text-align:center;font-size:30px;margin-bottom: 30px;">아이디 찾기</h1>
-                <p style="text-align:center;padding-bottom: 52px;margin: 0px 30% 0px 30%;border-bottom: solid 7px #f5f4f3;font-size: 1em;">고객님의 정보와 일치하는 아이디 입니다 !</p>
             </header>
-            <form method="post" action="" name="loginForm">
+
+            <div>
                 <div style="display:flex; justify-content:center; color:black;">
-                    <div style="width:40%">
-
-                        <div class="col-6 col-12-xsmall" style="width:100%">
-                            <input type="text" style="text-align:center;color: #1c0920;font-size:30px;margin-left: 23%;border-color: #df7366;width: 58%;" name="member_id" id="member_id" value="kibooke" readonly/>
-
-                            <p style="border-bottom: solid 7px #f5F3f3; width: 74%;margin-left: 16%;">
-                                <br><br><br></p>
-                        </div>
-                        <div style="margin-left: 28%;">
-                            <input type="button" style="margin-bottom: 13%;text-align: center;font-family: 'Gowun Dodum';width: 31.5%;margin-right: 2.5%; display: flex; justify-content: center; align-items: center;" value="로그인 하기" onclick="location.href='${pageContext.request.contextPath}/app/member/login.jsp'"/>
-                            <input type="button" style="margin-bottom: 3%;text-align: center;font-family: 'Gowun Dodum';width: 31.5%;margin-left: 2.5%;background-color: #8a8a8a; display: flex; justify-content: center; align-items: center;" value="비밀번호 찾기" onclick="location.href='${pageContext.request.contextPath}/app/member/findPW.jsp'"/>
+                    <div style="width: 65%;">
+                        <div class="col-6 col-12-xsmall" style="width:100%; border-top: solid 7px #f5f4f3;">
+                            <div>
+															<span>
+															<!--  style="margin-bottom: 2%;padding-top: 20px;border-top: solid 7px #f5f4f3;" -->
+															<p class="findId" style="text-align: center"> 회원님의 아이디는 <Strong th:text="|${memberId} 입니다.|" ></Strong></p>
+															</span>
+                                <input type="button" style="margin-bottom: 15%;text-align: center;width: 45%;margin-left: 4%; margin-right: 1%;font-family: 'Gowun Dodum';" id="btnLogin" onclick="location.href='/member/login'" value="로그인"/>
+                                <input type="button" style="margin-bottom: 15%;text-align: center;width: 45%;margin-left: 1%;font-family: 'Gowun Dodum';" onclick="location.href='/member/findPW'" id="btnFindIdPw" value="비밀번호 찾기"/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </section>
+
     </div>
 </div>
+
 <hr>
 <!-- Footer -->
 <div class="copyright">
@@ -167,6 +162,11 @@
 
 
 <!-- Scripts -->
+
+
+
+
+
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/jquery.scrolly.min.js"></script>

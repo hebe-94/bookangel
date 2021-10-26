@@ -87,20 +87,28 @@
                     </button>
                 </form>
                 <li>
-                    <a href="#">📖 홍길동</a>
+                    <a href="#">📖
+                        <th:block th:text="${memberName}" />
+                        <input type="hidden" name="sessionType" value="${sessionType}">
+                    </a>
                     <ul>
-                        <li id="loginTab"><a href="#">로그인</a></li>
-                        <li id="myPageTab"><a>마이페이지&hellip;</a>
-                            <ul>
-                                <li><a href="#">내정보 보기</a></li>
-                                <li><a href="#">회원정보 수정</a></li>
-                                <li id="applyTab"><a href="#">신청게시판</a></li><!-- 관리자 전용 -->
-                                <li><a  href="#">회원탈퇴</a></li>
-                            </ul>
-                        </li>
-                        <li><a  href="#">Q&A</a></li>
-                        <!-- 여기서부터 작업(세훈) 로그인/로그아웃시 탭의 내용 띄우는것, 페이지 이동 -->
-                        <li id="logoutTab"><a  href="#">로그아웃</a></li>
+                        <th:block th:if="${memberNum} == null">
+                            <li id="loginTab"><a href="/member/login">로그인</a></li>
+                            <li><a  href="/member/QnA">Q&A</a></li>
+                        </th:block>
+
+                        <th:block th:if="${memberNum} != null">
+                            <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                <ul>
+                                    <li><a href="/member/mypage">내정보 보기</a></li>
+                                    <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                    <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
+                                    <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                                </ul>
+                            </li>
+                            <li><a  href="/member/QnA">Q&A</a></li>
+                            <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                        </th:block>
 
                     </ul>
                 </li>
@@ -217,4 +225,8 @@
         location.href = "/board/read" + paging + "&boardNum=" + $(this).attr("href");
     });
 </script>
+<!--<script th:inline="javascript">
+    $(document).ready(function(){
+        alert([[${memberNum}]])});
+</script>-->
 </html>

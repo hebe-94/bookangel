@@ -1,6 +1,7 @@
 package com.example.bookangel.controller;
 
 import com.example.bookangel.beans.vo.Criteria;
+import com.example.bookangel.beans.vo.MainPageVO;
 import com.example.bookangel.beans.vo.PageDTO;
 import com.example.bookangel.services.MainPageService;
 import lombok.RequiredArgsConstructor;
@@ -32,12 +33,22 @@ public class MainPageController {
         log.info("-------------------------------");
         log.info("mainPage");
         log.info("-------------------------------");
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
         model.addAttribute("sessionType", session.getAttribute("memberType"));
-        model.addAttribute("sessionId", session.getAttribute("memberId"));
+        model.addAttribute("memberId", session.getAttribute("memberId"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
         model.addAttribute("list", mainPageService.getOkList(criteria));
         model.addAttribute("total", mainPageService.getOkTotal(criteria));
         model.addAttribute("pageMaker", new PageDTO(mainPageService.getOkTotal(criteria), 10, criteria));
         return "main/mainPage";
     }
 
+    @GetMapping("qna")
+    public String qna(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
+        return "main/qna";
+    }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class MemberVO {
-    private int memberNum;
+    private Long memberNum;
     private String memberId;
     private String memberPw;
     private String memberName;

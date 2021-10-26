@@ -52,6 +52,11 @@
             text-align: center;
         }
 
+        ul{
+            list-style:none;
+            padding-left: 0px
+        }
+
     </style>
 <body class="no-sidebar is-preload">
 <div id="page-wrapper">
@@ -82,20 +87,28 @@
                     </button>
                 </form>
                 <li>
-                    <a href="#">📖 홍길동</a>
+                    <a href="#">📖
+                        <th:block th:text="${memberName}" />
+                        <input type="hidden" name="sessionType" value="${sessionType}">
+                    </a>
                     <ul>
-                        <li id="loginTab"><a href="#">로그인</a></li>
-                        <li id="myPageTab"><a>마이페이지&hellip;</a>
-                            <ul>
-                                <li><a href="#">내정보 보기</a></li>
-                                <li><a href="#">회원정보 수정</a></li>
-                                <li id="applyTab"><a href="#">신청게시판</a></li><!-- 관리자 전용 -->
-                                <li><a  href="#">회원탈퇴</a></li>
-                            </ul>
-                        </li>
-                        <li><a  href="#">Q&A</a></li>
-                        <!-- 여기서부터 작업(세훈) 로그인/로그아웃시 탭의 내용 띄우는것, 페이지 이동 -->
-                        <li id="logoutTab"><a  href="#">로그아웃</a></li>
+                        <th:block th:if="${memberNum} == null">
+                            <li id="loginTab"><a href="/member/login">로그인</a></li>
+                            <li><a  href="/member/QnA">Q&A</a></li>
+                        </th:block>
+
+                        <th:block th:if="${memberNum} != null">
+                            <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                <ul>
+                                    <li><a href="/member/mypage">내정보 보기</a></li>
+                                    <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                    <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
+                                    <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                                </ul>
+                            </li>
+                            <li><a  href="/member/QnA">Q&A</a></li>
+                            <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                        </th:block>
 
                     </ul>
                 </li>
@@ -114,13 +127,18 @@
                                 <!--<a class="field">-->
                                    <input name="boardTitle" type="text" th:field="*{boardTitle}" style="padding: 0;background: white; text-align:left; font-size: 1.5em; border: none; z-index: 0;" readonly/>
                                    <input name="boardMemberNum" type="hidden" th:field="*{memberNum}" style="text-align:left; background: white; font-size: 1em; border: none;" readonly/>
+                                    <input name="boardNum" type="hidden" th:field="*{boardNum}"/>
                                     <!--<h2 style="text-align:left; font-size: 1.5em;"><a th:field="*{boardTitle}"></a></h2>-->
                                     <!--<a style="text-align:left; font-size:1em" th:field="*{memberNum}">작성자</a>-->
                 <!--</header>-->
-                <div>
-                    첨부파일
-                </div>
-                <a href="#"><!--<c:out value="${file.getFile_name_original()}"/>--></a>
+                                <div class="field">
+                                    <h4>첨부파일</h4>
+                                </div>
+                                <div class="field">
+                                    <div class="uploadResult">
+                                        <ul style="none"></ul>
+                                    </div>
+                                </div>
                 <br>
                 <hr style=" top: 0.5em;   margin-bottom: 1em;">
                     <input name="siteLink" type="text" th:field="*{siteLink}" style="font-size: 1em;background: white; border: none; z-index: 0;" readonly/>
@@ -137,10 +155,9 @@
                         <span id="adminbtn">
 <!--                        <form method="post" action="/board/read" name="updateOk" th:value="${boardNum}">-->
 <!--                        <li><input type="button" value="승인" name="updateOk" onclick="showPopup()" style="z-index: 0;"></li>-->
-                            <li><input type="submit" method="post" th:text="${boardNum}" value="승인" formaction="/board/read"  name="updateOk" onclick="showPopup()" style="z-index: 0;"></li>
-<!--                        </form>-->
-
-
+                            <!--                        </form>-->
+                            <input type="submit" method="post" value="승인" formaction="/board/read" name="updateOk" onclick="showPopup()" style="z-index: 0;box-sizing: inherit;width: 9px;font-size: 12px;text-align: center;display: grid;">
+                            <li><input type="button" value="거절" onclick="showPopup()"></li>
                         <li ><a id="goList" href="javascript:void(0)"><input type="button" value="목록" class="primary" style="z-index: 0;"/></a></li>
                         <li><input type="button" value="수정" onclick="goUpdate()" style="z-index: 0;"/></li>
                         <li><input type="submit" value="삭제" style="z-index: 0;width: 0%;padding: 0.65em 2.5em 0.65em 2.5em;border-radius: 0.5em;font-size: 14px;display: inline-grid;"></li>
@@ -212,4 +229,58 @@
         window.open("mail", "sendmail", "width=500, height=500, left=300, top=50");
     }
 </script>
+<script th:inline="javascript">
+    let sessionType = [[${sessionType}]];
+    var applyTab = document.getElementById("applyTab");
+
+    if(sessionType == 0){
+        applyTab.style.display="none";
+    } else if(sessionType == 1){
+        applyTab.style.display="inline";
+    }
+</script>
+
+
+<script th:inline="javascript">
+    let uploadResult = $(".uploadResult ul");
+    let pageNum = 1;
+
+
+
+    $(document).ready(function(){
+        (function(){
+            console.log(boardNum);
+            $.getJSON("/board/getAttachList", {boardNum: boardNum},
+                function(arr){
+                    console.log(arr);
+                    let str = "";
+
+                    $(arr).each(function(i, attach){
+                        if(!attach.image){
+                            let fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
+                            str += "<li>";
+                            str += "<div>";
+                            str += "<a href='/upload/download?fileName=" + fileCallPath + "'>";
+                            str += "<img src='/images/attach.png' width='30px'>" + attach.fileName.substring(attach.fileName.indexOf("_") + 1);
+                            str += "</a>"
+                            str += "</div>";
+                            str += "</li>";
+                        }else{
+                            let fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+                            let originPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
+
+                            str += "<li>";
+                            str += "<div>";
+                            str += "<a href=\"javascript:showImage(\'" + originPath + "\')\">";
+                            str += "<img src='/upload/display?fileName=" + fileCallPath + "'>" + attach.fileName.substring(attach.fileName.indexOf("_") + 1);
+                            str += "</a>";
+                            str += "</div>";
+                            str += "</li>";
+                        }
+                    });
+                    uploadResult.html(str);
+                });//getJSON
+        })();
+    });
+    </script>
 </html>
