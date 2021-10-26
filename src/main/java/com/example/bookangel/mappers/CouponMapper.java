@@ -6,8 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CouponMapper {
     // 사용 가능한 쿠폰인지
-    public int checkCoupon(CouponVO couponVO);
+    public Integer checkCoupon(CouponVO couponVO);
 
+    // 쿠폰 사용
+    public int useCoupon(CouponVO couponVO);
 
 }
 

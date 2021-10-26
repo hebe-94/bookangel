@@ -3,8 +3,14 @@
 
 <mapper namespace="com.example.bookangel.mappers.CouponMapper">
 
-    <select id="checkCoupon" resultType="_int">
-        SELECT COUNT(couponNum) FROM BOOK_COUPON WHERE couponName =#{couponName}
+    <select id="checkCoupon" resultType="integer">
+        SELECT couponNum FROM BOOK_COUPON WHERE couponName =#{couponName} AND couponStatus = 0
     </select>
+
+    <update id="useCoupon">
+        UPDATE BOOK_COUPON
+        SET COUPONSTATUS=1, MEMBERNUM=#{memberNum}
+        WHERE COUPONNUM=#{couponNum}
+    </update>
 
 </mapper>

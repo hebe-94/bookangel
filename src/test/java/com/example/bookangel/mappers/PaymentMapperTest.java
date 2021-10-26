@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @SpringBootTest
 @Slf4j
 public class PaymentMapperTest {
@@ -16,12 +19,26 @@ public class PaymentMapperTest {
     @Test
     public void testSubscribe(){
         PaymentVO paymentVO = new PaymentVO();
-        paymentVO.setMemberNum(1);
-        paymentVO.setCouponNum(1);
-        paymentVO.setImpUid("테스트 결제 코드");
-        paymentVO.setApprovalNum("테스트 승인 코드");
-        paymentVO.setPaymentType(0);
-        paymentVO.setSubMonth(1);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.SSS");
+        LocalDateTime now = LocalDateTime.now();
+        // 현재 시간
+        paymentVO.setMemberNum(21);//
+        paymentVO.setCouponNum(17);//
+        paymentVO.setSubMonth(2);//
+
+//        LocalDateTime after60 = now.plusMonths(2).minusDays(1);
+//        String nowTime = now.format(formatter);
+//        String after60Time = after60.format(formatter);
+//
+//        nowTime = nowTime.replaceAll("[-:]", "");
+//        after60Time = after60Time.replaceAll("[-:]", "");
+//
+//        log.info(nowTime);
+//        log.info(after60Time);
+//
+//        paymentVO.setSubDate(nowTime);//
+//        paymentVO.setExpireDate(after60Time);//
 
         paymentMapper.subscribe(paymentVO);
 
@@ -31,5 +48,14 @@ public class PaymentMapperTest {
 
     }
 
+    @Test
+    public void testPaymentExist(){
+        PaymentVO paymentVO = new PaymentVO();
+        paymentVO.setMemberNum(21);//
+        log.info("---------------------------------------------");
+        log.info("mapper 테스트 결과 : " + paymentMapper.paymentExist(paymentVO));
+        log.info("---------------------------------------------");
+
+    }
 
 }

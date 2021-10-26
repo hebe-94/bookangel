@@ -11,7 +11,7 @@ public class PaymentVO {
     private int memberNum;
     private int couponNum;
     private String impUid;
-    private String approvalNum;
+    private String merchantUid;
     private int paymentType;
     private int subMonth;
     private String subDate;

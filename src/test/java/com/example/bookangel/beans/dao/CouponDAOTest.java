@@ -18,10 +18,20 @@ public class CouponDAOTest {
     @Test
     public void checkCoupon(){
         CouponVO couponVO = new CouponVO();
-        couponVO.setCouponName("AAAA-AAAA-AAAA-AAAA");
+        couponVO.setCouponName("AAAA-AAAA-AAAA-AAAv");
         log.info("---------------------------------------------");
         log.info("DAOTest : "+ couponDAO.checkCoupon(couponVO));
 
+    }
+
+    @Test
+    public void useCoupon(){
+        CouponVO couponVO = new CouponVO();
+        couponVO.setCouponNum(17);
+        couponVO.setMemberNum(21);
+
+        log.info("---------------------------------------------");
+        log.info("DAOTest : "+ couponDAO.useCoupon(couponVO));
     }
 
 }

@@ -12,9 +12,14 @@ import org.springframework.stereotype.Service;
 public class CouponService {
     private final CouponDAO couponDAO;
 
-    public int checkCoupon(CouponVO couponVO){
+    public Integer checkCoupon(CouponVO couponVO){
         log.info("Coupon Service : check...........");
         return couponDAO.checkCoupon(couponVO);
+    }
+
+    public boolean useCoupon(CouponVO couponVO){
+        log.info("Coupon Service : useCoupon............");
+        return couponDAO.useCoupon(couponVO);
     }
 
 }

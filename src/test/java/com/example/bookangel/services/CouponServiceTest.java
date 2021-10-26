@@ -17,9 +17,19 @@ public class CouponServiceTest {
     @Test
     public void testSubscribe(){
         CouponVO couponVO = new CouponVO();
-        couponVO.setCouponName("AAAA-AAAA-AAAA-AAAA");
+        couponVO.setCouponName("AAAA-AAAA-AAAA-AAAa");
         log.info("---------------------------------");
         log.info("[Coupon Service Test] : " + couponService.checkCoupon(couponVO));
         log.info("---------------------------------");
+    }
+
+    @Test
+    public void useCoupon(){
+        CouponVO couponVO = new CouponVO();
+        couponVO.setCouponNum(17);
+        couponVO.setMemberNum(21);
+
+        log.info("---------------------------------------------");
+        log.info("ServiceTest : "+ couponService.useCoupon(couponVO));
     }
 }

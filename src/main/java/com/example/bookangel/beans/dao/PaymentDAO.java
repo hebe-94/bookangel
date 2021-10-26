@@ -13,9 +13,19 @@ import org.springframework.stereotype.Repository;
 public class PaymentDAO {
     private final PaymentMapper paymentMapper;
 
-    public void subscribe(PaymentVO paymentVO){
+    public boolean subscribe(PaymentVO paymentVO){
         log.info("[DAO]-결제하기...............");
-        paymentMapper.subscribe(paymentVO);
+        return paymentMapper.subscribe(paymentVO) == 1;
+    }
+
+    public boolean paymentExist(PaymentVO paymentVO){
+        log.info("[DAO]-결제내역 있는지 확인하기...............");
+        return paymentMapper.paymentExist(paymentVO) == 1;
+    }
+
+    public boolean resubscribe(PaymentVO paymentVO){
+        log.info("[DAO]-재결제 하기...............");
+        return paymentMapper.resubscribe(paymentVO) == 1;
     }
 
 }

@@ -20,7 +20,7 @@ public class PaymentServiceTest {
         paymentVO.setMemberNum(1);
         paymentVO.setCouponNum(1);
         paymentVO.setImpUid("테스트 결제 코드");
-        paymentVO.setApprovalNum("테스트 승인 코드");
+        paymentVO.setMerchantUid("테스트 승인 코드");
         paymentVO.setPaymentType(0);
         paymentVO.setSubMonth(1);
 

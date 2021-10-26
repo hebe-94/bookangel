@@ -14,8 +14,13 @@ import org.springframework.stereotype.Repository;
 public class CouponDAO {
     private final CouponMapper couponMapper;
 
-    public int checkCoupon(CouponVO couponVO){
+    public Integer checkCoupon(CouponVO couponVO){
         log.info("[DAO]-쿠폰 확인...............");
         return couponMapper.checkCoupon(couponVO);
+    }
+
+    public boolean useCoupon(CouponVO couponVO){
+        log.info("[DAO]-쿠폰 사용...............");
+        return couponMapper.useCoupon(couponVO) == 1;
     }
 }

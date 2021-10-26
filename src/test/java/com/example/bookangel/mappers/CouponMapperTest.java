@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @SpringBootTest
 @Slf4j
 public class CouponMapperTest {
@@ -16,9 +20,37 @@ public class CouponMapperTest {
     @Test
     public void checkCoupon(){
         CouponVO couponVO = new CouponVO();
-        couponVO.setCouponName("AAAA-AAAA-AAAA-AAAA");
+        couponVO.setCouponName("AAAA-AAAA-AAAA-AAAb");
         log.info("---------------------------------------------");
         log.info("mapperTest : "+ couponMapper.checkCoupon(couponVO));
+
+    }
+
+    @Test
+    public void useCoupon(){
+        CouponVO couponVO = new CouponVO();
+        couponVO.setCouponNum(17);
+        couponVO.setMemberNum(21);
+
+        log.info("---------------------------------------------");
+        log.info("mapperTest : "+ couponMapper.useCoupon(couponVO));
+    }
+
+    @Test
+    public void TimeTest(){
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.SSS");
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime after30 = now.plusMonths(1).minusDays(1);
+
+        String nowTime = now.format(formatter);
+        String after30Time = now.plusMonths(2).minusDays(1).format(formatter);
+
+        log.info("---------------------------------------------");
+        log.info("구독 날짜 : "+ nowTime);
+        log.info("구독 만료 날짜 : " +after30Time);
+
 
     }
 }

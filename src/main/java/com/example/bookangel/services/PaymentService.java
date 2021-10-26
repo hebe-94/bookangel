@@ -6,5 +6,11 @@ import org.springframework.stereotype.Service;
 @Service
 public interface PaymentService {
     // 구독
-    public void subscribe(PaymentVO paymentVO);
+    public boolean subscribe(PaymentVO paymentVO);
+
+    // 구독이력 확인
+    public boolean paymentExist(PaymentVO paymentVO);
+
+    // 재구독
+    public boolean resubscribe(PaymentVO paymentVO);
 }

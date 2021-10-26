@@ -3,10 +3,56 @@
 
 <mapper namespace="com.example.bookangel.mappers.PaymentMapper">
 
-    <select id="subscribe">
-        INSERT INTO HR.BOOK_PAYMENT
-        (PAYMENTNUM, MEMBERNUM, COUPONNUM, IMPUID, APPROVALNUM, PAYMENTTYPE, SUBMONTH, SUBDATE, EXPIREDATE)
-        VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, #{couponNum}, #{impUid}, #{approvalNum}, #{paymentType}, #{subMonth}, SYSDATE, SYSDATE+30)
+    <!-- 쿠폰 결제, 카드결제-->
+    <!-- 조건으로 쿼리문 새로 짜야함 -->
+    <insert id="subscribe">
+        INSERT INTO BOOK_PAYMENT
+        (PAYMENTNUM, MEMBERNUM, COUPONNUM, IMPUID, MERCHANTUID, SUBMONTH, SUBDATE, EXPIREDATE)
+        <choose>
+            <when test="subMonth == 2">/*1달 구독 첫 결제*/
+                <choose>
+                    <when test="couponNum == null or couponNum == ''">/*카드결제*/
+                        VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, null, #{impUid}, #{merchantUid}, #{subMonth}, SYSDATE, SYSDATE+60)
+                    </when>
+                    <when test="couponNum > 0">/*쿠폰결제*/
+                        VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, #{couponNum}, null, null, #{subMonth}, SYSDATE, SYSDATE+60)
+                    </when>
+                </choose>
+            </when>
+
+            <when test="subMonth == 13">/*1년 구독 첫결제*/
+                VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, null, #{impUid}, #{merchantUid}, #{subMonth}, SYSDATE, SYSDATE+365)
+            </when>
+        </choose>
+
+    </insert>
+<!--
+    VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, #{couponNum}, null, null, #{subMonth}, SYSDATE, SYSDATE+365)
+-->
+    <select id="paymentExist" resultType="_int">
+        SELECT COUNT(memberNum) FROM BOOK_PAYMENT
+        WHERE MEMBERNUM = #{memberNum}
     </select>
 
+
+    <update id="resubscribe">
+        UPDATE BOOK_PAYMENT
+        <choose>
+            <when test="subMonth == 1">
+                <choose>
+                    <when test="couponNum == null or couponNum == ''">
+                        SET COUPONNUM = null, IMPUID=#{impUid}, MERCHANTUID=#{merchantUid}, SUBMONTH=#{subMonth}, SUBDATE=SYSDATE, EXPIREDATE=SYSDATE+30
+                    </when>
+                    <when test="couponNum > 0">
+                        SET COUPONNUM = #{couponNum}, IMPUID=null, MERCHANTUID=null, SUBMONTH=#{subMonth}, SUBDATE=SYSDATE, EXPIREDATE=SYSDATE+30
+                    </when>
+                </choose>
+            </when>
+
+            <when test="subMonth == 12">
+                SET COUPONNUM = null, IMPUID=#{impUid}, MERCHANTUID=#{merchantUid}, SUBMONTH=#{subMonth}, SUBDATE=SYSDATE, EXPIREDATE=SYSDATE+365
+            </when>
+        </choose>
+        WHERE MEMBERNUM = #{memberNum}
+    </update>
 </mapper>
