@@ -140,7 +140,19 @@
                         <th:block th:each="board : ${list}">
                             <tr class="tBody" th:object="${board}">
                                 <td class="boarNum" th:text="*{boardNum}"></td>
-                                <td class="boardTitle"><a id="goRead" th:href="*{boardNum}" th:text="*{boardTitle}"></a></td>
+
+                                <th:block th:if="${memberNum} eq *{memberNum}">
+                                    <td class="boardTitle"><a id="goRead" th:href="*{boardNum}" th:text="*{boardTitle}"></a></td>
+                                </th:block>
+                                <th:block>
+                                    <th:block th:if="${memberNum} eq 81">
+                                        <td class="boardTitle"><a id="goRead" th:href="*{boardNum}" th:text="*{boardTitle}"></a></td>
+                                    </th:block>
+                                    <th:block th:if="${memberNum} ne *{memberNum} and ${memberNum} ne 81">
+                                        <td class="boardTitle" th:text="*{boardTitle}"></td>
+                                    </th:block>
+                                </th:block>
+
                                 <td class="memberName" th:text="*{memberName}"></td>
                                 <td class="cBoardDate" th:text="*{cBoardDate}"></td>
                                 <!--   <tr>
