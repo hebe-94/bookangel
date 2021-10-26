@@ -68,7 +68,7 @@ public class MainPageController {
         return "/main/qnaMail";
     }
 
-  @GetMapping("book")
+    @GetMapping("expressBook")
     public String express(){
         return "book/expressView";
   }
