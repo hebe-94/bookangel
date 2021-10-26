@@ -34,6 +34,10 @@
         WHERE MEMBERNUM = #{memberNum}
     </select>
 
+    <select id="subscribeExist" resultType="_int">
+        SELECT COUNT(memberNum) FROM BOOK_PAYMENT
+        WHERE MEMBERNUM = #{memberNum} and EXPIREDATE > SYSDATE
+    </select>
 
     <update id="resubscribe">
         UPDATE BOOK_PAYMENT

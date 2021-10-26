@@ -28,4 +28,10 @@ public class PaymentDAO {
         return paymentMapper.resubscribe(paymentVO) == 1;
     }
 
+    // 구독중인지 확인
+    public boolean subscribeExist(int memberNum){
+        log.info("[DAO]-구독 확인하기...............");
+        return paymentMapper.subscribeExist(memberNum) == 1;
+    }
+
 }

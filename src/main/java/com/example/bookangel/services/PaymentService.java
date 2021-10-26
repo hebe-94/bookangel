@@ -13,4 +13,9 @@ public interface PaymentService {
 
     // 재구독
     public boolean resubscribe(PaymentVO paymentVO);
+
+    // 구독 확인
+    public boolean subscribeExist(int memberNum);
+
+
 }

@@ -30,4 +30,12 @@ public class PaymentServiceTest {
         log.info("[서비스 단] - 구독 신청 완료");
         log.info("---------------------------------");
     }
+
+    @Test
+    public void testSubscribeExist(){
+
+        log.info("---------------------------------");
+        log.info("[payment service : " + paymentService.subscribeExist(1));
+        log.info("---------------------------------");
+    }
 }

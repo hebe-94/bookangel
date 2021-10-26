@@ -13,4 +13,7 @@ public interface PaymentMapper {
 
     // 재결제 [첫결제의 한달 무료가 없다]
     public int resubscribe(PaymentVO paymentVO);
+
+    // 구독중인지 확인
+    public int subscribeExist(int memberNum);
 }
