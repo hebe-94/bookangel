@@ -219,7 +219,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" href="#popUp" target="_self" onclick="dreamOpenPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 	                   <!-- 버튼 누르면  아이디로 값을 받아온다(src값) 그리고 그걸 request에 담아서 프런트 컨트롤러로 전달-->
@@ -1838,6 +1838,15 @@ if(${session_id  eq '' || empty session_id}){
 <script th:inline="javascript">
     function openPop(){
             window.open('/main/book', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
+
+
+    }
+</script>
+
+<!--달러구트-->
+<script th:inline="javascript">
+    function dreamOpenPop(){
+        window.open('/main/dreamBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
 
 
     }
