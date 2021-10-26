@@ -1837,13 +1837,8 @@ if(${session_id  eq '' || empty session_id}){
 
 <script th:inline="javascript">
     function openPop(){
-        if(${session_sub_status eq 0 || session_id  eq '' || empty session_id}){
-            alert("구독한 회원만 읽을 수 있습니다.");
-        }
+            window.open('/main/book', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
 
-        if(${session_sub_status eq 1}){
-            var popup = window.open('/book/bookViewer', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
-        }
 
     }
 </script>

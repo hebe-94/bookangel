@@ -67,4 +67,9 @@ public class MainPageController {
         mailService.mailSend(mailVO);
         return "/main/qnaMail";
     }
+
+  @GetMapping("book")
+    public String express(){
+        return "book/expressView";
+  }
 }
