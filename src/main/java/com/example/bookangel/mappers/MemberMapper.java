@@ -17,4 +17,8 @@ public interface MemberMapper {
     public int check(MemberVO memberVO);
     //회원탈퇴
     public void status(int memberNum);
+    //비밀번호 변경
+    public void change(MemberVO memberVO);
+    //아이디 찾기
+    public String getId(MemberVO memberVO);
 }
