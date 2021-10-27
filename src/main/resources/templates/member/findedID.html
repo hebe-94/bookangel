@@ -6,11 +6,13 @@
 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>기북천사 | 비밀번호 변경 </title>
+    <title>기북천사 | 아이디 찾기</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="/css/couponList.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/couponList.css" />
+    <link rel="stylesheet" type="text/css" href="/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
     <!-- logo 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,8 +27,7 @@
     <!-- 기본 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 </head>
 <style>
     /* body 기본 폰트 전체 적용 */
@@ -41,6 +42,18 @@
         font-family: 'Yeon Sung', cursive;
         font-size:100px;
     }
+
+    /*    #nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: right;
+        padding: 1.5em 0 1.5em 0;
+        z-index: 1;
+        overflow: hidden;
+        background-image: url(../../../app/images/bookHeader.jpg);
+    } */
 </style>
 <body class="no-sidebar is-preload" style="background-color: white;">
 <div id="page-wrapper">
@@ -103,42 +116,43 @@
 
     </div>
 
+
 <!-- Main -->
 <div class="wrapper">
-    <div class="inner">
+    <div class="inner" style="margin-left: 21%;margin-right: 10%;">
 
         <!-- Main -->
-        <section class="main">
+        <section class="main" style="width: 70%;margin-left: 10%;margin-right: 10%;border: solid;border-color: #fff;border-radius: 15px;background-color: #c3c2bd17;">
 
             <header class="major">
-<!--
-                <a href="#" class="image main"><img src="/images/login01.png" alt="" /></a>
--->
-                <h1 style="text-align:center;font-size:30px;margin-bottom: 30px;">비밀번호 변경</h1>
-                <p style="text-align:center;padding-bottom: 35px;margin: 0px 30% 20px 30%;border-bottom: solid 7px #f5f4f3;font-size: 18px;">다른 아이디나 사이트에서 사용한 적 없는 <br><span style="color:green;">안전한 비밀번호</span>로 변경해 주세요</p>
+                <!--
+                                <a href="#" class="image main"><img src="/images/login01.png" alt="" /></a>
+                -->
+                <h1 style="text-align:center;font-size:30px;margin-bottom: 30px;">아이디 찾기</h1>
             </header>
-            <form method="post" id="modifyPW" name="modifyPW" >
-                <div style="display:flex; justify-content:center; color:black;">
-                    <div style="width:40%">
 
-                        <div class="col-6 col-12-xsmall" style="width:100%">
-                            <input type="password" style="margin-bottom: 3%;font-size:20px;text-align:center;margin: 0 0 3% 0%;border-color: #df7366;width: 74%;margin-left: 13%;" name="memberPw" id="memberPw" value="" placeholder="영문 4자 이상, 최대 20자"/>
-                            <input type="password" style="margin-bottom: 3%;font-size:20px;text-align:center;margin: 0 0 3% 0%;border-color: #df7366;width: 74%;margin-left: 13%;" name="memberNewPw" id="memberNewPw" value="" placeholder="새 비밀번호 확인" />
-                            <input type="hidden" name="memberId" id="memberId" th:value="${memberId}">
-                            <input type="hidden" name="memberTel" id="memberTel" th:value="${memberTel}">
-                            <p style="border-bottom: solid 7px #f5F3f3;padding-bottom: 10px;margin-top: 4%;"><br><br><br><br><br></p>
-                        </div>
-                        <div>
-                            <input type="button" style="text-align: center;width: 30%;font-family: 'Gowun Dodum';margin-left: 35%;" value="확 인" onclick="ModifyPW()"/>
+            <div>
+                <div style="display:flex; justify-content:center; color:black;">
+                    <div style="width: 65%;">
+                        <div class="col-6 col-12-xsmall" style="width:100%; border-top: solid 7px #f5f4f3;">
+                            <div>
+															<span>
+															<!--  style="margin-bottom: 2%;padding-top: 20px;border-top: solid 7px #f5f4f3;" -->
+															<p class="findId" style="text-align: center"> 회원님의 아이디는 <Strong th:text="|${memberId} 입니다.|" ></Strong></p>
+															</span>
+                                <input type="button" style="margin-bottom: 15%;text-align: center;width: 45%;margin-left: 4%; margin-right: 1%;font-family: 'Gowun Dodum';" id="btnLogin" onclick="location.href='/member/login'" value="로그인"/>
+                                <input type="button" style="margin-bottom: 15%;text-align: center;width: 45%;margin-left: 1%;font-family: 'Gowun Dodum';" onclick="location.href='/member/findPW'" id="btnFindIdPw" value="비밀번호 찾기"/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </form>
-
+            </div>
         </section>
+
     </div>
 </div>
-<hr style="margin-top: -3%;">
+
+<hr>
 <!-- Footer -->
 <div class="copyright">
     <ul class="menu">
@@ -150,6 +164,9 @@
 <!-- Scripts -->
 
 
+
+
+
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/jquery.scrolly.min.js"></script>
@@ -159,23 +176,4 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 </body>
-<script>
-    function ModifyPW(){
-        memberPw = $("input#memberPw").val();
-        memberNewPw = $("input#memberNewPw").val();
-        var frm = document.modifyPW;
-        if (memberPw==memberNewPw){
-            frm.method = "post";
-            frm.action = "/member/modifypw";
-            frm.submit();
-        }else{
-            alert("비밀번호가 일치하지 않습니다.");
-            return;
-        }
-
-
-
-
-    }
-</script>
 </html>

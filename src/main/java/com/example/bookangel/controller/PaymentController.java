@@ -46,11 +46,8 @@ public class PaymentController {
 
 
     @PostMapping("subscribeDetail")
-    public String goSubscribe(@RequestParam("monthType") String monthType, Model model, HttpServletRequest request){
+    public String goSubscribe(@RequestParam("monthType") String monthType, Model model, PaymentVO paymentVO){
         log.info("paymentService : 결제 상세정보 넘어가기 ----------------------------------");
-        HttpSession session = request.getSession();
-        PaymentVO paymentVO = new PaymentVO();
-        paymentVO.setMemberNum((int)session.getAttribute("memberNum"));
 
         if(monthType.equals("1")){
         // 가격, 구독기간, 다음 결제일 정보 담아서 보내기!
