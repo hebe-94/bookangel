@@ -156,8 +156,14 @@
 <!--                        <form method="post" action="/board/read" name="updateOk" th:value="${boardNum}">-->
 <!--                        <li><input type="button" value="승인" name="updateOk" onclick="showPopup()" style="z-index: 0;"></li>-->
                             <!--                        </form>-->
+                            <th:block th:if="${memberNum} eq 81">
                             <input type="submit" method="post" value="승인" formaction="/board/read" name="updateOk" onclick="showPopup()" style="z-index: 0;box-sizing: inherit;width: 9px;font-size: 12px;text-align: center;display: grid;">
                             <li><input type="button" value="거절" onclick="showPopup()"></li>
+                            </th:block>
+                            <th:block th:if="${memberNum} ne 81">
+                            <input type="hidden" method="post" value="승인" formaction="/board/read" name="updateOk" onclick="showPopup()" style="z-index: 0;box-sizing: inherit;width: 9px;font-size: 12px;text-align: center;display: grid;">
+                            <li><input type="hidden" value="거절" onclick="showPopup()"></li>
+                            </th:block>
                         <li ><a id="goList" href="javascript:void(0)"><input type="button" value="목록" class="primary" style="z-index: 0;"/></a></li>
                         <li><input type="button" value="수정" onclick="goUpdate()" style="z-index: 0;"/></li>
                         <li><input type="submit" value="삭제" style="z-index: 0;width: 0%;padding: 0.65em 2.5em 0.65em 2.5em;border-radius: 0.5em;font-size: 14px;display: inline-grid;"></li>
@@ -283,4 +289,5 @@
         })();
     });
     </script>
+
 </html>

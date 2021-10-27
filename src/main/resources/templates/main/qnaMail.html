@@ -11,15 +11,16 @@
     <h3 style="font-family: 'Gowun Dodum', sans-serif; text-align: center;">기북천사</h3>
 
     <form th:action="@{/mail}" method="post" id="sendForm">
-        <label style="font-family: 'Gowun Dodum', sans-serif;" >메일 주소</label>
-        <input name="address" placeholder="이메일 주소" style="font-family: 'Gowun Dodum', sans-serif;outline:none;" value="mirae1686@gmail.com"> <br>
+        <input name="address" type="hidden" placeholder="이메일 주소" value="mirae1686@gmail.com" readonly/> <br>
         <div class="field half first">
             <label style="font-family: 'Gowun Dodum', sans-serif;" >제목</label>
-            <input name="title" placeholder="제목" style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
+            <input name="title" placeholder="제목" style="font-family: 'Gowun Dodum', sans-serif;outline:none;"  > <br>
         </div>
         <div class="field half">
             <label style="font-family: 'Gowun Dodum', sans-serif;" >내용</label>
-            <textarea name="message" cols="60" rows="20" placeholder="메일 내용을 입력해주세요." style="resize: none; font-family: 'Gowun Dodum', sans-serif;"></textarea>
+            <textarea name="message" cols="60" rows="20" style="resize: none; font-family: 'Gowun Dodum', sans-serif;">답장 받으실 메일 주소 :
+문의 내용
+            </textarea>
         </div>
         <ul class="actions" style="text-align: center;">
             <li><input type="button" name="send" id="send" value="발송" onclick="sendEmail()" style="font-family: 'Gowun Dodum', sans-serif;outline:none;" ></li>

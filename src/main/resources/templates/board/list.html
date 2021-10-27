@@ -25,14 +25,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <style>
-        .big-width {display: block;}
-        .small-width {display: none;}
-
-        @media (max-width: 918px) {
-            .writer {display: none;}
-            .regDate {display: none;}
-            .updateDate {display: none;}
+        /* 데스크탑 : 1220 px */
+        #page-wrapper{width:1200px; margin:0 auto;}
+        .big-width {width: 100%;}
+        @media(max-width:1220px){
+            #page-wrapper{width:95%;}
+            .small-width {display: none;}
         }
+        /*  모바일 : 480 px */
+        @media(max-width:480px){
+            #page-wrapper{width:100%;}
+            #header{width:100%;}
+            #searchForm{width: 40%}
+            .boarNum {display: none;}
+            .cBoardDate {display: none;}
+            #button{width: 28%}
+            .big-width{display: none;}
+        }
+
+        /* 테블릿 : 768 px */
+        @media(max-width:768px){
+            #page-wrapper{width:100%;}
+            #searchForm{width: 40%}
+            #header{width:100%;}
+            .boarNum {display: none;}
+            .cBoardDate {display: none;}
+            #button{width: 28%}
+            .big-width{display: none;}
+        }
+
+
+/*
+        @media (max-width: 918px) {
+            .boarNum {display: none;}
+            .cBoardDate {display: none;}
+            .big-width{display: none;}
+            .small-width {width:100%;}
+        }
+*/
 
         /* body 기본 폰트 전체 적용 */
         body{
@@ -71,7 +101,7 @@
             </div>
             <ul>
                 <!-- 검색 -->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
+                <form id="searchForm" style="padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
                     </div>
@@ -124,23 +154,39 @@
                 <header>
                     <h3 style="margin-top:-3%; font-size: 30px;">기북천사와 친구되기</h3>
                 </header>
-                <button type="button" class="btn btn-outline-success" style="left: 80%;border-radius: 5px 5px 5px 5px;margin-top: 5px;width: 74px;top: -2%;margin-bottom: 14px;"><a href="/board/register" style="color: black; text-decoration: none;">
-                    글쓰기</a></button>
+                <th:block th:if="${memberNum} eq 81">
+                <input type="hidden" class="btn btn-outline-success" value="글쓰기" onclick="goWrite()"/>
+                    </th:block>
+                <th:block th:if="${memberNum} ne 81">
+                    <input type="button" id="button" class="btn btn-outline-success" value="글쓰기" onclick="goWrite()" style="left: 72%;padding: initial; top: -10px; z-index: 0;">
+                </th:block>
                 <div class="table-wrapper" style="margin: auto;">
                     <table style="text-align: center";>
                         <thead  style ="position: sticky; top:0;">
                         <tr style="background-color:#ceb980;" >
-                            <th style="width: 100px; text-align: center; ">번호</th>
+                            <th class="boarNum" style="width: 100px; text-align: center; ">번호</th>
                             <th style="width: 200px; text-align: center; ">제목</th>
                             <th style="width: 150px; text-align: center; ">작성자</th>
-                            <th style="width: 300px; text-align: center;">날짜</th>
+                            <th class="cBoardDate" style="width: 300px; text-align: center;">날짜</th>
                         </tr>
                         </thead>
                         <tbody>
                         <th:block th:each="board : ${list}">
                             <tr class="tBody" th:object="${board}">
                                 <td class="boarNum" th:text="*{boardNum}"></td>
-                                <td class="boardTitle"><a id="goRead" th:href="*{boardNum}" th:text="*{boardTitle}"></a></td>
+
+                                <th:block th:if="${memberNum} eq *{memberNum}">
+                                    <td class="boardTitle"><a id="goRead" th:href="*{boardNum}" th:text="*{boardTitle}"></a></td>
+                                </th:block>
+                                <th:block>
+                                    <th:block th:if="${memberNum} eq 81">
+                                        <td class="boardTitle"><a id="goRead" th:href="*{boardNum}" th:text="*{boardTitle}"></a></td>
+                                    </th:block>
+                                    <th:block th:if="${memberNum} ne *{memberNum} and ${memberNum} ne 81">
+                                        <td class="boardTitle" th:text="*{boardTitle}"></td>
+                                    </th:block>
+                                </th:block>
+
                                 <td class="memberName" th:text="*{memberName}"></td>
                                 <td class="cBoardDate" th:text="*{cBoardDate}"></td>
                                 <!--   <tr>
@@ -224,7 +270,12 @@
         e.preventDefault();
         location.href = "/board/read" + paging + "&boardNum=" + $(this).attr("href");
     });
+
+    function goWrite(){
+        location.href = "/board/register";
+    }
 </script>
+
 <!--<script th:inline="javascript">
     $(document).ready(function(){
         alert([[${memberNum}]])});
