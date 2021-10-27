@@ -6,6 +6,7 @@ import com.example.bookangel.beans.vo.MainPageVO;
 import com.example.bookangel.beans.vo.PageDTO;
 import com.example.bookangel.services.MailService;
 import com.example.bookangel.services.MainPageService;
+import com.example.bookangel.services.PaymentService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +42,7 @@ public class MainPageController {
         model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", session.getAttribute("memberId"));
         model.addAttribute("memberName", session.getAttribute("memberName"));
+        model.addAttribute("sub",session.getAttribute("sub"));
         model.addAttribute("list", mainPageService.getOkList(criteria));
         model.addAttribute("total", mainPageService.getOkTotal(criteria));
         model.addAttribute("pageMaker", new PageDTO(mainPageService.getOkTotal(criteria), 10, criteria));

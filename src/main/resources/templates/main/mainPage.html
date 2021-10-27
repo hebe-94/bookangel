@@ -109,6 +109,7 @@
                 <li>
                     <a href="#">📖
                         <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
 
                         <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
@@ -219,7 +220,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="dreamOpenPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="dreamOpenPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 	                   <!-- 버튼 누르면  아이디로 값을 받아온다(src값) 그리고 그걸 request에 담아서 프런트 컨트롤러로 전달-->
@@ -238,7 +239,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="dreamOpenPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -256,7 +257,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -274,7 +275,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -292,7 +293,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -310,7 +311,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -328,7 +329,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -346,7 +347,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -364,7 +365,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -382,7 +383,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -400,7 +401,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -418,7 +419,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -436,7 +437,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -454,7 +455,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -472,7 +473,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -490,7 +491,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -516,7 +517,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -534,7 +535,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="dreamOpenPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -552,7 +553,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="dreamOpenPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -570,7 +571,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -588,7 +589,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -606,7 +607,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -624,7 +625,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -642,7 +643,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -660,7 +661,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -678,7 +679,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -696,7 +697,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -714,7 +715,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -732,7 +733,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -750,7 +751,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -768,7 +769,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -786,7 +787,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -812,7 +813,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -830,7 +831,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -848,7 +849,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -866,7 +867,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -884,7 +885,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -902,7 +903,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -920,7 +921,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -938,7 +939,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -956,7 +957,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -974,7 +975,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -992,7 +993,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1010,7 +1011,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1028,7 +1029,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1046,7 +1047,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1064,7 +1065,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1082,7 +1083,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1100,7 +1101,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1125,7 +1126,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1143,7 +1144,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1161,7 +1162,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1179,7 +1180,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1197,7 +1198,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1215,7 +1216,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1233,7 +1234,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1251,11 +1252,11 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
-                        <a id="more"  onclick="addBookBasket('08sweet.jpg')"><img src="/images/backpack.png"/></a>
+                        <a id="more" onclick="addBookBasket('08sweet.jpg')"><img src="/images/backpack.png"/></a>
                        </span>
                         </div>
                     </figcaption>
@@ -1269,7 +1270,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1287,7 +1288,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1305,7 +1306,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1323,7 +1324,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1341,7 +1342,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1359,7 +1360,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1377,7 +1378,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1402,7 +1403,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1420,7 +1421,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1438,7 +1439,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1456,7 +1457,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1474,7 +1475,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1492,7 +1493,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1510,7 +1511,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1528,7 +1529,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1546,7 +1547,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1564,7 +1565,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1582,7 +1583,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1600,7 +1601,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1618,7 +1619,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1636,7 +1637,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1654,7 +1655,7 @@
                         <div style="margin-top: 20%;">
                        <span>
 						<p style="margin-bottom: 0;">바로읽기</p>
-						<a id="read" href="#popUp" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
+						<a id="read" target="_self" onclick="openPop()"><img src="/images/ebookread.png"/></a>
                        </span>
                             <span>
 						<p style="margin-bottom: 0;">책가방에 넣기</p>
@@ -1837,19 +1838,28 @@ if(${session_id  eq '' || empty session_id}){
 
 <!--소크라테스 -->
 <script th:inline="javascript">
-    function openPop(){
+    let sub = [[${sub}]];
+    let memberNum = [[${memberNum}]];
+        function openPop(){
+            if(sub == false || memberNum  == null){
+                alert("구독한 회원만 읽을 수 있습니다.");
+                return false;
+            } else if(sub == true || memberNum  != null){
             window.open('/main/expressBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
-
-
+        }
     }
 </script>
 
 <!--달러구트-->
 <script th:inline="javascript">
+    let sub = [[${sub}]];
+    let memberNum = [[${memberNum}]];
     function dreamOpenPop(){
-        window.open('/main/dreamBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
-
-
+        if(sub == false || memberNum  == null){
+            alert("구독한 회원만 읽을 수 있습니다.");
+        } else if(sub == true || memberNum  != null){
+            window.open('/main/dreamBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
+        }
     }
 </script>
 
