@@ -301,9 +301,15 @@
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
 <script src="/js/join.js"></script>
-<script>
 
-</script>
 
 </body>
+<script th:inline="javascript">
+    $(document).ready(function(){
+        if(![[${memberId}]]==""){
+            alert("이미 로그인 상태입니다.");
+            location.href="/main/mainPage";
+        }
+    })
+</script>
 </html>

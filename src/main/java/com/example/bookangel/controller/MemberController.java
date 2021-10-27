@@ -36,6 +36,7 @@ public class MemberController {
         model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", session.getAttribute("memberId"));
         model.addAttribute("memberName", session.getAttribute("memberName"));
+        model.addAttribute("sub", session.getAttribute("sub"));
         model.addAttribute("myInfo", memberService.getMyInfo(memberId));
     }
 
@@ -60,19 +61,13 @@ public class MemberController {
     @GetMapping("login")
     public void login(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
-        model.addAttribute("memberNum",session.getAttribute("memberNum"));
-        model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", session.getAttribute("memberId"));
-        model.addAttribute("memberName", session.getAttribute("memberName"));
     }
 
     @GetMapping("join")
     public void join(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
-        model.addAttribute("memberNum",session.getAttribute("memberNum"));
-        model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", session.getAttribute("memberId"));
-        model.addAttribute("memberName", session.getAttribute("memberName"));
     }
 
     @PostMapping("changePW")
@@ -84,28 +79,19 @@ public class MemberController {
     @GetMapping("findPW")
     public void findPw(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
-        model.addAttribute("memberNum",session.getAttribute("memberNum"));
-        model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", session.getAttribute("memberId"));
-        model.addAttribute("memberName", session.getAttribute("memberName"));
     }
 
     @GetMapping("findedID")
     public void findedID(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
-        model.addAttribute("memberNum",session.getAttribute("memberNum"));
-        model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", session.getAttribute("memberId"));
-        model.addAttribute("memberName", session.getAttribute("memberName"));
     }
 
     @GetMapping("findID")
     public void findID(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
-        model.addAttribute("memberNum",session.getAttribute("memberNum"));
-        model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", session.getAttribute("memberId"));
-        model.addAttribute("memberName", session.getAttribute("memberName"));
     }
 
 
@@ -120,10 +106,7 @@ public class MemberController {
     @PostMapping("join")
     public String join(MemberVO memberVO,HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
-        model.addAttribute("memberNum",session.getAttribute("memberNum"));
-        model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", session.getAttribute("memberId"));
-        model.addAttribute("memberName", session.getAttribute("memberName"));
         memberService.join(memberVO);
         return "member/login";
 

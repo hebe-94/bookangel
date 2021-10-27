@@ -176,4 +176,13 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 </body>
+<script th:inline="javascript">
+    $(document).ready(function(){
+        if(![[${memberId}]]==""){
+            alert("이미 로그인 상태입니다.");
+            location.href="/main/mainPage";
+        }
+    })
+
+</script>
 </html>

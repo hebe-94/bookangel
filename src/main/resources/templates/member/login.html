@@ -255,6 +255,10 @@
     var status = [[${withDraw}]];
     var flag = [[${flag}]];
     $(document).ready(function(){
+        if(![[${memberId}]]==""){
+            alert("이미 로그인 상태입니다.");
+            location.href="/main/mainPage";
+        }
         if(status=="withDraw"){
             alert("탈퇴한 회원입니다.");
             status=null;
@@ -264,5 +268,6 @@
             flag=null;
         }
     })
+
 </script>
 </html>

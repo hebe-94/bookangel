@@ -188,7 +188,13 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 </body>
-<script>
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            if(![[${memberId}]]==""){
+                alert("이미 로그인 상태입니다.");
+                location.href="/main/mainPage";
+            }
+        })
     var frm = document.findId;
     var check = false;
     $("input#btnCheckSMS").on("click",function () {
