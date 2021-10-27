@@ -71,7 +71,9 @@ public class MemberController {
     }
 
     @PostMapping("changePW")
-    public void changePw(MemberVO memberVO, Model model){
+    public void changePw(MemberVO memberVO, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        model.addAttribute("check", session.getAttribute("memberId"));
         model.addAttribute("memberId", memberVO.getMemberId());
         model.addAttribute("memberTel", memberVO.getMemberTel());
     }
@@ -129,9 +131,9 @@ public class MemberController {
         HttpSession session = request.getSession();
         MemberVO vo = memberService.login(memberVO);
         PaymentVO paymentVO = new PaymentVO();
-        paymentVO.setMemberNum(vo.getMemberNum().intValue());
-        boolean ckeck = vo != null;
-        if (ckeck) {
+        boolean check = vo != null;
+        if (check) {
+            paymentVO.setMemberNum(vo.getMemberNum().intValue());
             boolean status = vo.getMemberStatus()==1;
             if(status){
                 model.addAttribute("withDraw","withDraw");
@@ -151,7 +153,7 @@ public class MemberController {
         }
         else{
             model.addAttribute("flag","false");
-            return "member/login";
+            return "/member/login";
         }
     }
     @PostMapping("withdrawcheck")
@@ -222,7 +224,8 @@ public class MemberController {
         return "member/login";
     }
     @PostMapping("findID")
-    public String findID(MemberVO memberVO, Model model){
+    public String findID(MemberVO memberVO, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
         String memberTel = memberVO.getMemberTel();
         String result = "";
         if(memberTel.length() == 10) {
@@ -231,6 +234,7 @@ public class MemberController {
             result = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
         }
         memberVO.setMemberTel(result);
+        model.addAttribute("memberNum", session.getAttribute("memberNum"));
         model.addAttribute("memberId", memberService.findId(memberVO));
         return "member/findedID";
     }

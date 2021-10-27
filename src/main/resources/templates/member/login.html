@@ -255,7 +255,7 @@
     var status = [[${withDraw}]];
     var flag = [[${flag}]];
     $(document).ready(function(){
-        if(![[${memberId}]]==""){
+        if(![[${memberId}]]==""||![[${memberId}]]==null){
             alert("이미 로그인 상태입니다.");
             location.href="/main/mainPage";
         }

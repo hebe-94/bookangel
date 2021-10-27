@@ -128,10 +128,10 @@
                         <p>본인 확인을 위해 비밀번호를 다시 한번 확인합니다.<br>본인 확인 후 최종 회원탈퇴가 가능합니다.</p>
                     </div>
 
-                    <div class="col-12">
-                        <ul class="actions" style="display:block; text-align:center; margin-top: 5%;margin-bottom: 5%;">
-                            <li><input type="button" value="취소" class="primary" style="width: 100%;font-size:1em;margin-left: -7px;margin-right: 40px;" onclick="history.back()"/></li>
-                            <li><input type="button" value="확인" style="width: 100%;font-size:1em;margin-left: 0px;margin-right: 40px;" onclick="check()"/></li>
+                    <div class="col-12" style="display: flex;justify-content: center;">
+                        <ul class="actions" style="display:flex; text-align:center; width: 100%; margin-top: 5%;margin-bottom: 5%;">
+                            <li style="width: 49.5%; margin-right: 0.5%;"><input type="button" value="확인" style="width: 100%;font-size:1em;" onclick="check()"/></li>
+                            <li style="width: 49.5%; margin-left: 0.5%;"><input type="button" value="취소" class="primary" style="width: 100%;font-size:1em;" onclick="history.back()"/></li>
                         </ul>
                     </div>
                     <ul class="menu" style="text-align: center;">
@@ -154,7 +154,7 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 </body>
-<script>
+<script th:inline="javascript">
     $("input#memberPw").keydown(function (e) {
         if(e.keyCode==13){
             e.preventDefault();
@@ -194,6 +194,11 @@
 
 
     }
-
+$(document).ready(function(){
+    if([[${memberId}]]==""||[[${memberId}]]==null){
+        alert("로그인 후 이용 가능합니다.");
+        location.href="/member/login";
+    }
+})
 </script>
 </html>
