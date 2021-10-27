@@ -1,7 +1,10 @@
 package com.example.bookangel.controller;
 
 import com.example.bookangel.beans.vo.MemberVO;
+import com.example.bookangel.beans.vo.PaymentVO;
 import com.example.bookangel.services.MemberService;
+import com.example.bookangel.services.PaymentService;
+import com.example.bookangel.services.PaymentServiceImple;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
@@ -22,6 +25,7 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
+    private final PaymentService paymentService;
 
     // 페이지 이동
     @GetMapping("mypage")
@@ -141,7 +145,8 @@ public class MemberController {
     public String login(MemberVO memberVO, HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         MemberVO vo = memberService.login(memberVO);
-
+        PaymentVO paymentVO = new PaymentVO();
+        paymentVO.setMemberNum(vo.getMemberNum().intValue());
         boolean ckeck = vo != null;
         if (ckeck) {
             boolean status = vo.getMemberStatus()==1;
@@ -149,6 +154,11 @@ public class MemberController {
                 model.addAttribute("withDraw","withDraw");
                 return "member/login";
             }else {
+                if(paymentService.paymentExist(paymentVO)){
+                    session.setAttribute("sub", "true");
+                }else{
+                session.setAttribute("sub", "false");
+                }
                 session.setAttribute("memberNum", vo.getMemberNum());
                 session.setAttribute("memberType", vo.getMemberType());
                 session.setAttribute("memberId", vo.getMemberId());

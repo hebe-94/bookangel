@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<!--
+   Helios by Pixelarity
+   pixelarity.com | hello@pixelarity.com
+   License: pixelarity.com/license
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>기북천사 | 구독하기</title>
+    <meta charset="utf-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content="Codrops"/>
+    <link rel="stylesheet" type="text/css" href="/css/default.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/component.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/css/subscribeDetail.css"/>
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css"/>
+    </noscript>
+
+    <!-- logo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap"
+          rel="stylesheet">
+    <!-- underLogo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap"
+          rel="stylesheet">
+    <!-- 기본 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+</head>
+<style>
+    /* body 기본 폰트 전체 적용 */
+
+    body {
+        font-family: 'Gowun Dodum', sans-serif;
+    }
+
+    #logo {
+        font-family: 'East Sea Dokdo', cursive;
+        font-size: 100px;
+    }
+
+    #underLogo {
+        font-family: 'Yeon Sung', cursive;
+        font-size: 100px;
+    }
+    .payment{
+        border: 2.5px solid rgba(205, 205, 205, 1);
+        border-radius: 2em;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 5em;
+        padding-top: 1.5em;
+        padding-bottom: 1.5em;
+        background-color: rgba( 255, 250, 240, 0.1 );
+    }
+
+    .title {
+        font-weight: 600;
+        font-size: 24px;
+    }
+
+    .detail-text{
+        height: 12px;
+        text-align: left;
+        font-size: 20px;
+        width: 13%;
+        display: inline-block;
+        padding-left: 3px
+    }
+
+    .checkbox{
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .coupon-text{
+        width: 80%;
+        display: inline-block;
+        height: 2.5em;
+        border: 3px solid;
+        border-radius: 0.5em;
+        border-color: darkgray;
+        margin-right: 2%;
+    }
+
+    #submitBTN{
+        width: 100%;
+        height: 3em;
+
+    }
+
+    #couponNumber{
+        text-align: center;
+        letter-spacing: 3px;
+    }
+
+
+    div.payment{
+        margin: 0 auto;
+        width: 55%;
+        text-align: center;
+    }
+
+    div.payment-left{
+
+    }
+
+    div.payment-detail {
+        text-align: left;
+    }
+
+
+
+    div.payment-price{
+        text-align: left;
+    }
+
+    div.payment-price ul li{
+        list-style: none;
+        text-align: left;
+    }
+
+    div.payment-price ul li p{
+        display: inline;
+    }
+
+    div.payment-status label{
+        background-color: white;
+        width: 49%;
+        display: block;
+        height: 3em;
+        border: 3px solid;
+        border-radius: 0.5em;
+        border-color: #ffb7aa;
+        /*border-color: antiquewhite;*/
+    }
+
+    div.payment-status{
+        display: block;
+        height: 6em;
+    }
+
+    div.payment-status span{
+        height: inherit;
+        display: block;
+        padding: 1.5% 0;
+    }
+
+    div.payment-price-border{
+
+        border: 1px solid rgba( 205, 205, 205, 1);
+        border-radius: 1em;
+        padding: 1em 0;
+    }
+    div.payment-price-border ul li{
+        display: flex;
+        justify-content: space-between;
+        display: flex;
+    }
+
+    div.payment-price-border ul li p {
+        margin-right: 5px;
+        font-size: 20px;
+    }
+
+    div.payment-checkInfo{
+        text-align: left;
+        margin-bottom: 1.5em;
+    }
+
+    input[type="checkbox"]{
+        width: 16px; /*Desired width*/
+        height: 16px; /*Desired height*/
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: auto;
+        border: 2px solid #df7366;
+        background-color: #df7366;
+
+    }
+</style>
+<body class="homepage is-preload" style="background-color:white;">
+<div class="wrapper style2">
+
+    <!-- Main -->
+    <div id="page-wrapper">
+
+        <!--Header-->
+        <div id="header">
+            <!--상단 탭-->
+            <!--Nav 상단탭(아마 모든 분들이 쓰셔야 할 코드..)-->
+            <nav id="nav">
+
+                <!--기북천사 로고-->
+                <div>
+                    <a href="">
+                        <!--로고 클릭시 메인페이지로 이동-->
+                        <img id="logoImg" src="/images/kibookLogo.png"></a>
+                </div>
+
+                <ul>
+
+                    <!--검색-->
+                    <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post"
+                          action="${pageContext.request.contextPath}/book/BookSearchOk.oo" name="searchForm">
+                        <div class="search" style="float: left; display:inline-block">
+                            <input type="text" name="search_text" id="search_text" value=""
+                                   style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력"
+                                   onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
+                        </div>
+                        <button onclick="document.searchForm.submit();"
+                                style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                            <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
+                             4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
+                             vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
+                             4PSIwIDAgMzAuMjM5IDMwLjIzOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzAuMjM5IDMwLjIzOTsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZD0iTTIwLjE5NCwzLjQ2Yy00LjYxMy00LjYxMy0xMi4xMjEtNC42MTMtMTYuNzM0LDB
+                             jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
+                             JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
+                             zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K"/>
+                        </button>
+                    </form>
+
+                    <!--회원정보-->
+                    <li>
+                        <a href="#">📖비회원</a>
+                        <ul>
+                            <li id="loginTab"><a href="">로그인</a></li>
+
+                            <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                <ul>
+                                    <li><a href="">내정보 보기</a></li>
+                                    <li><a href="">회원정보 수정</a></li>
+                                    <li id="applyTab"><a href="">신청게시판</a></li>&lt;!&ndash; 관리자 전용 &ndash;&gt;
+                                    <li><a href="">회원탈퇴</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="">Q&A</a></li>
+                            <li id="logoutTab"><a href="">로그아웃</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+
+<!-- 메인 화면 -->
+    <div class="payment" style="margin-top: 5em;">
+        <!-- 테두리를 위한 div -->
+        <div style="width: 95%">
+            <!-- 폰트 18,16 픽셀 -->
+            <div>
+                <h2 class="title" >결제 상세 정보</h2>
+            </div>
+
+            <br>
+            <div class="payment-detail">
+                <p class="title" style="text-align: left;"><b>구독 월 정기구독</b></p>
+                <div id="card-text">
+                    <span class="detail-text" >구독기간</span> <span style="font-size: 20px;" th:text="${date}" id="subscribe-card-text"></span>
+                </div>
+
+                <div id="coupon-text" style="display: none">
+                    <span class="detail-text" >구독기간</span> <span style="font-size: 20px;" th:text="${couponDate}" id="subscribe-coupon-text"></span>
+                </div>
+                <span class="detail-text">다음 결제일</span> <span style="font-size: 20px;" th:text="${nextPayment}" id="nextPayment"></span>
+            </div>
+            <br>
+
+            <div class="payment-price">
+                <p class="title" style="text-align: left;"><b>결제금액</b></p>
+                <div class="payment-price-border">
+                    <ul style="margin: 0 20px;padding-left: 0px;">
+                        <li>
+                            <p>상품금액</p>
+                            <p th:text="${price}"></p>
+                        </li>
+                        <li>
+                            <p>할인금액</p>
+                            <p style="border-bottom: 1px #8a8a8a"><span>첫 달 무료</span>(-) <span th:text="${price}"></span></p>
+                        </li>
+                        <hr style="border: solid 0.5px #8a8a8a;">
+                        <li>
+                            <p>총 결제금액</p>
+                            <p>0원</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+
+            <div class="payment-status">
+                <p class="title" style="text-align: left;"><b>결제수단</b></p>
+                <label style="float: left;" id="couponLabel" onclick="couponCheck()"><span>쿠폰</span></label>
+                <label style="float: right;" id="cardLabel" onclick="cardCheck()"><span>카드</span></label>
+                <input type="hidden" th:value="${monthType}" id="monthType">
+                <!--쿠폰을 누르면 쿠폰번호 입력하게끔 해서 값을 받아오기
+                카드를 누르면 체크만 된다
+
+                결제하기일때 쿠폰을 넣었으면 바로 넘어가고,
+                카드면 카드 결제 팝업 띄우기-->
+            </div>
+            <br>
+
+            <div style="height: 3em; display: none;" id="couponInput" >
+                <p style="text-align: left; font-size: 20px; margin: 0;">-를 제외한 쿠폰번호를 입력해 주세요</p>
+
+                <input type="text" class="coupon-text" maxlength="16" id="couponNumber" style="text-align: center;">
+                <input type="button" value="확인" style="width: 18%; height: 2.5em;" onclick="checkCoupon()">
+                <span id="confirmCoupon" style="color: #df7366; display: none; text-align: left; display: block"></span>
+            </div>
+
+
+            <br>
+            <br>
+            <div class="payment-checkInfo">
+                <div class="checkbox">
+                    <input type="checkbox" id="autopay"/>
+                    <label for="autopay">[필수] 자동결제 상품임을 인지하였으며 취소/환불, 소득공제 정책 등 상품 구매 정책에 동의합니다. </label>
+                </div>
+                <br>
+                <div class="checkbox">
+                    <input type="checkbox" id="personal"/>
+                    <label for="personal">[필수] 개인정보 수집 및 이용에 동의합니다.</label>
+                </div>
+
+                <div>
+                    <input type="button" value="0원 결제하기" id="submitBTN" onclick="submit()">
+                </div>
+            </div>
+            <form id="register"></form>
+
+
+        </div>
+
+    </div>
+    <!-- 메인 화면 끝 div -->
+
+
+</div>
+
+    <!--<hr>
+    <div class="copyright">
+        <ul class="menu">
+            <li>&copy; Kibook Angel. All rights reserved.</li>
+        </ul>
+    </div>-->
+
+    <!-- Scripts -->
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.dropotron.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/browser.min.js"></script>
+    <script src="/js/breakpoints.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- 결제 관련 api -->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+            charset="utf-8"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+    <script th:inline="javascript">
+
+        let date = $("#nextPayment").text();
+        // ㅁㅁㅁㅁ-ㅁㅁㅁㅁ-ㅁㅁㅁㅁ-ㅁㅁㅁㅁ
+        var newCouponText = "";
+        // ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
+        var couponText ="";
+        // couponText[] : split
+        var arrCouponText ;
+
+        // 결제 방식 선택 확인용 1 : 카드 / 0 : 쿠폰
+        var paymentType;
+
+        // 시작하자마자 1년구독을 들어왔다면 쿠폰 결제를 없애주기!
+        $(document).ready(function(){
+            if($("#monthType").val() == 12){
+                // 쿠폰 버튼 없애기
+                $("#couponLabel").hide();
+
+                // 카드 버튼 width 넓히기
+                $("#cardLabel").css("width","100%")
+            }
+
+        });
+
+        // 쿠폰결제 눌렀을때
+        function couponCheck(){
+            console.log("쿠폰 선택");
+            $("#couponLabel").css('background-color','#df7366');
+            $("#couponLabel").css('color','white');
+            $("#cardLabel").css('background-color','white');
+            $("#cardLabel").css('color','black');
+            $("#couponInput").show();
+
+            $("#coupon-text").show();
+            $("#card-text").hide();
+            $("#nextPayment").text("| 쿠폰 사용");
+
+            paymentType = "0";
+        }
+
+        // 카드결제 눌렀을때
+        function cardCheck(){
+            console.log("카드 선택");
+            $("#cardLabel").css('background-color','#df7366');
+            $("#cardLabel").css('color','white');
+            $("#couponLabel").css('background-color','white');
+            $("#couponLabel").css('color','black');
+            $("#couponInput").hide();
+
+            $("#coupon-text").hide();
+            $("#card-text").show();
+            $("#nextPayment").text(date);
+            $("#confirmCoupon").hide();
+            $("#couponNumber").removeAttr('placeholder');
+            $("#couponNumber").removeAttr('readonly');
+
+            $("#couponNumber").val("");
+
+            paymentType = "1";
+
+        }
+
+        // 쿠폰번호를 적게 입력했을때 유효성 확인
+        function couponNameCheck(){
+            var check = false;
+
+            if(arrCouponText.length == 0){
+                alert("쿠폰번호를 입력해 주세요 : " + arrCouponText.length);
+                $(".coupon-text").focus();
+                check= true;
+            }else if(arrCouponText.length < 16){
+                alert("쿠폰번호를 확인 해주세요 : " + arrCouponText.length);
+                $(".coupon-text").val("");
+                $(".coupon-text").focus();
+                check = true;
+            }
+            return check;
+        }
+
+        // 쿠폰 입력란 클릭시 값 비우기
+        $(".coupon-text").focusin(function(){
+            $("#couponNumber").val("");
+        });
+
+        // 쿠폰 입력란 focusout시 - 를 붙여주기
+        $(".coupon-text").focusout(function(){
+           console.log("포커스 아웃됨");
+           newCouponText = "";
+           couponText = $("#couponNumber").val();
+           couponText = couponText.replace("-", "");
+           arrCouponText = couponText.split("");
+
+           for(var i=0; i<arrCouponText.length;i++){
+               newCouponText += arrCouponText[i];
+               if(i%4 == 3 && !(i+1 == arrCouponText.length) ){
+                   newCouponText += "-";
+               }
+           }
+
+            $("#couponNumber").val(newCouponText);
+        });
+
+
+        // 사용가능한 쿠폰인지 확인
+        function checkCoupon(){
+            var couponName = $("#couponNumber").val();
+            console.log(couponName);
+
+            if(couponNameCheck()){
+                return;
+            }
+
+            $.ajax({
+                url: "/coupon/checkCoupon",
+                type: "POST",
+                data : {"couponName":couponName},
+                dataType: "text",
+                success: function(result){
+                    console.log(result);
+                    $("#confirmCoupon").text("사용 가능한 쿠폰입니다.");
+                    $("#confirmCoupon").show();
+                    $("#couponNumber").attr("readonly",true);
+                    $("#couponNumber").attr("placeholder", couponName);
+
+                },
+                error: function(result){
+                    console.log(result);
+                    $("#confirmCoupon").text("존재하지 않는 쿠폰입니다.");
+                    $("#confirmCoupon").show();
+                }
+            });
+
+        }
+
+        function submit(){// 쿠폰을 누르고, 쿠폰 인증 후 결제,     카드를 누르고 결제
+
+            if($("#autopay").is(":checked") == false || $("#personal").is(":checked") == false){
+                alert("체크사항을 확인해 주세요");
+                return;
+            }
+
+
+            // 결제하기 버튼 누르기
+            var registerForm = $("#register");
+
+            if(paymentType === "0") { // 쿠폰 버튼 눌렀을때
+                if($("#couponNumber").is("[readonly]")){
+                    console.log("쿠폰 결제 진행");
+                    registerForm.attr("method", "post");
+                    registerForm.attr("action", "/payment/register");
+
+                    registerForm.append($('<input/>', {type: 'hidden', name: 'paymentType', value: 0}));
+                    registerForm.append($('<input/>', {type: 'hidden', name: 'impUid', value: null}));
+                    registerForm.append($('<input/>', {type: 'hidden', name: 'merchantUid', value: null}));
+                    registerForm.submit();
+
+                    // 멤버 디비에 구독중으로 변경 (membernum, => 현재 세션 memberNum을 넘겨서 거기에서 0을 1로
+                    // 구독중이면 넘어가면 안되는데..
+
+                    // 쿠폰 사용했다고 변경
+                    // 전달 순서 : payment컨트롤러로 가서, paymentservice로 보내고 paymentDAO, couponDAO를 사용할것
+
+                    // 넘길 정보는
+                    // (쿠폰테이블에서 사용했다는것을 하기 위해) memberNum 전달, status 1로 변경 -> 멤버테이블
+                    // (구독중이라는 것을 알리기 위해) memberNum, couponNum전달(이건 쿼리문에서 구해야 하거나 조회했을때 값을 같이 받아오기)
+                    //                            subMonth(2), subDate(SYSDATE), expireDate(2달)
+                    // paymentType : 0 : 쿠폰 / 1 : 1달 / 2 : 1년 구독
+                    // 쿠폰번호 :
+                    // ※ 쿠폰num을 구해오는 방법 :  1. 현재 만든것을 수정(리턴값들 모두 수정해야함), 2. 다시 쿼리문 한번더 구해서 오기. -> 쿼리문 변경으로 가져옴
+
+                }else{
+                    alert("쿠폰 등록 확인 후 결제를 진행해 주세요");
+                }
+
+            }else if(paymentType === "1"){ // 카드 버튼 눌렀을 때
+                console.log("카드 결제 진행");
+                if([[${monthType}]] == "1"){
+                    iamport(100);
+                }else{
+                    iamport(120);
+                }
+            }
+                // 카드 결제 하고, 멤버 구독했다는것을 넣어주기 (금액을 어떻게 가져올지 고민해보기)
+            else{ // 아무것도 안눌렀을때
+                alert("결제 방법을 선택해 주세요!");
+            }
+
+
+        }
+
+
+        function iamport(price) {
+            //가맹점 식별코드
+            IMP.init('imp77982928');
+            IMP.request_pay({
+                pg: 'kcp',
+                pay_method: 'card',
+                merchant_uid: 'merchant_' + new Date().getTime(),
+                name: '기북천사 구독신청', //결제창에서 보여질 이름
+                amount: price, //실제 결제되는 가격
+                buyer_email: 'iszzon@gmail.com', // 구매자 정보
+                buyer_name: '신세훈',
+                buyer_tel: '010-4759-2499',
+                buyer_addr: '경기도 성남시 분당구',
+                buyer_postcode: '123-456'
+            }, function (rsp) {
+                console.log(rsp);
+                if (rsp.success) { // 성공 시
+                    var registerForm = $("#register");
+                    registerForm.attr("method", "post");
+                    registerForm.attr("action", "/payment/register");
+
+                    // #{impUid}, #{MerchantUid}
+                    if([[${monthType}]] == "1"){
+                        registerForm.append($('<input/>', {type: 'hidden', name: 'paymentType', value: 1}));
+                    }else{
+                        registerForm.append($('<input/>', {type: 'hidden', name: 'paymentType', value: 12}));
+                    }
+                    registerForm.append($('<input/>', {type: 'hidden', name: 'impUid', value: rsp.imp_uid}));
+                    registerForm.append($('<input/>', {type: 'hidden', name: 'merchantUid', value: rsp.merchant_uid}));
+
+
+
+                    var msg = '결제가 완료되었습니다.';
+                    msg += '고유ID : ' + rsp.imp_uid;
+                    msg += '상점 거래ID : ' + rsp.merchant_uid;
+                    msg += '결제 금액 : ' + rsp.paid_amount;
+                    msg += '카드 승인번호 : ' + rsp.apply_num;
+
+                } else {
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '에러내용 : ' + rsp.error_msg;
+                }
+                alert(msg);
+                registerForm.submit();
+            });
+        }
+    </script>
+</body>
+</html>
