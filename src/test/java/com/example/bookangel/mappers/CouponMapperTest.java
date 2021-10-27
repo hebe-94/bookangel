@@ -53,4 +53,13 @@ public class CouponMapperTest {
 
 
     }
+
+    @Test
+    public void TestCompanyCouponList(){
+
+        log.info("---------------------------------------------");
+        couponMapper.companyCouponList(1).forEach(couponVO -> log.info(couponVO.toString()));
+        log.info("---------------------------------------------");
+
+    }
 }

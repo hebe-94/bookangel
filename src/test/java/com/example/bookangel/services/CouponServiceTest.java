@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 @Slf4j
 public class CouponServiceTest {
@@ -31,5 +33,11 @@ public class CouponServiceTest {
 
         log.info("---------------------------------------------");
         log.info("ServiceTest : "+ couponService.useCoupon(couponVO));
+    }
+
+    @Test
+    public void companyCouponList(){
+        log.info("Coupon Service : 기업 쿠폰 리스트 확인...............");
+        couponService.companyCouponList(1).forEach(couponVO -> couponVO.toString());
     }
 }

@@ -13,4 +13,8 @@
         WHERE COUPONNUM=#{couponNum}
     </update>
 
+    <select id="companyCouponList" resultType="couponVO">
+        SELECT couponNum, couponName, CouponStatus, memberNum, ownNum FROM BOOK_COUPON
+        WHERE ownNum = #{memberNum}
+    </select>
 </mapper>

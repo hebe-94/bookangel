@@ -58,4 +58,13 @@ public class PaymentMapperTest {
 
     }
 
+    @Test
+    public void testSearchPayment(){
+
+        log.info("---------------------------------------------");
+        log.info("mapper 테스트 결과 : " + paymentMapper.searchPayment(1).toString());
+        log.info("---------------------------------------------");
+
+    }
+
 }

@@ -16,4 +16,7 @@ public interface PaymentMapper {
 
     // 구독중인지 확인
     public int subscribeExist(int memberNum);
+
+    // 회원에 따른 구독 정보 가져오기
+    public PaymentVO searchPayment(int memberNum);
 }

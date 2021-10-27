@@ -34,4 +34,12 @@ public class PaymentDAO {
         return paymentMapper.subscribeExist(memberNum) == 1;
     }
 
+    // 회원에 따른 구독 정보 가져오기
+    public PaymentVO searchPayment(int memberNum) {
+        log.info("[DAO]-구독 확인하기...............");
+        return paymentMapper.searchPayment(memberNum);
+    }
+
+
+
 }
