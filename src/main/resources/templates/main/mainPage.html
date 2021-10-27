@@ -50,6 +50,10 @@
         font-size:30px;
         margin-left: 2%;
     }
+    a {
+        text-decoration:none !important;
+    }
+
 </style>
 <body class="homepage is-preload">
 
@@ -1740,7 +1744,7 @@
                     <div class="pagination pagination-sm page-item disabled" style="text-align: center">
                         <a id="pagLink" class="changePage page-link" th:if="*{prev}" th:href="|/main/mainPage?pageNum=*{startPage - 1}|"><code>&lt;</code></a>
                         <th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
-                            <code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
+                            <code id="pagLink" class="changePage page-link" th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
                             <a id="pagLink" class="changePage page-link" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="|/main/mainPage?pageNum=${num}|"><code th:text="${num}"></code></a>
                         </th:block>
                         <a id="pagLink" class="changePage page-link" th:if="*{next}" th:href="|/main/mainPage?pageNum=*{endPage + 1}|"><code>&gt;</code></a>
