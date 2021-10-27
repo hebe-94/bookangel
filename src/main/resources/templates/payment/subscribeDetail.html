@@ -111,7 +111,6 @@
         margin: 0 auto;
         width: 55%;
         text-align: center;
-        padding-top: 5em;
     }
 
     div.payment-left{
@@ -259,7 +258,7 @@
     </div>
 
 <!-- 메인 화면 -->
-    <div class="payment">
+    <div class="payment" style="margin-top: 5em;">
         <!-- 테두리를 위한 div -->
         <div style="width: 95%">
             <!-- 폰트 18,16 픽셀 -->
@@ -513,6 +512,12 @@
         }
 
         function submit(){// 쿠폰을 누르고, 쿠폰 인증 후 결제,     카드를 누르고 결제
+
+            if($("#autopay").is(":checked") == false || $("#personal").is(":checked") == false){
+                alert("체크사항을 확인해 주세요");
+                return;
+            }
+
 
             // 결제하기 버튼 누르기
             var registerForm = $("#register");

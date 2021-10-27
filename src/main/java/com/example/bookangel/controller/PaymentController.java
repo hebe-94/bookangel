@@ -46,8 +46,11 @@ public class PaymentController {
 
 
     @PostMapping("subscribeDetail")
-    public String goSubscribe(@RequestParam("monthType") String monthType, Model model){
+    public String goSubscribe(@RequestParam("monthType") String monthType, Model model, HttpServletRequest request){
         log.info("paymentService : 결제 상세정보 넘어가기 ----------------------------------");
+        HttpSession session = request.getSession();
+        PaymentVO paymentVO = new PaymentVO();
+        paymentVO.setMemberNum((int)session.getAttribute("memberNum"));
 
         if(monthType.equals("1")){
         // 가격, 구독기간, 다음 결제일 정보 담아서 보내기!
@@ -56,12 +59,24 @@ public class PaymentController {
             LocalDate after30 = now.plusMonths(1).minusDays(1);
             LocalDate after60 = now.plusMonths(2).minusDays(1);
             LocalDate nextPayment = now.plusMonths(1);
-            model.addAttribute("date", "| " + now.toString() + " ~ " + after30.toString());
-            model.addAttribute("couponDate", "| " + now.toString() + " ~ " + after60.toString());
-            model.addAttribute("nextPayment", "| " +nextPayment.toString());
-            model.addAttribute("price", "9,900");
-            model.addAttribute("monthType", "1");
 
+
+            // 구독이력이 있는지 확인
+
+
+            if(paymentService.paymentExist(paymentVO)) { // [1달 구독] 구독한적 있음
+                model.addAttribute("date", "| " + now.toString() + " ~ " + after30.toString());
+                model.addAttribute("couponDate", "| " + now.toString() + " ~ " + after30.toString());
+                model.addAttribute("nextPayment", "| " +nextPayment.toString());
+                model.addAttribute("price", "9,900");
+                model.addAttribute("monthType", "1");
+            }else{ // 구독이력이 없음
+                model.addAttribute("date", "| " + now.toString() + " ~ " + after30.toString());
+                model.addAttribute("couponDate", "| " + now.toString() + " ~ " + after60.toString());
+                model.addAttribute("nextPayment", "| " +nextPayment.toString());
+                model.addAttribute("price", "9,900");
+                model.addAttribute("monthType", "1");
+            }
 
             log.info("현재 날짜 : " + now.toString());
             log.info("만료 날짜 : " + after30.toString());
@@ -71,12 +86,25 @@ public class PaymentController {
         }else if(monthType.equals("12")){
             log.info("12");
             LocalDate now = LocalDate.now();
-            LocalDate afterYear = now.plusYears(1).plusMonths(1).minusDays(1);
-            LocalDate nextPayment = now.plusMonths(1);
-            model.addAttribute("date", "| " +now.toString() + " ~ " + afterYear.toString());
-            model.addAttribute("nextPayment", "| " +nextPayment.toString());
-            model.addAttribute("price", "99,900원");
-            model.addAttribute("monthType", "12");
+            LocalDate afterYear;
+            LocalDate nextPayment;
+
+
+            if(paymentService.paymentExist(paymentVO)) { // [12달 구독] 구독한적 있음
+                afterYear = now.plusYears(1).minusDays(1);
+                nextPayment = now.plusYears(1);
+                model.addAttribute("date", "| " + now.toString() + " ~ " + afterYear.toString());
+                model.addAttribute("nextPayment", "| " +nextPayment.toString());
+                model.addAttribute("price", "99,900원");
+                model.addAttribute("monthType", "12");
+            }else{ // 구독이력이 없음
+                afterYear = now.plusYears(1).plusMonths(1).minusDays(1);
+                nextPayment = now.plusMonths(1);
+                model.addAttribute("date", "| " + now.toString() + " ~ " + afterYear.toString());
+                model.addAttribute("nextPayment", "| " +nextPayment.toString());
+                model.addAttribute("price", "99,900원");
+                model.addAttribute("monthType", "12");
+            }
 
             log.info("현재 날짜 : " + now.toString());
             log.info("만료 날짜 : " + afterYear.toString());
@@ -236,7 +264,7 @@ public class PaymentController {
 
 
 
-        return "main/mainpage";
+        return "main/mainPage";
     }
 
 
