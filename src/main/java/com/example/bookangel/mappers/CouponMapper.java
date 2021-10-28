@@ -15,5 +15,11 @@ public interface CouponMapper {
 
     // 기업 쿠폰 리스트 조회
     public List<CouponVO> companyCouponList(int memberNum);
+
+    // 쿠폰이 있는지
+    public int isExist(String couponName);
+
+    // 쿠폰만들기
+    public int makeCoupon(CouponVO couponVO);
 }
 

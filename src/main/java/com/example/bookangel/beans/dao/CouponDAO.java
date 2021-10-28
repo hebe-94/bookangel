@@ -33,4 +33,15 @@ public class CouponDAO {
         log.info("[DAO]-기업 쿠폰 리스트 확인...............");
         return couponMapper.companyCouponList(memberNum);
     }
+
+    public boolean isExist(String couponName){
+        log.info("[DAO]-쿠폰이 존재하는지...............");
+        return couponMapper.isExist(couponName) == 1;
+    }
+
+    // 쿠폰만들기
+    public boolean makeCoupon(CouponVO couponVO){
+        log.info("[DAO]-쿠폰 생성...............");
+        return couponMapper.makeCoupon(couponVO) == 1;
+    }
 }

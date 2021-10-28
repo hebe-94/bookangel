@@ -32,4 +32,16 @@ public class CouponService {
         return couponDAO.companyCouponList(memberNum);
     }
 
+    // 쿠폰이 존재하는지
+    public boolean isExist(String couponName){
+        log.info("Coupon Service : 쿠폰 존재유무 확인............");
+        return couponDAO.isExist(couponName);
+    }
+
+    // 쿠폰만들기
+    public boolean makeCoupon(CouponVO couponVO){
+        log.info("[DAO]-쿠폰 생성...............");
+        return couponDAO.makeCoupon(couponVO);
+    }
+
 }

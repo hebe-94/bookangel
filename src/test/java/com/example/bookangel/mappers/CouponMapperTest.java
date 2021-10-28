@@ -54,11 +54,22 @@ public class CouponMapperTest {
 
     }
 
+    // 기업 전용 쿠폰 리스트 확인
     @Test
     public void TestCompanyCouponList(){
 
         log.info("---------------------------------------------");
         couponMapper.companyCouponList(1).forEach(couponVO -> log.info(couponVO.toString()));
+        log.info("---------------------------------------------");
+
+    }
+
+    // 쿠폰이 있는지
+    @Test
+    public void TestIsExist(){
+
+        log.info("---------------------------------------------");
+        couponMapper.isExist("AAAA-AAAA-AAAA-AAAA");
         log.info("---------------------------------------------");
 
     }
