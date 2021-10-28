@@ -10,19 +10,19 @@
     <br>
     <h3 style="font-family: 'Gowun Dodum', sans-serif; text-align: center;">기북천사</h3>
 
-    <form th:action="@{/mail}" method="post" id="sendForm">
+    <form th:action="@{/mail}" method="post" id="sendForm" onsubmit="return sendEmail()">
         <label style="font-family: 'Gowun Dodum', sans-serif;" >메일 주소</label>
-        <input name="address" placeholder="이메일 주소" style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
+        <input id="okMail" name="address" placeholder="이메일 주소" style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
         <div class="field half first">
             <label style="font-family: 'Gowun Dodum', sans-serif;" >제목</label>
-            <input name="title" placeholder="제목" style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
+            <input id="okTitle" name="title" placeholder="제목" style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
         </div>
         <div class="field half">
             <label style="font-family: 'Gowun Dodum', sans-serif;" >내용</label>
-            <textarea name="message" cols="60" rows="20" placeholder="메일 내용을 입력해주세요." style="resize: none; font-family: 'Gowun Dodum', sans-serif;"></textarea>
+            <textarea id="okContent" name="message" cols="60" rows="20" placeholder="메일 내용을 입력해주세요." style="resize: none; font-family: 'Gowun Dodum', sans-serif;"></textarea>
         </div>
         <ul class="actions" style="text-align: center;">
-            <li><input type="button" name="send" id="send" value="발송" onclick="sendEmail()" style="font-family: 'Gowun Dodum', sans-serif;outline:none;" ></li>
+            <li><input type="submit" name="send" id="send" value="발송" style="font-family: 'Gowun Dodum', sans-serif;outline:none;" ></li>
             <li><input  type="button" id="close" name="close" value="닫기"  onclick="window.close()" style="font-family: 'Gowun Dodum', sans-serif;outline:none;" ></li>
         </ul>
     </form>
@@ -31,10 +31,22 @@
 
 
 </body>
-<script language="javascript">
-    let sendForm = document.getElementById("sendForm");
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<!--<script language="javascript"> -->
+<script th:inline="javascript">
+    // let sendForm = document.getElementById("sendForm");
+    //     alert("발송 완료");
+    //     sendForm.submit();
     function sendEmail(){
-        alert("발송 완료");
-        sendForm.submit();}
+        if(!$("input#okMail").val()){
+            alert("이메일 주소를 작성해주세요.");
+            return false;
+        } else if(!$("input#okTitle").val()){
+            alert("제목을 작성해주세요.");
+            return false;
+        }
+        alert("발송완료");
+        return true;
+    }
 </script>
 </html>
