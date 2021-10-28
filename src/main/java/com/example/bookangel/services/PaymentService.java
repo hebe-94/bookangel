@@ -15,8 +15,8 @@ public interface PaymentService {
     public boolean resubscribe(PaymentVO paymentVO);
 
     // 구독 확인
-    public boolean subscribeExist(int memberNum);
+    public boolean subscribeExist(long memberNum);
 
     // 회원에 따른 구독 정보 가져오기
-    public PaymentVO searchPayment(int memberNum);
+    public PaymentVO searchPayment(long memberNum);
 }

@@ -31,13 +31,13 @@
     VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, #{couponNum}, null, null, #{subMonth}, SYSDATE, SYSDATE+365)
 -->
     <!-- 결제 이력이 있는지 -->
-    <select id="paymentExist" resultType="_int">
+    <select id="paymentExist" resultType="_long">
         SELECT COUNT(memberNum) FROM BOOK_PAYMENT
         WHERE MEMBERNUM = #{memberNum}
     </select>
 
     <!-- 구독 하고 있는지 -->
-    <select id="subscribeExist" resultType="_int">
+    <select id="subscribeExist" resultType="_long">
         SELECT COUNT(memberNum) FROM BOOK_PAYMENT
         WHERE MEMBERNUM = #{memberNum} and EXPIREDATE > SYSDATE
     </select>

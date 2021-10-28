@@ -201,8 +201,8 @@ public class BoardController {
         if(boardService.updateOk(boardNum)){
             rttr.addAttribute("boardNum", boardVO.getBoardNum());
             try {
-                makeCoupon(3, request, rttr);
-            } catch (UnsupportedEncodingException e) {
+                makeCoupon(3l, request, rttr);
+            } catch (Exception e) {
                 e.printStackTrace();
                 log.error("쿠폰 만들기 오류!");
             }
@@ -212,12 +212,12 @@ public class BoardController {
         return new RedirectView("read");
     }
 
-    private void makeCoupon(int couponAmount , HttpServletRequest request, RedirectAttributes rttr) throws UnsupportedEncodingException {
+    private void makeCoupon(long couponAmount , HttpServletRequest request, RedirectAttributes rttr) throws Exception {
 
         HttpSession session = request.getSession();
 
         CouponVO couponVO = new CouponVO();
-        couponVO.setMemberNum((int) session.getAttribute("memberNum"));
+        couponVO.setMemberNum((long) session.getAttribute("memberNum"));
 
         log.info("쿠폰 생성하기 [생성 수량 : " + couponAmount + "개]");
         String data = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -258,8 +258,6 @@ public class BoardController {
         } // while
 
         if(!result){
-            log.error("쿠폰 생성 실패");
-        }else{
             rttr.addAttribute("result", "success");
         }
     }

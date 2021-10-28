@@ -33,14 +33,14 @@ public class CouponController {
     @PostMapping(value = "checkCoupon", produces = "text/plain; charset=utf-8")
     public ResponseEntity<String> checkCoupon(String couponName, HttpServletRequest request, Model model) throws UnsupportedEncodingException {
         HttpSession session = request.getSession();
-
-        // 멤버 로그인을 위해 작업 나중에 지울것!
-        session.setAttribute("memberNum", 21);
+//
+//        // 멤버 로그인을 위해 작업 나중에 지울것!
+//        session.setAttribute("memberNum", 21);
 
         log.info("쿠폰 사용 확인...........");
         CouponVO couponVO = new CouponVO();
         couponVO.setCouponName(couponName);
-        Integer result = couponService.checkCoupon(couponVO);
+        Long result = couponService.checkCoupon(couponVO);
         if(result != null){
             session.setAttribute("couponNum",result.intValue());
             log.info("--------------------------------------");

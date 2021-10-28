@@ -25,8 +25,8 @@ public class PaymentServiceImple implements PaymentService{
     public boolean resubscribe(PaymentVO paymentVO){ return paymentDAO.resubscribe(paymentVO); }
 
     @Override
-    public boolean subscribeExist(int memberNum){ return paymentDAO.subscribeExist(memberNum); }
+    public boolean subscribeExist(long memberNum){ return paymentDAO.subscribeExist(memberNum); }
 
     @Override
-    public PaymentVO searchPayment(int memberNum){ return paymentDAO.searchPayment(memberNum); }
+    public PaymentVO searchPayment(long memberNum){ return paymentDAO.searchPayment(memberNum); }
 }

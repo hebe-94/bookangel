@@ -4,7 +4,7 @@
 <mapper namespace="com.example.bookangel.mappers.CouponMapper">
 
     <!--사용가능한 쿠폰인지-->
-    <select id="checkCoupon" resultType="integer">
+    <select id="checkCoupon" resultType="long">
         SELECT couponNum FROM BOOK_COUPON WHERE couponName =#{couponName} AND couponStatus = 0
     </select>
 
@@ -21,7 +21,7 @@
         WHERE ownNum = #{memberNum}
     </select>
 
-    <select id="isExist" resultType="_int">
+    <select id="isExist" resultType="_long">
         SELECT COUNT(couponNum) FROM BOOK_COUPON
         WHERE couponName = #{couponName}
     </select>

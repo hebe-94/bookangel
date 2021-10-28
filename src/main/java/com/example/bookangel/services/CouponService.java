@@ -15,7 +15,7 @@ public class CouponService {
     private final CouponDAO couponDAO;
 
     // 쿠폰 사용 여부 확인
-    public Integer checkCoupon(CouponVO couponVO){
+    public Long checkCoupon(CouponVO couponVO){
         log.info("Coupon Service : check...........");
         return couponDAO.checkCoupon(couponVO);
     }
@@ -27,7 +27,7 @@ public class CouponService {
     }
 
     // 기업 쿠폰 리스트 조회
-    public List<CouponVO> companyCouponList(int memberNum){
+    public List<CouponVO> companyCouponList(long memberNum){
         log.info("Coupon Service : 기업 쿠폰 리스트 확인...............");
         return couponDAO.companyCouponList(memberNum);
     }

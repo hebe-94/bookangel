@@ -20,10 +20,9 @@ public class CouponMapperTest {
     @Test
     public void checkCoupon(){
         CouponVO couponVO = new CouponVO();
-        couponVO.setCouponName("AAAA-AAAA-AAAA-AAAb");
+        couponVO.setCouponName("AAAA-AAAA-AAAA-AAAA");
         log.info("---------------------------------------------");
         log.info("mapperTest : "+ couponMapper.checkCoupon(couponVO));
-
     }
 
     @Test
