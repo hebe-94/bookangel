@@ -57,7 +57,7 @@
     .small-width {display: none;}
     .mediaPage {display: none;}
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) and (max-width: 1024px)  {
         .small-width {display: block;}
         .memberName {text-align: center;}
         .memberTel {display: none;}
@@ -68,16 +68,20 @@
         .togetherMsg {font-size: 20px; padding-bottom: 7%;}
         #header header {display: block;margin-top: -90%;}
         body.homepage #header {height: 85vh; min-height: 40em;}
+        .searchButton{width: 40px;}
     }
 
-    @media (max-width: 760px) {
-        #header header {display: block;margin-top: -10%;}
+    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
+        #header header {display: block;margin-top: -5%;}
         body.homepage #header {height: 85vh; min-height: 40em;}
+        .searchButton{width: 50px;}
     }
 
-    @media (max-width: 550px) {
-        #header header {display: block;margin-top: -100%;}
+    @media (max-width: 480px) {
+        #header header {display: block;margin-top: -95%;}
         body.homepage #header {height: 85vh; min-height: 40em;}
+        .searchButton{width: 50px;}
+        #header .button {width:  330px; display: flex;}
     }
 
 </style>
