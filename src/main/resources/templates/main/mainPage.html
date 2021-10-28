@@ -56,6 +56,8 @@
 
     .small-width {display: none;}
     .mediaPage {display: none;}
+    #searchForm {width: 261px;}
+    .togetherMsg {font-size: 27px}
 
     @media (max-width: 768px) {
         .small-width {display: block;}
@@ -82,8 +84,10 @@
         #header header {display: block;margin-top: -145%;}
         body.homepage #header {height: 85vh; min-height: 40em;}
         .searchButton{width: 50px;}
+        #searchForm {width: 170px;}
         #header .button {width:  330px; display: flex;}
         #turtlelogo{display: none;}
+        .togetherMsg{display: none;}
     }
 
 </style>
@@ -125,7 +129,7 @@
             <ul>
 
                 <!-- 검색 -->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
+                <form id="searchForm" style="float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
                     </div>
@@ -1720,7 +1724,7 @@
             </header>
 
             <br>
-            <div class="togetherMsg" style="font-size: 27px;text-align: center;padding-bottom: 2%;">
+            <div class="togetherMsg" style="text-align: center;padding-bottom: 2%;">
                 <th:block th:if="${total != null and total > 0}">
                     <th:block th:text="|기북천사와 함께하는 친구들은 ${total}명입니다.|"/>
                 </th:block>
