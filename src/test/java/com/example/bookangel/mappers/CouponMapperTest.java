@@ -77,6 +77,6 @@ public class CouponMapperTest {
     @Test
     public void companyCouponListCNT(){
         log.info("---------------------------------------------");
-        log.info(couponMapper.companyCouponListCNT(1l) + "");
+        log.info(couponMapper.companyCouponListCNT(1L) + "");
     }
 }
