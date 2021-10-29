@@ -20,4 +20,5 @@ public class MemberService {
     public void withDraw(int memberNum){memberDAO.withDraw(memberNum);}
     public void modifyPw(MemberVO memberVO){memberDAO.modifyPw(memberVO);}
     public String findId(MemberVO memberVO){return memberDAO.findId(memberVO);}
+    public void modifyInfo(MemberVO memberVO){memberDAO.modifyInfo(memberVO);}
 }

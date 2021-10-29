@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class PaymentVO {
 
     private int paymentNum;
-    private int memberNum;
+    private Long memberNum;
     private int couponNum;
     private String impUid;
     private String merchantUid;

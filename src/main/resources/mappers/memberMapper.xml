@@ -40,4 +40,17 @@
         FROM BOOK_MEMBER
         WHERE MEMBERNAME = #{memberName} AND MEMBERTEL = #{memberTel}
     </select>
+    <update id="modify">
+        UPDATE HR.BOOK_MEMBER
+        SET MEMBERID=#{memberId},
+        MEMBERPW=#{memberPw},
+        MEMBERNAME=#{memberName},
+        MEMBERTEL=#{memberTel},
+        MEMBEREMAIL=#{memberEmail},
+        MEMBERZIPCODE=#{memberZipcode},
+        MEMBERADDRESS=#{memberAddress},
+        MEMBERADDRESSDETAIL=#{memberAddressDetail},
+        MEMBERADDRESSETC=#{memberAddressEtc}
+        WHERE MEMBERNUM=#{memberNum}
+    </update>
 </mapper>

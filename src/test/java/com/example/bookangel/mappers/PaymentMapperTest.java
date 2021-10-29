@@ -23,7 +23,7 @@ public class PaymentMapperTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.SSS");
         LocalDateTime now = LocalDateTime.now();
         // 현재 시간
-        paymentVO.setMemberNum(21);//
+        paymentVO.setMemberNum(21L);//
         paymentVO.setCouponNum(17);//
         paymentVO.setSubMonth(2);//
 
@@ -51,7 +51,7 @@ public class PaymentMapperTest {
     @Test
     public void testPaymentExist(){
         PaymentVO paymentVO = new PaymentVO();
-        paymentVO.setMemberNum(21);//
+        paymentVO.setMemberNum(21L);//
         log.info("---------------------------------------------");
         log.info("mapper 테스트 결과 : " + paymentMapper.paymentExist(paymentVO));
         log.info("---------------------------------------------");

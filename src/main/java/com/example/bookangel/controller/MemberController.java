@@ -52,6 +52,7 @@ public class MemberController {
     @GetMapping("memberModify")
     public void memberModify(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
+        model.addAttribute("myInfo", memberService.getMyInfo((String)session.getAttribute("memberId")));
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
         model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", session.getAttribute("memberId"));
@@ -133,7 +134,7 @@ public class MemberController {
         PaymentVO paymentVO = new PaymentVO();
         boolean check = vo != null;
         if (check) {
-            paymentVO.setMemberNum(vo.getMemberNum().intValue());
+            paymentVO.setMemberNum(vo.getMemberNum());
             boolean status = vo.getMemberStatus()==1;
             if(status){
                 model.addAttribute("withDraw","withDraw");
@@ -237,6 +238,13 @@ public class MemberController {
         model.addAttribute("memberNum", session.getAttribute("memberNum"));
         model.addAttribute("memberId", memberService.findId(memberVO));
         return "member/findedID";
+    }
+    @PostMapping("memberModify")
+    public String memberModify(MemberVO memberVO, HttpServletRequest request){
+            HttpSession session = request.getSession();
+            memberVO.setMemberNum((Long)session.getAttribute("memberNum"));
+            memberService.modifyInfo(memberVO);
+            return "redirect:/main/mainPage";
     }
 }
 
