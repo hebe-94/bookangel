@@ -21,4 +21,6 @@ public interface MemberMapper {
     public void change(MemberVO memberVO);
     //아이디 찾기
     public String getId(MemberVO memberVO);
+    //정보 수정
+    public void modify(MemberVO memberVO);
 }

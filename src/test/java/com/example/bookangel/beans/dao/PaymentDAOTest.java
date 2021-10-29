@@ -18,7 +18,7 @@ public class PaymentDAOTest {
     @Test
     public void testSubscribe(){
         PaymentVO paymentVO = new PaymentVO();
-        paymentVO.setMemberNum(1);
+        paymentVO.setMemberNum(1L);
         paymentVO.setCouponNum(1);
         paymentVO.setImpUid("테스트 결제 코드");
         paymentVO.setMerchantUid("테스트 승인 코드");

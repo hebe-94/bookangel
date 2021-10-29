@@ -88,7 +88,7 @@
                             <li id="myPageTab"><a>마이페이지&hellip;</a>
                                 <ul>
                                     <li><a href="/member/mypage">내정보 보기</a></li>
-                                    <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                    <li><a href="/member/memberModify">회원정보 수정</a></li>
                                     <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
                                     <li><a  href="/member/withdraw">회원탈퇴</a></li>
                                 </ul>
@@ -114,73 +114,85 @@
                 <h2 style="margin-bottom: 1%; margin-top: 3%;">회원정보 수정</h2>
                 <p
                         style="border-bottom: solid 7px #f5f4f3; width: 53%; text-align: center; margin: auto;"></p>
-                <p id="modyfyP" style="text-align: center;">내정보</p>
+                <p id="modifyInfo" style="text-align: center; display: none">내정보</p>
             </header>
 
 
             <section
                     style="border: solid; border-color: rgb(255 255 255/ 98%); border-radius: 15px; width: 50%; margin: auto; background-color: #c3c2bd17;">
-                <form method="post" action="${pageContext.request.contextPath}/member/MemberModifyOk.me" name="modifyForm">
+               <form id="checkForm">
+                   <div
+                           style="display: flex; text-align: center; flex-direction: column; width: 47%; margin: auto;">
+                       <div style="width: 100%; margin-top: 7%;">
+                           <div style="margin-bottom: 25%;">
+                               <p style="margin-bottom: 0%; font-size: 22px;">비밀번호 확인</p>
+                               <input id="pw" type="password" style="width: 70%">
+                               <input id="checkPw" type="button" value="확인" style="width: 30%; padding: 0;">
+                           </div>
+                       </div>
+                   </div>
+               </form>
+                <form method="post" action="/member/memberModify" id="modifyForm" name="modifyForm" style="display: none" th:object="${myInfo}">
                     <div
                             style="display: flex; text-align: center; flex-direction: column; width: 47%; margin: auto;">
                         <div style="height: 900px;">
                             <div>
                                 <div style="width: 100%; margin-top: 7%;">
 
-                                    <p style="margin-bottom: 0%; font-size: 22px; margin-left: -82%;">
+                                    <p style="margin-bottom: 0%; font-size: 22px;">
                                         아이디 <span style="font-size: 0.7em;"></span>
                                     </p>
                                     <input type="text" style="margin-bottom: 4%; position: inherit; color: green;"
-                                           name="memberId" id="memberId" value="${memberId}" readonly>
+                                           name="memberId" id="memberId" th:value="*{memberId}" readonly>
                                     <br>
-                                    <p style="margin-bottom: 0%; font-size: 22px; margin-left: -66%;">비밀번호 변경</p>
+                                    <p style="margin-bottom: 0%; font-size: 22px;">비밀번호 변경</p>
                                     <input type="password" style="margin-bottom: 4%; position: inherit;" name="memberPw" id="memberPw" value=""
                                            placeholder="영문 4자 이상, 최대 20자"> <br>
-                                    <p style="margin-bottom: 0%; font-size: 22px; margin-left: -88%;">이름</p>
+                                    <p style="margin-bottom: 0%; font-size: 22px;">이름</p>
                                     <input type="text"
                                            style="margin-bottom: 4%; position: inherit; color: green;"
-                                           name="memberName" id="memberName" value="${memberName}">
+                                           name="memberName" id="memberName" th:value="*{memberName}" readonly>
                                     <br>
-                                    <p style="margin-bottom: 0%; font-size: 22px; margin-left: -71%;">핸드폰 번호</p>
-                                    <input type="text" style="margin-bottom: 4%; position: inherit;" name="memberTel" id="memberTel" value="${memberTel}" placeholder="- 없이 입력해주세요"> <br>                                    <p
-                                            style="margin-bottom: 0%; font-size: 22px; margin-left: -82%;">이메일</p>
+                                    <p style="margin-bottom: 0%; font-size: 22px;">핸드폰 번호</p>
+                                    <input type="text" style="margin-bottom: 4%; position: inherit;" name="memberTel" id="memberTel" th:value="*{memberTel}" placeholder="000-0000-0000 형식으로 작성해 주세요."> <br>                                    <p
+                                    <p style="margin-bottom: 0%; font-size: 22px;">이메일</p>
                                     <input type="text" style="margin-bottom: 4%; position: inherit;"
-                                           name="memberEmail" id="memberEmail" value="${memberEmail}"
+                                           name="memberEmail" id="memberEmail" th:value="*{memberEmail}"
                                            placeholder="abc@gmail.com">
                                 </div>
                             </div>
                             <br>
                             <p
-                                    style="margin-bottom: 0%; font-size: 22px; margin-left: -75%;">우편번호</p>
+                                    style="margin-bottom: 0%; font-size: 22px;">우편번호</p>
                             <div
-                                    style="display: -webkit-inline-box; justify-content: space-between; position: inherit;">
-                                <input style="position: inherit; width: auto;" type="text"
+                                    style="display: flex; justify-content: flex-start; position: inherit; width: 100%;">
+                                <input style="position: inherit; width: 60%;" type="text"
                                        name="memberZipcode" id="memberZipcode"
-                                       class="postcodify_postcode5" value="${memberZipcode}">
-                                <ul class="actions">
-                                    <li><input type="button" id="postcodify_search_button"
+                                       class="postcodify_postcode5" th:value="*{memberZipcode}">
+                                <ul class="actions" style="width: 40%;">
+                                    <li style="width: 100%;"><input type="button" id="postcodify_search_button"
                                                class="button primary"
-                                               style="border-radius: 1; margin-left: 10%; position: inherit; text-align: center; width: 54%; display: flex; align-items: center;"
+                                               style="border-radius: 1; position: inherit; text-align: center; width: 100%; display: flex; align-items: center;"
                                                value="검색"></li>
                                 </ul>
                             </div>
                             <br>
                             <p
-                                    style="margin-bottom: 0%; font-size: 22px; margin-left: -88%;">주소</p>
+                                    style="margin-bottom: 0%; font-size: 22px;">주소</p>
                             <input type="text" style="margin-bottom: 4%; position: inherit;"
                                    name="memberAddress" id="memberAddress"
-                                   class="postcodify_address" value="${memberAddress}"> <br>
+                                   class="postcodify_address" th:value="*{memberAddress}"> <br>
                             <p
-                                    style="margin-bottom: 0%; font-size: 22px; margin-left: -76%;">상세주소</p>
+                                    style="margin-bottom: 0%; font-size: 22px;">상세주소</p>
                             <input type="text" style="margin-bottom: 4%; position: inherit;"
                                    name="memberAddressDetail" id="memberAddressDetail"
-                                   class="postcodify_details" value="${memberAddressDetail}">
+                                   class="postcodify_details" th:value="*{memberAddressDetail}">
                             <br>
                             <p
-                                    style="margin-bottom: 0%; font-size: 22px; margin-left: -76%;">참고항목</p>
+                                    style="margin-bottom: 0%; font-size: 22px;">참고항목</p>
                             <input type="text" name="memberAddressEtc"
                                    id="memberAddressEtc" class="postcodify_extra_info"
-                                   value="${memberAddressEtc}" style="position: inherit;">
+                                   th:value="*{memberAddressEtc}" style="position: inherit;">
                             <br>
                             <div class="col-12" style="margin-top: 15%;">
                                 <ul class="actions"
@@ -253,86 +265,93 @@
 </div>
 </body>
 
-<script>
+<script th:inline="javascript">
+    $("input#checkPw").on("click", function(){
+        if($("input#pw").val()==[[${myInfo.memberPw}]]){
+            $("form#checkForm").css("display","none");
+            $("form#modifyForm").css("display", "block");
+            $("p#modifyInfo").css("display", "block");
+        }else{
+            alert("비밀번호를 확인해 주세요.");
+            return;
+        }
+    })
+    $("input#pw").keypress(function (e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            if($("input#pw").val()==[[${myInfo.memberPw}]]){
+                $("form#checkForm").css("display","none");
+                $("form#modifyForm").css("display", "block");
+                $("p#modifyInfo").css("display", "block");
+            }else{
+                alert("비밀번호를 확인해 주세요.");
+                return;
+            }
+        }
+    })
+    var form = document.modifyForm;
     function formSubmit(){
-
-        var form = document.modifyForm;
-
-        var id =  document.getElementById("member_id").value;
-        var pw = document.getElementById("member_pw").value;
-        var name = document.getElementById("member_name").value;
-        var tel = document.getElementById("member_tel").value;
-        var email = document.getElementById("member_email").value;
-        var zipcode = document.getElementById("member_zipcode").value;
-        var address = document.getElementById("member_address").value;
-        var address_detail = document.getElementById("member_address_detail").value;
-        var address_etc = document.getElementById("member_address_etc").value;
-
-        var session_pw = '<%=(String)session.getAttribute("session_pw")%>';
-
-        console.log("아이디 : "+id);
-        console.log("비밀번호 : "+pw);
-        console.log("비밀번호 : "+ session_pw);
-
-        console.log("이름 : "+name);
-        console.log("전화번호 : "+tel);
-        console.log("이메일 : "+email);
-        console.log("우편번호 : "+zipcode);
-        console.log("주소 : "+address);
-        console.log("상세주소 : "+address_detail);
-        console.log("기타주소 : "+address_etc);
-
-        // 미입력 방지
-        if(pw == '' || pw == null){
-            alert("비밀번호를 입력해주세요.");
-            document.getElementById("member_pw").focus();
+        if(form.memberPw.value==null||form.memberPw.value==""){
+            alert("비밀번호를를 입력해 주세요");
+            form.memberPw.focus();
+            return;
+        }
+        if(form.memberTel.value==null||form.memberTel.value==""){
+            alert("전화번호를 입력해 주세요");
+            form.memberTel.focus();
+            return;
+        }
+        if(form.memberEmail.value==null||form.memberEmail.value==""){
+            alert("이메일을 입력해 주세요");
+            form.memberEmail.focus();
+            return;
+        }
+        if(form.memberZipcode.value==null||form.memberZipcode.value==""){
+            alert("우편번호를 입력해 주세요");
+            form.memberZipcode.focus();
+            return;
+        }
+        if(form.memberAddress.value==null||form.memberAddress.value==""){
+            alert("주소를 입력해 주세요");
+            form.memberAddress.focus();
+            return;
+        }
+        if(form.memberAddressDetail.value==null||form.memberAddressDetail.value==""){
+            alert("상세주소를 입력해 주세요");
+            form.memberAddressDetail.focus();
+            return;
+        }
+        if(form.memberAddressEtc.value==null||form.memberAddressEtc.value==""){
+            alert("참고항목을 입력해 주세요");
+            form.memberAddressEtc.focus();
             return;
         }
 
-        if(session_pw == pw){
-            alert("이번비밀번호와 동일합니다. 다른 번호로 입력해주세요");
-            document.getElementById("member_pw").value = '';
-            document.getElementById("member_pw").focus();
-            return;
-        }
+        var patt = new RegExp("[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}");
+        var res = patt.test( $("input#memberTel").val());
 
-        if(name == ''){
-            alert("이름을 입력해주세요.");
-            document.getElementById("member_name").focus();
+        if(!res){
+            alert("010-0000-0000 형식으로 입력해 주세요.");
+            $("input#memberTel").val("");
+            $("input#memberTel").focus();
             return;
         }
-        if(tel == ''){
-            alert("전화번호를 입력해주세요.");
-            document.getElementById("member_tel").focus();
+        var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        var email = regex.test($("input#memberEmail").val());
+        if(!email){
+            alert("abc@abc.com 형식으로 작성해 주세요.");
+            $("input#memberEmail").val("");
+            $("input#memberEmail").focus();
             return;
         }
-        if(email == ''){
-            alert("이메일을 입력해주세요.");
-            document.getElementById("member_email").focus();
-            return;
-        }
-        if(zipcode == ''){
-            alert("우편번호를 입력해주세요.");
-            document.getElementById("member_zipcode").focus();
-            return;
-        }
-        if(address == ''){
-            alert("주소를 입력해주세요.");
-            document.getElementById("member_address").focus();
-            return;
-        }
-        if(address_detail == ''){
-            alert("상세주소를 입력해주세요.");
-            document.getElementById("member_address_detail").focus();
-            return;
-        }
-        if(address_etc == ''){
-            alert("참고항목을 입력해주세요.");
-            document.getElementById("member_address_etc").focus();
-            return;
-        }
+        var pwCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
 
-        // location.href="/member/MemberModifyOk.me";
+        if (!pwCheck.test(form.memberPw.value)) {
+            alert("비밀번호는 영문자+숫자 조합으로 8~20자리 사용해야 합니다");
+            form.memberPw.focus();
+            return;
+        }
+        alert("정보수정이 완료되었습니다!")
         form.submit();
     }
 
