@@ -44,6 +44,9 @@
         } else if(!$("input#okTitle").val()){
             alert("제목을 작성해주세요.");
             return false;
+        } else if($("textarea#okContent").val().length == 0){
+            alert("내용을 작성해주세요.");
+            return false;
         }
         alert("발송완료");
         return true;
