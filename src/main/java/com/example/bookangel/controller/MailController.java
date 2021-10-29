@@ -25,4 +25,6 @@ public class MailController {
         mailService.mailSend(mailVO);
         return "board/mail";
     }
+
+
 }

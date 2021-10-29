@@ -5,6 +5,7 @@
 
     <!-- 쿠폰 결제, 카드결제-->
     <!-- 조건으로 쿼리문 새로 짜야함 -->
+    <!--구독하기-->
     <insert id="subscribe">
         INSERT INTO BOOK_PAYMENT
         (PAYMENTNUM, MEMBERNUM, COUPONNUM, IMPUID, MERCHANTUID, SUBMONTH, SUBDATE, EXPIREDATE)
@@ -29,16 +30,20 @@
 <!--
     VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, #{couponNum}, null, null, #{subMonth}, SYSDATE, SYSDATE+365)
 -->
-    <select id="paymentExist" resultType="_int">
+    <!-- 결제 이력이 있는지 -->
+    <select id="paymentExist" resultType="_long">
         SELECT COUNT(memberNum) FROM BOOK_PAYMENT
         WHERE MEMBERNUM = #{memberNum}
     </select>
 
-    <select id="subscribeExist" resultType="_int">
+    <!-- 구독 하고 있는지 -->
+    <select id="subscribeExist" resultType="_long">
         SELECT COUNT(memberNum) FROM BOOK_PAYMENT
         WHERE MEMBERNUM = #{memberNum} and EXPIREDATE > SYSDATE
     </select>
 
+
+    <!-- 첫 구독이 아닐때 -->
     <update id="resubscribe">
         UPDATE BOOK_PAYMENT
         <choose>
@@ -59,4 +64,11 @@
         </choose>
         WHERE MEMBERNUM = #{memberNum}
     </update>
+
+    <select id="searchPayment" resultType="paymentVO">
+        SELECT paymentNum, memberNum, couponNum, impUid, merchantUid, subMonth, subDate, expireDate
+        FROM BOOK_PAYMENT
+        WHERE MEMBERNUM = #{memberNum} and EXPIREDATE > SYSDATE
+    </select>
+
 </mapper>

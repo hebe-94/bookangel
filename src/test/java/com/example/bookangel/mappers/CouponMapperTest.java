@@ -20,10 +20,9 @@ public class CouponMapperTest {
     @Test
     public void checkCoupon(){
         CouponVO couponVO = new CouponVO();
-        couponVO.setCouponName("AAAA-AAAA-AAAA-AAAb");
+        couponVO.setCouponName("AAAA-AAAA-AAAA-AAAA");
         log.info("---------------------------------------------");
         log.info("mapperTest : "+ couponMapper.checkCoupon(couponVO));
-
     }
 
     @Test
@@ -51,6 +50,26 @@ public class CouponMapperTest {
         log.info("구독 날짜 : "+ nowTime);
         log.info("구독 만료 날짜 : " +after30Time);
 
+
+    }
+
+    // 기업 전용 쿠폰 리스트 확인
+    @Test
+    public void TestCompanyCouponList(){
+
+        log.info("---------------------------------------------");
+        couponMapper.companyCouponList(1).forEach(couponVO -> log.info(couponVO.toString()));
+        log.info("---------------------------------------------");
+
+    }
+
+    // 쿠폰이 있는지
+    @Test
+    public void TestIsExist(){
+
+        log.info("---------------------------------------------");
+        couponMapper.isExist("AAAA-AAAA-AAAA-AAAA");
+        log.info("---------------------------------------------");
 
     }
 }

@@ -38,4 +38,12 @@ public class PaymentServiceTest {
         log.info("[payment service : " + paymentService.subscribeExist(1));
         log.info("---------------------------------");
     }
+
+    // 회원 구독 현황 가져오기
+    @Test
+    public void testSearchPayment(){
+        log.info("---------------------------------");
+        log.info("[payment service : " + paymentService.searchPayment(1));
+        log.info("---------------------------------");
+    }
 }

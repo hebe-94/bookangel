@@ -265,8 +265,6 @@ public class PaymentController {
     }
 
 
-
-
 //    @PostMapping("register")
 //    public String register(int paymentType, HttpServletRequest request, Model model){
 //        HttpSession session = request.getSession();

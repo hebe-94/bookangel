@@ -15,23 +15,31 @@ public class PaymentDAO {
 
     public boolean subscribe(PaymentVO paymentVO){
         log.info("[DAO]-결제하기...............");
-        return paymentMapper.subscribe(paymentVO) == 1;
+        return paymentMapper.subscribe(paymentVO) == 1L;
     }
 
     public boolean paymentExist(PaymentVO paymentVO){
         log.info("[DAO]-결제내역 있는지 확인하기...............");
-        return paymentMapper.paymentExist(paymentVO) == 1;
+        return paymentMapper.paymentExist(paymentVO) == 1L;
     }
 
     public boolean resubscribe(PaymentVO paymentVO){
         log.info("[DAO]-재결제 하기...............");
-        return paymentMapper.resubscribe(paymentVO) == 1;
+        return paymentMapper.resubscribe(paymentVO) == 1L;
     }
 
     // 구독중인지 확인
-    public boolean subscribeExist(int memberNum){
+    public boolean subscribeExist(long memberNum){
         log.info("[DAO]-구독 확인하기...............");
-        return paymentMapper.subscribeExist(memberNum) == 1;
+        return paymentMapper.subscribeExist(memberNum) == 1L;
     }
+
+    // 회원에 따른 구독 정보 가져오기
+    public PaymentVO searchPayment(long memberNum) {
+        log.info("[DAO]-구독 확인하기...............");
+        return paymentMapper.searchPayment(memberNum);
+    }
+
+
 
 }

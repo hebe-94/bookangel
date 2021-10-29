@@ -1,11 +1,9 @@
 package com.example.bookangel.controller;
 
 
-import com.example.bookangel.beans.vo.AttachFileVO;
-import com.example.bookangel.beans.vo.BoardVO;
-import com.example.bookangel.beans.vo.Criteria;
-import com.example.bookangel.beans.vo.PageDTO;
+import com.example.bookangel.beans.vo.*;
 import com.example.bookangel.services.BoardService;
+import com.example.bookangel.services.CouponService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -17,10 +15,12 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 @Slf4j
@@ -28,6 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
+    private final CouponService couponService;
 
     @GetMapping("list")
     public String list(Criteria criteria, Model model, HttpServletRequest request){
@@ -187,7 +188,7 @@ public class BoardController {
     }
 
     @PostMapping("read")
-    public RedirectView updateOk(Long boardNum,BoardVO boardVO, RedirectAttributes rttr,HttpServletRequest request,Model model){
+    public RedirectView updateOk(Long boardNum, BoardVO boardVO, RedirectAttributes rttr, HttpServletRequest request, Model model){
         log.info("-------------------------------");
         log.info("updateOk : " + boardNum);
         log.info("-------------------------------");
@@ -198,11 +199,72 @@ public class BoardController {
         model.addAttribute("memberName", session.getAttribute("memberName"));
 
         if(boardService.updateOk(boardNum)){
-            rttr.addAttribute("result", "success");
             rttr.addAttribute("boardNum", boardVO.getBoardNum());
+            try {
+                makeCoupon(3l, request, rttr);
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("쿠폰 만들기 오류!");
+            }
+//            rttr.addAttribute("result", "success");
+
         }
         return new RedirectView("read");
     }
+
+    private void makeCoupon(long couponAmount , HttpServletRequest request, RedirectAttributes rttr) throws Exception {
+
+        HttpSession session = request.getSession();
+
+        CouponVO couponVO = new CouponVO();
+        couponVO.setMemberNum((long) session.getAttribute("memberNum"));
+
+        log.info("쿠폰 생성하기 [생성 수량 : " + couponAmount + "개]");
+        String data = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String tempCoupon = "";
+        Random r = new Random();
+        boolean result = false;
+        int makeCnt = 0;
+
+        //// 16자리의 쿠폰번호 만들기
+        while (makeCnt < couponAmount){
+            tempCoupon = "";
+
+            // 쿠폰번호 생성
+            for (int i = 0; i < 16; i++) {
+                tempCoupon += data.charAt(r.nextInt(data.length()));
+                if(i % 4 == 3 && i < 15){
+                    tempCoupon += "-";
+                }
+            } // for
+
+            // 중복 쿠폰번호 확인
+            couponVO.setCouponName(tempCoupon);
+            if(couponService.isExist(tempCoupon)){
+                result = true; // 쿠폰 번호가 존재
+                continue;
+            }else{
+                // 쿠폰 생성성
+                if(couponService.makeCoupon(couponVO)){
+                    // 쿠폰 생성 완료
+                    makeCnt++;
+                    log.info(tempCoupon);
+                }else{
+                    result = true; // 생성 실패
+                    continue;
+                }
+            } // 쿠폰 생성
+
+        } // while
+
+        if(!result){
+            rttr.addAttribute("result", "success");
+        }
+    }
+
+
+
+
 
     //    게시글 첨부파일
     @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
