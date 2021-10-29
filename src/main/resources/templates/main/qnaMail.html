@@ -12,12 +12,12 @@
 
     <form th:action="@{/mail}" method="post" id="sendForm" onsubmit="return sendEmail()">
         <input name="address" type="hidden" placeholder="이메일 주소" value="mirae1686@gmail.com" readonly/> <br>
-        <div class="field half first">
-            <label style="font-family: 'Gowun Dodum', sans-serif;" >제목</label>
-            <input id="mailTitle" name="title" placeholder="제목" style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
+        <div class="field half first" style="margin-top: 15px;">
+            <label style="font-family: 'Gowun Dodum', sans-serif;" ><span style="color: red;">*</span>제목</label>
+            <input id="mailTitle" name="title" placeholder="제목을 입력해주세요." style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
         </div>
         <div class="field half">
-            <label style="font-family: 'Gowun Dodum', sans-serif;" >내용</label>
+            <label style="font-family: 'Gowun Dodum', sans-serif;" ><span style="color: red;">*</span>내용</label>
             <textarea name="message" cols="60" rows="20" style="resize: none; font-family: 'Gowun Dodum', sans-serif;">답장 받으실 메일 주소 :
 문의 내용
             </textarea>

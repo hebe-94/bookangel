@@ -11,14 +11,14 @@
     <h3 style="font-family: 'Gowun Dodum', sans-serif; text-align: center;">기북천사</h3>
 
     <form th:action="@{/mail}" method="post" id="sendForm" onsubmit="return sendEmail()">
-        <label style="font-family: 'Gowun Dodum', sans-serif;" >메일 주소</label>
-        <input id="okMail" name="address" placeholder="이메일 주소" style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
-        <div class="field half first">
-            <label style="font-family: 'Gowun Dodum', sans-serif;" >제목</label>
-            <input id="okTitle" name="title" placeholder="제목" style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
+        <label style="font-family: 'Gowun Dodum', sans-serif;" ><span style="color: red;">*</span>메일 주소</label>
+        <input id="okMail" name="address" placeholder="abc@gmail.com" style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
+        <div class="field half first" style="margin-top: 15px;">
+            <label style="font-family: 'Gowun Dodum', sans-serif;" ><span style="color: red;">*</span>제목</label>
+            <input id="okTitle" name="title" placeholder="제목을 입력해주세요." style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
         </div>
         <div class="field half">
-            <label style="font-family: 'Gowun Dodum', sans-serif;" >내용</label>
+            <label style="font-family: 'Gowun Dodum', sans-serif;" ><span style="color: red;">*</span>내용</label>
             <textarea id="okContent" name="message" cols="60" rows="20" placeholder="메일 내용을 입력해주세요." style="resize: none; font-family: 'Gowun Dodum', sans-serif;"></textarea>
         </div>
         <ul class="actions" style="text-align: center;">
