@@ -58,15 +58,6 @@
 </style>
 <body class="homepage is-preload">
 <div id="page-wrapper">
-    <c:set var="member_id" value="${member_id}"/>
-    <c:set var="coupons" value="${coupons}" />
-    <c:set var="books" value="${books}" />
-
-    <c:set var="totalCnt" value="${totalCnt}" />
-    <c:set var="realEndPage" value="${realEndPage}" />
-    <c:set var="startPage" value="${startPage}" />
-    <c:set var="endPage" value="${endPage}" />
-    <c:set var="nowPage" value="${nowPage}" />
 
     <!-- 헤더부분 메인에서 맞춰서 가져올것! 메인에서 페이징 작업은 디자인 완료후 처리 해주어야 한다. -->
    <!--Header-->
@@ -173,16 +164,9 @@
             <tr align="center" valign="middle">
             </tr>
         </table>
-
-        <c:choose>
-            <c:when test="${session_accountType == 0 }">
-                <div>
+                <div id="sub" th:if="${memberType}==0">
                     <h2 style="font-size: 25px; display: inline; padding:0 18%">이용권</h2>
                     <table style="text-align: center;">
-                        <!-- <caption style="text-align:left; margin-bottom:3%;">
-                        </caption>-->
-
-
                         <thead>
                         <tr style="background-color: #ceb980">
                             <th style="width: 50%;" class="tdFirst">이용권/유효기간</th>
@@ -196,26 +180,19 @@
                             <td class="tdFirst">
 
                                 <div>
-                                    <c:choose>
-                                        <c:when test="${requestScope.startDate == '' || requestScope.startDate == null}">
-<!--
-                                            구독 안했을때 출력
-                                            <p style="text-align: center;">구독 미신청 상태입니다.</p>
-                                            <div>
-                                                <input class="btn" type="button" value="구독 신청" onclick="location.href='구독신청 페이지'">
-                                            </div>
-
-                                            아래는 구독했을때 나오는 출력
--->
-                                        </c:when>
-                                        <c:otherwise>
-                                            <p style="text-align: center;">21-10-03 ~ 21-11-02</p>
-                                            <div>
-                                                <input class="btn" type="button" value="구독 취소" onclick="location.href='구독 취소 페이지'">
-                                            </div>
-                                        </c:otherwise>
-                                    </c:choose>
-
+                                    <th:block th:if="${sub}=='true'">
+                                        <div>
+                                            <p style="text-align: center;" th:text="|${startSub} ~ ${endSub}|"></p>
+                                        </div>
+                                    </th:block>
+                                    <th:block th:if="${sub}=='false'">
+                                        <div>
+                                            <p style="text-align: center;">구독정보가 없습니다.</p>
+                                        </div>
+                                        <div>
+                                            <input class="btn" type="button" value="구독하기" onclick="location.href='구독 취소 페이지'">
+                                        </div>
+                                    </th:block>
                                 </div>
                             </td>
                         </tr>
@@ -223,9 +200,9 @@
                     </table>
                 </div> <!-- 추가 -->
 
-            </c:when>
+            </th:block>
 
-            <c:otherwise>
+            <th:block th:if="${memberType}==1">
                 <div>
                     <h2 style="font-size: 25px; display: inline; padding:0 18%">쿠폰</h2>
                     <table style="text-align: center;">
@@ -244,16 +221,16 @@
                         </tr>
                         <tr>
                             <td>
-                                <div>보유쿠폰 OO개</div>
+                                <div th:text="|보유쿠폰 ${myCouponCnt}개|"></div>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div> <!-- 추가 -->
 
-            </c:otherwise>
+            </th:block>
 
-        </c:choose>
+
 
 
 
@@ -261,7 +238,7 @@
         <!--  Carousel -->
 
 
-        <section id="basketForm" class="carousel">
+        <section id="basketForm" class="carousel" th:if="${memberType}==0">
             <p id="category" style="font-size: 30px; margin-left: 2.5%;">나의 책가방</p>
             <div class="reel">
 
@@ -294,14 +271,11 @@
 
         <!-- 쿠폰리스트 -->
         <br>
-        <div id="couponForm"> <!-- 추가 -->
+        <div id="couponForm" th:if="${memberType}==1"> <!-- 추가 -->
             <div style="width: 65%; height: 3em; margin: 0 auto;">
                 <h2 style="font-size: 25px; display: inline; float: left;margin-right: 0;">쿠폰 보관함</h2>
-                <!-- 				<input type="button" value="쿠폰 등록" style="float: right; margin-right: 0px; font-size: 15px; height: 1.7em; margin-top: 1%; margin-left: 1%; width: 5em;" />
-                 -->		</div>
+            </div>
             <table style="text-align: center;">
-                <!-- <caption style="text-align:left; margin-bottom:3%;">
-                </caption>-->
                 <thead>
                 <tr style="background-color: #ceb980">
                     <th class="tdFirst">번호</th>
@@ -311,8 +285,7 @@
                 </thead>
                 <tbody>
 
-                <c:choose>
-                    <c:when test="${coupons != null and fn:length(coupons) > 0}">
+                    <th:block>
                         <c:forEach var="coupon" items="${coupons}" varStatus="status">
                             <tr>
                             <tr>
@@ -331,13 +304,13 @@
                                 </td>
                             </tr>
                         </c:forEach>
-                    </c:when>
+                    </th:block>>
                     <c:otherwise>
                         <tr>
                             <td colspan="5" align="center">등록된 쿠폰이 없습니다.</td>
                         </tr>
                     </c:otherwise>
-                </c:choose>
+
                 </tbody>
             </table>
 
@@ -561,8 +534,7 @@
 
 
 
-<script>
-
+<script th:inline="javascript">
     // 책읽기 띄우기
     function openPop(){
         if(${session_sub_status eq 0 || session_id  eq '' || empty session_id}){
@@ -572,30 +544,6 @@
         if(${session_sub_status eq 1}){
             var popup = window.open('${pageContext.request.contextPath}/app/book/bookViewer.jsp', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
         }
-
-    }
-
-
-
-
-    // 로그인 계정에 따른 표시창 구분
-    //session.setAttribute("session_accountType", 1);
-    var couponForm = document.querySelector("#couponForm");
-
-    var basketForm = document.getElementById("basketForm");
-    var subForm = document.getElementById("subForm");
-
-    console.log(couponForm);
-    console.log(basketForm);
-    console.log(subForm);
-
-    if(${session_accountType eq 0}){
-        console.log("일반");
-        couponForm.style.display = "none";
-    }else{
-        console.log("기업");
-        basketForm.style.display = "none";
-        subForm.style.display = "none";
 
     }
 
