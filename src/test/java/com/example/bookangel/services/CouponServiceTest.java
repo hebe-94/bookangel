@@ -40,4 +40,13 @@ public class CouponServiceTest {
         log.info("Coupon Service : 기업 쿠폰 리스트 확인...............");
         couponService.companyCouponList(1).forEach(couponVO -> couponVO.toString());
     }
+
+
+    // 기업 쿠폰 리스트 조회시 몇개 있는지 확인
+    @Test
+    public void companyCouponListCNT(){
+        log.info("[DAO]-기업 쿠폰 리스트 개수 확인...............");
+        log.info("-------------------------------------------");
+        log.info(couponService.companyCouponListCNT(2l)+"");
+    }
 }

@@ -44,4 +44,10 @@ public class CouponService {
         return couponDAO.makeCoupon(couponVO);
     }
 
+    // 기업 쿠폰 리스트 조회시 몇개 있는지 확인
+    public long companyCouponListCNT(long memberNum){
+        log.info("[DAO]-기업 쿠폰 리스트 개수 확인...............");
+        return couponDAO.companyCouponListCNT(memberNum);
+    }
+
 }

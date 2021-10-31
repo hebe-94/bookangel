@@ -31,4 +31,9 @@
         (COUPONNUM, COUPONNAME, COUPONSTATUS, MEMBERNUM, OWNNUM)
         VALUES(SEQ_BOOK_COUPON.NEXTVAL, #{couponName}, 0, null, #{memberNum})
     </insert>
+
+    <select id="companyCouponListCNT" resultType="long">
+        SELECT COUNT(couponNum) FROM BOOK_COUPON
+        WHERE ownNum = #{memberNum}
+    </select>
 </mapper>

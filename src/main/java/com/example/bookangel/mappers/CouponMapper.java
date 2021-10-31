@@ -21,5 +21,8 @@ public interface CouponMapper {
 
     // 쿠폰만들기
     public long makeCoupon(CouponVO couponVO);
+
+    // 기업 쿠폰 리스트 조회시 몇개 있는지 확인
+    public long companyCouponListCNT(long memberNum);
 }
 

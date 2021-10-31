@@ -72,4 +72,12 @@ public class CouponMapperTest {
         log.info("---------------------------------------------");
 
     }
+
+    // 기업 쿠폰 리스트 조회시 몇개 있는지 확인
+    @Test
+    public void companyCouponListCNT(){
+        log.info("---------------------------------------------");
+        log.info(couponMapper.companyCouponListCNT(1L) + "");
+    }
+
 }

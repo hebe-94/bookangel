@@ -60,7 +60,7 @@
 <div id="page-wrapper">
 
     <!-- 헤더부분 메인에서 맞춰서 가져올것! 메인에서 페이징 작업은 디자인 완료후 처리 해주어야 한다. -->
-   <!--Header-->
+    <!--Header-->
     <div id="header">
         <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
         <nav id="nav">
@@ -164,71 +164,71 @@
             <tr align="center" valign="middle">
             </tr>
         </table>
-                <div id="sub" th:if="${memberType}==0">
-                    <h2 style="font-size: 25px; display: inline; padding:0 18%">이용권</h2>
-                    <table style="text-align: center;">
-                        <thead>
-                        <tr style="background-color: #ceb980">
-                            <th style="width: 50%;" class="tdFirst">이용권/유효기간</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="td tdFirst">구독 사용 정보</td>
-                        </tr>
-                        <tr>
-                            <td class="tdFirst">
+        <div id="sub" th:if="${memberType}==0">
+            <h2 style="font-size: 25px; display: inline; padding:0 18%">이용권</h2>
+            <table style="text-align: center;">
+                <thead>
+                <tr style="background-color: #ceb980">
+                    <th style="width: 50%;" class="tdFirst">이용권/유효기간</th>
+                </tr>
+                </thead>
+                <tbody style="border-right:hidden;">
+                <tr>
+                    <td class="td tdFirst">구독 사용 정보</td>
+                </tr>
+                <tr>
+                    <td class="tdFirst">
 
+                        <div>
+                            <th:block th:if="${sub}=='true'">
                                 <div>
-                                    <th:block th:if="${sub}=='true'">
-                                        <div>
-                                            <p style="text-align: center;" th:text="|${startSub} ~ ${endSub}|"></p>
-                                        </div>
-                                    </th:block>
-                                    <th:block th:if="${sub}=='false'">
-                                        <div>
-                                            <p style="text-align: center;">구독정보가 없습니다.</p>
-                                        </div>
-                                        <div>
-                                            <input class="btn" type="button" value="구독하기" onclick="location.href='구독 취소 페이지'">
-                                        </div>
-                                    </th:block>
+                                    <p style="text-align: center;" th:text="|${startSub} ~ ${endSub}|"></p>
                                 </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div> <!-- 추가 -->
+                            </th:block>
+                            <th:block th:if="${sub}=='false'">
+                                <div>
+                                    <p style="text-align: center;">구독정보가 없습니다.</p>
+                                </div>
+                                <div>
+                                    <input class="btn" type="button" value="구독하기" onclick="location.href='/payment/subscribe'">
+                                </div>
+                            </th:block>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div> <!-- 추가 -->
 
-            </th:block>
+        </th:block>
 
-            <th:block th:if="${memberType}==1">
-                <div>
-                    <h2 style="font-size: 25px; display: inline; padding:0 18%">쿠폰</h2>
-                    <table style="text-align: center;">
-                        <!-- <caption style="text-align:left; margin-bottom:3%;">
-                        </caption>-->
+        <th:block th:if="${memberType}==1">
+            <div>
+                <h2 style="font-size: 25px; display: inline; padding:0 18%">쿠폰</h2>
+                <table style="text-align: center;">
+                    <!-- <caption style="text-align:left; margin-bottom:3%;">
+                    </caption>-->
 
 
-                        <thead>
-                        <tr style="background-color: #ceb980">
-                            <th style="width: 50%;">쿠폰/수량</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>쿠폰 / 수량</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div th:text="|보유쿠폰 ${myCouponCnt}개|"></div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div> <!-- 추가 -->
+                    <thead>
+                    <tr style="background-color: #ceb980">
+                        <th style="width: 50%;">쿠폰/수량</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>쿠폰 / 수량</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div th:text="|보유쿠폰 ${myCouponCnt}개|"></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div> <!-- 추가 -->
 
-            </th:block>
+        </th:block>
 
 
 
@@ -257,7 +257,7 @@
                                     </span>
                                     <span>
                                         <p style="margin-bottom: 0;">상세보기</p> <a id="more" href="#"><img
-                                    src="/images/backpack.png" /></a>
+                                            src="/images/backpack.png" /></a>
                                     </span>
                                 </div>
                             </figcaption>
@@ -285,256 +285,72 @@
                 </thead>
                 <tbody>
 
-                    <th:block>
-                        <c:forEach var="coupon" items="${coupons}" varStatus="status">
-                            <tr>
-                            <tr>
-                                <!--쿠폰이 있다면
-                                <td class="tdFirst">쿠폰 시퀀스</td>
-                                <td class="tdFirst">AAAA-AAAA-AAAA-AAAA</td>-->
-                                <td>
-                                    <c:choose>
-                                        <c:when test="${coupon.getCoupon_status() == 0}">
-                                            <c:out value="X"/>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <c:out value="O"/>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </th:block>>
-                    <c:otherwise>
+                <th:block th:if="${coupons}!='null'">
+                    <th:block th:each="c, i:${coupons}">
                         <tr>
-                            <td colspan="5" align="center">등록된 쿠폰이 없습니다.</td>
+                            <td >
+                                <span th:text="${i.index+1}"></span>
+                            </td>
+                            <td>
+                                <span th:text="${c.couponName}"></span>
+                            </td>
+                            <td>
+                                 <th:block th:if="${c.couponStatus}==0">
+                                     <span>O</span>
+                                 </th:block>
+                                 <th:block th:if="${c.couponStatus}==1">
+                                    <span>X</span>
+                                 </th:block>
+                            </td>
                         </tr>
-                    </c:otherwise>
+                    </c:forEach>
+                </th:block>
+                </th:block>
+                <th:block th:if="${coupons}=='null'">
+                    <tr>
+                        <td colspan="5" align="center">등록된 쿠폰이 없습니다.</td>
+                    </tr>
+                </th:block>
 
                 </tbody>
             </table>
-
-
-
-            <!-- 1,2,3,4,5 페이지 넘버링 -->
-            <table style="font-size:1.3rem">
-                <tr align="center" valign="middle">
-                    <td>
-                        <c:if test="${nowPage > 1}">
-                            <a href="${pageContext.request.contextPath}/member/MemberMyPage.me?page=${nowPage-1}">&lt;</a>
-                        </c:if>
-
-                        <c:forEach var="i" begin="${startPage}" end="${endPage}">
-                            <c:choose>
-                                <c:when test="${i eq nowPage}">
-                                    <c:out value="[${i}]"/>&nbsp;
-                                </c:when>
-                                <c:otherwise>
-                                    <a href="${pageContext.request.contextPath}/member/MemberMyPage.me?page=${i}"><c:out value="${i}"/></a>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-
-                        <c:if test="${nowPage != realEndPage}">
-                            <a href="${pageContext.request.contextPath}/member/MemberMyPage.me?page=${nowPage+1}">&gt;</a>
-                        </c:if>
-                    </td>
-                </tr>
-            </table>
-
         </div>
 
-
-
-
-
-
-<!--
-        &lt;!&ndash;  Footer &ndash;&gt;
-        <%&#45;&#45;<div id="footer">
-        <div class="container">
-            <div class="row">
-
-                &lt;!&ndash; Tweets &ndash;&gt;
-                <section class="col-4 col-12-mobile">
-                    <header>
-                        <h2 class="icon brands fa-twitter circled">
-                            <span class="label">Tweets</span>
-                        </h2>
-                    </header>
-                    <ul class="divided">
-                        <li>
-                            <article class="tweet">
-                                Amet nullam fringilla nibh nulla convallis tique ante sociis
-                                accumsan. <span class="timestamp">5 minutes ago</span>
-                            </article>
-                        </li>
-                        <li>
-                            <article class="tweet">
-                                Hendrerit rutrum quisque. <span class="timestamp">30
-										minutes ago</span>
-                            </article>
-                        </li>
-                        <li>
-                            <article class="tweet">
-                                Curabitur donec nulla massa laoreet nibh. Lorem praesent
-                                montes. <span class="timestamp">3 hours ago</span>
-                            </article>
-                        </li>
-                        <li>
-                            <article class="tweet">
-                                Lacus natoque cras rhoncus curae dignissim ultricies. Convallis
-                                orci aliquet. <span class="timestamp">5 hours ago</span>
-                            </article>
-                        </li>
-                    </ul>
-                </section>
-
-                <&#45;&#45;  Posts &ndash;&gt;
-                <section class="col-4 col-12-mobile">
-                    <header>
-                        <h2 class="icon solid fa-file circled">
-                            <span class="label">Posts</span>
-                        </h2>
-                    </header>
-                    <ul class="divided">
-                        <li>
-                            <article class="post stub">
-                                <header>
-                                    <h3>
-                                        <a href="#">Nisl fermentum integer</a>
-                                    </h3>
-                                </header>
-                                <span class="timestamp">3 hours ago</span>
-                            </article>
-                        </li>
-                        <li>
-                            <article class="post stub">
-                                <header>
-                                    <h3>
-                                        <a href="#">Phasellus portitor lorem</a>
-                                    </h3>
-                                </header>
-                                <span class="timestamp">6 hours ago</span>
-                            </article>
-                        </li>
-                        <li>
-                            <article class="post stub">
-                                <header>
-                                    <h3>
-                                        <a href="#">Magna tempus consequat</a>
-                                    </h3>
-                                </header>
-                                <span class="timestamp">Yesterday</span>
-                            </article>
-                        </li>
-                        <li>
-                            <article class="post stub">
-                                <header>
-                                    <h3>
-                                        <a href="#">Feugiat lorem ipsum</a>
-                                    </h3>
-                                </header>
-                                <span class="timestamp">2 days ago</span>
-                            </article>
-                        </li>
-                    </ul>
-                </section>
-
-
-                &lt;!&ndash;  Photos &ndash;&gt;
-                <section class="col-4 col-12-mobile">
-                    <header>
-                        <h2 class="icon solid fa-camera circled">
-                            <span class="label">Photos</span>
-                        </h2>
-                    </header>
-                    <div class="row gtr-25">
-                        <div class="col-6">
-                            <a href="#" class="image fit"><img
-                                    src="${pageContext.request.contextPath}/app/images/pic10.jpg"
-                                    alt="" /></a>
-                        </div>
-                        <div class="col-6">
-                            <a href="#" class="image fit"><img
-                                    src="${pageContext.request.contextPath}/app/images/pic11.jpg"
-                                    alt="" /></a>
-                        </div>
-                        <div class="col-6">
-                            <a href="#" class="image fit"><img
-                                    src="${pageContext.request.contextPath}/app/images/pic12.jpg"
-                                    alt="" /></a>
-                        </div>
-                        <div class="col-6">
-                            <a href="#" class="image fit"><img
-                                    src="${pageContext.request.contextPath}/app/images/pic13.jpg"
-                                    alt="" /></a>
-                        </div>
-                        <div class="col-6">
-                            <a href="#" class="image fit"><img
-                                    src="${pageContext.request.contextPath}/app/images/pic14.jpg"
-                                    alt="" /></a>
-                        </div>
-                        <div class="col-6">
-                            <a href="#" class="image fit"><img
-                                    src="${pageContext.request.contextPath}/app/images/pic15.jpg"
-                                    alt="" /></a>
-                        </div>
-                    </div>
-                </section>
-
-
-            </div>
-            <hr />&#45;&#45;%>
-            <div class="row">
-                <div class="col-12">-->
-
-                    <!-- Contact -->
-                    <!--                            <section class="contact">
-                                  <header>
-                                     <h3>Nisl turpis nascetur interdum?</h3>
-                                  </header>
-                                  <p>Urna nisl non quis interdum mus ornare ridiculus egestas ridiculus lobortis vivamus tempor aliquet.</p>
-                                  <ul class="icons">
-                                     <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                                     <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                                     <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                                     <li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
-                                     <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-                                     <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">Linkedin</span></a></li>
-                                  </ul>
-                               </section> -->
-
-                    <!--  Copyright -->
-                    <div class="copyright">
-                        <ul class="menu">
-                            <li>&copy; Kibook Angel. All rights reserved.</li>
-                        </ul>
-                    </div>
-
-                </div>
-
-            </div>
+        <!--  Copyright -->
+        <div class="copyright">
+            <ul class="menu">
+                <li>&copy; Kibook Angel. All rights reserved.</li>
+            </ul>
         </div>
 
+    </div>
 
-        <!-- Scripts -->
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/jquery.dropotron.min.js"></script>
-        <script src="/js/jquery.scrolly.min.js"></script>
-        <script src="/js/jquery.scrollex.min.js"></script>
-        <script src="/js/browser.min.js"></script>
-        <script src="/js/breakpoints.min.js"></script>
-        <script src="/js/util.js"></script>
-        <script src="/js/main.js"></script>
-        <script src="/js/modernizr.custom.js"></script>
-        <script src="/js/toucheffects.js"></script>
+</div>
+</div>
+
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/modernizr.custom.js"></script>
+<script src="/js/toucheffects.js"></script>
 </body>
 <!-- 검색 -->
 
-
+<script th:inline="javascript">
+    $(document).ready(function(){
+        console.log([[${coupons}]]);
+    })
+</script>
 
 <script th:inline="javascript">
+
     // 책읽기 띄우기
     function openPop(){
         if(${session_sub_status eq 0 || session_id  eq '' || empty session_id}){
@@ -547,7 +363,7 @@
 
     }
 
-// 검색어 내용 확인
+    // 검색어 내용 확인
     function checkSearch(){
         var form = document.searchForm;
         if(!form.search_text.value){

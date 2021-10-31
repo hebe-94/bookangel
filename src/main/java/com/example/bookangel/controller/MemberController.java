@@ -33,21 +33,24 @@ public class MemberController {
     @GetMapping("mypage")
     public void mypage(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
-        PaymentVO paymentVO = paymentService.searchPayment((Long)session.getAttribute("memberNum"));
+        if(session.getAttribute("sub").equals("true")) {
+            PaymentVO paymentVO = paymentService.searchPayment((Long) session.getAttribute("memberNum"));
+            model.addAttribute("startSub", paymentVO.getSubDate().substring(0,10));
+            model.addAttribute("endSub", paymentVO.getExpireDate().substring(0,10));
+        }
         String memberId = (String)session.getAttribute("memberId");
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
         model.addAttribute("memberType", session.getAttribute("memberType"));
-        model.addAttribute("memberId", session.getAttribute("memberId"));
+        model.addAttribute("memberId", memberId);
         model.addAttribute("memberName", session.getAttribute("memberName"));
         model.addAttribute("sub", session.getAttribute("sub"));
-        model.addAttribute("startSub", paymentVO.getSubDate().substring(0,10));
-        model.addAttribute("endSub", paymentVO.getExpireDate().substring(0,10));
-        model.addAttribute("myCouponCnt", couponService.companyCouponList((Long)session.getAttribute("memberNum")).size());
+        model.addAttribute("myCouponCnt", couponService.companyCouponListCNT((Long)session.getAttribute("memberNum")));
+        log.info("쿠폰"+couponService.companyCouponListCNT((Long)session.getAttribute("memberNum")));
         model.addAttribute("myInfo", memberService.getMyInfo(memberId));
-        if(couponService.companyCouponList((long)session.getAttribute("memberNum")).size()==0){
-            log.info("0000000000000000");
-        }else {
-            model.addAttribute("coupons", couponService.companyCouponList((Long) session.getAttribute("memberNum")));
+        if(couponService.companyCouponListCNT((Long)session.getAttribute("memberNum"))!=0){
+            model.addAttribute("coupons",couponService.companyCouponList((Long)session.getAttribute("memberNum")));
+        }else{
+            model.addAttribute("coupons", "null");
         }
     }
 
