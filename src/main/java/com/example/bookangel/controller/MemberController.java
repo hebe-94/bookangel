@@ -2,6 +2,7 @@ package com.example.bookangel.controller;
 
 import com.example.bookangel.beans.vo.MemberVO;
 import com.example.bookangel.beans.vo.PaymentVO;
+import com.example.bookangel.services.CouponService;
 import com.example.bookangel.services.MemberService;
 import com.example.bookangel.services.PaymentService;
 import com.example.bookangel.services.PaymentServiceImple;
@@ -26,18 +27,28 @@ import java.util.Random;
 public class MemberController {
     private final MemberService memberService;
     private final PaymentService paymentService;
+    private final CouponService couponService;
 
     // 페이지 이동
     @GetMapping("mypage")
     public void mypage(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
+        PaymentVO paymentVO = paymentService.searchPayment((Long)session.getAttribute("memberNum"));
         String memberId = (String)session.getAttribute("memberId");
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
-        model.addAttribute("sessionType", session.getAttribute("memberType"));
+        model.addAttribute("memberType", session.getAttribute("memberType"));
         model.addAttribute("memberId", session.getAttribute("memberId"));
         model.addAttribute("memberName", session.getAttribute("memberName"));
         model.addAttribute("sub", session.getAttribute("sub"));
+        model.addAttribute("startSub", paymentVO.getSubDate().substring(0,10));
+        model.addAttribute("endSub", paymentVO.getExpireDate().substring(0,10));
+        model.addAttribute("myCouponCnt", couponService.companyCouponList((Long)session.getAttribute("memberNum")).size());
         model.addAttribute("myInfo", memberService.getMyInfo(memberId));
+        if(couponService.companyCouponList((long)session.getAttribute("memberNum")).size()==0){
+            log.info("0000000000000000");
+        }else {
+            model.addAttribute("coupons", couponService.companyCouponList((Long) session.getAttribute("memberNum")));
+        }
     }
 
     @GetMapping("withdraw")
