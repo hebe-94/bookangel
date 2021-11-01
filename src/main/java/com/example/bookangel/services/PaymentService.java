@@ -19,4 +19,7 @@ public interface PaymentService {
 
     // 회원에 따른 구독 정보 가져오기
     public PaymentVO searchPayment(long memberNum);
+
+    // 구독 취소
+    public boolean subscribeCancel(long memberNum);
 }

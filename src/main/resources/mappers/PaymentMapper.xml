@@ -36,7 +36,7 @@
         WHERE MEMBERNUM = #{memberNum}
     </select>
 
-    <!-- 구독 하고 있는지 -->
+    <!-- 구독 하고 있는지-->
     <select id="subscribeExist" resultType="_long">
         SELECT COUNT(memberNum) FROM BOOK_PAYMENT
         WHERE MEMBERNUM = #{memberNum} and EXPIREDATE > SYSDATE
@@ -65,10 +65,19 @@
         WHERE MEMBERNUM = #{memberNum}
     </update>
 
+    <!--구독중인지 확인-->
     <select id="searchPayment" resultType="paymentVO">
         SELECT paymentNum, memberNum, couponNum, impUid, merchantUid, subMonth, subDate, expireDate
         FROM BOOK_PAYMENT
         WHERE MEMBERNUM = #{memberNum} and EXPIREDATE > SYSDATE
     </select>
+
+    <!--구독 취소 submonth만 0으로 변경되고 나머지는 그대로 있기!-->
+    <update id="subscribeCancel">
+        UPDATE BOOK_PAYMENT
+        SET SUBMONTH=0
+        WHERE MEMBERNUM=#{memberNum}
+    </update>
+
 
 </mapper>
