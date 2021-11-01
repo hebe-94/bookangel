@@ -79,4 +79,5 @@ public class CouponMapperTest {
         log.info("---------------------------------------------");
         log.info(couponMapper.companyCouponListCNT(1L) + "");
     }
+
 }

@@ -201,12 +201,14 @@
                 <div style="width: 35%;">
                     <div>
                         <div class="col-6 col-12-xsmall" style="width:100%">
-
-
-                            <label style="margin: 5% 0 2% 0;"><input type="radio" name="memberType" value="0" checked="checked" style=" -webkit-appearance: radio;width:5%;height: 20px; position:inherit;">일반회원</label>
-                            <label style="margin: 2% 0 2% 0;"><input type="radio" name="memberType" value="1" style="-webkit-appearance: radio;width:5%;height: 20px; position:inherit;">기업회원</label>
-
-
+                            <div style="display: flex; margin-top: 5%">
+                                <div style="width: 50%;">
+                                    <label style="margin: 5% 0 2% 0; margin-left: 25%"><input type="radio" name="memberType" value="0" checked="checked" style=" -webkit-appearance: radio;width:10%;height: 20px; position:inherit;">일반회원</label>
+                                </div>
+                                <div style="width: 50%;">
+                                    <label style="margin: 5% 0 2% 0; margin-left: 25%"><input type="radio" name="memberType" value="1" style="-webkit-appearance: radio;width:10%;height: 20px; position:inherit;">기업회원</label>
+                                </div>
+                            </div>
                             <p style="margin-bottom: 2%;margin-top: 5%;margin-right: 0%;text-align:left;width: 100%;font-size: 25px;"><span style="color:red;">*</span> 아이디   <span id="idCheck_text" style="font-size:0.7em; font-weight:bold;"></span></p>
                             <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="memberId" id="memberId" value="" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"/>
 
@@ -219,8 +221,15 @@
                             <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="memberName" id="memberName" value=""/>
 
                             <p style="margin-bottom: 2%; text-align:left; font-size: 25px;"><span style="color:red;">*</span> 핸드폰 번호</p>
-                            <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="memberTel" id="memberTel" value="" placeholder="000-0000-0000 형식으로 작성해 주세요." pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" maxlength="13"/>
-
+                            <input type="text" style="width: 70%; margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="memberTel" id="memberTel" value="" placeholder="핸드폰 번호를 작성해 주세요." maxlength="13"/>
+                                <input type="button"
+                                       style="text-align: center;font-size: 12px;width: 30%;font-family: 'Gowun Dodum';background-color: #8a8a8a;border-radius: 10px;"
+                                       value="인증번호 받기" id="btnCheckSMS">
+                                <input type="text"
+                                       style="z-index: 0;width: 70%;font-family: 'Gowun Dodum';background-color: #E5E5E5;font-size: 12px; mamargin-bottom: 5%;"
+                                       name="checkSMS" id="checkSMS" value=""
+                                       placeholder="인증번호를 입력해주세요">
+                                <input style="width: 30%;margin-bottom: 5%; border-radius: 10px; font-size: 12px; padding: 0; font-family: 'Gowun Dodum';" type="button" id="btnCheckSMSSuccess" value="인증번호 확인">
                             <p style="margin-bottom: 2%; text-align:left; font-size: 25px;"><span style="color:red;">*</span> 이메일</p>
                             <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="memberEmail" id="memberEmail" value="" placeholder="abc@gmail.com"/>
 
@@ -229,12 +238,12 @@
 
                         <p style="margin-bottom: 2%; text-align:left; font-size: 25px;">우편번호</p>
 
-                        <div style="display: -webkit-inline-box;justify-content: space-between; position: inherit; ">
-                            <input style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;width: 102%;" type="text" name="memberZipcode" id="memberZipcode" class="postcodify_postcode5" value="" />
+                        <div style="display:flex; justify-content: space-between; position: inherit; ">
+                            <input style="z-index: 0;margin-bottom: 5%;font-family:inherit;font-size:12px;position: inherit;width: 70%;" type="text" name="memberZipcode" id="memberZipcode" class="postcodify_postcode5" value="" />
 
-                            <ul class="actions">
-                                <li>
-                                    <input type="button" id="postcodify_search_button" class="button primary" style="margin-bottom: 5%;font-family:inherit;font-size: 15px;position: inherit;width: 100%;margin-left: 10%;" value="검색">
+                            <ul class="actions" style="width: 30%">
+                                <li style="width: 100%">
+                                    <input type="button" id="postcodify_search_button" class="button primary" style="margin-bottom: 5%;font-family:inherit;font-size: 15px;position: inherit;width: 100%; border-radius: 10px;" value="검색">
                                 </li>
                             </ul>
                         </div>
@@ -250,8 +259,8 @@
 
                         <p style="margin-bottom: 2%;border-bottom: solid 7px #f5F3f3; padding: 27px;margin-bottom: 5%;"></p>
                         <div>
-                            <input type="button" value="완료" class="primary" style="width: 48%;font-size: 18px;font-family: inherit;margin-right: 2%;cursor:pointer;" onclick="formSubmit()"/>
-                            <input type="button" value="취소" class="primary" style="width: 48%;font-size: 18px;font-family: inherit;margin-left: 2%;cursor:pointer;" onclick="history.back()"/>
+                            <input type="button" value="가입 완료" class="primary" style="width: 49.5%;font-size: 12px;font-family: inherit;margin-right: 0.5%;cursor:pointer;" onclick="formSubmit()"/>
+                            <input type="button" value="취소" class="primary" style="width: 49.5%;font-size: 12px;font-family: inherit;margin-left: 0.5%;cursor:pointer;" onclick="history.back()"/>
                         </div>
                     </div>
                 </div>
@@ -305,11 +314,13 @@
 
 </body>
 <script th:inline="javascript">
+
     $(document).ready(function(){
         if(![[${memberId}]]==""||![[${memberId}]]==null){
             alert("이미 로그인 상태입니다.");
             location.href="/main/mainPage";
         }
     })
+
 </script>
 </html>

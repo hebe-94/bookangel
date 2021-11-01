@@ -20,5 +20,6 @@ public class MemberDAO {
     public void modifyPw(MemberVO memberVO){memberMapper.change(memberVO);}
     public String findId(MemberVO memberVO){return memberMapper.getId(memberVO);}
     public void modifyInfo(MemberVO memberVO){memberMapper.modify(memberVO);}
+    public int checkTel(String memberTel){return memberMapper.countTel(memberTel);}
 
 }
