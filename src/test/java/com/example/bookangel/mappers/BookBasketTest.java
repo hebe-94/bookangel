@@ -15,8 +15,14 @@ public class BookBasketTest {
 
     @Test
     public void addBookBasket(){
-
         log.info("-----------------------------------");
-        log.info("책가방 담기 : " + bookBasketMapper.addBookBasket("15from.jpg",21L));
+        log.info("책가방 담기 : " + bookBasketMapper.addBookBasket("09promise.jpg",21L));
+    }
+
+    @Test
+    public void myBasket(){
+        log.info("-----------------------------------");
+        log.info("책가방 리스트 : ");
+        bookBasketMapper.myBasket(21L).forEach(bookVO -> log.info(bookVO + ""));
     }
 }

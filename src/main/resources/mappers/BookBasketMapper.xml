@@ -19,4 +19,9 @@
 		    )
     </insert>
 
+    <select id="myBasket" resultType="bookVO">
+        SELECT B.BOOKNUM, B.BOOKNAME, B.BOOKIMAGESRC, B.BOOKAUTHOR, B.BOOKPUBLISHER, B.BOOKCONTENT FROM BOOK B JOIN BOOK_BASKET BB
+        ON BB.MEMBERNUM = #{memberNum} AND BB.BOOKNUM = B.BOOKNUM
+    </select>
+
 </mapper>

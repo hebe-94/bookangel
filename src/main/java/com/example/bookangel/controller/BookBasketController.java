@@ -1,5 +1,6 @@
 package com.example.bookangel.controller;
 
+import com.example.bookangel.beans.vo.BookVO;
 import com.example.bookangel.beans.vo.Criteria;
 import com.example.bookangel.beans.vo.PageDTO;
 import com.example.bookangel.services.BookBasketService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -37,4 +39,22 @@ public class BookBasketController {
 
         return "main/mainPage";
     }
+
+    @PostMapping("myBasket")
+    public String myBasket(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        long memberNum = Long.parseLong(session.getAttribute("memberNum").toString());
+        List<BookVO> myBookList = bookBasketService.myBasket(memberNum);
+            if(myBookList == null){
+                // 책가방 리스트 실패
+            }else{
+                // 책가방 리스트 성공
+                model.addAttribute("bookList",myBookList);
+            }
+
+
+        return "member/mypage";
+    }
+
 }
