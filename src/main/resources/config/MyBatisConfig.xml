@@ -8,5 +8,6 @@
         <typeAlias type="com.example.bookangel.beans.vo.MainPageVO" alias="mainPageVO"/>
         <typeAlias type="com.example.bookangel.beans.vo.MemberVO" alias="memberVO"/>
         <typeAlias type="com.example.bookangel.beans.vo.AttachFileVO" alias="attachFileVO"/>
+        <typeAlias type="com.example.bookangel.beans.vo.BookBasketVO" alias="bookBasketVO"/>
     </typeAliases>
 </configuration>
