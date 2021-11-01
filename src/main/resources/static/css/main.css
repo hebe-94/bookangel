@@ -2514,7 +2514,8 @@ button {
 /* Banner */
 
 #banner {
-	background: #fff;
+	/*background: #fff;*/
+	background: rgb(255 255 255 / 0%);
 	text-align: center;
 	padding: 4.5em 0 4.5em 0;
 	margin-bottom: 0;
@@ -2752,9 +2753,10 @@ button {
 .carousel article {
 	display: inline-block;
 	width: 18em;
-	background: #fff;
+	/*background: #fff;*/
 	text-align: center;
-	padding: 0 1em 3em 1em;
+	/*padding: 0 1em 3em 1em;*/
+	padding: 0 0em 0em 0em;
 	margin: 0 2em 0 0;
 	white-space: normal;
 	opacity: 1.0;
