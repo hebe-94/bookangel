@@ -2,10 +2,7 @@ package com.example.bookangel.controller;
 
 import com.example.bookangel.beans.vo.MemberVO;
 import com.example.bookangel.beans.vo.PaymentVO;
-import com.example.bookangel.services.CouponService;
-import com.example.bookangel.services.MemberService;
-import com.example.bookangel.services.PaymentService;
-import com.example.bookangel.services.PaymentServiceImple;
+import com.example.bookangel.services.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
@@ -28,7 +25,7 @@ public class MemberController {
     private final MemberService memberService;
     private final PaymentService paymentService;
     private final CouponService couponService;
-
+    private final BookBasketService bookBasketService;
     // 페이지 이동
     @GetMapping("mypage")
     public void mypage(HttpServletRequest request, Model model){
@@ -39,6 +36,7 @@ public class MemberController {
             model.addAttribute("endSub", paymentVO.getExpireDate().substring(0,10));
             model.addAttribute("end",paymentVO.getSubMonth());
         }
+//        if(bookBasketService.)
         String memberId = (String)session.getAttribute("memberId");
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
         model.addAttribute("memberType", session.getAttribute("memberType"));
