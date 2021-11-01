@@ -184,6 +184,9 @@
                                 <div>
                                     <p style="text-align: center;" th:text="|${startSub} ~ ${endSub}|"></p>
                                 </div>
+                                <div th:if="${end}!=0">
+                                    <input class="btn" type="button" value="구독취소" onclick="subscribeCancel()">
+                                </div>
                             </th:block>
                             <th:block th:if="${sub}=='false'">
                                 <div>
@@ -344,9 +347,19 @@
 <!-- 검색 -->
 
 <script th:inline="javascript">
-    $(document).ready(function(){
-        console.log([[${coupons}]]);
-    })
+    function subscribeCancel(){
+        var memberNum = [[${memberNum}]];
+        $.ajax({
+            url:"/member/subscribeCancel",
+            type:"post",
+            data:{"memberNum":memberNum},
+            success: function(result){
+                if(result=="success") {
+                    alert("구독 취소 완료! \n남은 기간동안 사용이 가능합니다.");
+                }
+            }
+        });
+    }
 </script>
 
 <script th:inline="javascript">

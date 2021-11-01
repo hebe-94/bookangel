@@ -67,4 +67,12 @@ public class PaymentMapperTest {
 
     }
 
+    // 구독 취소
+    @Test
+    public void testsubScribeCancel(){
+        log.info("---------------------------------");
+        log.info("[payment service : " + paymentMapper.subscribeCancel(21));
+        log.info("---------------------------------");
+    }
+
 }

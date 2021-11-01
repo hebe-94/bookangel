@@ -29,4 +29,7 @@ public class PaymentServiceImple implements PaymentService{
 
     @Override
     public PaymentVO searchPayment(long memberNum){ return paymentDAO.searchPayment(memberNum); }
+
+    @Override
+    public boolean subscribeCancel(long memberNum){ return paymentDAO.subscribeCancel(memberNum); }
 }

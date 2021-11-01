@@ -37,6 +37,7 @@ public class MemberController {
             PaymentVO paymentVO = paymentService.searchPayment((Long) session.getAttribute("memberNum"));
             model.addAttribute("startSub", paymentVO.getSubDate().substring(0,10));
             model.addAttribute("endSub", paymentVO.getExpireDate().substring(0,10));
+            model.addAttribute("end",paymentVO.getSubMonth());
         }
         String memberId = (String)session.getAttribute("memberId");
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
@@ -124,6 +125,13 @@ public class MemberController {
     public String join(MemberVO memberVO,HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         model.addAttribute("memberId", session.getAttribute("memberId"));
+        String memberTel = memberVO.getMemberTel();
+        if(memberTel.length() == 10) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        memberVO.setMemberTel(memberTel);
         memberService.join(memberVO);
         return "member/login";
 
@@ -202,6 +210,12 @@ public class MemberController {
             String ran = Integer.toString(r.nextInt(10));
             numStr+=ran;
         }
+        if(memberTel.length() == 13) {
+            memberTel.replaceAll("-","");
+        } else if(memberTel.length() == 12) {
+            memberTel.replaceAll("-","");
+        }
+
 //        String api_key = "NCSLANK8RO9KSPQQ";
 //        String api_secret = "0DD9JD7EQ7OGNTDHLBHV7CST45CHMZ0V";
 //        Message coolsms = new Message(api_key, api_secret);
@@ -227,14 +241,13 @@ public class MemberController {
     @PostMapping("modifypw")
     public String modifypw(MemberVO memberVO){
         String memberTel = memberVO.getMemberTel();
-        String result = "";
         if(memberTel.length() == 10) {
-            result = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
         } else if(memberTel.length() == 11) {
-            result = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
         }
-        memberVO.setMemberTel(result);
-        log.info(result);
+        memberVO.setMemberTel(memberTel);
+        log.info(memberTel);
         memberService.modifyPw(memberVO);
         return "member/login";
     }
@@ -242,13 +255,12 @@ public class MemberController {
     public String findID(MemberVO memberVO, Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         String memberTel = memberVO.getMemberTel();
-        String result = "";
         if(memberTel.length() == 10) {
-            result = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
         } else if(memberTel.length() == 11) {
-            result = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
         }
-        memberVO.setMemberTel(result);
+        memberVO.setMemberTel(memberTel);
         model.addAttribute("memberNum", session.getAttribute("memberNum"));
         model.addAttribute("memberId", memberService.findId(memberVO));
         return "member/findedID";
@@ -257,8 +269,66 @@ public class MemberController {
     public String memberModify(MemberVO memberVO, HttpServletRequest request){
             HttpSession session = request.getSession();
             memberVO.setMemberNum((Long)session.getAttribute("memberNum"));
+        String memberTel = memberVO.getMemberTel();
+        if(memberTel.length() == 10) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        memberVO.setMemberTel(memberTel);
             memberService.modifyInfo(memberVO);
             return "redirect:/main/mainPage";
+    }
+    @PostMapping("subscribeCancel")
+    @ResponseBody
+    public String subscribeCancel(@RequestParam("memberNum") Long memberNum){
+        String result = null;
+        if(paymentService.subscribeCancel(memberNum)) {
+            result = "success";
+        }else{
+            result = "false";
+        }
+        return result;
+    }
+    @PostMapping("checkTel")
+    @ResponseBody
+    public String checkTel(@RequestParam("memberTel") String memberTel){
+        String result = null;
+        String tel = memberTel;
+        if(memberTel.length() == 10) {
+            tel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            tel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        boolean check = memberService.checkTel(tel);
+        if(check){
+            result = "success";
+        }else{
+            result = "false";
+        }
+        return result;
+    }
+    @PostMapping("changeTel")
+    @ResponseBody
+    public String changeTel(@RequestParam("memberTel") String memberTel, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String tel = memberTel;
+        if(memberTel.length() == 10) {
+            tel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            tel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        log.info("전화번호!"+tel);
+        if(!memberService.getMyInfo((String)session.getAttribute("memberId")).getMemberTel().equals(tel)) {
+            boolean check = memberService.checkTel(tel);
+            if (check) {
+                return "success";
+            } else {
+                return "false";
+            }
+        }else {
+            return "success";
+        }
     }
 }
 

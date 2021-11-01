@@ -46,4 +46,12 @@ public class PaymentServiceTest {
         log.info("[payment service : " + paymentService.searchPayment(1));
         log.info("---------------------------------");
     }
+
+    // 구독 취소
+    @Test
+    public void testsubScribeCancel(){
+        log.info("---------------------------------");
+        log.info("[payment service : " + paymentService.subscribeCancel(21));
+        log.info("---------------------------------");
+    }
 }

@@ -40,6 +40,13 @@ public class PaymentDAO {
         return paymentMapper.searchPayment(memberNum);
     }
 
+    // 구독 취소
+    public boolean subscribeCancel(long memberNum){
+        log.info("[DAO]-구독 취소하기...............");
+        return paymentMapper.subscribeCancel(memberNum) == 1L;
+
+    }
+
 
 
 }

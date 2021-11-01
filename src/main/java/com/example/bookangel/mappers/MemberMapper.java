@@ -23,4 +23,6 @@ public interface MemberMapper {
     public String getId(MemberVO memberVO);
     //정보 수정
     public void modify(MemberVO memberVO);
+    //휴대폰번호 중복검사
+    public int countTel(String memberTel);
 }
