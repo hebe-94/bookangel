@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>기북천사 | 친구되기</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/adminboard.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/default.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/adminBoardApply.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/adminBoardView.css" type="text/css"/>
+    <noscript><link rel="stylesheet" href="/css/noscript.css" type="text/css"/></noscript>
+    <!-- logo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+    <!-- underLogo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+    <!-- 기본 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <style>
+        .big-width {display: block;}
+        .small-width {display: none;}
+
+        @media (max-width: 918px) {
+            .writer {display: none;}
+            .regDate {display: none;}
+            .updateDate {display: none;}
+        }
+
+        /* body 기본 폰트 전체 적용 */
+        body{
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+        #logo{
+            font-family: 'East Sea Dokdo', cursive;
+            font-size:100px;
+        }
+        #underLogo{
+            font-family: 'Yeon Sung', cursive;
+            font-size:100px;
+        }
+        #category{
+            font-family:'Gowun Dodum', sans-serif;
+            font-size:30px;
+            text-align: center;
+        }
+
+        ul{
+            list-style:none;
+            padding-left: 0px
+        }
+
+    </style>
+<body class="no-sidebar is-preload">
+<div id="page-wrapper">
+    <div id="header">
+        <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
+        <nav id="nav">
+
+            <!-- 기북천사 로고 -->
+            <div>
+                <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
+                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+            </div>
+            <ul>
+                <!-- 검색 -->
+                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
+                    <div class="search" style="float: left; display:inline-block">
+                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
+                    </div>
+                    <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                        <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
+                             4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
+                             vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
+                             4PSIwIDAgMzAuMjM5IDMwLjIzOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzAuMjM5IDMwLjIzOTsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZD0iTTIwLjE5NCwzLjQ2Yy00LjYxMy00LjYxMy0xMi4xMjEtNC42MTMtMTYuNzM0LDB
+                             jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
+                             JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
+                             zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
+                    </button>
+                </form>
+                <li>
+                    <a href="#">📖
+                        <th:block th:text="${memberName}" />
+                        <input type="hidden" name="sessionType" value="${sessionType}">
+                    </a>
+                    <ul>
+                        <th:block th:if="${memberNum} == null">
+                            <li id="loginTab"><a href="/member/login">로그인</a></li>
+                            <li><a  href="/main/qna">Q&A</a></li>
+                        </th:block>
+
+                        <th:block th:if="${memberNum} != null">
+                            <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                <ul>
+                                    <li><a href="/member/mypage">내정보 보기</a></li>
+                                    <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                    <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
+                                    <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                                </ul>
+                            </li>
+                            <li><a  href="/main/qna">Q&A</a></li>
+                            <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                        </th:block>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+    <!-- 작성 글 보기-->
+    <div class="ViewWrapper">
+        <div class="inner">
+            <section class="main">
+                <header class="major">
+                    <div class="form" >
+                        <form method="post" action="/board/remove">
+                            <div class="fields" th:object="${board}">
+                                <!--<a class="field">-->
+                                   <input name="boardTitle" type="text" th:field="*{boardTitle}" style="padding: 0;background: white; text-align:left; font-size: 1.5em; border: none; z-index: 0;" readonly/>
+                                   <input name="boardMemberNum" type="hidden" th:field="*{memberNum}" style="text-align:left; background: white; font-size: 1em; border: none;" readonly/>
+                                    <input name="boardNum" type="hidden" th:field="*{boardNum}"/>
+                                    <!--<h2 style="text-align:left; font-size: 1.5em;"><a th:field="*{boardTitle}"></a></h2>-->
+                                    <!--<a style="text-align:left; font-size:1em" th:field="*{memberNum}">작성자</a>-->
+                <!--</header>-->
+                                <div class="field">
+                                    <h4>첨부파일</h4>
+                                </div>
+                                <div class="field">
+                                    <div class="uploadResult">
+                                        <ul style="none"></ul>
+                                    </div>
+                                </div>
+                <br>
+                <hr style=" top: 0.5em;   margin-bottom: 1em;">
+                    <input name="siteLink" type="text" th:field="*{siteLink}" style="font-size: 1em;background: white; border: none; z-index: 0;" readonly/>
+                    </div>
+                <div class="form-group">
+                    <label for="exampleTextarea" class="form-label mt-4">
+                        <textarea class="form-control" th:text="${board.boardContent}" id="exampleTextarea" rows="10" style="resize: none; font-family: 'Gowun Dodum', sans-serif; border: none; outline: none" name="boardContent"/>
+                    </label>
+                </div>
+                <input type="hidden" name="boardRemove" th:field="${board.boardNum}">
+                <br>
+                <div class="col-12"  id="viewBtn">
+                    <ul class="actions" style="display:flex; justify-content:flex-end;">
+                        <span id="adminbtn">
+<!--                        <form method="post" action="/board/read" name="updateOk" th:value="${boardNum}">-->
+<!--                        <li><input type="button" value="승인" name="updateOk" onclick="showPopup()" style="z-index: 0;"></li>-->
+                            <!--                        </form>-->
+                            <th:block th:if="${memberNum} eq 81">
+                            <input type="submit" method="post" value="승인" formaction="/board/read" name="updateOk" onclick="showPopup()" style="z-index: 0;box-sizing: inherit;width: 9px;font-size: 12px;text-align: center;display: grid;">
+                            <li><input type="button" value="거절" onclick="showPopup()"></li>
+                            </th:block>
+                            <th:block th:if="${memberNum} ne 81">
+                            <input type="hidden" method="post" value="승인" formaction="/board/read" name="updateOk" onclick="showPopup()" style="z-index: 0;box-sizing: inherit;width: 9px;font-size: 12px;text-align: center;display: grid;">
+                            <li><input type="hidden" value="거절" onclick="showPopup()"></li>
+                            </th:block>
+                        <li ><a id="goList" href="javascript:void(0)"><input type="button" value="목록" class="primary" style="z-index: 0;"/></a></li>
+                        <li><input type="button" value="수정" onclick="goUpdate()" style="z-index: 0;"/></li>
+                        <li><input type="submit" value="삭제" style="z-index: 0;width: 0%;padding: 0.65em 2.5em 0.65em 2.5em;border-radius: 0.5em;font-size: 14px;display: inline-grid;"></li>
+                        </span>
+                    </ul>
+                </div>
+            </form>
+            <hr style="top: 2.5em;margin-bottom: 4em;">
+<!--            <form class="main accent2" style=" margin-top: 9%;">
+                <h2 style="font-size:20px; margin-bottom: 20px;">승인여부</h2>
+
+                        <form method="post" action="#" class="combined" style="width:auto;">
+                            <textarea name="content" id="content" placeholder="KibookAngel과 함께하세요" class="invert" rows="2" style="border-radius:0; resize:none; font-size:15px; font-family: 'Gowun Dodum', sans-serif; width: 88%;"></textarea>
+                            <div  id="replyBtn" style="margin-left: 47%;">
+                                <input id="register" type="button" name="content" class="primary" value="등록" onclick="comment()"  style="margin-top: -24%; height: 70px;  margin-right: 1%;"/>
+                            </div>
+                        </form>
+
+                        <form id="replies">
+                            <header class="major" style="text-align:left;">
+
+                            </header>
+                        </form>
+                    <form id="repliess" class="combined" style="flex-direction:column; margin:0; display:contents;">
+                    </form>
+                </form>-->
+            </section>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <hr>
+</div>
+<!-- Copyright -->
+<div class="copyright">
+    <ul class="menu">
+        <li>&copy; Kibook Angel. All rights reserved.</li>
+    </ul>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script	src="/js/jquery.min.js"></script>
+<script	src="/js/jquery.dropotron.min.js"></script>
+<script	src="/js/jquery.scrolly.min.js"></script>
+<script	src="/js/jquery.scrollex.min.js"></script>
+<script	src="/js/browser.min.js"></script>
+<script	src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/modernizr.custom.js"></script>
+<script src="/js/toucheffects.js"></script>
+
+<script th:inline="javascript">
+    let boardNum = [[${board.getBoardNum()}]];
+    let paging = [[${criteria.listLink}]];
+
+    function goUpdate(){
+        location.href = "/board/modify" + paging + "&boardNum=" + boardNum;
+    }
+
+
+    $("a#goList").on("click", function(){
+        location.href = "/board/list" + paging;
+    });
+</script>
+<script language="javascript">
+    function showPopup() {
+        window.open("mail", "sendmail", "width=500, height=680, left=300, top=50");
+    }
+</script>
+<script th:inline="javascript">
+    let sessionType = [[${sessionType}]];
+    var applyTab = document.getElementById("applyTab");
+
+    if(sessionType == 0){
+        applyTab.style.display="none";
+    } else if(sessionType == 1){
+        applyTab.style.display="inline";
+    }
+</script>
+
+
+<script th:inline="javascript">
+    let uploadResult = $(".uploadResult ul");
+    let pageNum = 1;
+
+
+
+    $(document).ready(function(){
+        (function(){
+            console.log(boardNum);
+            $.getJSON("/board/getAttachList", {boardNum: boardNum},
+                function(arr){
+                    console.log(arr);
+                    let str = "";
+
+                    $(arr).each(function(i, attach){
+                        if(!attach.image){
+                            let fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
+                            str += "<li>";
+                            str += "<div>";
+                            str += "<a href='/upload/download?fileName=" + fileCallPath + "'>";
+                            str += "<img src='/images/attach.png' width='30px'>" + attach.fileName.substring(attach.fileName.indexOf("_") + 1);
+                            str += "</a>"
+                            str += "</div>";
+                            str += "</li>";
+                        }else{
+                            let fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+                            let originPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName);
+
+                            str += "<li>";
+                            str += "<div>";
+                            str += "<a href=\"javascript:showImage(\'" + originPath + "\')\">";
+                            str += "<img src='/upload/display?fileName=" + fileCallPath + "'>" + attach.fileName.substring(attach.fileName.indexOf("_") + 1);
+                            str += "</a>";
+                            str += "</div>";
+                            str += "</li>";
+                        }
+                    });
+                    uploadResult.html(str);
+                });//getJSON
+        })();
+    });
+    </script>
+
+</html>

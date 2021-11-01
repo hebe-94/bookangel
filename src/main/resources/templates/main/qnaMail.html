@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/qna.css" type="text/css"/>
+<!-- 기본 폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+      rel="stylesheet">
+<div class="inner">
+    <br>
+    <h3 style="font-family: 'Gowun Dodum', sans-serif; text-align: center;">기북천사</h3>
+
+    <form th:action="@{/mail}" method="post" id="sendForm" onsubmit="return sendEmail()">
+        <input name="address" type="hidden" placeholder="이메일 주소" value="mirae1686@gmail.com" readonly/> <br>
+        <div class="field half first" style="margin-top: 15px;">
+            <label style="font-family: 'Gowun Dodum', sans-serif;" ><span style="color: red;">*</span>제목</label>
+            <input id="mailTitle" name="title" placeholder="제목을 입력해주세요." style="font-family: 'Gowun Dodum', sans-serif;outline:none;"> <br>
+        </div>
+        <div class="field half">
+            <label style="font-family: 'Gowun Dodum', sans-serif;" ><span style="color: red;">*</span>내용</label>
+            <textarea name="message" cols="60" rows="20" style="resize: none; font-family: 'Gowun Dodum', sans-serif;">답장 받으실 메일 주소 :
+문의 내용
+            </textarea>
+        </div>
+        <ul class="actions" style="text-align: center;">
+            <li><input type="submit" name="send" id="send" value="발송" style="font-family: 'Gowun Dodum', sans-serif;outline:none;" ></li>
+            <li><input type="button" id="close" name="close" value="닫기"  onclick="window.close()" style="font-family: 'Gowun Dodum', sans-serif;outline:none;" ></li>
+        </ul>
+    </form>
+</div>
+
+
+
+</body>
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<script th:inline="javascript">
+    // let sendForm = document.getElementById("sendForm");
+    //     alert("발송 완료");
+    //     sendForm.submit();
+    function sendEmail(){
+        if(!$("input#mailTitle").val()){
+            alert("제목을 작성해주세요.");
+            return false;
+        }
+        alert("발송완료");
+        return true;
+    }
+</script>
+</html>

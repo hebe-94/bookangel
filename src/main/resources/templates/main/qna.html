@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<!--
+   Helios by Pixelarity
+   pixelarity.com | hello@pixelarity.com
+   License: pixelarity.com/license
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>기북천사 | 1:1 문의</title>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Codrops" />
+    <link rel="stylesheet" type="text/css" href="/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/couponList.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
+
+    <!-- logo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap"
+          rel="stylesheet">
+    <!-- underLogo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap"
+          rel="stylesheet">
+    <!-- 기본 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+          rel="stylesheet">
+
+</head>
+<style>
+    /* body 기본 폰트 전체 적용 */
+
+    body {
+        font-family: 'Gowun Dodum', sans-serif;
+    }
+
+    #logo {
+        font-family: 'East Sea Dokdo', cursive;
+        font-size: 100px;
+    }
+
+    #underLogo {
+        font-family: 'Yeon Sung', cursive;
+        font-size: 100px;
+    }
+
+    summary {
+        cursor: pointer;
+        list-style: none;
+        outline: none;
+        padding:15px;
+        border: solid 1px;
+        border-radius: 3px;
+        border-color:#e8e8e8;
+        margin-bottom: 3px;
+        background-color: #f5f5f5;
+    }
+
+    #help{
+        margin: 5% 19% 7% 16%
+    }
+
+    #help2{
+        border-top: solid 11px;
+        border-color: #f5f4f3;
+        padding: 30px;
+    }
+
+    .pure-group{
+        margin: 2% 2% 0 2%;
+        text-align: left;
+    }
+
+    .qw{
+        padding: inherit;
+        margin: 1% 0 2% 0;
+        width: 40%;
+        margin-right: 60%;
+        margin-left: 2%;
+        position: inherit;
+    }
+
+    #message{
+        resize: none; padding:inherit; width: 93%; margin: 1% 20% 3% 2%; positon:inherit;
+    }
+
+    #nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: right;
+        padding: 1.5em 0 1.5em 0;
+        z-index: 1;
+        overflow: hidden;
+    }
+</style>
+<body class="no-sidebar is-preload">
+<div id="page-wrapper">
+
+    <!--  Header -->
+    <div id="header">
+        <!-- 상단 탭 -->
+        <!-- Nav -->
+        <nav id="nav">
+
+            <!-- 기북천사 로고 -->
+            <div>
+                <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
+            </div>
+
+            <ul>
+
+                <!-- 검색 -->
+                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk.oo" name="searchForm">
+                    <div class="search" style="float: left; display:inline-block">
+                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
+                    </div>
+                    <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                        <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
+                             4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
+                             vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
+                             4PSIwIDAgMzAuMjM5IDMwLjIzOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzAuMjM5IDMwLjIzOTsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZD0iTTIwLjE5NCwzLjQ2Yy00LjYxMy00LjYxMy0xMi4xMjEtNC42MTMtMTYuNzM0LDB
+                             jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
+                             JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
+                             zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+                    </button>
+                </form>
+
+                <!-- 회원정보 -->
+                <li>
+                    <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+
+                        <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
+                        <input type="hidden" name="sessionType" value="${sessionType}">
+
+                    </a>
+                    <ul>
+                        <th:block th:if="${memberNum} == null">
+                            <li id="loginTab"><a href="/member/login">로그인</a></li>
+                            <li><a  href="/main/qna">Q&A</a></li>
+                        </th:block>
+
+                        <th:block th:if="${memberNum} != null">
+                            <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                <ul>
+                                    <li><a href="/member/mypage">내정보 보기</a></li>
+                                    <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                    <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
+                                    <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                                </ul>
+                            </li>
+                            <li><a  href="/main/qna">Q&A</a></li>
+                            <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                        </th:block>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+<section>
+    <header >
+        <div style="text-align:center;padding: 100px 300px 5px 300px;">
+            <h2 style="margin-left: 5%;padding-bottom: 40px;">무엇을 도와드릴까요?&nbsp;&nbsp;&nbsp;<img src="/images/qna.png" width="40" height="60"></h2>
+            <p style="font-size: inherit;">접수된 문의는, 순차 답변 예정입니다.</p>
+        </div>
+    </header>
+
+    <div style="margin: 0px 290px 50px 320px;">
+        <h3 style="padding: 30px 400px 25px 50px;text-align: left;margin: 0 0 0 0;border-top: solid 11px;border-color: #f5f4f3; font-weight:bold;">자주 묻는 질문</h3>
+
+        <details>
+            <summary>[구독] 기북천사의 구독 서비스란 무엇인가요?</summary>
+            <p style="text-align:left;margin-top:20px;margin-left: 20px; margin-right: 20px;">
+                <span style="font-size: 12pt;">기북천사에서는&nbsp;음악을 듣는 멜론이나 영화를 보는 넷플릭스처럼<br> 구독기간동안 무제한으로 자유롭게 책을 읽을 수 있는 서비스를 제공하고 있습니다.<br><br></span>
+                <span style="font-size: 12pt;"><b>기북천사에서 제공하는 구독 서비스는 다음과 같습니다.</b></span><br>
+                <span style="color: rgb(60, 63, 69); font-size: 12pt;">
+                               <span style="font-size: 12pt; color: rgb(0, 0, 0);"><br>
+                                  <b>[전자책 월 정기구독]<br></b></span></span>
+                <span style="font-size: 12pt;">
+                                     1)서비스 내용 : 매월 동일한 날짜에 이용금액을 결제하고, 기북천사의 서재를 이용할 수 있습니다.&nbsp;<br></span>
+                <span style="font-size: 16px;">2)이용금액 :&nbsp;월 9,900원, 신용카드/카카오페이/페이코/네이버페이 결제 가능</span>
+<!--                <span style="font-size: 12pt;">2)이용금액 : 결제수단 별로 금액 다름<br></span>-->
+<!--                <span style="font-size: 12pt;">&nbsp;- 신용카드/카카오페이/페이코/네이버페이 : 월 9,900원<br></span>-->
+<!--                <span style="font-size: 12pt;">&nbsp;- 휴대폰 : 월 9,900원&nbsp;<br></span>-->
+<!--                <span style="font-size: 12pt;">&nbsp;- 아이폰(iOS) 인앱결제 : 12,000원<br></span>-->
+<!--                <span style="font-size: 12pt;">&nbsp;- 안드로이드(AOS) 인앱결제 : 11,900원<br></span>-->
+<!--                <span style="font-size: 12pt;"><br>※ 앱을 통한 결제의 경우 각각 앱 스토어의 수수료가 포함된 금액입니다.<br></span>-->
+<!--                <span style="font-size: 12pt;">※ 모바일 앱에서는 인앱결제만 가능하며, PC와 모바일 웹에서는 카드 결제를 이용할 수 있습니다.<br></span>-->
+                <span style="color: rgb(60, 63, 69); font-size: 12pt;"><span style="font-size: 12pt; color: rgb(0, 0, 0);"><br>
+
+                                  <b>[전자책 연 정기구독]<br></b></span></span>
+                <span style="font-size: 12pt;">1)서비스 내용 : 매년 동일한 날짜에 할인가로 12개월치를 한 번에 결제하고, 1년 동안 기북천사의 서재를 이용할 수 있습니다.&nbsp;<br></span>
+                <span style="font-size: 12pt;">2)이용금액 :&nbsp;</span>
+                <span style="font-size: 12pt;">연 99,000원(2개월 요금인 19,800원 할인), 신용카드/카카오페이/페이코/네이버페이 결제 가능</span>
+                <span style="font-size: 12pt;"><br></span><span style="color: rgb(60, 63, 69); font-size: 12pt;"></span><br>
+                <span style="font-size: 14px;font-weight:bold">
+                    구독 후 한 달은 무료로 기북천사를 이용하실 수 있습니다. 기북천사를 이용해보시고 기북천사의 매력에 더 빠져보세요!</span><br><br>
+            </p>
+        </details>
+        <details>
+            <summary>[구독] 첫 달 무료혜택은 누구나 받을 수 있나요?</summary>
+            <p style="text-align:left;margin-top:20px;margin-left: 20px; margin-right: 20px;">
+                        <span style="font-size: 12pt;">
+                              기북천사 회원이라면 '정기구독' 최초 구독 시 누구나 첫 달 무료혜택을 1회 받을 수 있습니다.<br> 첫 달 무료혜택이 반영되지 않는다면 아래의 경우가 아닌지 확인해 주세요!<br><br>
+                           <em>
+                              1. 구독해지 후 재 구독 하는 경우<br>
+                              2. 탈퇴 후 재가입 한 경우<br>
+                              3. 이전 동일번호의 휴대폰으로 혜택을 받은 경우<br><br>
+                           </em>
+                         위 경우가 아님에도 혜택이 적용되지 않으신다면 1:1 문의하기로 접수 바랍니다. 확인 후 도움드리겠습니다.</span>
+            </p>
+        </details>
+
+        <details>
+            <summary>[검색] 원하는 도서를 어떻게 찾을 수 있나요?</summary>
+            <p style="text-align:left;margin-top:20px;margin-left: 20px; margin-right: 20px;">
+                <span style="font-size: 12pt;"><b>기북천사는 검색기능을 제공하고 있습니다!</b> </span><br>
+                <span style="font-size: 12pt;">상단에 보이는 검색창에서 원하시는 도서의 이름을 입력하시면 해당 도서의 정보가 검색됩니다.</span>
+            </p>
+        </details>
+
+        <details>
+            <summary>[검색] 도서를 검색하였으나 나오지 않아요.</summary>
+            <p style="text-align:left;margin-top:20px;margin-left: 20px; margin-right: 20px;">
+                          <span style="font-size: 12pt;">기북천사의 서재는 제휴 및 계약이 진행된 출판사와 저자의 도서를 제공해 드리고 있습니다.<br>
+                          기존 제공되던 방식이 아닌 새로운 형식의 스트리밍 서비스를 제공하다보니 모든 도서 제공에 어려움이 있습니다.
+                              저희 기북천사는 많은 분들이 원하는 책을 원하는만큼 읽으실 수 있도록 최선을 다하겠습니다.</span>
+            </p>
+        </details>
+
+        <details>
+            <summary>[이용] 책가방이란 무엇인가요?</summary>
+            <p style="text-align:left;margin-top:20px;margin-left: 20px; margin-right: 20px;">
+                <span style="font-size: 12pt;">책가방이란 고객님께서 나중에 읽을 책들을 담아두는 공간입니다.<br><br></span>
+                <span style="font-size: 12pt;">원하시는 도서를 [책가방에 담기] 클릭하시면 책가방에 담을 수 있습니다.<br></span>
+                <span style="font-size: 12pt;">책가방에 담으신 도서를 보시려면 우측 상단탭에서 [내 정보 보기]에 들어가시면 책가방에 담아둔 책들을 보실 수 있습니다.</span>
+            </p>
+        </details>
+
+        <details>
+            <summary>[환불] 정기구독 이용 도중에 구독취소나 해지도 가능한가요?</summary>
+            <p style="text-align:left;margin-top:20px;margin-left: 20px; margin-right: 20px;">
+                <span style="font-size: 12pt;">구독취소는 콘텐츠 열람에 따라 다르게 적용되어 아래 내용을 확인해 주세요!<br><br></span>
+                <span style="color: #091e42;"><strong>
+                               <span style="font-size: 12pt;">
+                                  1. 콘텐츠를 열람하지 않은 경우<br>
+                                  </span></strong></span>
+                <span style="font-size: 16px;">
+                                  결제 후 기간에 따라 환불 금액이 결정됩니다.<br><br></span>
+                <span ><span style="font-size: 12pt;">-결제 후 7일이내 : 전액 환불<br></span></span>
+                <span style="font-size: 12pt;">-결제 후 7일경과 : 90% 환불</span><br><br>
+                <span style="font-size: 16px;">구독취소 시 구독권한은 종료됩니다.</span>&nbsp;<br><br><strong>
+                <span style="font-size: 12pt;">2. 콘텐츠를 열람한 경우</span></strong>
+                <span>&nbsp;<br></span>
+                <span style="font-size: 16px;">
+                                  구독 서비스로 이미 콘텐츠를 열람 하셨다면 환불은 가능하지 않습니다. <br>
+                                  다음달 부터 결제가 진행되지 않도록 자동결제 해지는 가능합니다.</span>&nbsp;<br>
+                <span style="font-size: 12px;">
+                                  구독취소는 우측 상단 탭의 [내 정보 보기]에서 하실 수 있습니다.</span>
+            </p>
+        </details>
+
+
+    </div>
+
+
+    <div id="help">
+        <article style="text-align:center; color:black;">
+            <div id="help2" style="margin: 0px 0px 50px 77px;">
+                <p style="text-align:center;">
+                    <span style="font-weight:bold; font-size:25px;"> 찾으시는 내용이 없다면 1:1문의를 이용해주세요. </span>
+                </p>
+                <div style="display: flex;">
+                    <input type="button" onclick="showPopup()" style="  margin: auto;  width: 32%; margin-bottom: 3%;" value="문의하기"/>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div>
+        <footer>
+            <article class="col-4 col-12-mobile special" style="text-align:center;">
+                <p style="font-size: 15px;margin-top: -8%;margin-left: 3%;">※코로나19로 인해 고객센터 운영을 최소화 하고 있습니다.<br>
+                    통화 연결이 어려우니 1:1 문의하기를 이용해주세요.</p>
+            </article>
+        </footer>
+    </div>
+</section>
+
+<hr/>
+<!--  Copyright -->
+<div class="copyright">
+    <ul class="menu">
+        <li>&copy; Kibook Angel. All rights reserved.</li>
+    </ul>
+</div>
+</body>
+<script th:inline="javascript">
+    let sessionType = [[${sessionType}]];
+    var applyTab = document.getElementById("applyTab");
+
+    if(sessionType == 0){
+        applyTab.style.display="none";
+    } else if(sessionType == 1){
+        applyTab.style.display="inline";
+    }
+</script>
+
+<script language="javascript">
+    function showPopup() {
+        window.open("qnaMail", "sendmail", "width=500, height=650, left=300, top=50");
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script	src="/js/jquery.min.js"></script>
+<script	src="/js/jquery.dropotron.min.js"></script>
+<script	src="/js/jquery.scrolly.min.js"></script>
+<script	src="/js/jquery.scrollex.min.js"></script>
+<script	src="/js/browser.min.js"></script>
+<script	src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/modernizr.custom.js"></script>
+<script src="/js/toucheffects.js"></script>
+
+</html>

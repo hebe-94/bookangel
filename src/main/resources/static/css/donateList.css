@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+body {
+    background: #ffffff;
+    color: #5b5b5b;
+    font-size: 15pt;
+    line-height: 1.85em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+}
+
+.wrapper {
+    background: rgb(255 255 255); /* 98% */
+    margin: 0 0 2em 0;
+    padding: 0 0 0 0;
+}
+
+hr {
+    position: relative;
+    display: block;
+    border: 0;
+    top: 8.5em;
+    margin-bottom: 9em;
+    height: 6px;
+    border-top: solid 1px rgba(128, 128, 128, 0.2);
+    border-bottom: solid 1px rgba(128, 128, 128, 0.2);
+}
+
+/* 표  */
+
+.table th{
+	position: sticky;
+	top:0;
+}
+
+ .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-top: -55px;
+}
+  
+ .col-md-12{
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+ }
+ 
+.col-md-12 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.table thead th {
+    border: none;
+    padding: 20px 30px;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 1.0em;
+    background-color: #ceb980;
+}
+
+td{
+	text-align: center;
+}
+ 
+ 
+/* Main */
+
+   #main {
+      margin-bottom: 0;
+   }
+
+      #main section:first-of-type {
+         padding-top: 2em;
+      }
+      
+         #main section:first-of-type {
+         padding-top: 2em;
+      }
+      
+#main {
+  flex-direction: column;
+  display: block;
+  width: 100%;
+  padding: 0% 0%;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+   article {
+      margin-bottom: 3em;
+   }
+
+  article > :last-child, article:last-child {
+         margin-bottom: 0;
+      }
+
+   article.special > header {
+         text-align: center;
+      }
+
+   .row > section, .row > article {
+      margin-bottom: 0;
+   }

@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<!--
+   Helios by Pixelarity
+   pixelarity.com | hello@pixelarity.com
+   License: pixelarity.com/license
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>기북천사 | 비밀번호 찾기</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/couponList.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/default.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/component.css"/>
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css"/>
+    </noscript>
+    <!-- logo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap"
+          rel="stylesheet">
+    <!-- underLogo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap"
+          rel="stylesheet">
+    <!-- 기본 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+          rel="stylesheet">
+</head>
+<style>
+    /* body 기본 폰트 전체 적용 */
+    body {
+        font-family: 'Gowun Dodum', sans-serif;
+    }
+
+    #logo {
+        font-family: 'East Sea Dokdo', cursive;
+        font-size: 100px;
+    }
+
+    #underLogo {
+        font-family: 'Yeon Sung', cursive;
+        font-size: 100px;
+    }
+
+    /*    #nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: right;
+        padding: 1.5em 0 1.5em 0;
+        z-index: 1;
+        overflow: hidden;
+        background-image: url(../../../app/images/bookHeader.jpg);
+    } */
+</style>
+<body class="no-sidebar is-preload" style="background-color: white;">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <div id="header">
+        <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
+        <nav id="nav">
+
+            <!-- 기북천사 로고 -->
+            <div>
+                <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
+                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+            </div>
+            <ul>
+                <!-- 검색 -->
+                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
+                    <div class="search" style="float: left; display:inline-block">
+                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
+                    </div>
+                    <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                        <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
+                             4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
+                             vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
+                             4PSIwIDAgMzAuMjM5IDMwLjIzOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzAuMjM5IDMwLjIzOTsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZD0iTTIwLjE5NCwzLjQ2Yy00LjYxMy00LjYxMy0xMi4xMjEtNC42MTMtMTYuNzM0LDB
+                             jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
+                             JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
+                             zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
+                    </button>
+                </form>
+                <li>
+                    <a href="#">📖
+                        <th:block th:text="${memberName}" />
+                        <input type="hidden" name="sessionType" value="${sessionType}">
+                    </a>
+                    <ul>
+                        <th:block th:if="${memberNum} == null">
+                            <li id="loginTab"><a href="/member/login">로그인</a></li>
+                            <li><a  href="/member/QnA">Q&A</a></li>
+                        </th:block>
+
+                        <th:block th:if="${memberNum} != null">
+                            <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                <ul>
+                                    <li><a href="/member/mypage">내정보 보기</a></li>
+                                    <li><a href="/member/memberModify">회원정보 수정</a></li>
+                                    <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
+                                    <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                                </ul>
+                            </li>
+                            <li><a  href="/member/QnA">Q&A</a></li>
+                            <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
+                        </th:block>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+
+<!-- Main -->
+<div class="wrapper">
+    <div class="inner" style="margin-left: 20%;margin-right: 20%;">
+
+        <!-- Main -->
+        <section class="main"
+                 style="width: 70%;margin-left: 10%;margin-right: 10%;border: solid;border-color: #fff;border-radius: 15px;background-color: #c3c2bd17;">
+
+            <header class="major">
+                <!--
+                                <a href="#" class="image main"><img src="/images/login01.png" alt="" /></a>
+                -->
+                <h1 style="text-align:center;font-size:30px;margin-bottom: 30px;">비밀번호 찾기</h1>
+            </header>
+
+            <form method="post" action="/member/changePW" name="findPw" id="findPw">
+                <div style="display:flex; justify-content:center; color:black;">
+                    <div style="width: 65%;">
+                        <div class="col-6 col-12-xsmall" style="width:100%; border-top: solid 7px #f5f4f3;">
+                            <div>
+                                <span>
+                                <!--  style="margin-bottom: 2%;padding-top: 20px;border-top: solid 7px #f5f4f3;" -->
+                                    <p style="display: table;margin-left: 5%; text-align: left;font-size: 17px;margin-bottom: 1%;">아이디<span id="idCheck_text" style="font-size:0.7em; font-weight:bold;"></span></p>
+                                <input type="text"
+                                       style="margin-bottom: 3%;width: 64%;margin-right: 3%;font-family: 'Gowun Dodum';font-size: 12px;margin-left: 4%;"
+                                       name="memberId" id="memberId" value="">
+                                <input type="button"
+                                       style="margin-bottom: 3%;text-align: center;font-size: 3px;width: 27%;font-family: 'Gowun Dodum';background-color: #8a8a8a;border-radius: 10px;margin-left: -2%;"
+                                       value="아이디 찾기"
+                                       onclick="location.href='/member/findID'">
+                                <br>
+                                <p class="findId"
+                                   style="display: table; margin-left: 4%;">전화번호</p>
+                                <input type="text"
+                                       style="margin-bottom: 3%;width: 64%;margin-right: 3%;font-family: 'Gowun Dodum';font-size: 12px;margin-left: 4%;"
+                                       name="memberTel" id="memberTel"
+                                       placeholder="가입시 등록한 번호로 -없이 입력해주세요" value="">
+                                <input type="button"
+                                       style="margin-bottom: 3%;text-align: center;font-size: 3px;width: 27%;font-family: 'Gowun Dodum';background-color: #8a8a8a;border-radius: 10px;margin-left: -2%;"
+                                       value="인증번호 받기" id="btnCheckSMS">
+                                <input type="text"
+                                       style="width: 64%;font-family: 'Gowun Dodum';background-color: #E5E5E5;font-size: 12px;margin-left: 4%;"
+                                       name="checkSMS" id="checkSMS" value=""
+                                       placeholder="인증번호를 입력해주세요">
+                                <input style="width: 27%; margin-left: 1%; border-radius: 10px; font-size: 3px; padding: 0; font-family: 'Gowun Dodum';" type="button" id="btnCheckSMSSuccess" value="인증번호 확인">
+                                <p style="border-bottom: solid 7px #f5f4f3;"><br><br><br><br><br></p>
+                                </span>
+                            </div>
+                            <input type="button"
+                                   style="margin-left: 4%; margin-bottom: 15%;text-align: center; padding: 0; font-size: 15px; width: 65%;font-family: 'Gowun Dodum';"
+                                   id="btnFindPw"  value="확 인"/>
+                            <input type="button"
+                                   style="text-align: center;padding:0; font-size: 15px;width: 26%;font-family: 'Gowun Dodum';background-color: #8a8a8a;border-radius: 10px;margin-left: 1%;"
+                            id="btnFindId" onclick="history.back()" value="취 소"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </div>
+</div>
+
+<hr>
+<!-- Footer -->
+<div class="copyright">
+    <ul class="menu">
+        <li>&copy; Kibook Angel. All rights reserved.</li>
+    </ul>
+</div>
+
+
+<!-- Scripts -->
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+</body>
+<script th:inline="javascript">
+        $(document).ready(function(){
+            if(![[${memberId}]]==""||![[${memberId}]]==null){
+                alert("이미 로그인 상태입니다.");
+                location.href="/main/mainPage";
+            }
+        })
+
+    var frm = document.findPw;
+    var check = false;
+    $("input#btnCheckSMS").on("click",function () {
+        if (frm.memberId.value.length < 1) {
+            alert("아이디를 입력하세요");
+            frm.memberId.focus();
+            return;
+        }
+        if (frm.memberTel.value.length < 1) {
+            alert("전화번호를 입력해주세요");
+            frm.memberTel.focus();
+            return;
+        }
+
+        let memberTel = $('input#memberTel').val();
+        alert('인증번호 발송 완료!')
+
+
+        $.ajax({
+            type: "GET",
+            url: "/member/membersmscheck",
+            data: {
+                "memberTel" : memberTel
+            },
+            success: function(res){
+                $('#btnCheckSMSSuccess').click(function(){
+                    if($.trim(res) ==$('input#checkSMS').val()){
+                        alert('휴대폰 인증이 정상적으로 완료되었습니다.')
+                        $("input#checkSMS").attr("disabled",true);
+                        check = true;
+                        console.log(check);
+                    }else{
+                        alert('인증번호가 올바르지 않습니다!');
+                    }
+                })
+            }
+        })
+    })
+    $("input#memberId").focusout(function () {
+        var memberId = $("input#memberId").val();
+        $.ajax({
+            url:"/member/checkId",
+            type:"post",
+            data:{"memberId":memberId},
+            success:function(result){
+                if(result=="success"){
+                    //DOM
+                    alert("아이디를 확인해 주세요");
+                    $("input#memberId").val("");
+                }else{
+                    //DOM
+                    $("#idCheck_text").text("아이디 확인 완료!");
+                    $("#idCheck_text").css("color", "blue");
+                    $("input#memberId").attr("readonly", true);
+                }
+            },
+            error:function(){
+                console.log("오류");
+            }
+        });
+    })
+    $("input#btnFindPw").on("click",function(){
+        if (frm.memberId.value.length < 1) {
+            alert("아이디를 입력하세요");
+            frm.memberId.focus();
+            return;
+        }
+        if (frm.memberTel.value.length < 1) {
+            alert("전화번호를 입력해주세요");
+            frm.memberTel.focus();
+            return;
+        }
+        if(check){
+            frm.submit();
+        }else{
+            alert("휴대폰 인증을 진행해 주시기 바랍니다.")
+        }
+    })
+</script>
+</html>
