@@ -25,69 +25,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <style>
-        /* 데스크탑 : 1220 px */
-        #page-wrapper{width:1200px; margin:0 auto;}
-        .big-width {width: 100%;}
-        @media(max-width:1220px){
-            #page-wrapper{width:95%;}
-            .small-width {display: none;}
-        }
-        /*  모바일 : 480 px */
-        @media(max-width:480px){
-            #page-wrapper{width:100%;}
-            #header{width:100%;}
-            #searchForm{width: 40%}
+        .small-width {display: none;}
+        .mediaPage {display: none;}
+
+        @media (max-width: 768px) {
+             #button{width: 28%}
+            .small-width {display: block;}
             .boarNum {display: none;}
             .cBoardDate {display: none;}
-            #button{width: 28%}
+            .mediaPage {display: inline-block;}
+            .originalPage {display: none;}
             .big-width{display: none;}
+            #searchButton{width: 40px;}
+            .copyright{display: none;}
         }
-
-        /* 테블릿 : 768 px */
-        @media(max-width:768px){
-            #page-wrapper{width:100%;}
-            #searchForm{width: 40%}
-            #header{width:100%;}
-            .boarNum {display: none;}
-            .cBoardDate {display: none;}
-            #button{width: 28%}
-            .big-width{display: none;}
-        }
-
-
-/*
-        @media (max-width: 918px) {
-            .boarNum {display: none;}
-            .cBoardDate {display: none;}
-            .big-width{display: none;}
-            .small-width {width:100%;}
-        }
-*/
 
         /* body 기본 폰트 전체 적용 */
         body{
             font-family: 'Gowun Dodum', sans-serif;
         }
-        #logo{
-            font-family: 'East Sea Dokdo', cursive;
-            font-size:100px;
-        }
-        #underLogo{
-            font-family: 'Yeon Sung', cursive;
-            font-size:100px;
-        }
-        #category{
-            font-family:'Gowun Dodum', sans-serif;
-            font-size:30px;
-            text-align: center;
-        }
 
-        a{
+        #goRead{
             color: #ef8376;
-            text-decoration: none;
+            text-decoration: none!important;
         }
 
     </style>
+
 <body class="no-sidebar is-preload">
 <div id="page-wrapper">
     <div id="header">
@@ -105,7 +69,7 @@
                     <div class="search" style="float: left; display:inline-block">
                         <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
                     </div>
-                    <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                    <button onclick="document.searchForm.submit();" id="searchButton" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                         <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
@@ -124,7 +88,7 @@
                     <ul>
                         <th:block th:if="${memberNum} == null">
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
-                            <li><a  href="/member/QnA">Q&A</a></li>
+                            <li><a  href="/main/qna">Q&A</a></li>
                         </th:block>
 
                         <th:block th:if="${memberNum} != null">
@@ -136,7 +100,7 @@
                                     <li><a  href="/member/withdraw">회원탈퇴</a></li>
                                 </ul>
                             </li>
-                            <li><a  href="/member/QnA">Q&A</a></li>
+                            <li><a  href="/main/qna">Q&A</a></li>
                             <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
                         </th:block>
 
@@ -202,18 +166,18 @@
                     </table>
                     <div th:object="${pageMaker}">
                         <div class="big-width" style="text-align: center">
-                            <a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}"><code>&lt;</code></a>
+                            <a class="changePage originalPage" th:if="*{prev}" th:href="*{startPage - 1}"><code>&lt;</code></a>
                             <th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
                                 <code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
-                                <a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>
+                                <a class="changePage originalPage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>
                             </th:block>
-                            <a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><code>&gt;</code></a>
+                            <a class="changePage originalPage" th:if="*{next}" th:href="*{endPage + 1}"><code>&gt;</code></a>
                         </div>
 
                         <div class="small-width" style="text-align: center">
-                            <a class="changePage" th:if="*{criteria.pageNum > 1}" th:href="*{criteria.pageNum - 1}"><code>&lt;</code></a>
+                            <a class="changePage mediaPage" th:if="*{criteria.pageNum > 1}" th:href="*{criteria.pageNum - 1}"><code>&lt;</code></a>
                             <code th:text="*{criteria.pageNum}"></code>
-                            <a class="changePage" th:if="*{criteria.pageNum < realEnd}" th:href="*{criteria.pageNum + 1}"><code>&gt;</code></a>
+                            <a class="changePage mediaPage" th:if="*{criteria.pageNum < realEnd}" th:href="*{criteria.pageNum + 1}"><code>&gt;</code></a>
                         </div>
 
                         <form action="/board/list" th:object="${criteria}" name="pageForm">
@@ -225,7 +189,7 @@
             </article>
         </div>
     </div>
-    <hr style="margin-bottom: 15em;  height: 4px; top: 14.5em;">
+    <hr class="copyright" style="margin-bottom: 15em;  height: 4px; top: 14.5em;">
 </div>
 <!-- Copyright -->
 <div class="copyright">
