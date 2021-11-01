@@ -36,4 +36,10 @@ public class BookBasketDAO {
         return bookBasketMapper.myBasket(memberNum);
     }
 
+    // 회원이 가지고 있는 basket 리스트 개수
+    public long myBasketCNT(long memberNum){
+        log.info("[DAO]-책가방 리스트 개수...............");
+        return bookBasketMapper.myBasketCNT(memberNum);
+    }
+
 }

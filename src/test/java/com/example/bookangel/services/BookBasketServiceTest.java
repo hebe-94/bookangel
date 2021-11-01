@@ -25,4 +25,11 @@ public class BookBasketServiceTest {
         log.info("[Service]-책가방 담겨있는지 확인...............");
         log.info(bookBasketService.isExist("15from.jpg", 21L) + "");
     }
+
+    // 책가방 몇개 담겨 있는지
+    @Test
+    public void myBasketCNT(){
+        log.info("[Service]-책가방 담겨있는지 확인...............");
+        log.info(bookBasketService.myBasketCNT(21L) + "");
+    }
 }
