@@ -21,7 +21,7 @@ public class MailService {
             // 보내는 사람
             mailHandler.setFrom(MailService.FROM_ADDRESS);
             // 제목
-            mailHandler.setSubject(mailVO.getTitle());
+            mailHandler.setSubject("[기북천사] "+mailVO.getTitle());
             // HTML Layout
             String htmlContent = "<p>" + mailVO.getMessage() + "<p> <img src='cid:sample-img'>";
             mailHandler.setText(htmlContent, true);
