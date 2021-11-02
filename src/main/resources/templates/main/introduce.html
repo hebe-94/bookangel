@@ -1,41 +1,53 @@
 <!DOCTYPE HTML>
+<!--
+   Helios by Pixelarity
+   pixelarity.com | hello@pixelarity.com
+   License: pixelarity.com/license
+
+   Photo by <a href="https://unsplash.com/@johnschno?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">John Schnobrich</a> on <a href="https://unsplash.com/s/photos/library-computer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+   Photo by <a href="https://unsplash.com/@yulokchan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joseph Chan</a> on <a href="https://unsplash.com/s/photos/trust?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+   Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/hope?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+-->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>당신의 기북천사</title>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="/css/main.css"/>
-    <noscript>
-        <link rel="stylesheet" href="/css/noscript.css"/>
-    </noscript>
-    <script src="https://kit.frontawesome.com/무료코드.js"></script> <!-- 검색창 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- 헤더 -->
-    <!-- 책 접었다 폈다 더보기 부분 -->
+    <title>기북천사</title>
+    <meta charset="utf-8" />
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content=""/>
-    <meta name="keywords" content=""/>
-    <meta name="author" content="Codrops"/>
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/css/default.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/component.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
-    <script src="/js/modernizr.custom.js"></script>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Codrops" />
+    <link rel="stylesheet" type="text/css" href="/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css" />
+<!--    <link rel="stylesheet" href="/css/main.css" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/couponList.css" />
+    <link rel="stylesheet" href="/css/introduce.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
+
     <!-- logo 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap"
+          rel="stylesheet">
     <!-- underLogo 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap"
+          rel="stylesheet">
     <!-- 기본 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+          rel="stylesheet">
+
 </head>
 <style>
     /* body 기본 폰트 전체 적용 */
+
     body {
         font-family: 'Gowun Dodum', sans-serif;
     }
@@ -50,161 +62,106 @@
         font-size: 100px;
     }
 
-    #category {
-        font-family: 'Gowun Dodum', sans-serif;
-        font-size: 30px;
+    summary {
+        cursor: pointer;
+        list-style: none;
+        outline: none;
+        padding:15px;
+        border: solid 1px;
+        border-radius: 3px;
+        border-color:#e8e8e8;
+        margin-bottom: 3px;
+        background-color: #f5f5f5;
+    }
+
+    #help{
+        margin: 5% 19% 7% 16%
+    }
+
+    #help2{
+        border-top: solid 11px;
+        border-color: #f5f4f3;
+        padding: 30px;
+    }
+
+    .pure-group{
+        margin: 2% 2% 0 2%;
+        text-align: left;
+    }
+
+    .qw{
+        padding: inherit;
+        margin: 1% 0 2% 0;
+        width: 40%;
+        margin-right: 60%;
         margin-left: 2%;
+        position: inherit;
     }
 
-    a {
-        text-decoration: none !important;
+    #message{
+        resize: none; padding:inherit; width: 93%; margin: 1% 20% 3% 2%; positon:inherit;
     }
 
-    .small-width {
-        display: none;
+    #nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: right;
+        padding: 1.5em 0 1.5em 0;
+        z-index: 1;
+        overflow: hidden;
     }
 
-    .mediaPage {
-        display: none;
+    /*개인 디자인 넣기*/
+    div.divMainImg{
+        margin-top: 6em;
+        width: 100%;
+        height: 25em;
+        background-image: url(/images/introduceImg.jpg);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    #searchForm {
-        width: 261px;
+    div.no1{
+        font-size: 25px;
+        font-weight: 600;
+        text-align: left;
+        width: 30%;
+        height: 150px;
+        float: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    div.no1-1{
+        font-size: 20px;
+        text-align: left;
+        width: 70%;
+        height: 150px;
+        float: right;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
-    .togetherMsg {
-        font-size: 27px
+    div.sub{
+        width: 30%;
     }
-
-    @media (max-width: 768px) {
-        .small-width {
-            display: block;
-        }
-
-        .memberName {
-            text-align: center;
-        }
-
-        .memberTel {
-            display: none;
-        }
-
-        .siteLink {
-            display: none;
-        }
-
-        .mediaPage {
-            display: inline-block;
-        }
-
-        .originalPage {
-            display: none;
-        }
-
-        .searchButton {
-            width: auto;
-        }
-
-        .togetherMsg {
-            font-size: 20px;
-            padding-bottom: 7%;
-        }
-
-        #header header {
-            display: block;
-            margin-top: -5%;
-        }
-
-        body.homepage #header {
-            height: 85vh;
-            min-height: 40em;
-        }
-
-        .searchButton {
-            width: 40px;
-        }
+    div.mainDiv{
+        display: flex;
+        justify-content: space-between;
     }
-
-    @media (max-width: 500px) {
-        #header header {
-            display: block;
-            margin-top: -5%;
-        }
-
-        body.homepage #header {
-            height: 85vh;
-            min-height: 40em;
-        }
-
-        .searchButton {
-            width: 50px;
-        }
-
-        #turtlelogo {
-            display: none;
-        }
-    }
-
-    @media (max-width: 480px) {
-        #header header {
-            display: block;
-            margin-top: -145%;
-        }
-
-        body.homepage #header {
-            height: 85vh;
-            min-height: 40em;
-        }
-
-        .searchButton {
-            width: 50px;
-        }
-
-        #searchForm {
-            width: 170px;
-        }
-
-        #header .button {
-            width: 330px;
-            display: flex;
-        }
-
-        #turtlelogo {
-            display: none;
-        }
-
-        .togetherMsg {
-            display: none;
-        }
-    }
-
 </style>
-<body class="homepage is-preload">
-
-<!-- jstl을 위해 세션에 있는 값을 변수로 넣어놓기! -->
-
-
+<body class="no-sidebar is-preload">
 <div id="page-wrapper">
 
-    <div id="header">
 
-        <!-- Inner -->
-        <div class="inner">
-            <header>
-                <h1 id="logo" style="font-size: 100px;">기북천사</h1>
-                <hr/>
-                <p id="underLogo">
-                    “독서할 때 당신은 항상 가장 좋은 친구와 함께 있다.” – 시드니 스미스<br>
-                    기북천사와 함께 가장 좋은 친구를 나누세요</p>
-            </header>
-            <p style="text-align: center;">
-                <a href="#banner"><img src="/images/down.gif" style="width: 80px;margin: 10px;"></a>
-            </p>
-            <footer>
-                <a href="/payment/subscribe" class="button circled scrolly">구독하기</a>
-            </footer>
-        </div>
-
+    <!--  Header  시작-->
+    <div id="header" style="background-image: none;">
+        <!-- 상단 탭 -->
         <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
         <nav id="nav">
 
@@ -213,19 +170,20 @@
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
                     <img id="logoImg"></a>
             </div>
+            <input type="checkbox" id="toggleTheme" name="switch1" class="input__on-off" >
+            <label for="toggleTheme" class="label__on-off" style="width: 83px;text-align: initial; left: 37px; top: 12px;">
+                <span class="marble"></span>
+                <span class="on">dark on</span> <span class="off">dark off</span>
+            </label>
 
             <ul>
 
                 <!-- 검색 -->
-                <form id="searchForm" style="float:left; padding: 0px;" method="post" action="/book/BookSearchOk"
-                      name="searchForm">
+                <form id="searchForm" style="float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
-                        <input type="text" name="search_text" id="search_text" value=""
-                               style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력"
-                               onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
+                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
                     </div>
-                    <button class="searchButton" onclick="document.searchForm.submit();"
-                            style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                    <button class="searchButton" onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                         <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
@@ -233,24 +191,24 @@
                              jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
                              JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
                              zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
-                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K"/>
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
                     </button>
                 </form>
 
                 <!-- 회원정보 -->
                 <li>
                     <a href="#">📖
-                        <th:block th:if="${memberNum} == null" th:text="비회원"/>
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
                         <input type="hidden" name="sub" th:value="${sub}">
 
-                        <th:block th:if="${memberNum} != null" th:text="${memberName}"/>
+                        <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
 
                     </a>
                     <ul>
                         <th:block th:if="${memberNum} == null">
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
-                            <li><a href="/main/qna">Q&A</a></li>
+                            <li><a  href="/main/qna">Q&A</a></li>
                         </th:block>
 
                         <th:block th:if="${memberNum} != null">
@@ -259,220 +217,123 @@
                                     <li><a href="/member/mypage">내정보 보기</a></li>
                                     <li><a href="/member/memberModify">회원정보 수정</a></li>
                                     <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
-                                    <li><a href="/member/withdraw">회원탈퇴</a></li>
+                                    <li><a  href="/member/withdraw">회원탈퇴</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/main/qna">Q&A</a></li>
-                            <li id="logoutTab"><a href="/member/MemberLogout">로그아웃</a></li>
+                            <li><a  href="/main/qna">Q&A</a></li>
+                            <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
                         </th:block>
 
                     </ul>
                 </li>
             </ul>
         </nav>
-
     </div>
+    <!--  Header  끝-->
+    <div style="width: 70%; margin: 0 auto;">
 
-
-    <!-- Banner -->
-    <section id="banner" name="banner">
-        <header>
-            <p>기북천사의 북카드 🎁 </p>
-            <p style="font-size:15px">기북천사의 북카드에서 마음에 드는 책을 읽어보세요!</p>
-        </header>
-        <div class="container">
-            <!-- img src 주소는 임의로 작성됨 -->
-            <div class="box">
-                <span>소설</span>
-                <img src="/images/knovel.jpg">
-            </div>
-            <div class="box">
-                <span>여행</span>
-                <img src="/images/travel.jpg">
-            </div>
-            <div class="box">
-                <span>인문/교양</span>
-                <img src="/images/essay.jpg">
-            </div>
-            <div class="box">
-                <span>고전</span>
-                <img src="/images/novel.jpg">
-            </div>
-            <div class="box">
-                <span>정치/사회</span>
-                <img src="/images/society.jpg">
+        <div style="text-align: center;">
+            <div class="divMainImg" style="position: relative;">
+                <div style="position: relative; top: -5em;">
+                    <h5 style="font-size: xx-large; color: cornsilk; margin-bottom: 5px;">독서와 기부를 한번에 만나보세요</h5>
+                    <h5 style="font-size: x-large; color: cornsilk;">기북천사</h5>
+                </div>
             </div>
         </div>
 
-    </section>
+        <hr style="visibility: hidden">
+        <br>
+        <br>
 
-    <hr>
+        <div style="display: block">
+            <div class="no1">
+                <span style="margin-bottom: 5px;">No.1</span>
+                <span>intimate  Reading Platform</span>
+            </div>
+            <div class="no1-1">
+                <div><h1 style="margin-bottom: 5px;">기북천사는 독서와 기부를 하나로 묶어 제공하는 것으로 최고의 독서 & 기부 플랫폼으로의 진화를 꿈꿉니다.</h1></div>
+                <div><h1>모든 사용자로부터 신뢰받는 독서의 관문으로서, 기북천사가 대한민국 독서플랫폼의 한획을 그려 나갑니다.</h1></div>
+            </div>
+        </div>
 
-    <!--  Carousel -->
+        <hr style="visibility: hidden">
+        <br>
+        <br>
 
-    <!-- 베스트 셀러 -->
-
-    <!--    <section id="basketForm" class="carousel">-->
-    <!--        <p id="category" style="font-size: 30px; margin-left: 2.5%;">나의 책가방</p>-->
-    <!--        <div class="reel">-->
-
-    <!--            <c:forEach var="book" items="${books}" varStatus="status">-->
-    <!--                <article class="grid cs-style-4">-->
-    <!--                    <figure>-->
-    <!--                        <div>-->
-    <!--                            <img src="${pageContext.request.contextPath}/app/images/${book.getBook_image_src() }" height="262" width="175" alt="">-->
-    <!--                        </div>-->
-    <!--                        <figcaption>-->
-    <!--                            <div style="margin-top: 50%;">-->
-    <!--										<span>-->
-    <!--											<p style="margin-bottom: 0;">바로읽기</p> -->
-    <!--											<a id="read" href="#popUp" target="_self" onclick="openPop()">-->
-    <!--											<img src="${pageContext.request.contextPath}/app/images/ebookread.png" /></a>-->
-    <!--										</span>-->
-    <!--                                <%&#45;&#45; <span>-->
-    <!--											<p style="margin-bottom: 0;">상세보기</p> <a id="more" href="#"><img-->
-    <!--                                    src="${pageContext.request.contextPath}/app/images/bookinfo.png" /></a>-->
-    <!--										</span> &#45;&#45;%>-->
-    <!--                            </div>-->
-    <!--                        </figcaption>-->
-    <!--                    </figure>-->
-    <!--                </article>-->
-    <!--            </c:forEach>-->
-    <!--        </div>-->
-    <!--    </section>-->
+        <div class="mainDiv">
+            <div class="sub">
+                <div style="font-weight: 600; font-size: 25px;">Technology</div>
+                <div style="
+                    background-image: url(/images/computer.jpg);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    width: 100%;
+                    height: 190%;"></div>
+                <div>기북천사만의 독서 플랫폼으로 사용자에게 더욱 편리한 독서의 방법을 제공합니다.</div>
+            </div>
+            <div class="sub">
+                <div style="font-weight: 600; font-size: 25px;">Trust</div>
+                <div style="
+                    background-image: url(/images/trust.jpg);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    width: 100%;
+                    height: 190%;"></div>
+                <div>기북천사의 적극적인 활동은 고객과 더불어 모든 사용자에게 믿을 수 있는 독서 환경을 선사합니다.</div>
+            </div>
 
 
-    <!-- Features -->
-    <div class="wrapper style1">
-
-        <section id="features" class="container special">
-
-        </section>
-
+            <div class="sub">
+                <div style="font-weight: 600; font-size: 25px;">Hope</div>
+                <div style="
+                    background-image: url(/images/hope.jpg);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    width: 100%;
+                    height: 190%;"></div>
+                <div>기북천사와 사용자가 함께하는 사회공헌 플랫폼으로 함께하는 더 나은 삶을 만듭니다.</div>
+            </div>
+        </div>
     </div>
-    <hr>
+
+
     <!--  Copyright -->
-    <div class="copyright">
+    <div class="copyright" style="margin-top: 17em;">
+        <hr>
         <ul class="menu">
             <li>&copy; Kibook Angel. All rights reserved.</li>
         </ul>
     </div>
-
-<!-- <script>
-var loginTab = document.getElementById("loginTab");
-var myPageTab = document.getElementById("myPageTab");
-var logoutTab = document.getElementById("logoutTab");
-
-if(${session_id  eq '' || empty session_id}){
- console.log("로그인 안됨");
- logoutTab.style.display="none";
- myPageTab.style.display="none";
-}else{
- console.log("로그인 됨");
- loginTab.style.display="none";
-}
-</script> -->
-
-<script th:inline="javascript">
-
-    // 책 바스켓에 넣기
-    function addBookBasket(img_src) {
-        let memberNum = [[${memberNum}]];
-        if (memberNum == null) {
-            // 비회원이라면
-            alert("책가방 담기는 로그인 후 가능합니다.")
-            location.href = "/member/login";
-
-        } else {
-            /*  alert(img_src); */
-            location.href = "/book/addBookBasket.oo?img_src=" + img_src;
-
-        }
-
-
-    }
-</script>
-
+</div>
+</body>
 
 <script th:inline="javascript">
     let sessionType = [[${sessionType}]];
     var applyTab = document.getElementById("applyTab");
 
-    if (sessionType == 0) {
-        applyTab.style.display = "none";
-    } else if (sessionType == 1) {
-        applyTab.style.display = "inline";
+    if(sessionType == 0){
+        applyTab.style.display="none";
+    } else if(sessionType == 1){
+        applyTab.style.display="inline";
     }
 </script>
 
-<!--소크라테스 -->
-<script th:inline="javascript">
-    let sub = [[${sub}]];
-    let memberNum = [[${memberNum}]];
-
-    function openPop() {
-        if (sub == false || memberNum == null) {
-            alert("구독한 회원만 읽을 수 있습니다.");
-            return false;
-        } else if (sub == true || memberNum != null) {
-            window.open('/main/expressBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
-        }
-    }
-
-    function dreamOpenPop() {
-        if (sub == false || memberNum == null) {
-            alert("구독한 회원만 읽을 수 있습니다.");
-            return false;
-        } else if (sub == true || memberNum != null) {
-            window.open('/main/dreamBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
-        }
+<script language="javascript">
+    function showPopup() {
+        window.open("qnaMail", "sendmail", "width=500, height=650, left=300, top=50");
     }
 </script>
 
-
-<script th:inline="javascript">
-    $(document).ready(function () {
-        $("#nav").css("background", "#00ff0000");
-        $("#nav").css("color", "white");
-        $("#logoImg").attr("src", "/images/kibookLogo.png");
-        $(window).scroll(function () {
-            var $page = $('#banner');
-            var scroll = $(window).scrollTop();
-            var pageOffsetTop = $page.offset().top;
-            if (scroll > pageOffsetTop) {
-                $("#nav").css("background", "#ceb980");
-                $("#nav").css("color", "black");
-                $("#logoImg").attr("src", "/images/kibookLogoBlack.png");
-            } else {
-                $("#nav").css("background", "#00ff0000");
-                $("#nav").css("color", "white");
-                $("#logoImg").attr("src", "/images/kibookLogo.png");
-            }
-        })
-    })
-
-</script>
-
-
-<!-- <script>
-function checkSearch(){
-   var form = document.searchForm;
-   if(!form.search_text.value){
-      alert("검색어를 입력해주세요.");
-      return;
-   }
-   form.submit();
-}
-</script> -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.dropotron.min.js"></script>
-<script src="/js/jquery.scrolly.min.js"></script>
-<script src="/js/jquery.scrollex.min.js"></script>
-<script src="/js/browser.min.js"></script>
-<script src="/js/breakpoints.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script	src="/js/jquery.min.js"></script>
+<script	src="/js/jquery.dropotron.min.js"></script>
+<script	src="/js/jquery.scrolly.min.js"></script>
+<script	src="/js/jquery.scrollex.min.js"></script>
+<script	src="/js/browser.min.js"></script>
+<script	src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<script src="/js/toucheffects.js"></script> <!-- 책 접었다 폈다 상세보기 관련 js -->
-<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script> <!-- 헤더 -->
-</body>
+<script src="/js/modernizr.custom.js"></script>
+<script src="/js/toucheffects.js"></script>
+
 </html>
