@@ -17,4 +17,7 @@ public interface BookBasketMapper {
 
     // 회원이 가지고 있는 basket정보
     public List<BookVO> myBasket(long memberNum);
+
+    // 회원이 가지고 있는 basket 리스트 개수
+    public long myBasketCNT(long memberNum);
 }

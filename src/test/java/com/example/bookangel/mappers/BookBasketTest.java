@@ -23,6 +23,13 @@ public class BookBasketTest {
     public void myBasket(){
         log.info("-----------------------------------");
         log.info("책가방 리스트 : ");
-        bookBasketMapper.myBasket(21L).forEach(bookVO -> log.info(bookVO + ""));
+        bookBasketMapper.myBasket(2L).forEach(bookVO -> log.info(bookVO + ""));
+    }
+
+    @Test
+    public void myBasketCNT(){
+        log.info("-----------------------------------");
+        log.info("책가방 리스트 개수수 : "+ bookBasketMapper.myBasketCNT(21L));
+
     }
 }

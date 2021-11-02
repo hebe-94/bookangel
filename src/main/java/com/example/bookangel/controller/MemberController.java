@@ -36,7 +36,11 @@ public class MemberController {
             model.addAttribute("endSub", paymentVO.getExpireDate().substring(0,10));
             model.addAttribute("end",paymentVO.getSubMonth());
         }
-//        if(bookBasketService.)
+        if(bookBasketService.myBasketCNT((Long)session.getAttribute("memberNum"))!=0){
+            model.addAttribute("myBaskets",bookBasketService.myBasket((Long)session.getAttribute("memberNum")));
+        }else{
+            model.addAttribute("myBaskets","null");
+        }
         String memberId = (String)session.getAttribute("memberId");
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
         model.addAttribute("memberType", session.getAttribute("memberType"));

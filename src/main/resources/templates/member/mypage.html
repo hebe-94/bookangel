@@ -245,11 +245,11 @@
             <p id="category" style="font-size: 30px; margin-left: 2.5%;">나의 책가방</p>
             <div class="reel">
 
-                <c:forEach var="book" items="${books}" varStatus="status">
-                    <article class="grid cs-style-4">
+                <th:block th:if="${myBaskets}!='null'">
+                    <article class="grid cs-style-4" th:each="b, i:${myBaskets}">
                         <figure>
                             <div>
-                                <img src="/bookImages/02dream.jpg" height="262" width="175" alt="">
+                                <img th:src="|/bookImages/${b.bookImageSrc}|" height="262" width="175" alt="">
                             </div>
                             <figcaption>
                                 <div style="margin-top: 50%;">
@@ -266,7 +266,10 @@
                             </figcaption>
                         </figure>
                     </article>
-                </c:forEach>
+                </th:block>
+                <th:block th:if="${myBaskets}=='null'">
+                    <div style="display: flex;justify-content: center; margin-top: 8%;margin-bottom: 8%"><h5 style="font-weight: 900;font-size: 45px;">아직 들어있는 책이 없어요!</h5></div>
+                </th:block>
             </div>
         </section>
 
@@ -366,15 +369,16 @@
 
     // 책읽기 띄우기
     function openPop(){
-        if(${session_sub_status eq 0 || session_id  eq '' || empty session_id}){
-            alert("구독한 회원만 읽을 수 있습니다.");
+        let sub = [[${sub}]];
+        let memberNum = [[${memberNum}]];
+            if(sub == false || memberNum  == null){
+                alert("구독한 회원만 읽을 수 있습니다.");
+                return false;
+            } else if(sub == true || memberNum  != null){
+                window.open('/main/dreamBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
+            }
         }
 
-        if(${session_sub_status eq 1}){
-            var popup = window.open('${pageContext.request.contextPath}/app/book/bookViewer.jsp', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
-        }
-
-    }
 
     // 검색어 내용 확인
     function checkSearch(){

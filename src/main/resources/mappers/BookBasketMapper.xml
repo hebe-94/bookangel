@@ -24,4 +24,8 @@
         ON BB.MEMBERNUM = #{memberNum} AND BB.BOOKNUM = B.BOOKNUM
     </select>
 
+    <select id="myBasketCNT" resultType="_long">
+        SELECT COUNT(BOOKNUM) FROM BOOK_BASKET
+        WHERE memberNum = #{memberNum}
+    </select>
 </mapper>

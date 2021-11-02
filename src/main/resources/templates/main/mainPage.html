@@ -1850,17 +1850,37 @@ if(${session_id  eq '' || empty session_id}){
     // 책 바스켓에 넣기
     function addBookBasket(img_src){
         let memberNum = [[${memberNum}]];
-        if(memberNum == null){
-            // 비회원이라면
-            alert("책가방 담기는 로그인 후 가능합니다.")
-            location.href="/member/login";
+        let memberType = [[${memberType}]];
+        if(sessionType==0) {
+            if (memberNum == null) {
+                // 비회원이라면
+                alert("책가방 담기는 로그인 후 가능합니다.")
+                location.href = "/member/login";
 
+            } else {
+                $.ajax({
+                    url: "/bookBasket/addBookBasket",
+                    type: "post",
+                    data: {"imgSrc": img_src},
+                    success: function (result) {
+                        if (result == "success") {
+                            alert("책가방에 담겼습니다.\n내정보에서 확인해 주세요.");
+                            return;
+                        } else if (result == "overlap") {
+                            alert("이미 책가방에 들어있습니다.");
+                            return;
+                        } else {
+                            alert("오류");
+                            return;
+                        }
+                    }
+                })
+
+            }
         }else{
-            /*  alert(img_src); */
-            location.href="/book/addBookBasket.oo?img_src=" + img_src;
-
+            alert("일반회원만 이용 가능합니다.");
+            return;
         }
-
 
     }
 </script>
@@ -1921,8 +1941,7 @@ if(${session_id  eq '' || empty session_id}){
             }
         })
     })
-
-</script>
+    </script>
 
 
 <!-- <script>
