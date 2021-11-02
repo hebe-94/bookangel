@@ -87,6 +87,9 @@
                 </form>
                 <li>
                     <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
                         <th:block th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
@@ -135,13 +138,19 @@
                 <div style="display:flex; justify-content:center; color:black;">
                     <div style="width: 65%;">
                         <div class="col-6 col-12-xsmall" style="width:100%; border-top: solid 7px #f5f4f3;">
-                            <div>
-															<span>
-															<!--  style="margin-bottom: 2%;padding-top: 20px;border-top: solid 7px #f5f4f3;" -->
-															<p class="findId" style="text-align: center;margin-bottom: 10%; margin-top: 10%;"> 회원님의 아이디는 <Strong th:text="|${memberId} 입니다.|" ></Strong></p>
-															</span>
+                            <div th:if="${memberId}!=null">
+                                <span>
+                                    <p class="findId" style="text-align: center;margin-bottom: 10%; margin-top: 10%;"> 회원님의 아이디는 <Strong th:text="|${memberId} 입니다.|" ></Strong></p>
+                                </span>
                                 <input type="button" style="margin-bottom: 15%;text-align: center;width: 45%;margin-left: 4%; margin-right: 0.5%;font-family: 'Gowun Dodum';" id="btnLogin" onclick="location.href='/member/login'" value="로그인"/>
-                                <input type="button" style="margin-bottom: 15%;text-align: center;width: 45%;margin-left: 0.5%;font-family: 'Gowun Dodum';" onclick="location.href='/member/findPW'" id="btnFindIdPw" value="비밀번호 찾기"/>
+                                <input type="button" style="margin-bottom: 15%;text-align: center;width: 45%;margin-left: 0.5%;font-family: 'Gowun Dodum';" onclick="location.href='/member/findPW'" id="btnFindPw" value="비밀번호 찾기"/>
+                            </div>
+                            <div th:if="${memberId}==null">
+                                <span>
+                                    <p class="findId" style="text-align: center;margin-bottom: 10%; margin-top: 10%;"><Strong>일치하는 회원정보가 없습니다.</Strong></p>
+                                </span>
+                                <input type="button" style="margin-bottom: 15%;text-align: center;width: 45%;margin-left: 4%; margin-right: 0.5%;font-family: 'Gowun Dodum';" id="btnJoin" onclick="location.href='/member/join'" value="회원가입"/>
+                                <input type="button" style="margin-bottom: 15%;text-align: center;width: 45%;margin-left: 0.5%;font-family: 'Gowun Dodum';" onclick="location.href='/member/findID'" id="btnFindId" value="아이디찾기"/>
                             </div>
                         </div>
                     </div>

@@ -217,6 +217,7 @@ public class MemberController {
         } else if(memberTel.length() == 12) {
             memberTel.replaceAll("-","");
         }
+        log.info(memberTel);
 
 //        String api_key = "NCSLANK8RO9KSPQQ";
 //        String api_secret = "0DD9JD7EQ7OGNTDHLBHV7CST45CHMZ0V";
@@ -331,6 +332,23 @@ public class MemberController {
         }else {
             return "success";
         }
+    }
+    @PostMapping("checkIdForTel")
+    @ResponseBody
+    public String checkIdForTel(String memberId,String memberTel){
+        String result = null;
+        if(memberTel.length() == 10) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        log.info("전화번호 : "+memberTel);
+        if(memberTel.equals(memberService.checkIdForTel(memberId))){
+            result = "success";
+        }else{
+            result = "false";
+        }
+        return result;
     }
 }
 

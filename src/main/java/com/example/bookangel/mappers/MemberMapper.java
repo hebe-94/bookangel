@@ -25,4 +25,5 @@ public interface MemberMapper {
     public void modify(MemberVO memberVO);
     //휴대폰번호 중복검사
     public int countTel(String memberTel);
+    public String findPhone(String memberId);
 }

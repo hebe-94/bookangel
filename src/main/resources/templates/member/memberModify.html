@@ -75,6 +75,9 @@
                 </form>
                 <li>
                     <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
                         <th:block th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
@@ -304,6 +307,7 @@
             $("p#modifyInfo").css("display", "block");
         }else{
             alert("비밀번호를 확인해 주세요.");
+            $("input#pw").focus();
             return;
         }
     })
@@ -316,6 +320,7 @@
                 $("p#modifyInfo").css("display", "block");
             }else{
                 alert("비밀번호를 확인해 주세요.");
+                $("input#pw").focus();
                 return;
             }
         }
