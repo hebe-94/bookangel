@@ -164,7 +164,7 @@ public class MemberController {
                 model.addAttribute("withDraw","withDraw");
                 return "member/login";
             }else {
-                if(paymentService.paymentExist(paymentVO)){
+                if(paymentService.subscribeExist(vo.getMemberNum())){
                     session.setAttribute("sub", "true");
                 }else{
                 session.setAttribute("sub", "false");

@@ -1,12 +1,17 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <!--
    Helios by Pixelarity
    pixelarity.com | hello@pixelarity.com
    License: pixelarity.com/license
+
+   Photo by <a href="https://unsplash.com/@johnschno?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">John Schnobrich</a> on <a href="https://unsplash.com/s/photos/library-computer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+   Photo by <a href="https://unsplash.com/@yulokchan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joseph Chan</a> on <a href="https://unsplash.com/s/photos/trust?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+   Photo by <a href="https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelly Sikkema</a> on <a href="https://unsplash.com/s/photos/hope?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>기북천사 | 구독하기</title>
+    <title>기북천사</title>
     <meta charset="utf-8" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,9 +21,8 @@
     <meta name="author" content="Codrops" />
     <link rel="stylesheet" type="text/css" href="/css/default.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/css/couponList.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
     <link rel="stylesheet" href="/css/introduce.css" />
     <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
 
@@ -35,7 +39,9 @@
     <!-- 기본 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+          rel="stylesheet">
+
 </head>
 <style>
     /* body 기본 폰트 전체 적용 */
@@ -54,17 +60,102 @@
         font-size: 100px;
     }
 
-    .subscribeBTN{
-        width: 48%;
-        border-radius: 10px;
-        color: black;
-        font-size: inherit;
-        display: inline;
-        font-family: 'Gowun Dodum';
+    summary {
+        cursor: pointer;
+        list-style: none;
+        outline: none;
+        padding:15px;
+        border: solid 1px;
+        border-radius: 3px;
+        border-color:#e8e8e8;
+        margin-bottom: 3px;
+        background-color: #f5f5f5;
+    }
+
+    #help{
+        margin: 5% 19% 7% 16%
+    }
+
+    #help2{
+        border-top: solid 11px;
+        border-color: #f5f4f3;
+        padding: 30px;
+    }
+
+    .pure-group{
+        margin: 2% 2% 0 2%;
+        text-align: left;
+    }
+
+    .qw{
+        padding: inherit;
+        margin: 1% 0 2% 0;
+        width: 40%;
+        margin-right: 60%;
+        margin-left: 2%;
+        position: inherit;
+    }
+
+    #message{
+        resize: none; padding:inherit; width: 93%; margin: 1% 20% 3% 2%; positon:inherit;
+    }
+
+    #nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: right;
+        padding: 1.5em 0 1.5em 0;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    /*개인 디자인 넣기*/
+    div.divMainImg{
+        margin-top: 6em;
+        width: 100%;
+        height: 25em;
+        background-image: url(/images/introduceImg.jpg);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    div.no1{
+        font-size: 25px;
+        font-weight: 600;
+        text-align: left;
+        width: 30%;
+        height: 150px;
+        float: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    div.no1-1{
+        font-size: 20px;
+        text-align: left;
+        width: 70%;
+        height: 150px;
+        float: right;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    div.sub{
+        width: 30%;
+    }
+    div.mainDiv{
+        display: flex;
+        justify-content: space-between;
     }
 </style>
-<body class="homepage is-preload" style="background-color:white;">
+<body class="no-sidebar is-preload">
 <div id="page-wrapper">
+
 
     <!--  Header -->
     <div id="header">
@@ -129,54 +220,101 @@
 
     </div>
     <!--  Header  끝-->
-</div>
+    <div style="width: 70%; margin: 0 auto;">
 
-
-<!-- Banner -->
-<section id="banner">
-    <header style="margin-top: 2em;">
-        <h2>언제든 해지 가능! <br>첫 달 무료로 가볍게</h2>
-        <p>
-            상황에 맞게 원하는 요금제를<br>자유롭게 선택하세요
-        </p>
-    </header>
-</section>
-
-
-<!-- Main -->
-<div class="wrapper style2">
-
-    <article style="width: 50em; margin: auto;">
-        <div>
-            <fieldset style="border-radius: 10px;background-color: antiquewhite; padding:27px; margin-bottom: 10%;">
-                <legend style="font-size:30px; color:black;">전자책 정기구독</legend><br>
-                <div style="background-image: url('/images/gudok.gif'); padding-top:inherit; background-position: left; background-size: inherit; border-radius:15px; margin-bottom:10px; color:white; height: 25em">
-                    <div style="margin-left: 15px;">&nbsp;월 <span style="font-weight:bold; font-size:40px; "><i><span style="color:#999900;">9,900&nbsp;</span></i><span style="font-size:20px;">원</span></span><br><br></div>
-                    <div style="margin: 0 0 5px 20px;"><span style="font-size:15px;"><i>118,800</i></span>&nbsp;&nbsp;<span style="font-size:15px; background-color:salmon; font-weight:bold; border-radius:5px"><i>16.6%↓</i></span><br></div>
-                    <div style="margin-left: 15px;">&nbsp;연 <span style="font-weight:bold; font-size:40px;"><i><span style="color:#999900;">99,900&nbsp;</span></i><span style="font-size:20px;">원</span></span><br><br></div>
+        <div style="text-align: center;">
+            <div class="divMainImg" style="position: relative;">
+                <div style="position: relative; top: -5em;">
+                    <h5 style="font-size: xx-large; color: cornsilk; margin-bottom: 5px;">독서와 기부를 한번에 만나보세요</h5>
+                    <h5 style="font-size: x-large; color: cornsilk;">기북천사</h5>
                 </div>
-                <div style="margin-left: 15px;"><span style="font-size:15px;">&nbsp;기북천사에 제공하는 콘텐츠를 <span style="-webkit-text-emphasis-style: dot;"><b>무제한</b></span>으로</span></div>
-                <form id="subscribeForm">
-                    <input type="button" class="subscribeBTN" value="1개월 &nbsp&nbsp&nbsp 9.900원 첫달 무료" style="float: left" onclick="subscribe(1)">
-                    <input type="button" class="subscribeBTN" value="1년 &nbsp&nbsp&nbsp 99.900원 첫달 무료" style="float: right" onclick="subscribe(12)">
-                    <input type="hidden" name="monthType" value="" id="monthType">
-                </form>
-            </fieldset>
-
+            </div>
         </div>
-    </article>
 
+        <hr style="visibility: hidden">
+        <br>
+        <br>
+
+        <div style="display: block">
+            <div class="no1">
+                <span style="margin-bottom: 5px;">No.1</span>
+                <span>intimate  Reading Platform</span>
+            </div>
+            <div class="no1-1">
+                <div><h1 style="margin-bottom: 5px;">기북천사는 독서와 기부를 하나로 묶어 제공하는 것으로 최고의 독서 & 기부 플랫폼으로의 진화를 꿈꿉니다.</h1></div>
+                <div><h1>모든 사용자로부터 신뢰받는 독서의 관문으로서, 기북천사가 대한민국 독서플랫폼의 한획을 그려 나갑니다.</h1></div>
+            </div>
+        </div>
+
+        <hr style="visibility: hidden">
+        <br>
+        <br>
+
+        <div class="mainDiv">
+            <div class="sub">
+                <div style="font-weight: 600; font-size: 25px;">Technology</div>
+                <div style="
+                    background-image: url(/images/computer.jpg);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    width: 100%;
+                    height: 190%;"></div>
+                <div>기북천사만의 독서 플랫폼으로 사용자에게 더욱 편리한 독서의 방법을 제공합니다.</div>
+            </div>
+            <div class="sub">
+                <div style="font-weight: 600; font-size: 25px;">Trust</div>
+                <div style="
+                    background-image: url(/images/trust.jpg);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    width: 100%;
+                    height: 190%;"></div>
+                <div>기북천사의 적극적인 활동은 고객과 더불어 모든 사용자에게 믿을 수 있는 독서 환경을 선사합니다.</div>
+            </div>
+
+
+            <div class="sub">
+                <div style="font-weight: 600; font-size: 25px;">Hope</div>
+                <div style="
+                    background-image: url(/images/hope.jpg);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    width: 100%;
+                    height: 190%;"></div>
+                <div>기북천사와 사용자가 함께하는 사회공헌 플랫폼으로 함께하는 더 나은 삶을 만듭니다.</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--  Copyright -->
+    <div class="copyright" style="margin-top: 17em;">
+        <hr>
+        <ul class="menu">
+            <li>&copy; Kibook Angel. All rights reserved.</li>
+        </ul>
+    </div>
 </div>
+</body>
 
-<!--<hr>
-<div class="copyright">
-    <ul class="menu">
-        <li>&copy; Kibook Angel. All rights reserved.</li>
-    </ul>
-</div>-->
+<script th:inline="javascript">
+    let sessionType = [[${sessionType}]];
+    var applyTab = document.getElementById("applyTab");
 
-<!-- Scripts -->
+    if(sessionType == 0){
+        applyTab.style.display="none";
+    } else if(sessionType == 1){
+        applyTab.style.display="inline";
+    }
+</script>
 
+<script language="javascript">
+    function showPopup() {
+        window.open("qnaMail", "sendmail", "width=500, height=650, left=300, top=50");
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script	src="/js/jquery.min.js"></script>
 <script	src="/js/jquery.dropotron.min.js"></script>
 <script	src="/js/jquery.scrolly.min.js"></script>
@@ -185,58 +323,7 @@
 <script	src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<script th:inline="javascript">
-    alert("1년구독은 쿠폰으로 결제가 불가능합니다.");
+<script src="/js/modernizr.custom.js"></script>
+<script src="/js/toucheffects.js"></script>
 
-    // 로그인 중인지
-    let memberNum = [[${memberNum}]];
-    // 구독중인지
-    let sub = [[${sub}]];
-    // 기업 회원인지
-    let memberType = [[${sessionType}]];
-
-    function subscribe(monthType) {
-        if(memberNum == '' || memberNum == null){
-            alert("로그인 후 사용이 가능합니다.");
-            location.href = "/member/login";
-
-            return;
-        }
-
-        if(sub == 'true'){
-            alert("이미 구독 신청되어있습니다.");
-            location.href = "/main/mainPage";
-            return;
-        }
-
-        if(memberType == 1){
-            alert("기업 회원은 구독 신청이 불가능 합니다.");
-            location.href = "/main/mainPage";
-            return;
-        }
-
-
-
-        if(monthType == 1){//1개월
-            $("#monthType").val(1);
-        }else if(monthType == 12){//1년
-            $("#monthType").val(12);
-        }else{
-            console.log("입력값 잘못됨");
-            return;
-        }
-        console.log("들어간 값 : "+$("#monthType").val());
-        $("#subscribeForm").attr('method','post');
-        $("#subscribeForm").attr('action','/payment/subscribeDetail').submit();
-    }
-
-
-
-    $(document).ready(function(){
-
-
-    });
-
-</script>
-</body>
 </html>

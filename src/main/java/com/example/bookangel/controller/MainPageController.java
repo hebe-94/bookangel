@@ -78,4 +78,8 @@ public class MainPageController {
     public String dreamView(){
         return "book/dreamView";
     }
+
+    @GetMapping("introduce")
+    public void introduce(){
+    }
 }
