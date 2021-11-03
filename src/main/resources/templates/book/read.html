@@ -299,8 +299,10 @@
                                             </li>
                                             <li>
                                                 <!--<a id="more" onclick="addBookBasket('01dream2.jpg')">-->
-                                                <form id="addForm" method="post" action="/bookBasket/addBookBasket">
-                                                    <a id="add" th:href="${book.bookNum}" name="imgSrc" th:attr="onclick=|addBookBasket('${book.bookImageSrc}')|" class="apply smallBtn">책가방담기</a>
+                                                <form id="addForm" method="get" action="/bookBasket/addBookBasketToBookNum">
+                                                    <a id="add" name="imgSrc" class="apply smallBtn">책가방담기</a>
+                                                    <input type="hidden" name="bookNum" th:field="${book.bookNum}"/>
+                                                    <!--th:attr="onclick=|addBookBasket('${book.bookImageSrc}')|"-->
                                                 </form>
 
                                                 <!--<input type="button" onclick="" class="smallBtn2" value="책가방담기" />-->
@@ -423,26 +425,43 @@
     <script src="/js/main.js"></script>
     <script src="/js/reply.js"></script>
 </body>
+
+<!--아래는 사용하는 스크립트-->
 <script th:inline="javascript">
     // 글 등록 시 전달받는 게시글 번호를 alert으로 출력
-    let pageForm = $(document.pageForm);
-    let paging = [[${pageMaker.criteria.listLink}]];
     let searchForm = $(document.searchForm);
+    let addForm = $("#addForm");
+
+    /*2021.11.04 kkh*/
+    $("a#add").on("click", function(e){
+        e.preventDefault();
+        let memberNum = [[${memberNum}]];
+        let sub = [[${sub}]];
+
+        if(memberNum == null){
+            // 비회원이라면
+            alert("책가방 담기는 로그인 후 가능합니다.");
+            location.href="/member/login";
+            return;
+        }
+        if(sub == false || sub == null){//회원인데 구독안함
+            alert("구독한 회원만 읽을 수 있습니다.");
+            location.href="/payment/subscribe";
+            return;
+        }
+
+        addForm.submit();
+
+
+    })
+
 
     $(document).ready(function(){
-
+        alert([[${sub}]]);
     });
 
-    $("a.changePage").click(function(e){
-        e.preventDefault();
-        pageForm.find("input[name='pageNum']").val($(this).attr("href"));
-        pageForm.submit();
-    });
 
-    $("a#goRead").on("click", function(e){
-        e.preventDefault();
-        location.href = "/book/read" + paging + "&bookNum=" + $(this).attr("href");
-    })
+
 
     $("button.search").on("click", function(e){  /*$("a.search").on("click", function(e){*/
         e.preventDefault();
@@ -470,13 +489,13 @@
 
 
 <!--책가방 담기-->
-<script th:inline="javascript">
+<!--<script th:inline="javascript">
 
     var addForm = $("#addForm");
 
 
     // 책 바스켓에 넣기
-    function addBookBasket(var img_src){
+    function addBookBasket(var bookNum){
 
         let memberNum = [[${memberNum}]];
         if(memberNum == null){
@@ -494,7 +513,7 @@
 
 
     }
-</script>
+</script>-->
 <!--책가방 담기 끝-->
 
 <!--달러구트 & 소크라테스 -->

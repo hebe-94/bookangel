@@ -41,8 +41,9 @@ public class BookBasketController {
         return "main/mainPage";
     }
 
+    /*2021.11.04 kkh*/
     // 책검색 후 상세보기에서 책가방 담기
-    @PatchMapping("addBookBasketToBookNum")
+    @GetMapping("addBookBasketToBookNum")
     public String addBookBasketToBookNum(@RequestParam("bookNum") long bookNum, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
 
@@ -63,8 +64,10 @@ public class BookBasketController {
         } else { // 책가방에 담겨있음
             model.addAttribute("result","fail");
         }
+        String referer = request.getHeader("Referer");
 
-        return "member/mypage";
+        return "redirect"+referer;
+        /*return "member/mypage";*/
     }
 
     @PostMapping("myBasket")
@@ -83,5 +86,9 @@ public class BookBasketController {
 
         return "member/mypage";
     }
+
+
+
+
 
 }
