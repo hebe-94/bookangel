@@ -7,9 +7,6 @@ import org.springframework.stereotype.Component;
 @Data
 public class PaymentVO {
 
-
-
-
     private long paymentNum;
     private long memberNum;
     private long couponNum;

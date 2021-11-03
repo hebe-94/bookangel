@@ -25,7 +25,7 @@ public class CouponDAO {
     // 쿠폰 사용
     public boolean useCoupon(CouponVO couponVO){
         log.info("[DAO]-쿠폰 사용...............");
-        return couponMapper.useCoupon(couponVO) == 1L;
+        return couponMapper.useCoupon(couponVO) == 1;
     }
 
     // 기업 쿠폰 리스트 조회

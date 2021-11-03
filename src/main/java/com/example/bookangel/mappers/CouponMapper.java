@@ -11,7 +11,7 @@ public interface CouponMapper {
     public Long checkCoupon(CouponVO couponVO);
 
     // 쿠폰 사용
-    public long useCoupon(CouponVO couponVO);
+    public int useCoupon(CouponVO couponVO);
 
     // 기업 쿠폰 리스트 조회
     public List<CouponVO> companyCouponList(long memberNum);

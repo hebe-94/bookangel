@@ -19,6 +19,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/css/couponList.css" />
+    <link rel="stylesheet" href="/css/introduce.css" />
     <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
 
     <!-- logo 폰트 -->
@@ -65,23 +66,19 @@
 <body class="homepage is-preload" style="background-color:white;">
 <div id="page-wrapper">
 
-    <!--Header-->
+    <!--  Header -->
     <div id="header">
-        <!--상단 탭-->
-        <!--Nav 상단탭(아마 모든 분들이 쓰셔야 할 코드..)-->
+        <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
         <nav id="nav">
 
-            <!--기북천사 로고-->
+            <!-- 기북천사 로고 -->
             <div>
-                <a href="">
-                    <!--로고 클릭시 메인페이지로 이동-->
+                <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
                     <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
-
             <ul>
-
-                <!--검색-->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="${pageContext.request.contextPath}/book/BookSearchOk.oo" name="searchForm">
+                <!-- 검색 -->
+                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
                     </div>
@@ -93,38 +90,51 @@
                              jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
                              JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
                              zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
-                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
                     </button>
                 </form>
-
-                 <!--회원정보-->
+                <!-- 회원정보 -->
                 <li>
-                    <a href="#">📖비회원</a>
-                    <ul>
-                        <li id="loginTab"><a href="">로그인</a></li>
+                    <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
 
-                        <li id="myPageTab"><a>마이페이지&hellip;</a>
-                            <ul>
-                                <li><a href="">내정보 보기</a></li>
-                                <li><a href="">회원정보 수정</a></li>
-                                <li id="applyTab"><a href="">신청게시판</a></li>&lt;!&ndash; 관리자 전용 &ndash;&gt;
-                                <li><a  href="">회원탈퇴</a></li>
-                            </ul>
-                        </li>
-                    <li><a  href="">Q&A</a></li>
-                    <li id="logoutTab"><a  href="">로그아웃</a></li>
+                        <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
+                        <input type="hidden" name="sessionType" value="${sessionType}">
+
+                    </a>
+                    <ul>
+                        <th:block th:if="${memberNum} == null">
+                            <li id="loginTab"><a href="/member/login">로그인</a></li>
+                            <li><a  href="/main/qna">Q&A</a></li>
+                        </th:block>
+
+                        <th:block th:if="${memberNum} != null">
+                            <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                <ul>
+                                    <li><a href="/member/mypage">내정보 보기</a></li>
+                                    <li><a href="/member/memberModify">회원정보 수정</a></li>
+                                    <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
+                                    <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                                </ul>
+                            </li>
+                            <li><a  href="/main/qna">Q&A</a></li>
+                            <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                        </th:block>
+
                     </ul>
                 </li>
             </ul>
         </nav>
 
     </div>
+    <!--  Header  끝-->
 </div>
 
 
 <!-- Banner -->
 <section id="banner">
-    <header>
+    <header style="margin-top: 2em;">
         <h2>언제든 해지 가능! <br>첫 달 무료로 가볍게</h2>
         <p>
             상황에 맞게 원하는 요금제를<br>자유롭게 선택하세요
@@ -140,7 +150,7 @@
         <div>
             <fieldset style="border-radius: 10px;background-color: antiquewhite; padding:27px; margin-bottom: 10%;">
                 <legend style="font-size:30px; color:black;">전자책 정기구독</legend><br>
-                <div style="background-image: url('/images/gudok.gif'); padding-top:inherit; background-position: left; background-size: inherit; border-radius:15px; margin-bottom:10px; color:white;">
+                <div style="background-image: url('/images/gudok.gif'); padding-top:inherit; background-position: left; background-size: inherit; border-radius:15px; margin-bottom:10px; color:white; height: 25em">
                     <div style="margin-left: 15px;">&nbsp;월 <span style="font-weight:bold; font-size:40px; "><i><span style="color:#999900;">9,900&nbsp;</span></i><span style="font-size:20px;">원</span></span><br><br></div>
                     <div style="margin: 0 0 5px 20px;"><span style="font-size:15px;"><i>118,800</i></span>&nbsp;&nbsp;<span style="font-size:15px; background-color:salmon; font-weight:bold; border-radius:5px"><i>16.6%↓</i></span><br></div>
                     <div style="margin-left: 15px;">&nbsp;연 <span style="font-weight:bold; font-size:40px;"><i><span style="color:#999900;">99,900&nbsp;</span></i><span style="font-size:20px;">원</span></span><br><br></div>
@@ -175,10 +185,38 @@
 <script	src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<script>
+<script th:inline="javascript">
     alert("1년구독은 쿠폰으로 결제가 불가능합니다.");
 
+    // 로그인 중인지
+    let memberNum = [[${memberNum}]];
+    // 구독중인지
+    let sub = [[${sub}]];
+    // 기업 회원인지
+    let memberType = [[${sessionType}]];
+
     function subscribe(monthType) {
+        if(memberNum == '' || memberNum == null){
+            alert("로그인 후 사용이 가능합니다.");
+            location.href = "/member/login";
+
+            return;
+        }
+
+        if(sub == 'true'){
+            alert("이미 구독 신청되어있습니다.");
+            location.href = "/main/mainPage";
+            return;
+        }
+
+        if(memberType == 1){
+            alert("기업 회원은 구독 신청이 불가능 합니다.");
+            location.href = "/main/mainPage";
+            return;
+        }
+
+
+
         if(monthType == 1){//1개월
             $("#monthType").val(1);
         }else if(monthType == 12){//1년
