@@ -7,8 +7,13 @@
     <select id="isExist" resultType="_long">
         SELECT COUNT(BOOKNUM) FROM BOOK_BASKET
         WHERE BOOKNUM = (SELECT BOOKNUM FROM BOOK WHERE BOOKIMAGESRC = #{imgSrc}) AND memberNum = #{memberNum}
-
     </select>
+
+    <select id="isExistToBookNum" resultType="_long">
+        SELECT COUNT(BOOKNUM) FROM BOOK_BASKET
+        WHERE BOOKNUM = #{bookNum} AND memberNum = #{memberNum}
+    </select>
+
 
     <!--책가방에 담기-->
     <insert id="addBookBasket">
@@ -28,4 +33,9 @@
         SELECT COUNT(BOOKNUM) FROM BOOK_BASKET
         WHERE memberNum = #{memberNum}
     </select>
+
+    <insert id="addBookBasketToBookNum">
+        INSERT INTO BOOK_BASKET ( bookNum, memberNum)
+		VALUES(#{bookNum},#{memberNum})
+    </insert>
 </mapper>
