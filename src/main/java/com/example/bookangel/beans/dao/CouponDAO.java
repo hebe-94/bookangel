@@ -25,7 +25,7 @@ public class CouponDAO {
     // 쿠폰 사용
     public boolean useCoupon(CouponVO couponVO){
         log.info("[DAO]-쿠폰 사용...............");
-        return couponMapper.useCoupon(couponVO) == 1L;
+        return couponMapper.useCoupon(couponVO) == 1;
     }
 
     // 기업 쿠폰 리스트 조회
@@ -45,7 +45,7 @@ public class CouponDAO {
         return couponMapper.makeCoupon(couponVO) == 1L;
     }
 
-    // 기업 쿠폰 리스트 조회시 몇개 있는지 확인
+    //  기업 쿠폰 리스트 조회시 몇개 있는지확인
     public long companyCouponListCNT(long memberNum){
         log.info("[DAO]-기업 쿠폰 리스트 개수 확인...............");
         return couponMapper.companyCouponListCNT(memberNum);

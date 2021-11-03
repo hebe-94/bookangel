@@ -42,7 +42,7 @@ public class CouponController {
         couponVO.setCouponName(couponName);
         Long result = couponService.checkCoupon(couponVO);
         if(result != null){
-            session.setAttribute("couponNum",result.intValue());
+            session.setAttribute("couponNum",result.longValue());
             log.info("--------------------------------------");
             log.info("CouponController : couponNum [" + result.intValue() + "]");
             log.info("CouponController : couponNum_Session [" + session.getAttribute("couponNum") + "]");

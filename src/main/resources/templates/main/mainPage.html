@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/css/default.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/darkmode.css" type="text/css"/>
     <script src="/js/modernizr.custom.js"></script>
     <!-- logo 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,9 +34,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 </head>
 <style>
+
+    @media (prefers-color-scheme: light) {
+        html {
+            --text-color: #000000;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body {
+            background: #121212;
+            color: #bbb;
+        }
+
+        .wrapper{
+            background: #121212;
+            color: #bbb;
+        }
+
+        a {
+            color: #3ea6ff;
+        }
+        h3{
+            color: #bbb;
+        }
+    }
+
+    html {
+        --bg-color: #fff;
+        --text-color: #343434;
+        --link-color: #0000ee;
+    }
+
+    html.dark {
+        --bg-color: #121212;
+        --text-color: #bbb;
+        --link-color: #3ea6ff;
+    }
+
+    .wrapper{
+        background: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    body {
+        background: var(--bg-color);
+        color: var(--text-color);
+    }
+
+
+
+    a {
+        color: var(--link-color);
+    }
+
     /* body 기본 폰트 전체 적용 */
     body{
         font-family: 'Gowun Dodum', sans-serif;
+        color: #5b5b5b;
     }
     #logo{
         font-family: 'East Sea Dokdo', cursive;
@@ -125,6 +181,11 @@
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
                     <img id="logoImg"></a>
             </div>
+            <input type="checkbox" id="toggleTheme" name="switch1" class="input__on-off" >
+            <label for="toggleTheme" class="label__on-off" style="width: 83px;text-align: initial; left: 37px; top: 12px;">
+                <span class="marble"></span>
+                <span class="on">dark on</span> <span class="off">dark off</span>
+            </label>
 
             <ul>
 
@@ -260,39 +321,6 @@
     </section>
 
     <hr>
-
-    <!--  Carousel -->
-
-    <!-- 베스트 셀러 -->
-
-    <!--    <section id="basketForm" class="carousel">-->
-    <!--        <p id="category" style="font-size: 30px; margin-left: 2.5%;">나의 책가방</p>-->
-    <!--        <div class="reel">-->
-
-    <!--            <c:forEach var="book" items="${books}" varStatus="status">-->
-    <!--                <article class="grid cs-style-4">-->
-    <!--                    <figure>-->
-    <!--                        <div>-->
-    <!--                            <img src="${pageContext.request.contextPath}/app/images/${book.getBook_image_src() }" height="262" width="175" alt="">-->
-    <!--                        </div>-->
-    <!--                        <figcaption>-->
-    <!--                            <div style="margin-top: 50%;">-->
-    <!--										<span>-->
-    <!--											<p style="margin-bottom: 0;">바로읽기</p> -->
-    <!--											<a id="read" href="#popUp" target="_self" onclick="openPop()">-->
-    <!--											<img src="${pageContext.request.contextPath}/app/images/ebookread.png" /></a>-->
-    <!--										</span>-->
-    <!--                                <%&#45;&#45; <span>-->
-    <!--											<p style="margin-bottom: 0;">상세보기</p> <a id="more" href="#"><img-->
-    <!--                                    src="${pageContext.request.contextPath}/app/images/bookinfo.png" /></a>-->
-    <!--										</span> &#45;&#45;%>-->
-    <!--                            </div>-->
-    <!--                        </figcaption>-->
-    <!--                    </figure>-->
-    <!--                </article>-->
-    <!--            </c:forEach>-->
-    <!--        </div>-->
-    <!--    </section>-->
 
     <section class="carousel">
         <p id="category">🏆 베스트 셀러 🏆 </p>
@@ -1554,7 +1582,7 @@
 
             <article class="grid cs-style-4">
                 <figure>
-                    <div><img src="/bookImages/05data.jpg"  height="262" alt=""></div>
+                    <div><img src="/bookImages/05data.jpg"  height="262" width="175" alt=""></div>
                     <figcaption>
                         <div style="margin-top: 20%;">
                        <span>
@@ -1572,7 +1600,7 @@
 
             <article class="grid cs-style-4">
                 <figure>
-                    <div><img src="/bookImages/06infor.jpg"  height="262" alt=""></div>
+                    <div><img src="/bookImages/06infor.jpg"  height="262" width="175" alt=""></div>
                     <figcaption>
                         <div style="margin-top: 20%;">
                        <span>
@@ -1790,7 +1818,7 @@
                     <!--                                  <caption style="text-align:left; margin-bottom:3%;"> -->
                     </caption>
                     <thead>
-                    <tr style="background-color:#ceb980;">
+                    <tr style="background-color:#ceb980; color:#000000;">
                         <th class="memberName" style="width: 300px;">기관명</th>
                         <th class="memberTel" style="width: 300px;">전화번호</th>
                         <th class="siteLink" style="width: 300px;">사이트 주소</th>
@@ -1888,6 +1916,15 @@ if(${session_id  eq '' || empty session_id}){
  loginTab.style.display="none";
 }
 </script> -->
+<script th:inline="javascript">
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark")
+    }
+
+    document.getElementById("toggleTheme").addEventListener("click",() => {
+        document.documentElement.classList.toggle("dark")
+    })
+</script>
 
 <script th:inline="javascript">
 

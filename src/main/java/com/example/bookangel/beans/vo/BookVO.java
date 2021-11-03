@@ -15,5 +15,4 @@ public class BookVO {
     private String bookAuthor; //private String writer;
     private String bookPublisher;
     private String bookContent; //private String content;
-
 }
