@@ -55,7 +55,8 @@
         font-family: 'Yeon Sung', cursive;
         font-size: 100px;
     }
-    .payment{
+
+    .payment {
         border: 2.5px solid rgba(205, 205, 205, 1);
         border-radius: 2em;
         display: flex;
@@ -63,7 +64,7 @@
         margin-top: 5em;
         padding-top: 1.5em;
         padding-bottom: 1.5em;
-        background-color: rgba( 255, 250, 240, 0.1 );
+        background-color: rgba(255, 250, 240, 0.1);
     }
 
     .title {
@@ -71,7 +72,7 @@
         font-size: 24px;
     }
 
-    .detail-text{
+    .detail-text {
         height: 12px;
         text-align: left;
         font-size: 20px;
@@ -80,13 +81,13 @@
         padding-left: 3px
     }
 
-    .checkbox{
+    .checkbox {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
     }
 
-    .coupon-text{
+    .coupon-text {
         width: 80%;
         display: inline-block;
         height: 2.5em;
@@ -96,25 +97,25 @@
         margin-right: 2%;
     }
 
-    #submitBTN{
+    #submitBTN {
         width: 100%;
         height: 3em;
 
     }
 
-    #couponNumber{
+    #couponNumber {
         text-align: center;
         letter-spacing: 3px;
     }
 
 
-    div.payment{
+    div.payment {
         margin: 0 auto;
         width: 55%;
         text-align: center;
     }
 
-    div.payment-left{
+    div.payment-left {
 
     }
 
@@ -123,21 +124,20 @@
     }
 
 
-
-    div.payment-price{
+    div.payment-price {
         text-align: left;
     }
 
-    div.payment-price ul li{
+    div.payment-price ul li {
         list-style: none;
         text-align: left;
     }
 
-    div.payment-price ul li p{
+    div.payment-price ul li p {
         display: inline;
     }
 
-    div.payment-status label{
+    div.payment-status label {
         background-color: white;
         width: 49%;
         display: block;
@@ -148,24 +148,25 @@
         /*border-color: antiquewhite;*/
     }
 
-    div.payment-status{
+    div.payment-status {
         display: block;
         height: 6em;
     }
 
-    div.payment-status span{
+    div.payment-status span {
         height: inherit;
         display: block;
         padding: 1.5% 0;
     }
 
-    div.payment-price-border{
+    div.payment-price-border {
 
-        border: 1px solid rgba( 205, 205, 205, 1);
+        border: 1px solid rgba(205, 205, 205, 1);
         border-radius: 1em;
         padding: 1em 0;
     }
-    div.payment-price-border ul li{
+
+    div.payment-price-border ul li {
         display: flex;
         justify-content: space-between;
         display: flex;
@@ -176,12 +177,12 @@
         font-size: 20px;
     }
 
-    div.payment-checkInfo{
+    div.payment-checkInfo {
         text-align: left;
         margin-bottom: 1.5em;
     }
 
-    input[type="checkbox"]{
+    input[type="checkbox"] {
         width: 16px; /*Desired width*/
         height: 16px; /*Desired height*/
         cursor: pointer;
@@ -210,11 +211,12 @@
                 </div>
                 <ul>
                     <!-- 검색 -->
-                    <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
+                    <form id="searchForm" style="width: 261px;float:left; padding: 0px;" action="/book/list" name="searchForm">
                         <div class="search" style="float: left; display:inline-block">
-                            <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
+                            <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
+                            <!--                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">-->
                         </div>
-                        <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                        <button onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                             <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
@@ -222,23 +224,23 @@
                              jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
                              JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
                              zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
-                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
                         </button>
                     </form>
                     <!-- 회원정보 -->
                     <li>
                         <a href="#">📖
-                            <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                            <th:block th:if="${memberNum} == null" th:text="비회원"/>
                             <input type="hidden" name="sub" th:value="${sub}">
 
-                            <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
+                            <th:block th:if="${memberNum} != null" th:text="${memberName}"/>
                             <input type="hidden" name="sessionType" value="${sessionType}">
 
                         </a>
                         <ul>
                             <th:block th:if="${memberNum} == null">
                                 <li id="loginTab"><a href="/member/login">로그인</a></li>
-                                <li><a  href="/main/qna">Q&A</a></li>
+                                <li><a href="/main/qna">Q&A</a></li>
                             </th:block>
 
                             <th:block th:if="${memberNum} != null">
@@ -247,11 +249,11 @@
                                         <li><a href="/member/mypage">내정보 보기</a></li>
                                         <li><a href="/member/memberModify">회원정보 수정</a></li>
                                         <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
-                                        <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                                        <li><a href="/member/withdraw">회원탈퇴</a></li>
                                     </ul>
                                 </li>
-                                <li><a  href="/main/qna">Q&A</a></li>
-                                <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
+                                <li><a href="/main/qna">Q&A</a></li>
+                                <li id="logoutTab"><a href="/member/logout">로그아웃</a></li>
                             </th:block>
 
                         </ul>
@@ -263,26 +265,29 @@
         <!--  Header  끝-->
     </div>
 
-<!-- 메인 화면 -->
+    <!-- 메인 화면 -->
     <div class="payment" style="margin-top: 5em;">
         <!-- 테두리를 위한 div -->
         <div style="width: 95%">
             <!-- 폰트 18,16 픽셀 -->
             <div>
-                <h2 class="title" >결제 상세 정보</h2>
+                <h2 class="title">결제 상세 정보</h2>
             </div>
 
             <br>
             <div class="payment-detail">
                 <p class="title" style="text-align: left;"><b>정기구독</b></p>
                 <div id="card-text">
-                    <span class="detail-text" >구독기간</span> <span style="font-size: 20px;" th:text="${date}" id="subscribe-card-text"></span>
+                    <span class="detail-text">구독기간</span> <span style="font-size: 20px;" th:text="${date}"
+                                                                id="subscribe-card-text"></span>
                 </div>
 
                 <div id="coupon-text" style="display: none">
-                    <span class="detail-text" >구독기간</span> <span style="font-size: 20px;" th:text="${couponDate}" id="subscribe-coupon-text"></span>
+                    <span class="detail-text">구독기간</span> <span style="font-size: 20px;" th:text="${couponDate}"
+                                                                id="subscribe-coupon-text"></span>
                 </div>
-                <span class="detail-text">다음 결제일</span> <span style="font-size: 20px;" th:text="${nextPayment}" id="nextPayment"></span>
+                <span class="detail-text">다음 결제일</span> <span style="font-size: 20px;" th:text="${nextPayment}"
+                                                              id="nextPayment"></span>
             </div>
             <br>
 
@@ -295,13 +300,26 @@
                             <p th:text="${price}"></p>
                         </li>
                         <li>
+                            <!--                            model.addAttribute("subExist","true")-->
                             <p>할인금액</p>
-                            <p style="border-bottom: 1px #8a8a8a"><span>첫 달 무료</span>(-) <span th:text="${price}"></span></p>
+                            <!--첫달무료-->
+                            <div th:if="${subExist.toString().equals('false')}"><p style="border-bottom: 1px #8a8a8a">
+                                <span>첫 달 무료</span>(-) <span th:text="${price}"></span></p></div>
+                            <!--재 구독-->
+                            <div th:if="${subExist.toString().equals('true')}"><p style="border-bottom: 1px #8a8a8a">
+                                -</p></div>
                         </li>
                         <hr style="border: solid 0.5px #8a8a8a;">
                         <li>
+                            <!--                            model.addAttribute("monthType", "1");-->
+
                             <p>총 결제금액</p>
-                            <p>0원</p>
+                            <p th:if="${subExist.toString().equals('false')}">0원</p>
+                            <p th:if="${subExist.toString().equals('true') && monthType.toString().equals('1')}">
+                                9,900원</p>
+                            <p th:if="${subExist.toString().equals('true') && monthType.toString().equals('12')}">
+                                99,000원</p>
+
                         </li>
                     </ul>
                 </div>
@@ -321,7 +339,7 @@
             </div>
             <br>
 
-            <div style="height: 3em; display: none;" id="couponInput" >
+            <div style="height: 3em; display: none;" id="couponInput">
                 <p style="text-align: left; font-size: 20px; margin: 0;">-를 제외한 쿠폰번호를 입력해 주세요</p>
 
                 <input type="text" class="coupon-text" maxlength="16" id="couponNumber" style="text-align: center;">
@@ -344,7 +362,12 @@
                 </div>
 
                 <div>
-                    <input type="button" value="결제하기" id="submitBTN" onclick="submit()">
+                    <input th:if="${subExist.toString().equals('false')}" type="button" value="결제하기" id="submitBTN"
+                           onclick="submit(0)">
+                    <input th:if="${subExist.toString().equals('true') && monthType.toString().equals('1')}"
+                           type="button" value="결제하기" id="submitBTN" onclick="submit(9900)">
+                    <input th:if="${subExist.toString().equals('true') && monthType.toString().equals('12')}"
+                           type="button" value="결제하기" id="submitBTN" onclick="submit(99000)">
                 </div>
             </div>
             <form id="register"></form>
@@ -358,266 +381,292 @@
 
 </div>
 
-    <!--<hr>
-    <div class="copyright">
-        <ul class="menu">
-            <li>&copy; Kibook Angel. All rights reserved.</li>
-        </ul>
-    </div>-->
+<!--<hr>
+<div class="copyright">
+    <ul class="menu">
+        <li>&copy; Kibook Angel. All rights reserved.</li>
+    </ul>
+</div>-->
 
-    <!-- Scripts -->
+<!-- Scripts -->
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/jquery.dropotron.min.js"></script>
-    <script src="/js/jquery.scrolly.min.js"></script>
-    <script src="/js/jquery.scrollex.min.js"></script>
-    <script src="/js/browser.min.js"></script>
-    <script src="/js/breakpoints.min.js"></script>
-    <script src="/js/util.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- 결제 관련 api -->
-    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-            charset="utf-8"></script>
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!-- 결제 관련 api -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+        charset="utf-8"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-    <script th:inline="javascript">
+<script th:inline="javascript">
 
-        let date = $("#nextPayment").text();
-        // ㅁㅁㅁㅁ-ㅁㅁㅁㅁ-ㅁㅁㅁㅁ-ㅁㅁㅁㅁ
-        var newCouponText = "";
-        // ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
-        var couponText ="";
-        // couponText[] : split
-        var arrCouponText ;
+    let date = $("#nextPayment").text();
+    // ㅁㅁㅁㅁ-ㅁㅁㅁㅁ-ㅁㅁㅁㅁ-ㅁㅁㅁㅁ
+    var newCouponText = "";
+    // ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
+    var couponText = "";
+    // couponText[] : split
+    var arrCouponText;
 
-        // 결제 방식 선택 확인용 1 : 카드 / 0 : 쿠폰
-        var paymentType;
+    // 결제 방식 선택 확인용 1 : 카드 / 0 : 쿠폰
+    var paymentType;
 
-        // 시작하자마자 1년구독을 들어왔다면 쿠폰 결제를 없애주기!
-        $(document).ready(function(){
-            if($("#monthType").val() == 12){
-                // 쿠폰 버튼 없애기
-                $("#couponLabel").hide();
+    // 시작하자마자 1년구독을 들어왔다면 쿠폰 결제를 없애주기!
+    $(document).ready(function () {
+        if ($("#monthType").val() == 12) {
+            // 쿠폰 버튼 없애기
+            $("#couponLabel").hide();
 
-                // 카드 버튼 width 넓히기
-                $("#cardLabel").css("width","100%")
+            // 카드 버튼 width 넓히기
+            $("#cardLabel").css("width", "100%")
+        }
+
+    });
+
+    // 쿠폰결제 눌렀을때
+    function couponCheck() {
+        console.log("쿠폰 선택");
+        $("#couponLabel").css('background-color', '#df7366');
+        $("#couponLabel").css('color', 'white');
+        $("#cardLabel").css('background-color', 'white');
+        $("#cardLabel").css('color', 'black');
+        $("#couponInput").show();
+
+        $("#coupon-text").show();
+        $("#card-text").hide();
+        $("#nextPayment").text("| 쿠폰 사용");
+
+        paymentType = "0";
+    }
+
+    // 카드결제 눌렀을때
+    function cardCheck() {
+        console.log("카드 선택");
+        $("#cardLabel").css('background-color', '#df7366');
+        $("#cardLabel").css('color', 'white');
+        $("#couponLabel").css('background-color', 'white');
+        $("#couponLabel").css('color', 'black');
+        $("#couponInput").hide();
+
+        $("#coupon-text").hide();
+        $("#card-text").show();
+        $("#nextPayment").text(date);
+        $("#confirmCoupon").hide();
+        $("#couponNumber").removeAttr('placeholder');
+        $("#couponNumber").removeAttr('readonly');
+
+        $("#couponNumber").val("");
+
+        paymentType = "1";
+
+    }
+
+    // 쿠폰번호를 적게 입력했을때 유효성 확인
+    function couponNameCheck() {
+        var check = false;
+
+        if (arrCouponText.length == 0) {
+            alert("쿠폰번호를 입력해 주세요 : " + arrCouponText.length);
+            $(".coupon-text").focus();
+            check = true;
+        } else if (arrCouponText.length < 16) {
+            alert("쿠폰번호를 확인 해주세요 : " + arrCouponText.length);
+            $(".coupon-text").val("");
+            $(".coupon-text").focus();
+            check = true;
+        }
+        return check;
+    }
+
+    // 쿠폰 입력란 클릭시 값 비우기
+    $(".coupon-text").focusin(function () {
+        $("#couponNumber").val("");
+    });
+
+    // 쿠폰 입력란 focusout시 - 를 붙여주기
+    $(".coupon-text").focusout(function () {
+        console.log("포커스 아웃됨");
+        newCouponText = "";
+        couponText = $("#couponNumber").val();
+        couponText = couponText.replace("-", "");
+        arrCouponText = couponText.split("");
+
+        for (var i = 0; i < arrCouponText.length; i++) {
+            newCouponText += arrCouponText[i];
+            if (i % 4 == 3 && !(i + 1 == arrCouponText.length)) {
+                newCouponText += "-";
             }
+        }
 
+        $("#couponNumber").val(newCouponText);
+    });
+
+
+    // 사용가능한 쿠폰인지 확인
+    function checkCoupon() {
+        var couponName = $("#couponNumber").val();
+        console.log(couponName);
+
+        if (couponNameCheck()) {
+            return;
+        }
+
+        $.ajax({
+            url: "/coupon/checkCoupon",
+            type: "POST",
+            data: {"couponName": couponName},
+            dataType: "text",
+            success: function (result) {
+                console.log(result);
+                $("#confirmCoupon").text("사용 가능한 쿠폰입니다.");
+                $("#confirmCoupon").show();
+                $("#couponNumber").attr("readonly", true);
+                $("#couponNumber").attr("placeholder", couponName);
+
+            },
+            error: function (result) {
+                console.log(result);
+                $("#confirmCoupon").text("존재하지 않는 쿠폰입니다.");
+                $("#confirmCoupon").show();
+            }
         });
 
-        // 쿠폰결제 눌렀을때
-        function couponCheck(){
-            console.log("쿠폰 선택");
-            $("#couponLabel").css('background-color','#df7366');
-            $("#couponLabel").css('color','white');
-            $("#cardLabel").css('background-color','white');
-            $("#cardLabel").css('color','black');
-            $("#couponInput").show();
+    }
 
-            $("#coupon-text").show();
-            $("#card-text").hide();
-            $("#nextPayment").text("| 쿠폰 사용");
+    function submit(price) {// 쿠폰을 누르고, 쿠폰 인증 후 결제,     카드를 누르고 결제
 
-            paymentType = "0";
-        }
-
-        // 카드결제 눌렀을때
-        function cardCheck(){
-            console.log("카드 선택");
-            $("#cardLabel").css('background-color','#df7366');
-            $("#cardLabel").css('color','white');
-            $("#couponLabel").css('background-color','white');
-            $("#couponLabel").css('color','black');
-            $("#couponInput").hide();
-
-            $("#coupon-text").hide();
-            $("#card-text").show();
-            $("#nextPayment").text(date);
-            $("#confirmCoupon").hide();
-            $("#couponNumber").removeAttr('placeholder');
-            $("#couponNumber").removeAttr('readonly');
-
-            $("#couponNumber").val("");
-
-            paymentType = "1";
-
-        }
-
-        // 쿠폰번호를 적게 입력했을때 유효성 확인
-        function couponNameCheck(){
-            var check = false;
-
-            if(arrCouponText.length == 0){
-                alert("쿠폰번호를 입력해 주세요 : " + arrCouponText.length);
-                $(".coupon-text").focus();
-                check= true;
-            }else if(arrCouponText.length < 16){
-                alert("쿠폰번호를 확인 해주세요 : " + arrCouponText.length);
-                $(".coupon-text").val("");
-                $(".coupon-text").focus();
-                check = true;
-            }
-            return check;
-        }
-
-        // 쿠폰 입력란 클릭시 값 비우기
-        $(".coupon-text").focusin(function(){
-            $("#couponNumber").val("");
-        });
-
-        // 쿠폰 입력란 focusout시 - 를 붙여주기
-        $(".coupon-text").focusout(function(){
-           console.log("포커스 아웃됨");
-           newCouponText = "";
-           couponText = $("#couponNumber").val();
-           couponText = couponText.replace("-", "");
-           arrCouponText = couponText.split("");
-
-           for(var i=0; i<arrCouponText.length;i++){
-               newCouponText += arrCouponText[i];
-               if(i%4 == 3 && !(i+1 == arrCouponText.length) ){
-                   newCouponText += "-";
-               }
-           }
-
-            $("#couponNumber").val(newCouponText);
-        });
-
-
-        // 사용가능한 쿠폰인지 확인
-        function checkCoupon(){
-            var couponName = $("#couponNumber").val();
-            console.log(couponName);
-
-            if(couponNameCheck()){
-                return;
-            }
-
-            $.ajax({
-                url: "/coupon/checkCoupon",
-                type: "POST",
-                data : {"couponName":couponName},
-                dataType: "text",
-                success: function(result){
-                    console.log(result);
-                    $("#confirmCoupon").text("사용 가능한 쿠폰입니다.");
-                    $("#confirmCoupon").show();
-                    $("#couponNumber").attr("readonly",true);
-                    $("#couponNumber").attr("placeholder", couponName);
-
-                },
-                error: function(result){
-                    console.log(result);
-                    $("#confirmCoupon").text("존재하지 않는 쿠폰입니다.");
-                    $("#confirmCoupon").show();
-                }
-            });
-
-        }
-
-        function submit(){// 쿠폰을 누르고, 쿠폰 인증 후 결제,     카드를 누르고 결제
-
-            if($("#autopay").is(":checked") == false || $("#personal").is(":checked") == false){
-                alert("체크사항을 확인해 주세요");
-                return;
-            }
-
-
-            // 결제하기 버튼 누르기
-            var registerForm = $("#register");
-
-            if(paymentType === "0") { // 쿠폰 버튼 눌렀을때
-                if($("#couponNumber").is("[readonly]")){
-                    console.log("쿠폰 결제 진행");
-                    registerForm.attr("method", "post");
-                    registerForm.attr("action", "/payment/register");
-
-                    registerForm.append($('<input/>', {type: 'hidden', name: 'paymentType', value: 0}));
-                    registerForm.append($('<input/>', {type: 'hidden', name: 'impUid', value: null}));
-                    registerForm.append($('<input/>', {type: 'hidden', name: 'merchantUid', value: null}));
-                    registerForm.submit();
-
-                    // 멤버 디비에 구독중으로 변경 (membernum, => 현재 세션 memberNum을 넘겨서 거기에서 0을 1로
-                    // 구독중이면 넘어가면 안되는데..
-
-                    // 쿠폰 사용했다고 변경
-                    // 전달 순서 : payment컨트롤러로 가서, paymentservice로 보내고 paymentDAO, couponDAO를 사용할것
-
-                    // 넘길 정보는
-                    // (쿠폰테이블에서 사용했다는것을 하기 위해) memberNum 전달, status 1로 변경 -> 멤버테이블
-                    // (구독중이라는 것을 알리기 위해) memberNum, couponNum전달(이건 쿼리문에서 구해야 하거나 조회했을때 값을 같이 받아오기)
-                    //                            subMonth(2), subDate(SYSDATE), expireDate(2달)
-                    // paymentType : 0 : 쿠폰 / 1 : 1달 / 2 : 1년 구독
-                    // 쿠폰번호 :
-                    // ※ 쿠폰num을 구해오는 방법 :  1. 현재 만든것을 수정(리턴값들 모두 수정해야함), 2. 다시 쿼리문 한번더 구해서 오기. -> 쿼리문 변경으로 가져옴
-
-                }else{
-                    alert("쿠폰 등록 확인 후 결제를 진행해 주세요");
-                }
-
-            }else if(paymentType === "1"){ // 카드 버튼 눌렀을 때
-                console.log("카드 결제 진행");
-                if([[${monthType}]] == "1"){
-                    iamport(9900);
-                }else{
-                    iamport(99000);
-                }
-            }
-                // 카드 결제 하고, 멤버 구독했다는것을 넣어주기 (금액을 어떻게 가져올지 고민해보기)
-            else{ // 아무것도 안눌렀을때
-                alert("결제 방법을 선택해 주세요!");
-            }
+        if ($("#autopay").is(":checked") == false || $("#personal").is(":checked") == false) {
+            alert("체크사항을 확인해 주세요");
+            return;
         }
 
 
-        function iamport(price) {
-            //가맹점 식별코드
-            IMP.init('imp77982928');
-            IMP.request_pay({
-                pg: 'kcp',
-                pay_method: 'card',
-                merchant_uid: 'merchant_' + new Date().getTime(),
-                name: '기북천사 구독신청', //결제창에서 보여질 이름
-                amount: price, //실제 결제되는 가격
-                buyer_email: 'iszzon@gmail.com', // 구매자 정보
-                buyer_name: '신세훈',
-                buyer_tel: '010-4759-2499',
-                buyer_addr: '경기도 성남시 분당구',
-                buyer_postcode: '123-456'
-            }, function (rsp) {
-                console.log(rsp);
-                if (rsp.success) { // 성공 시
-                    var registerForm = $("#register");
-                    registerForm.attr("method", "post");
-                    registerForm.attr("action", "/payment/register");
+        // 결제하기 버튼 누르기
+        var registerForm = $("#register");
 
-                    // #{impUid}, #{MerchantUid}
-                    if([[${monthType}]] == "1"){
-                        registerForm.append($('<input/>', {type: 'hidden', name: 'paymentType', value: 1}));
-                    }else{
-                        registerForm.append($('<input/>', {type: 'hidden', name: 'paymentType', value: 12}));
-                    }
-                    registerForm.append($('<input/>', {type: 'hidden', name: 'impUid', value: rsp.imp_uid}));
-                    registerForm.append($('<input/>', {type: 'hidden', name: 'merchantUid', value: rsp.merchant_uid}));
+        if (paymentType === "0") { // 쿠폰 버튼 눌렀을때
+            if ($("#couponNumber").is("[readonly]")) {
+                console.log("쿠폰 결제 진행");
+                registerForm.attr("method", "post");
+                registerForm.attr("action", "/payment/register");
 
-
-
-                    var msg = '결제가 완료되었습니다.';
-                    msg += '고유ID : ' + rsp.imp_uid;
-                    msg += '상점 거래ID : ' + rsp.merchant_uid;
-                    msg += '결제 금액 : ' + rsp.paid_amount;
-                    msg += '카드 승인번호 : ' + rsp.apply_num;
-
-                } else {
-                    var msg = '결제에 실패하였습니다.';
-                    msg += '에러내용 : ' + rsp.error_msg;
-                }
-                alert(msg);
+                registerForm.append($('<input/>', {type: 'hidden', name: 'paymentType', value: 0}));
+                registerForm.append($('<input/>', {type: 'hidden', name: 'impUid', value: null}));
+                registerForm.append($('<input/>', {type: 'hidden', name: 'merchantUid', value: null}));
                 registerForm.submit();
-            });
+
+                // 멤버 디비에 구독중으로 변경 (membernum, => 현재 세션 memberNum을 넘겨서 거기에서 0을 1로
+                // 구독중이면 넘어가면 안되는데..
+
+                // 쿠폰 사용했다고 변경
+                // 전달 순서 : payment컨트롤러로 가서, paymentservice로 보내고 paymentDAO, couponDAO를 사용할것
+
+                // 넘길 정보는
+                // (쿠폰테이블에서 사용했다는것을 하기 위해) memberNum 전달, status 1로 변경 -> 멤버테이블
+                // (구독중이라는 것을 알리기 위해) memberNum, couponNum전달(이건 쿼리문에서 구해야 하거나 조회했을때 값을 같이 받아오기)
+                //                            subMonth(2), subDate(SYSDATE), expireDate(2달)
+                // paymentType : 0 : 쿠폰 / 1 : 1달 / 2 : 1년 구독
+                // 쿠폰번호 :
+                // ※ 쿠폰num을 구해오는 방법 :  1. 현재 만든것을 수정(리턴값들 모두 수정해야함), 2. 다시 쿼리문 한번더 구해서 오기. -> 쿼리문 변경으로 가져옴
+
+            } else {
+                alert("쿠폰 등록 확인 후 결제를 진행해 주세요");
+            }
+
+        } else if (paymentType === "1") { // 카드 버튼 눌렀을 때
+            console.log("카드 결제 진행");
+            iamport(price);
+
         }
-    </script>
+        // 카드 결제 하고, 멤버 구독했다는것을 넣어주기 (금액을 어떻게 가져올지 고민해보기)
+        else { // 아무것도 안눌렀을때
+            alert("결제 방법을 선택해 주세요!");
+        }
+    }
+
+
+    function iamport(price) {
+        //가맹점 식별코드
+        IMP.init('imp77982928');
+        IMP.request_pay({
+            pg: 'kcp',
+            pay_method: 'card',
+            merchant_uid: 'merchant_' + new Date().getTime(),
+            name: '기북천사 구독신청', //결제창에서 보여질 이름
+            amount: price, //실제 결제되는 가격
+            buyer_email: 'iszzon@gmail.com', // 구매자 정보
+            buyer_name: '신세훈',
+            buyer_tel: '010-4759-2499',
+            buyer_addr: '경기도 성남시 분당구',
+            buyer_postcode: '123-456'
+        }, function (rsp) {
+            console.log(rsp);
+            if (rsp.success) { // 성공 시
+                var registerForm = $("#register");
+                registerForm.attr("method", "post");
+                registerForm.attr("action", "/payment/register");
+
+                // #{impUid}, #{MerchantUid}
+                if ([[${monthType}]] == "1") {
+                    registerForm.append($('<input/>', {type: 'hidden', name: 'paymentType', value: 1}));
+                } else {
+                    registerForm.append($('<input/>', {type: 'hidden', name: 'paymentType', value: 12}));
+                }
+                registerForm.append($('<input/>', {type: 'hidden', name: 'impUid', value: rsp.imp_uid}));
+                registerForm.append($('<input/>', {type: 'hidden', name: 'merchantUid', value: rsp.merchant_uid}));
+
+
+                var msg = '결제가 완료되었습니다.';
+                msg += '고유ID : ' + rsp.imp_uid;
+                msg += '상점 거래ID : ' + rsp.merchant_uid;
+                msg += '결제 금액 : ' + rsp.paid_amount;
+                msg += '카드 승인번호 : ' + rsp.apply_num;
+
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+            }
+            alert(msg);
+            registerForm.submit();
+        });
+    }
+</script>
+
+<!--kkh 2021.11.03 새로 작성한 코드-->
+<script th:inline="javascript">
+    // 글 등록 시 전달받는 게시글 번호를 alert으로 출력
+    let searchForm = $(document.searchForm);
+
+
+    $("button.search").on("click", function (e) {  /*$("a.search").on("click", function(e){*/
+        e.preventDefault();
+
+
+        if (!searchForm.find("input#keyword").val()) {
+            alert("키워드를 입력하세요");
+            return;
+        }
+        searchForm.submit();
+    });
+
+    $("input#keyword").on("keydown", function (e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            if (!searchForm.find("input#keyword").val()) {
+                alert("키워드를 입력하세요");
+                return;
+            }
+            searchForm.submit();
+        }
+    })
+</script>
+<!--위 kkh 2021.11.03 새로 작성한 코드-->
 </body>
 </html>

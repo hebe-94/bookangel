@@ -220,6 +220,7 @@
 <div id="page-wrapper">
 
 
+    <!--  Header -->
     <div id="header">
         <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
         <nav id="nav">
@@ -227,14 +228,14 @@
             <!-- 기북천사 로고 -->
             <div>
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
-
                 <!-- 검색 -->
                 <form id="searchForm" style="width: 261px;float:left; padding: 0px;" action="/book/list" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
+                        <!--                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">-->
                     </div>
                     <button onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                         <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
@@ -247,13 +248,15 @@
                              8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
                     </button>
                 </form>
-
-
-
+                <!-- 회원정보 -->
                 <li>
                     <a href="#">📖
-                        <th:block th:text="${memberName}" />
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
+                        <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
+
                     </a>
                     <ul>
                         <th:block th:if="${memberNum} == null">
@@ -265,13 +268,13 @@
                             <li id="myPageTab"><a>마이페이지&hellip;</a>
                                 <ul>
                                     <li><a href="/member/mypage">내정보 보기</a></li>
-                                    <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                    <li><a href="/member/memberModify">회원정보 수정</a></li>
                                     <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
                                     <li><a  href="/member/withdraw">회원탈퇴</a></li>
                                 </ul>
                             </li>
                             <li><a  href="/main/qna">Q&A</a></li>
-                            <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                            <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
                         </th:block>
 
                     </ul>
@@ -531,4 +534,34 @@
         }
     })
 </script>
+
+<!--kkh 2021.11.03 새로 작성한 코드-->
+<script th:inline="javascript">
+    // 글 등록 시 전달받는 게시글 번호를 alert으로 출력
+    let searchForm = $(document.searchForm);
+
+
+    $("button.search").on("click", function(e){  /*$("a.search").on("click", function(e){*/
+        e.preventDefault();
+
+
+        if(!searchForm.find("input#keyword").val()){
+            alert("키워드를 입력하세요");
+            return;
+        }
+        searchForm.submit();
+    });
+
+    $("input#keyword").on("keydown", function(e){
+        if(e.keyCode == 13){
+            e.preventDefault();
+            if(!searchForm.find("input#keyword").val()){
+                alert("키워드를 입력하세요");
+                return;
+            }
+            searchForm.submit();
+        }
+    })
+</script>
+<!--위 kkh 2021.11.03 새로 작성한 코드-->
 </html>

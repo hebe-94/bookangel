@@ -35,7 +35,9 @@ public class BookController {
     private final PaymentService paymentService;
 
     @GetMapping("list")
-    public String list(Criteria criteria, Model model){
+    public String list(Criteria criteria, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+
         log.info("keyword : " + criteria.getKeyword());
         log.info("-------------------------------");
         log.info("list");
@@ -45,6 +47,14 @@ public class BookController {
 
         model.addAttribute("list", bookService.getList(criteria));
         model.addAttribute("pageMaker", new PageDTO(bookService.getTotal(criteria), 10, criteria));
+
+
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("memberType", session.getAttribute("memberType"));
+        model.addAttribute("memberId", session.getAttribute("memberId"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
+        model.addAttribute("sub", session.getAttribute("sub"));
+
         return "book/list";
     }
 
@@ -68,33 +78,18 @@ public class BookController {
         model.addAttribute("book", bookService.get(bookNum));
         model.addAttribute("criteria", criteria);
 
-
-
-        model.addAttribute("sub",session.getAttribute("sub"));
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
-
+        model.addAttribute("memberType", session.getAttribute("memberType"));
+        model.addAttribute("memberId", session.getAttribute("memberId"));
+        model.addAttribute("memberName", session.getAttribute("memberName"));
+        model.addAttribute("sub", session.getAttribute("sub"));
 
         log.info("sub : " + model.getAttribute("sub"));
         log.info("memberNum : " + model.getAttribute("memberNum"));
 
-
-
-
-
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
