@@ -172,8 +172,18 @@
     function ModifyPW(){
         memberPw = $("input#memberPw").val();
         memberNewPw = $("input#memberNewPw").val();
+
+        var pwCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
+
+        if (!pwCheck.test(memberPw)) {
+            alert("비밀번호는 영문자+숫자 조합으로 8~20자리 사용해야 합니다");
+            $("input#memberPw").val("");
+            $("input#memberPw").focus();
+            return;
+        }
+
         var frm = document.modifyPW;
-        if(memberPw!=""||memberNewPw!=""){
+        if(memberPw!=""&&memberNewPw!=""){
             if (memberPw==memberNewPw) {
                 frm.method = "post";
                 frm.action = "/member/modifypw";

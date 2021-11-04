@@ -16,7 +16,7 @@ public class MemberDAO {
     public MemberVO login(MemberVO memberVO){return memberMapper.select(memberVO);}
     public MemberVO getMyInfo(String memberId){return memberMapper.info(memberId);}
     public int withDrawCheck(MemberVO memberVO){return memberMapper.check(memberVO);}
-    public void withDraw(int memberNum){memberMapper.status(memberNum);}
+    public void withDraw(Long memberNum){memberMapper.status(memberNum);}
     public void modifyPw(MemberVO memberVO){memberMapper.change(memberVO);}
     public String findId(MemberVO memberVO){return memberMapper.getId(memberVO);}
     public void modifyInfo(MemberVO memberVO){memberMapper.modify(memberVO);}

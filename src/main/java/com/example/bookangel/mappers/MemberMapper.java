@@ -16,7 +16,7 @@ public interface MemberMapper {
     //탈퇴 비밀번호 확인
     public int check(MemberVO memberVO);
     //회원탈퇴
-    public void status(int memberNum);
+    public void status(Long memberNum);
     //비밀번호 변경
     public void change(MemberVO memberVO);
     //아이디 찾기
