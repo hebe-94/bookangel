@@ -71,6 +71,9 @@
                 </form>
                 <li>
                     <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
                         <th:block th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
@@ -185,6 +188,8 @@
                 }
                 else{
                     alert("잘못된 비밀번호 입니다.");
+                    $("input#memberPw").val("");
+                    $("input#memberPw").focus();
                     return;
                 }
             }

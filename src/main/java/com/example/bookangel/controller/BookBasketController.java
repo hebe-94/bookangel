@@ -31,21 +31,21 @@ public class BookBasketController {
 
     // main에서 책담을때 사용하는것
     @PostMapping("addBookBasket")
+    @ResponseBody
     public String addBookBasket(@RequestParam("imgSrc") String imgSrc, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
 
         long memberNum = Long.parseLong(session.getAttribute("memberNum").toString());
         if (bookBasketService.isExist(imgSrc, memberNum) == 0) { // 0이면 책가방에 안담겨있음
             if(bookBasketService.addBookBasket(imgSrc, memberNum)){
-                // 책가방 담기 성공
+                return "success";
             }else{
-                // 책가방 담기 실패
+                return "false";
             }
         } else { // 책가방에 담겨있음
-
+            return "overlap";
         }
 
-        return "main/mainPage";
     }
 
     /*2021.11.04 kkh*/

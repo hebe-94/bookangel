@@ -21,5 +21,6 @@ public class MemberDAO {
     public String findId(MemberVO memberVO){return memberMapper.getId(memberVO);}
     public void modifyInfo(MemberVO memberVO){memberMapper.modify(memberVO);}
     public int checkTel(String memberTel){return memberMapper.countTel(memberTel);}
+    public String checkIdForTel(String memberId){return memberMapper.findPhone(memberId);}
 
 }

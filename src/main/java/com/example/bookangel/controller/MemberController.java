@@ -2,10 +2,7 @@ package com.example.bookangel.controller;
 
 import com.example.bookangel.beans.vo.MemberVO;
 import com.example.bookangel.beans.vo.PaymentVO;
-import com.example.bookangel.services.CouponService;
-import com.example.bookangel.services.MemberService;
-import com.example.bookangel.services.PaymentService;
-import com.example.bookangel.services.PaymentServiceImple;
+import com.example.bookangel.services.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
@@ -28,7 +25,7 @@ public class MemberController {
     private final MemberService memberService;
     private final PaymentService paymentService;
     private final CouponService couponService;
-
+    private final BookBasketService bookBasketService;
     // 페이지 이동
     @GetMapping("mypage")
     public void mypage(HttpServletRequest request, Model model){
@@ -38,6 +35,11 @@ public class MemberController {
             model.addAttribute("startSub", paymentVO.getSubDate().substring(0,10));
             model.addAttribute("endSub", paymentVO.getExpireDate().substring(0,10));
             model.addAttribute("end",paymentVO.getSubMonth());
+        }
+        if(bookBasketService.myBasketCNT((Long)session.getAttribute("memberNum"))!=0){
+            model.addAttribute("myBaskets",bookBasketService.myBasket((Long)session.getAttribute("memberNum")));
+        }else{
+            model.addAttribute("myBaskets","null");
         }
         String memberId = (String)session.getAttribute("memberId");
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
@@ -228,6 +230,7 @@ public class MemberController {
         } else if(memberTel.length() == 12) {
             memberTel.replaceAll("-","");
         }
+        log.info(memberTel);
 
 //        String api_key = "NCSLANK8RO9KSPQQ";
 //        String api_secret = "0DD9JD7EQ7OGNTDHLBHV7CST45CHMZ0V";
@@ -342,6 +345,23 @@ public class MemberController {
         }else {
             return "success";
         }
+    }
+    @PostMapping("checkIdForTel")
+    @ResponseBody
+    public String checkIdForTel(String memberId,String memberTel){
+        String result = null;
+        if(memberTel.length() == 10) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        log.info("전화번호 : "+memberTel);
+        if(memberTel.equals(memberService.checkIdForTel(memberId))){
+            result = "success";
+        }else{
+            result = "false";
+        }
+        return result;
     }
 }
 

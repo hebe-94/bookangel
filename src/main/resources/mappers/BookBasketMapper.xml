@@ -14,7 +14,6 @@
         WHERE BOOKNUM = #{bookNum} AND memberNum = #{memberNum}
     </select>
 
-
     <!--책가방에 담기-->
     <insert id="addBookBasket">
         INSERT INTO BOOK_BASKET ( bookNum, memberNum)

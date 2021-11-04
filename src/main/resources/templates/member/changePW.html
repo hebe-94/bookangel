@@ -74,6 +74,9 @@
                 </form>
                 <li>
                     <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
                         <th:block th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
@@ -122,8 +125,8 @@
                     <div style="width:40%">
 
                         <div class="col-6 col-12-xsmall" style="width:100%">
-                            <input type="password" style="margin-bottom: 3%;font-size:20px;text-align:center;margin: 0 0 3% 0%;border-color: #df7366;width: 74%;margin-left: 13%;" name="memberPw" id="memberPw" value="" placeholder="영문 4자 이상, 최대 20자"/>
-                            <input type="password" style="margin-bottom: 3%;font-size:20px;text-align:center;margin: 0 0 3% 0%;border-color: #df7366;width: 74%;margin-left: 13%;" name="memberNewPw" id="memberNewPw" value="" placeholder="새 비밀번호 확인" />
+                            <input type="password" style="z-index:0;margin-bottom: 3%;font-size:20px;text-align:center;margin: 0 0 3% 0%;border-color: #df7366;width: 74%;margin-left: 13%;" name="memberPw" id="memberPw" value="" placeholder="영문 4자 이상, 최대 20자"/>
+                            <input type="password" style="z-index:0;margin-bottom: 3%;font-size:20px;text-align:center;margin: 0 0 3% 0%;border-color: #df7366;width: 74%;margin-left: 13%;" name="memberNewPw" id="memberNewPw" value="" placeholder="새 비밀번호 확인" />
                             <input type="hidden" name="memberId" id="memberId" th:value="${memberId}">
                             <input type="hidden" name="memberTel" id="memberTel" th:value="${memberTel}">
                             <p style="border-bottom: solid 7px #f5F3f3;padding-bottom: 10px;margin-top: 4%;"><br><br><br><br><br></p>
@@ -170,12 +173,17 @@
         memberPw = $("input#memberPw").val();
         memberNewPw = $("input#memberNewPw").val();
         var frm = document.modifyPW;
-        if (memberPw==memberNewPw){
-            frm.method = "post";
-            frm.action = "/member/modifypw";
-            frm.submit();
+        if(memberPw!=""||memberNewPw!=""){
+            if (memberPw==memberNewPw) {
+                frm.method = "post";
+                frm.action = "/member/modifypw";
+                frm.submit();
+            }else{
+                alert("비밀번호가 일치하지 않습니다.");
+                return;
+            }
         }else{
-            alert("비밀번호가 일치하지 않습니다.");
+            alert("변경하실 비밀번호를 입력해 주세요.");
             return;
         }
 

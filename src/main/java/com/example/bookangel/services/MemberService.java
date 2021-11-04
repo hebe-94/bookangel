@@ -22,4 +22,5 @@ public class MemberService {
     public String findId(MemberVO memberVO){return memberDAO.findId(memberVO);}
     public void modifyInfo(MemberVO memberVO){memberDAO.modifyInfo(memberVO);}
     public boolean checkTel(String memberTel){return memberDAO.checkTel(memberTel)==0;}
+    public String checkIdForTel(String memberId){return memberDAO.checkIdForTel(memberId);}
 }
