@@ -32,4 +32,11 @@ public class BookBasketTest {
         log.info("책가방 리스트 개수수 : "+ bookBasketMapper.myBasketCNT(21L));
 
     }
+
+    @Test
+    public void addBookBasketToBookNum(){
+        log.info("-----------------------------------");
+        log.info("책가방 담기 : "+ bookBasketMapper.addBookBasketToBookNum(10l,21l));
+
+    }
 }

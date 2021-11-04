@@ -251,7 +251,7 @@
                                     </ul>
                                 </li>
                                 <li><a  href="/main/qna">Q&A</a></li>
-                                <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                                <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
                             </th:block>
 
                         </ul>
@@ -274,7 +274,7 @@
 
             <br>
             <div class="payment-detail">
-                <p class="title" style="text-align: left;"><b>구독 월 정기구독</b></p>
+                <p class="title" style="text-align: left;"><b>정기구독</b></p>
                 <div id="card-text">
                     <span class="detail-text" >구독기간</span> <span style="font-size: 20px;" th:text="${date}" id="subscribe-card-text"></span>
                 </div>
@@ -344,7 +344,7 @@
                 </div>
 
                 <div>
-                    <input type="button" value="0원 결제하기" id="submitBTN" onclick="submit()">
+                    <input type="button" value="결제하기" id="submitBTN" onclick="submit()">
                 </div>
             </div>
             <form id="register"></form>
@@ -560,17 +560,15 @@
             }else if(paymentType === "1"){ // 카드 버튼 눌렀을 때
                 console.log("카드 결제 진행");
                 if([[${monthType}]] == "1"){
-                    iamport(100);
+                    iamport(9900);
                 }else{
-                    iamport(120);
+                    iamport(99000);
                 }
             }
                 // 카드 결제 하고, 멤버 구독했다는것을 넣어주기 (금액을 어떻게 가져올지 고민해보기)
             else{ // 아무것도 안눌렀을때
                 alert("결제 방법을 선택해 주세요!");
             }
-
-
         }
 
 

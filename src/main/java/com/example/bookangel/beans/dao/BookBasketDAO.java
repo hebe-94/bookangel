@@ -24,10 +24,23 @@ public class BookBasketDAO {
         log.info("[DAO]-책가방 담기...............");
         return bookBasketMapper.addBookBasket(imgSrc, memberNum) == 1L;
     }
+
+    // bookNum으로 책가방에 담기
+    public boolean addBookBasketToBookNum(long bookNum, Long memberNum){
+        log.info("[DAO]-bookNum으로 책가방 담기...............");
+        return bookBasketMapper.addBookBasketToBookNum(bookNum, memberNum) == 1L;
+    }
+
     // 책가방에 담겨있는지 확인
     public long isExist(String imgSrc, Long memberNum){
         log.info("[DAO]-책가방 담겨있는지 확인...............");
         return bookBasketMapper.isExist(imgSrc, memberNum);
+    }
+
+    // 책가방에 담겨있는지 확인
+    public long isExistToBookNum(long bookNum, Long memberNum){
+        log.info("[DAO]-bookNum으로 책가방 담겨있는지 확인...............");
+        return bookBasketMapper.isExistToBookNum(bookNum, memberNum);
     }
 
     // 회원이 가지고 있는 basket정보
