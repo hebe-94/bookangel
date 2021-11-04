@@ -17,10 +17,10 @@
     <!--책가방에 담기-->
     <insert id="addBookBasket">
         INSERT INTO BOOK_BASKET ( bookNum, memberNum)
-		VALUES(
-		    (SELECT BOOKNUM FROM BOOK WHERE BOOKIMAGESRC = #{imgSrc}),
-		    #{memberNum}
-		    )
+      VALUES(
+          (SELECT BOOKNUM FROM BOOK WHERE BOOKIMAGESRC = #{imgSrc}),
+          #{memberNum}
+          )
     </insert>
 
     <select id="myBasket" resultType="bookVO">
@@ -32,6 +32,7 @@
         SELECT COUNT(BOOKNUM) FROM BOOK_BASKET
         WHERE memberNum = #{memberNum}
     </select>
+
 
     <insert id="addBookBasketToBookNum">
         INSERT INTO BOOK_BASKET ( bookNum, memberNum)

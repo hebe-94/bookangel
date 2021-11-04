@@ -169,10 +169,23 @@ public class MemberController {
                 }else{
                 session.setAttribute("sub", "false");
                 }
+
+                log.info("vo.getMemberNum : " + vo.getMemberNum());
+                log.info(" sub : " + session.getAttribute("sub"));
+
                 session.setAttribute("memberNum", vo.getMemberNum());
                 session.setAttribute("memberType", vo.getMemberType());
                 session.setAttribute("memberId", vo.getMemberId());
                 session.setAttribute("memberName", vo.getMemberName());
+                log.info("------------------------------");
+                log.info("------------------------------");
+                log.info("------------------------------");
+                log.info("------------------------------");
+                log.info("memberNum : " + session.getAttribute("memberNum"));
+                log.info("memberId : " + session.getAttribute("memberId"));
+                log.info("------------------------------");
+                log.info("------------------------------");
+
                 return "redirect:/main/mainPage";
             }
         }

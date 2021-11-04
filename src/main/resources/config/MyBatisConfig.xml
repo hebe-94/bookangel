@@ -5,6 +5,7 @@
         <typeAlias type="com.example.bookangel.beans.vo.PaymentVO" alias="paymentVO"/>
         <typeAlias type="com.example.bookangel.beans.vo.CouponVO" alias="couponVO"/>
         <typeAlias type="com.example.bookangel.beans.vo.BoardVO" alias="boardVO"/>
+        <typeAlias type="com.example.bookangel.beans.vo.BookVO" alias="bookVO"/>
         <typeAlias type="com.example.bookangel.beans.vo.MainPageVO" alias="mainPageVO"/>
         <typeAlias type="com.example.bookangel.beans.vo.MemberVO" alias="memberVO"/>
         <typeAlias type="com.example.bookangel.beans.vo.AttachFileVO" alias="attachFileVO"/>
