@@ -51,10 +51,6 @@
             background: #121212;
             color: #bbb;
         }
-
-        a {
-            color: #3ea6ff;
-        }
         h3{
             color: #bbb;
         }
@@ -63,13 +59,11 @@
     html {
         --bg-color: #fff;
         --text-color: #343434;
-        --link-color: #0000ee;
     }
 
     html.dark {
         --bg-color: #121212;
         --text-color: #bbb;
-        --link-color: #3ea6ff;
     }
 
     .wrapper{
@@ -82,11 +76,6 @@
         color: var(--text-color);
     }
 
-
-
-    a {
-        color: var(--link-color);
-    }
 
     /* body 기본 폰트 전체 적용 */
     body{
@@ -276,7 +265,7 @@
                                 </ul>
                             </li>
                             <li><a  href="/main/qna">Q&A</a></li>
-                            <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                            <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
                         </th:block>
 
                     </ul>
@@ -1983,18 +1972,18 @@ if(${session_id  eq '' || empty session_id}){
     let sub = [[${sub}]];
     let memberNum = [[${memberNum}]];
         function openPop(){
-            if(sub == false || memberNum  == null){
+            if(sub == 'false' || memberNum  == null){
                 alert("구독한 회원만 읽을 수 있습니다.");
                 return false;
-            } else if(sub == true || memberNum  != null){
+            } else if(sub == 'true' || memberNum  != null){
             window.open('/main/expressBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
         }
     }
     function dreamOpenPop(){
-        if(sub == false || memberNum  == null){
+        if(sub == 'false' || memberNum  == null){
             alert("구독한 회원만 읽을 수 있습니다.");
             return false;
-        } else if(sub == true || memberNum  != null){
+        } else if(sub == 'true' || memberNum  != null){
             window.open('/main/dreamBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
         }
     }
