@@ -305,6 +305,10 @@
             $("form#checkForm").css("display","none");
             $("form#modifyForm").css("display", "block");
             $("p#modifyInfo").css("display", "block");
+        }else if($("input#pw").val()==""||$("input#pw").val()==null){
+            alert("비밀번호를 입력해 주세요.");
+            $("input#pw").focus();
+            return;
         }else{
             alert("비밀번호를 확인해 주세요.");
             $("input#pw").focus();

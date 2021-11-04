@@ -12,7 +12,6 @@ $("input#btnCheckSMS").on("click",function () {
         data:{"memberTel":memberTel},
         success:function(result){
             if(result=="success"){
-                alert(result);
                 checksms();
 
             }else if(result=="false"){

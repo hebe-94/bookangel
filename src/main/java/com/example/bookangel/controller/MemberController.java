@@ -211,10 +211,10 @@ public class MemberController {
     @PostMapping("withdraw")
     public String withdraw(HttpServletRequest request){
         HttpSession session = request.getSession();
-        int memberNum = (int)session.getAttribute("memberNum");
+        Long memberNum = (Long)session.getAttribute("memberNum");
         memberService.withDraw(memberNum);
         session.invalidate();
-        return "member/login";
+        return "/member/login";
     }
     @GetMapping("membersmscheck")
     public @ResponseBody
