@@ -71,6 +71,9 @@
                 </form>
                 <li>
                     <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
                         <th:block th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
@@ -116,7 +119,7 @@
             <div style="display:flex; justify-content:space-evenly; color:black;">
                 <div style="width:40%;margin-bottom: 70px;">
                     <div>
-                        <form name="withdraw" id="withdraw">
+                        <form method="post", action="/member/withdraw" name="withdraw" id="withdraw">
                             <div class="col-6 col-12-xsmall" style="width:100%">
                                 <p style="margin-bottom: 2%;">비밀번호 재확인</p>
                                 <input type="password" style="margin-bottom: 3%; position:inherit;" name="memberPw" id="memberPw" value=""/>
@@ -174,10 +177,8 @@
                     if(confirm("정말로 탈퇴하시겠습니까?"))
                     {
                         alert("탈퇴가 완료되었습니다.");
-                        var frm = document.withdraw;
+                        var frm = $("form#withdraw");
 
-                        frm.method = "post";
-                        frm.action = "/member/withdraw";
                         frm.submit();
                         return;
                     }
@@ -185,6 +186,8 @@
                 }
                 else{
                     alert("잘못된 비밀번호 입니다.");
+                    $("input#memberPw").val("");
+                    $("input#memberPw").focus();
                     return;
                 }
             }

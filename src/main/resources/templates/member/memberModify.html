@@ -75,6 +75,9 @@
                 </form>
                 <li>
                     <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
                         <th:block th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
@@ -108,7 +111,7 @@
 <div class="wrapper style1" style="padding-top: 0px;">
 
     <div class="modifyContainer" style="display: inherit;">
-        <article style="margin-bottom: 700px;" id="modifyArticle"
+        <article style="margin-bottom: 0;" id="modifyArticle"
                  class="special">
             <header style="margin-top: 3%;">
                 <h2 style="margin-bottom: 1%; margin-top: 3%;">회원정보 수정</h2>
@@ -126,8 +129,8 @@
                        <div style="width: 100%; margin-top: 7%;">
                            <div style="margin-bottom: 25%;">
                                <p style="margin-bottom: 0%; font-size: 22px;">비밀번호 확인</p>
-                               <input id="pw" type="password" style="width: 70%">
-                               <input id="checkPw" type="button" value="확인" style="width: 30%; padding: 0;">
+                               <input id="pw" type="password" style="z-index: 0;width: 70%;">
+                               <input id="checkPw" type="button" value="확인" style="z-index: 0;width: 30%; padding: 0;">
                            </div>
                        </div>
                    </div>
@@ -154,7 +157,13 @@
                                            name="memberName" id="memberName" th:value="*{memberName}" readonly>
                                     <br>
                                     <p style="margin-bottom: 0%; font-size: 22px;">핸드폰 번호</p>
-                                    <input type="text" style="margin-bottom: 4%; position: inherit;" name="memberTel" id="memberTel" th:value="*{memberTel}" placeholder="000-0000-0000 형식으로 작성해 주세요."> <br>                                    <p
+                                    <div style="display: flex;">
+                                    <input type="text" style="z-index: 0;width70%;margin-bottom: 4%; position: inherit;" name="memberTel" id="memberTel" th:value="*{memberTel}" placeholder="핸드폰 번호를 입력해 주세요." maxlength="13">
+                                    <input type="button" id="checkTelBtn" name="checkTelBtn"
+                                           class="primary"
+                                           style="z-index: 0;border-radius: 10px; position: inherit; text-align: center; width: 30%; display: flex; align-items: center;"
+                                           value="중복 확인">
+                                    </div>
                                     <p style="margin-bottom: 0%; font-size: 22px;">이메일</p>
                                     <input type="text" style="margin-bottom: 4%; position: inherit;"
                                            name="memberEmail" id="memberEmail" th:value="*{memberEmail}"
@@ -166,7 +175,7 @@
                                     style="margin-bottom: 0%; font-size: 22px;">우편번호</p>
                             <div
                                     style="display: flex; justify-content: flex-start; position: inherit; width: 100%;">
-                                <input style="position: inherit; width: 60%;" type="text"
+                                <input style="z-index: 0;position: inherit; width: 60%;" type="text"
                                        name="memberZipcode" id="memberZipcode"
                                        class="postcodify_postcode5" th:value="*{memberZipcode}">
                                 <ul class="actions" style="width: 40%;">
@@ -266,13 +275,43 @@
 </body>
 
 <script th:inline="javascript">
+    var phoneCheck = true;
+    var flag = false;
+    $("input#checkTelBtn").on("click",function () {
+        let memberTel = $('input#memberTel').val();
+        $.ajax({
+            url:"/member/changeTel",
+            type:"post",
+            data:{"memberTel":memberTel},
+            success:function(result){
+                if(result=="false"){
+                    alert("중복된 핸드폰 번호입니다.");
+                    $("input#memberTel").val("");
+                    $("input#memberTel").focus();
+                    phoneCheck = false;
+                    flag = false;
+                    return;
+                }else if(result=="success"){
+                    alert("사용 가능한 핸드폰 번호입니다.");
+                    flag = true;
+                    phoneCheck = true;
+                }
+            }
+        })
+    })
+
     $("input#checkPw").on("click", function(){
         if($("input#pw").val()==[[${myInfo.memberPw}]]){
             $("form#checkForm").css("display","none");
             $("form#modifyForm").css("display", "block");
             $("p#modifyInfo").css("display", "block");
+        }else if($("input#pw").val()==""||$("input#pw").val()==null){
+            alert("비밀번호를 입력해 주세요.");
+            $("input#pw").focus();
+            return;
         }else{
             alert("비밀번호를 확인해 주세요.");
+            $("input#pw").focus();
             return;
         }
     })
@@ -285,14 +324,24 @@
                 $("p#modifyInfo").css("display", "block");
             }else{
                 alert("비밀번호를 확인해 주세요.");
+                $("input#pw").focus();
                 return;
             }
         }
     })
+
     var form = document.modifyForm;
     function formSubmit(){
+
         if(form.memberPw.value==null||form.memberPw.value==""){
             alert("비밀번호를를 입력해 주세요");
+            form.memberPw.focus();
+            return;
+        }
+        var pwCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
+
+        if (!pwCheck.test(form.memberPw.value)) {
+            alert("비밀번호는 영문자+숫자 조합으로 8~20자리 사용해야 합니다");
             form.memberPw.focus();
             return;
         }
@@ -301,11 +350,32 @@
             form.memberTel.focus();
             return;
         }
+
+        var patt = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+        var res = patt.test( $("input#memberTel").val());
+
+        if(!res){
+            alert("핸드폰 번호만 입력 가능합니다.");
+            $("input#memberTel").val("");
+            $("input#memberTel").focus();
+            return;
+        }
+
         if(form.memberEmail.value==null||form.memberEmail.value==""){
             alert("이메일을 입력해 주세요");
             form.memberEmail.focus();
             return;
         }
+
+        var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        var email = regex.test($("input#memberEmail").val());
+        if(!email){
+            alert("abc@abc.com 형식으로 작성해 주세요.");
+            $("input#memberEmail").val("");
+            $("input#memberEmail").focus();
+            return;
+        }
+
         if(form.memberZipcode.value==null||form.memberZipcode.value==""){
             alert("우편번호를 입력해 주세요");
             form.memberZipcode.focus();
@@ -326,29 +396,12 @@
             form.memberAddressEtc.focus();
             return;
         }
-
-        var patt = new RegExp("[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}");
-        var res = patt.test( $("input#memberTel").val());
-
-        if(!res){
-            alert("010-0000-0000 형식으로 입력해 주세요.");
-            $("input#memberTel").val("");
-            $("input#memberTel").focus();
+        if(!phoneCheck){
+            alert("핸드폰번호 중복검사를 진행해 주세요.")
             return;
         }
-        var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-        var email = regex.test($("input#memberEmail").val());
-        if(!email){
-            alert("abc@abc.com 형식으로 작성해 주세요.");
-            $("input#memberEmail").val("");
-            $("input#memberEmail").focus();
-            return;
-        }
-        var pwCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
-
-        if (!pwCheck.test(form.memberPw.value)) {
-            alert("비밀번호는 영문자+숫자 조합으로 8~20자리 사용해야 합니다");
-            form.memberPw.focus();
+        if(!flag){
+            alert("핸드폰번호 중복검사를 진행해 주세요.")
             return;
         }
         alert("정보수정이 완료되었습니다!")

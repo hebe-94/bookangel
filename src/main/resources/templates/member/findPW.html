@@ -92,6 +92,9 @@
                 </form>
                 <li>
                     <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
                         <th:block th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
@@ -146,24 +149,27 @@
                                 <!--  style="margin-bottom: 2%;padding-top: 20px;border-top: solid 7px #f5f4f3;" -->
                                     <p style="display: table;margin-left: 5%; text-align: left;font-size: 17px;margin-bottom: 1%;">아이디<span id="idCheck_text" style="font-size:0.7em; font-weight:bold;"></span></p>
                                 <input type="text"
-                                       style="margin-bottom: 3%;width: 64%;margin-right: 3%;font-family: 'Gowun Dodum';font-size: 12px;margin-left: 4%;"
+                                       style="z-index:0;margin-bottom: 3%;width: 92%;margin-right: 3%;font-family: 'Gowun Dodum';font-size: 12px;margin-left: 4%;"
                                        name="memberId" id="memberId" value="">
-                                <input type="button"
-                                       style="margin-bottom: 3%;text-align: center;font-size: 3px;width: 27%;font-family: 'Gowun Dodum';background-color: #8a8a8a;border-radius: 10px;margin-left: -2%;"
+                                <input style="width: 46%; margin-left: 4%; border-radius: 10px; font-size: 3px; padding: 0; font-family: 'Gowun Dodum';" type="button" onclick="checkId()" value="아이디 확인">
+                                    <input type="button"
+                                       style="margin-bottom: 3%;text-align: center;font-size: 3px;width: 46%;font-family: 'Gowun Dodum';background-color: #8a8a8a;border-radius: 10px;"
                                        value="아이디 찾기"
                                        onclick="location.href='/member/findID'">
                                 <br>
+                                    <div style="display: flex;width: 100%;">
                                 <p class="findId"
                                    style="display: table; margin-left: 4%;">전화번호</p>
-                                <input type="text"
-                                       style="margin-bottom: 3%;width: 64%;margin-right: 3%;font-family: 'Gowun Dodum';font-size: 12px;margin-left: 4%;"
+                                </div>
+                                    <input type="text"
+                                       style="z-index:0;margin-bottom: 3%;width: 64%;margin-right: 3%;font-family: 'Gowun Dodum';font-size: 12px;margin-left: 4%;"
                                        name="memberTel" id="memberTel"
-                                       placeholder="가입시 등록한 번호로 -없이 입력해주세요" value="">
+                                       placeholder="가입시 등록한 번호를 입력해주세요" value="">
                                 <input type="button"
                                        style="margin-bottom: 3%;text-align: center;font-size: 3px;width: 27%;font-family: 'Gowun Dodum';background-color: #8a8a8a;border-radius: 10px;margin-left: -2%;"
-                                       value="인증번호 받기" id="btnCheckSMS">
+                                       value="인증번호 받기" id="btnCheckSMS" onclick="checkPhone()">
                                 <input type="text"
-                                       style="width: 64%;font-family: 'Gowun Dodum';background-color: #E5E5E5;font-size: 12px;margin-left: 4%;"
+                                       style="z-index:0;width: 64%;font-family: 'Gowun Dodum';background-color: #E5E5E5;font-size: 12px;margin-left: 4%;"
                                        name="checkSMS" id="checkSMS" value=""
                                        placeholder="인증번호를 입력해주세요">
                                 <input style="width: 27%; margin-left: 1%; border-radius: 10px; font-size: 3px; padding: 0; font-family: 'Gowun Dodum';" type="button" id="btnCheckSMSSuccess" value="인증번호 확인">
@@ -213,9 +219,10 @@
             }
         })
 
+    var flag = false;
     var frm = document.findPw;
     var check = false;
-    $("input#btnCheckSMS").on("click",function () {
+    function checkPhone() {
         if (frm.memberId.value.length < 1) {
             alert("아이디를 입력하세요");
             frm.memberId.focus();
@@ -226,7 +233,28 @@
             frm.memberTel.focus();
             return;
         }
-
+        if(flag){
+        $.ajax({
+            url:"/member/checkIdForTel",
+            type:"post",
+            data:{"memberId":$("input#memberId").val(),"memberTel":$("input#memberTel").val()},
+            success:function (result) {
+                if(result=="success"){
+                    sms();
+                }else{
+                    alert("일치하지 않은 휴대폰 번호입니다.");
+                    $("input#memberTel").val("");
+                    $("input#memberTel").focus();
+                    return;
+                }
+            }
+        });
+    }else{
+            alert("아이디를 확인해 주세요.");
+            return;
+        }
+    }
+    function sms(){
         let memberTel = $('input#memberTel').val();
         alert('인증번호 발송 완료!')
 
@@ -250,8 +278,13 @@
                 })
             }
         })
-    })
-    $("input#memberId").focusout(function () {
+    }
+    function checkId() {
+        if($("input#mamberId").val()==""){
+            alert("아이디를 입력하세요");
+            return;
+        }
+        if(!flag){
         var memberId = $("input#memberId").val();
         $.ajax({
             url:"/member/checkId",
@@ -262,18 +295,21 @@
                     //DOM
                     alert("아이디를 확인해 주세요");
                     $("input#memberId").val("");
+                    return;
                 }else{
                     //DOM
                     $("#idCheck_text").text("아이디 확인 완료!");
                     $("#idCheck_text").css("color", "blue");
                     $("input#memberId").attr("readonly", true);
+                    flag = true;
+                    return;
                 }
             },
             error:function(){
                 console.log("오류");
             }
         });
-    })
+    }}
     $("input#btnFindPw").on("click",function(){
         if (frm.memberId.value.length < 1) {
             alert("아이디를 입력하세요");

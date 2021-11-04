@@ -17,8 +17,10 @@ public class MemberService {
     public MemberVO login(MemberVO memberVO){return memberDAO.login(memberVO);}
     public MemberVO getMyInfo(String memberId){return memberDAO.getMyInfo(memberId);}
     public int withDrawCheck(MemberVO memberVO){return memberDAO.withDrawCheck(memberVO);}
-    public void withDraw(int memberNum){memberDAO.withDraw(memberNum);}
+    public void withDraw(Long memberNum){memberDAO.withDraw(memberNum);}
     public void modifyPw(MemberVO memberVO){memberDAO.modifyPw(memberVO);}
     public String findId(MemberVO memberVO){return memberDAO.findId(memberVO);}
     public void modifyInfo(MemberVO memberVO){memberDAO.modifyInfo(memberVO);}
+    public boolean checkTel(String memberTel){return memberDAO.checkTel(memberTel)==0;}
+    public String checkIdForTel(String memberId){return memberDAO.checkIdForTel(memberId);}
 }

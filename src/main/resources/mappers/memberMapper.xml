@@ -41,7 +41,7 @@
         WHERE MEMBERNAME = #{memberName} AND MEMBERTEL = #{memberTel}
     </select>
     <update id="modify">
-        UPDATE HR.BOOK_MEMBER
+        UPDATE BOOK_MEMBER
         SET MEMBERID=#{memberId},
         MEMBERPW=#{memberPw},
         MEMBERNAME=#{memberName},
@@ -53,4 +53,14 @@
         MEMBERADDRESSETC=#{memberAddressEtc}
         WHERE MEMBERNUM=#{memberNum}
     </update>
+    <select id="countTel" resultType="_int">
+        SELECT COUNT(MEMBERTEL)
+        FROM BOOK_MEMBER
+        WHERE MEMBERTEL = #{memberTel}
+    </select>
+    <select id="findPhone" resultType="string">
+        SELECT MEMBERTEL
+        FROM BOOK_MEMBER
+        WHERE MEMBERID = #{memberId}
+    </select>
 </mapper>

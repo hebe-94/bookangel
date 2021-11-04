@@ -2,10 +2,7 @@ package com.example.bookangel.controller;
 
 import com.example.bookangel.beans.vo.MemberVO;
 import com.example.bookangel.beans.vo.PaymentVO;
-import com.example.bookangel.services.CouponService;
-import com.example.bookangel.services.MemberService;
-import com.example.bookangel.services.PaymentService;
-import com.example.bookangel.services.PaymentServiceImple;
+import com.example.bookangel.services.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
@@ -28,26 +25,35 @@ public class MemberController {
     private final MemberService memberService;
     private final PaymentService paymentService;
     private final CouponService couponService;
-
+    private final BookBasketService bookBasketService;
     // 페이지 이동
     @GetMapping("mypage")
     public void mypage(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
-        PaymentVO paymentVO = paymentService.searchPayment((Long)session.getAttribute("memberNum"));
+        if(session.getAttribute("sub").equals("true")) {
+            PaymentVO paymentVO = paymentService.searchPayment((Long) session.getAttribute("memberNum"));
+            model.addAttribute("startSub", paymentVO.getSubDate().substring(0,10));
+            model.addAttribute("endSub", paymentVO.getExpireDate().substring(0,10));
+            model.addAttribute("end",paymentVO.getSubMonth());
+        }
+        if(bookBasketService.myBasketCNT((Long)session.getAttribute("memberNum"))!=0){
+            model.addAttribute("myBaskets",bookBasketService.myBasket((Long)session.getAttribute("memberNum")));
+        }else{
+            model.addAttribute("myBaskets","null");
+        }
         String memberId = (String)session.getAttribute("memberId");
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
         model.addAttribute("memberType", session.getAttribute("memberType"));
-        model.addAttribute("memberId", session.getAttribute("memberId"));
+        model.addAttribute("memberId", memberId);
         model.addAttribute("memberName", session.getAttribute("memberName"));
         model.addAttribute("sub", session.getAttribute("sub"));
-        model.addAttribute("startSub", paymentVO.getSubDate().substring(0,10));
-        model.addAttribute("endSub", paymentVO.getExpireDate().substring(0,10));
-        model.addAttribute("myCouponCnt", couponService.companyCouponList((Long)session.getAttribute("memberNum")).size());
+        model.addAttribute("myCouponCnt", couponService.companyCouponListCNT((Long)session.getAttribute("memberNum")));
+        log.info("쿠폰"+couponService.companyCouponListCNT((Long)session.getAttribute("memberNum")));
         model.addAttribute("myInfo", memberService.getMyInfo(memberId));
-        if(couponService.companyCouponList((long)session.getAttribute("memberNum")).size()==0){
-            log.info("0000000000000000");
-        }else {
-            model.addAttribute("coupons", couponService.companyCouponList((Long) session.getAttribute("memberNum")));
+        if(couponService.companyCouponListCNT((Long)session.getAttribute("memberNum"))!=0){
+            model.addAttribute("coupons",couponService.companyCouponList((Long)session.getAttribute("memberNum")));
+        }else{
+            model.addAttribute("coupons", "null");
         }
     }
 
@@ -121,6 +127,13 @@ public class MemberController {
     public String join(MemberVO memberVO,HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         model.addAttribute("memberId", session.getAttribute("memberId"));
+        String memberTel = memberVO.getMemberTel();
+        if(memberTel.length() == 10) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        memberVO.setMemberTel(memberTel);
         memberService.join(memberVO);
         return "member/login";
 
@@ -151,15 +164,28 @@ public class MemberController {
                 model.addAttribute("withDraw","withDraw");
                 return "member/login";
             }else {
-                if(paymentService.paymentExist(paymentVO)){
+                if(paymentService.subscribeExist(vo.getMemberNum())){
                     session.setAttribute("sub", "true");
                 }else{
                 session.setAttribute("sub", "false");
                 }
+
+                log.info("vo.getMemberNum : " + vo.getMemberNum());
+                log.info(" sub : " + session.getAttribute("sub"));
+
                 session.setAttribute("memberNum", vo.getMemberNum());
                 session.setAttribute("memberType", vo.getMemberType());
                 session.setAttribute("memberId", vo.getMemberId());
                 session.setAttribute("memberName", vo.getMemberName());
+                log.info("------------------------------");
+                log.info("------------------------------");
+                log.info("------------------------------");
+                log.info("------------------------------");
+                log.info("memberNum : " + session.getAttribute("memberNum"));
+                log.info("memberId : " + session.getAttribute("memberId"));
+                log.info("------------------------------");
+                log.info("------------------------------");
+
                 return "redirect:/main/mainPage";
             }
         }
@@ -185,10 +211,10 @@ public class MemberController {
     @PostMapping("withdraw")
     public String withdraw(HttpServletRequest request){
         HttpSession session = request.getSession();
-        int memberNum = (int)session.getAttribute("memberNum");
+        Long memberNum = (Long)session.getAttribute("memberNum");
         memberService.withDraw(memberNum);
         session.invalidate();
-        return "member/login";
+        return "/member/login";
     }
     @GetMapping("membersmscheck")
     public @ResponseBody
@@ -199,6 +225,13 @@ public class MemberController {
             String ran = Integer.toString(r.nextInt(10));
             numStr+=ran;
         }
+        if(memberTel.length() == 13) {
+            memberTel.replaceAll("-","");
+        } else if(memberTel.length() == 12) {
+            memberTel.replaceAll("-","");
+        }
+        log.info(memberTel);
+
 //        String api_key = "NCSLANK8RO9KSPQQ";
 //        String api_secret = "0DD9JD7EQ7OGNTDHLBHV7CST45CHMZ0V";
 //        Message coolsms = new Message(api_key, api_secret);
@@ -224,14 +257,13 @@ public class MemberController {
     @PostMapping("modifypw")
     public String modifypw(MemberVO memberVO){
         String memberTel = memberVO.getMemberTel();
-        String result = "";
         if(memberTel.length() == 10) {
-            result = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
         } else if(memberTel.length() == 11) {
-            result = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
         }
-        memberVO.setMemberTel(result);
-        log.info(result);
+        memberVO.setMemberTel(memberTel);
+        log.info(memberTel);
         memberService.modifyPw(memberVO);
         return "member/login";
     }
@@ -239,13 +271,12 @@ public class MemberController {
     public String findID(MemberVO memberVO, Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         String memberTel = memberVO.getMemberTel();
-        String result = "";
         if(memberTel.length() == 10) {
-            result = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
         } else if(memberTel.length() == 11) {
-            result = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
         }
-        memberVO.setMemberTel(result);
+        memberVO.setMemberTel(memberTel);
         model.addAttribute("memberNum", session.getAttribute("memberNum"));
         model.addAttribute("memberId", memberService.findId(memberVO));
         return "member/findedID";
@@ -254,8 +285,83 @@ public class MemberController {
     public String memberModify(MemberVO memberVO, HttpServletRequest request){
             HttpSession session = request.getSession();
             memberVO.setMemberNum((Long)session.getAttribute("memberNum"));
+        String memberTel = memberVO.getMemberTel();
+        if(memberTel.length() == 10) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        memberVO.setMemberTel(memberTel);
             memberService.modifyInfo(memberVO);
             return "redirect:/main/mainPage";
+    }
+    @PostMapping("subscribeCancel")
+    @ResponseBody
+    public String subscribeCancel(@RequestParam("memberNum") Long memberNum){
+        String result = null;
+        if(paymentService.subscribeCancel(memberNum)) {
+            result = "success";
+        }else{
+            result = "false";
+        }
+        return result;
+    }
+    @PostMapping("checkTel")
+    @ResponseBody
+    public String checkTel(@RequestParam("memberTel") String memberTel){
+        String result = null;
+        String tel = memberTel;
+        if(memberTel.length() == 10) {
+            tel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            tel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        boolean check = memberService.checkTel(tel);
+        if(check){
+            result = "success";
+        }else{
+            result = "false";
+        }
+        return result;
+    }
+    @PostMapping("changeTel")
+    @ResponseBody
+    public String changeTel(@RequestParam("memberTel") String memberTel, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String tel = memberTel;
+        if(memberTel.length() == 10) {
+            tel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            tel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        log.info("전화번호!"+tel);
+        if(!memberService.getMyInfo((String)session.getAttribute("memberId")).getMemberTel().equals(tel)) {
+            boolean check = memberService.checkTel(tel);
+            if (check) {
+                return "success";
+            } else {
+                return "false";
+            }
+        }else {
+            return "success";
+        }
+    }
+    @PostMapping("checkIdForTel")
+    @ResponseBody
+    public String checkIdForTel(String memberId,String memberTel){
+        String result = null;
+        if(memberTel.length() == 10) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        log.info("전화번호 : "+memberTel);
+        if(memberTel.equals(memberService.checkIdForTel(memberId))){
+            result = "success";
+        }else{
+            result = "false";
+        }
+        return result;
     }
 }
 

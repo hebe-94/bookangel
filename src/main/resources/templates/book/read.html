@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>기북천사 | 상세보기</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/couponList.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/adminboard.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/component.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/default.css" type="text/css"/>
+    <noscript><link rel="stylesheet" href="/css/noscript.css" type="text/css"/></noscript>
+    <!-- logo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+    <!-- underLogo 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+    <!-- 기본 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <style>
+        .line{
+            border-bottom: 1px solid #ff8b77;
+        }
+        p {
+            margin: 0;
+        }
+        .uploadResult {
+            width: 100%;
+        }
+
+        .uploadResult ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        .uploadResult ul li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        /*JSP*/
+        /* body 기본 폰트 전체 적용 */
+
+        body {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        #logo {
+            font-family: 'East Sea Dokdo', cursive;
+            font-size: 100px;
+        }
+
+        #underLogo {
+            font-family: 'Yeon Sung', cursive;
+            font-size: 100px;
+        }
+        .carousel.forward{
+            display: none;
+        }
+        .carousel.backward{
+            display: none;
+        }
+
+
+
+
+
+
+
+        /* 2021년 9월 26일 12시 */
+        .bookDataDiv {
+            min-height: 266px;
+            position: relative;
+            padding: 30px 30px 60px 250px;
+            margin-bottom: 50px;
+            border: 1px solid #ddd;
+        }
+
+        .bookDataDiv .bookImg {
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            width: 190px;
+            height: 264px;
+        }
+
+        .bookDataDiv .ico-bookLable {
+            margin-bottom: 15px;
+            line-height: 20px;
+        }
+
+        .bookDataDiv .book_name {
+            font-size: 1.176em;
+            color: #444;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 5px;
+            padding-right: 25px;
+        }
+
+        .dropBookData {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .dropBookData .htitle {
+            border-bottom: 1px solid #e2e2e2;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .bookBtnWrap li {
+            margin-left: 10px;
+            float: left;
+        }
+
+        /*  #nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: right;
+            padding: 1.5em 0 1.5em 0;
+            z-index: 1;
+            overflow: hidden;
+            background-image: url(../../../app/images/bookHeader.jpg);
+        } */
+
+    </style>
+</head>
+<!--<body class="no-sidebar is-preload">-->
+<div id="page-wrapper">
+    <div class="is-preload">
+
+
+
+
+        <!--<form action="/book/list" name="searchForm">
+            <div class="fields">
+                <div class="field">
+                    <div id="searchWrap" th:object="${pageMaker}">
+                        <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" th:value="*{criteria.keyword}">
+                        <a href="javascript:void(0)" class="search button primary icon solid fa-search">검색</a>
+                    </div>
+                </div>
+            </div>
+        </form>-->
+
+
+
+
+
+
+
+
+
+        <div id="header">
+            <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
+            <nav id="nav">
+
+                <!-- 기북천사 로고 -->
+                <div>
+                    <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
+                        <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+                </div>
+                <ul>
+                    <!--검색-->
+                    <!--
+                    <form action="/book/list" name="searchForm">
+                        <div class="fields">
+                            <div class="field">
+                                <div id="searchWrap" th:object="${pageMaker}">
+                                    <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" th:value="*{criteria.keyword}">
+                                    <a href="javascript:void(0)" class="search button primary icon solid fa-search">검색</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>-->
+
+
+
+
+                    <!-- 검색 -->
+                    <form id="searchForm" style="width: 261px;float:left; padding: 0px;" action="/book/list" name="searchForm">
+                        <div class="search" style="float: left; display:inline-block">
+                            <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
+                        </div>
+                        <button onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                            <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
+                             4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
+                             vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
+                             4PSIwIDAgMzAuMjM5IDMwLjIzOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzAuMjM5IDMwLjIzOTsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZD0iTTIwLjE5NCwzLjQ2Yy00LjYxMy00LjYxMy0xMi4xMjEtNC42MTMtMTYuNzM0LDB
+                             jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
+                             JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
+                             zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
+                        </button>
+                    </form>
+
+
+
+
+
+
+                    <li>
+                        <a href="#">📖
+                            <th:block th:text="${memberName}" />
+                            <input type="hidden" name="sessionType" value="${sessionType}">
+                        </a>
+                        <ul>
+                            <th:block th:if="${memberNum} == null">
+                                <li id="loginTab"><a href="/member/login">로그인</a></li>
+                                <li><a  href="/main/qna">Q&A</a></li>
+                            </th:block>
+
+                            <th:block th:if="${memberNum} != null">
+                                <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                    <ul>
+                                        <li><a href="/member/mypage">내정보 보기</a></li>
+                                        <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                        <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
+                                        <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                                    </ul>
+                                </li>
+                                <li><a  href="/main/qna">Q&A</a></li>
+                                <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                            </th:block>
+
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+
+
+
+        <!-- Main -->
+        <div id="main">
+            <div class="wrapper">
+                <div class="inner">
+
+
+
+                    <!--JSP-->
+                    <!-- Banner -->
+                    <section id="banner">
+                        <header>
+                            <h2>상세보기</h2>
+                            <!-- <p>총 <span>6</span>건의 검색결과입니다.</p> -->
+                        </header>
+                    </section>
+
+
+
+
+                    <!-- Elements -->
+                    <!--            <header class="major">
+                                    <h1>Board</h1>
+                                    <p>책 상세보기</p>
+                                </header>-->
+
+
+                    <!-- Table _ Main Content -->
+
+                    <div class="content">
+                        <div class="fields" th:object="${book}">
+
+                            <div class="bookDataDiv">
+
+
+                                <div class="bookImg">
+                                    <img th:alt="*{bookName}" style="width: 150px; height: 210px; box-sizing: border-box;" th:src="|/bookImages/*{bookImageSrc}|">
+                                </div>
+                                <!-- width: 150px; height: 210px; -->
+
+                                <div class="bookName" title="bookName" style="font-size:30px; margin-left: 20px;" th:text="*{bookName}"></div>
+
+                                <div class="sergeView viewTab open" style="margin-left: 20px;">
+                                    <div class="thisBook-bibliographicInfo">
+                                        <ul class="dot-list clearfix">
+                                            <li><span th:text="*{bookAuthor}">작가: </span></li>
+                                            <li><span th:text="*{bookPublisher}"></span></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="bookBtnWrap">
+                                        <ul style="list-style: none;">
+                                            <li>
+                                                <a target="_self" onclick="dreamOpenPop()" class="apply themeBtn" title="새창열림">바로 보기</a>
+                                                <!--<input type="button" target="_self" onclick="openPop()" class="smallBtn1" value="바로 보기" />-->
+                                            </li>
+                                            <li>
+                                                <!--<a id="more" onclick="addBookBasket('01dream2.jpg')">-->
+                                                <form id="addForm" method="get" action="/bookBasket/addBookBasketToBookNum">
+                                                    <a id="add" name="imgSrc" class="apply smallBtn">책가방담기</a>
+                                                    <input type="hidden" name="bookNum" th:field="${book.bookNum}"/>
+                                                    <!--th:attr="onclick=|addBookBasket('${book.bookImageSrc}')|"-->
+                                                </form>
+
+                                                <!--<input type="button" onclick="" class="smallBtn2" value="책가방담기" />-->
+                                                    <!--src="|/bookImages/*{bookImageSrc}|"-->
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="dropBookData" >
+
+                                <h5 class="htitle" style="font-size: 28px;">책소개</h5>
+                                <div class="dropContainerBox">
+                                    <div class="bookInformation" th:text="*{bookContent}">
+                                        책 소개
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <!--<div class="form">
+                                <form method="post" action="/board/remove">
+                                    <div class="fields" th:object="${book}">
+                                        <div class="field">
+                                            <h4>번호</h4>
+                                            <input name="bno" type="text" th:field="*{bookNum}" readonly/>
+                                        </div>
+                                        <div class="field">
+                                            <h4>제목</h4>
+                                            <input name="title" type="text" th:field="*{title}" readonly/>
+                                        </div>
+                                        <div class="field">
+                                            <h4>내용</h4>
+                                            <textarea name="content" rows="6" style="resize:none" th:text="*{content}" readonly></textarea>
+                                        </div>
+                                        <div class="field">
+                                            <h4>작성자</h4>
+                                            <input name="writer" type="text" th:field="*{writer}" readonly/>
+                                        </div>
+                                        <div class="field">
+                                            <h4>첨부파일</h4>
+                                        </div>
+                                        <div class="field">
+                                            <div class="uploadResult">
+                                                <ul></ul>
+                                            </div>
+                                        </div>
+                                        <div class="bigPictureWrapper">
+                                            <div class="bigPicture"></div>
+                                        </div>
+                                    </div>
+                                    <ul class="actions special">
+                                        <li>
+                                            <input type="button" class="button" value="수정" onclick="goUpdate()"/>
+                                            <input type="submit" class="button" value="삭제"/>
+                                        </li>
+                                    </ul>
+                                    <ul class="icons">
+                                        <li style="display: block">
+                                            <span class="icon solid fa-envelope"></span>
+                                            <strong>댓글</strong>
+                                        </li>
+                                    </ul>
+                                    <a href="javascript:void(0)" class="register button primary small" style="width: 100%">댓글 등록</a>
+                                    <div style="display: none" class="register-form">
+                                        <div>
+                                            <h4>작성자</h4>
+                                            <input type="text" name="replier" placeholder="Replier">
+                                        </div>
+                                        <div>
+                                            <h4>댓글</h4>
+                                            <textarea rows="6" name="reply" placeholder="Reply" style="resize: none"></textarea>
+                                        </div>
+                                        <div style="text-align: right">
+                                            <a href="javascript:void(0)" class="finish button primary small">등록</a>
+                                            <a href="javascript:void(0)" class="cancel button primary small">취소</a>
+                                        </div>
+                                    </div>
+                                    <ul class="replies"></ul>
+                                </form>
+                                <div class="paging" style="text-align: center"></div>
+                            </div>-->
+
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+    <p>
+
+    </p>
+    <!-- Scripts -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.dropotron.min.js"></script>
+    <script src="/js/browser.min.js"></script>
+    <script src="/js/breakpoints.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/reply.js"></script>
+</body>
+
+<!--아래는 사용하는 스크립트-->
+<script th:inline="javascript">
+    // 글 등록 시 전달받는 게시글 번호를 alert으로 출력
+    let searchForm = $(document.searchForm);
+    let addForm = $("#addForm");
+
+    /*2021.11.04 kkh*/
+    $("a#add").on("click", function(e){
+        e.preventDefault();
+        let memberNum = [[${memberNum}]];
+        let sub = [[${sub}]];
+
+        if(memberNum == null){
+            // 비회원이라면
+            alert("책가방 담기는 로그인 후 가능합니다.");
+            location.href="/member/login";
+            return;
+        }
+        if(sub == false || sub == null){//회원인데 구독안함
+            alert("구독한 회원만 읽을 수 있습니다.");
+            location.href="/payment/subscribe";
+            return;
+        }
+
+        addForm.submit();
+
+
+    })
+
+
+    $(document).ready(function(){
+        alert([[${sub}]]);
+    });
+
+
+
+
+    $("button.search").on("click", function(e){  /*$("a.search").on("click", function(e){*/
+        e.preventDefault();
+
+
+        if(!searchForm.find("input#keyword").val()){
+            alert("키워드를 입력하세요");
+            return;
+        }
+        searchForm.submit();
+    });
+
+    $("input#keyword").on("keydown", function(e){
+        if(e.keyCode == 13){
+            e.preventDefault();
+            if(!searchForm.find("input#keyword").val()){
+                alert("키워드를 입력하세요");
+                return;
+            }
+            searchForm.submit();
+        }
+    })
+</script>
+
+
+
+<!--책가방 담기-->
+<!--<script th:inline="javascript">
+
+    var addForm = $("#addForm");
+
+
+    // 책 바스켓에 넣기
+    function addBookBasket(var bookNum){
+
+        let memberNum = [[${memberNum}]];
+        if(memberNum == null){
+            // 비회원이라면
+            alert("책가방 담기는 로그인 후 가능합니다.");
+            location.href="/member/login";
+
+        }else{
+            /*  alert(img_src); */
+            /*location.href="/book/addBookBasket.oo?img_src=" + img_src;*/
+            addForm.submit();
+
+
+        }
+
+
+    }
+</script>-->
+<!--책가방 담기 끝-->
+
+<!--달러구트 & 소크라테스 -->
+<script th:inline="javascript">
+    let sub = [[${sub}]];
+    let memberNum = [[${memberNum}]];
+    function openPop(){
+        if(sub == false || memberNum  == null){
+            alert("구독한 회원만 읽을 수 있습니다.");
+            return false;
+        } else if(sub == true || memberNum  != null){
+            window.open('/main/expressBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
+        }
+    }
+    function dreamOpenPop(){
+        if(sub == false || memberNum  == null){
+            alert("구독한 회원만 읽을 수 있습니다.");
+            return false;
+        } else if(sub == true || memberNum  != null){
+            window.open('/main/dreamBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
+        }
+    }
+</script>
+
+
+
+
+
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.bookangel.mappers.BookMapper">
+
+    <sql id="search">
+        <if test="type != null and keyword != null">
+            <trim prefix="(" suffix=") AND " prefixOverrides="OR">t
+                <foreach item="type" collection="typeArr">
+                    <trim prefix="OR">
+                        <choose>
+                            <when test="type == 'T'.toString()">
+                                (TITLE LIKE '%'||#{keyword}||'%')
+                            </when>
+                            <when test="type == 'C'.toString()">
+                                (CONTENT LIKE '%'||#{keyword}||'%')
+                            </when>
+                            <when test="type == 'W'.toString()">
+                                (WRITER LIKE '%'||#{keyword}||'%')
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        </if>
+    </sql>
+
+    <!--전체 책 리스트로 가져오되, 30자 글자수 제한-->
+    <select id="getList" resultType="bookVO">
+        <![CDATA[
+        SELECT BOOKNUM, BOOKNAME, BOOKIMAGESRC, BOOKAUTHOR, BOOKPUBLISHER, BOOKCONTENT
+        FROM
+        (
+            SELECT ROWNUM R, BOOKNUM, BOOKNAME, BOOKIMAGESRC, BOOKAUTHOR, BOOKPUBLISHER, SUBSTR(BOOKCONTENT, 0, 30) AS BOOKCONTENT
+            FROM BOOK
+            WHERE BOOKNAME LIKE '%'||#{keyword}||'%' AND ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE R > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
+
+
+
+<!--    <select id="getList" resultType="bookVO">
+        <![CDATA[
+        SELECT BOOKNUM, BOOKNAME, BOOKIMAGESRC, BOOKAUTHOR, BOOKPUBLISHER, BOOKCONTENT
+        FROM
+        (
+            SELECT ROWNUM R, BOOKNUM, BOOKNAME, BOOKIMAGESRC, BOOKAUTHOR, BOOKPUBLISHER, SUBSTR(BOOKCONTENT, 0, 30) AS "BOOKCONTENT"
+            FROM BOOK
+            WHERE BOOKNAME LIKE '%'||#{keyword}||'%' AND ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE R > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>-->
+
+
+    <select id="read" resultType="bookVO">
+        SELECT BOOKNUM, BOOKNAME, BOOKIMAGESRC, BOOKAUTHOR, BOOKPUBLISHER, BOOKCONTENT
+        FROM BOOK
+        WHERE BOOKNUM = #{bookNum}
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(bookNum) FROM BOOK
+        WHERE BOOKNAME LIKE '%'||#{keyword}||'%'
+    </select>
+</mapper>

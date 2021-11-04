@@ -87,6 +87,9 @@
                 </form>
                 <li>
                     <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
                         <th:block th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
@@ -138,15 +141,15 @@
 															<span>
 															<!--  style="margin-bottom: 2%;padding-top: 20px;border-top: solid 7px #f5f4f3;" -->
 															<p class="findId" style="  margin-left: 6%;">이름 </p>
-															<input type="text" style="margin-bottom: 3%;width: 92%;margin-right: 40%; left: 4%;" name="memberName" id="memberName" value=""/>
+															<input type="text" style="z-index:0;margin-bottom: 3%;width: 92%;margin-right: 40%; left: 4%;" name="memberName" id="memberName" value=""/>
 															<br>
                                                                 <!-- style="margin-bottom: 3%;" -->
 															<br>
 															<br>
 															<p  class="findId" style="  margin-left: 6%; margin-top: -37px;">전화번호</p>
-															<input type="text" style="margin-bottom: 3%;width: 64%;margin-right: 3%;font-family: 'Gowun Dodum';font-size: 12px;margin-left: 4%;" name="memberTel" id="memberTel" placeholder="가입시 등록한 번호로 -없이 입력해주세요" value="">
+															<input type="text" style="z-index:0;margin-bottom: 3%;width: 64%;margin-right: 3%;font-family: 'Gowun Dodum';font-size: 12px;margin-left: 4%;" name="memberTel" id="memberTel" placeholder="가입시 등록한 번호를 입력해주세요" value="">
 															<input type="button" style="margin-bottom: 3%;text-align: center;font-size: 3px;width: 27%;font-family: 'Gowun Dodum';background-color: #8a8a8a;border-radius: 10px;margin-left: -2%;" id="btnCheckSMS" name="btnCheckSMS" value="인증번호 받기">
-															<input type="text" style="width: 64%;font-family: 'Gowun Dodum';background-color: #E5E5E5;font-size: 12px;margin-left: 4%;" name="checkSMS" id="checkSMS" value="" placeholder="인증번호를 입력해주세요">
+															<input type="text" style="z-index:0;width: 64%;font-family: 'Gowun Dodum';background-color: #E5E5E5;font-size: 12px;margin-left: 4%;" name="checkSMS" id="checkSMS" value="" placeholder="인증번호를 입력해주세요">
                                   <input style="width: 27%; margin-left: 1%; border-radius: 10px; font-size: 10px; font-family: 'Gowun Dodum';" type="button" id="btnCheckSMSSuccess" name="btnCheckSMSSuccess" value="인증번호 확인">
                                                                 <p style="border-bottom: solid 7px #f5f4f3;"><br><br><br><br><br></p>
 															</span>
@@ -225,6 +228,8 @@
                         alert('휴대폰 인증이 정상적으로 완료되었습니다.')
                         $("input#checkSMS").attr("disabled",true);
                         check = true;
+                    }else if($('input#checkSMS').val()==""){
+                        alert('인증번호를 입력해 주세요.');
                     }else{
                         alert('인증번호가 올바르지 않습니다!');
                     }

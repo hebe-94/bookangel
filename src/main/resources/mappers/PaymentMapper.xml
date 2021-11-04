@@ -22,7 +22,7 @@
             </when>
 
             <when test="subMonth == 13">/*1년 구독 첫결제*/
-                VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, null, #{impUid}, #{merchantUid}, #{subMonth}, SYSDATE, SYSDATE+365)
+                VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, null, #{impUid}, #{merchantUid}, #{subMonth}, SYSDATE, SYSDATE+364)
             </when>
         </choose>
 
@@ -59,7 +59,7 @@
             </when>
 
             <when test="subMonth == 12">
-                SET COUPONNUM = null, IMPUID=#{impUid}, MERCHANTUID=#{merchantUid}, SUBMONTH=#{subMonth}, SUBDATE=SYSDATE, EXPIREDATE=SYSDATE+365
+                SET COUPONNUM = null, IMPUID=#{impUid}, MERCHANTUID=#{merchantUid}, SUBMONTH=#{subMonth}, SUBDATE=SYSDATE, EXPIREDATE=SYSDATE+364
             </when>
         </choose>
         WHERE MEMBERNUM = #{memberNum}

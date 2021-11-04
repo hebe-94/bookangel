@@ -17,6 +17,7 @@ public class MemberMapperTest {
     public void testCount(){
         mapper.count("ddd");
     }
+
     @Test
     public void testInsert(){
         MemberVO memberVO = new MemberVO();

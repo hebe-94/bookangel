@@ -16,9 +16,10 @@
     <meta name="author" content="Codrops"/>
     <link rel="stylesheet" type="text/css" href="/css/default.css"/>
     <link rel="stylesheet" type="text/css" href="/css/component.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/introduce.css"/>
+    <link rel="stylesheet" href="/css/subscribeDetail.css"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="/css/subscribeDetail.css"/>
     <noscript>
         <link rel="stylesheet" href="/css/noscript.css"/>
     </noscript>
@@ -197,31 +198,23 @@
     <!-- Main -->
     <div id="page-wrapper">
 
-        <!--Header-->
+        <!--  Header -->
         <div id="header">
-            <!--상단 탭-->
-            <!--Nav 상단탭(아마 모든 분들이 쓰셔야 할 코드..)-->
+            <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
             <nav id="nav">
 
-                <!--기북천사 로고-->
+                <!-- 기북천사 로고 -->
                 <div>
-                    <a href="">
-                        <!--로고 클릭시 메인페이지로 이동-->
+                    <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
                         <img id="logoImg" src="/images/kibookLogo.png"></a>
                 </div>
-
                 <ul>
-
-                    <!--검색-->
-                    <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post"
-                          action="${pageContext.request.contextPath}/book/BookSearchOk.oo" name="searchForm">
+                    <!-- 검색 -->
+                    <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
                         <div class="search" style="float: left; display:inline-block">
-                            <input type="text" name="search_text" id="search_text" value=""
-                                   style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력"
-                                   onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
+                            <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
                         </div>
-                        <button onclick="document.searchForm.submit();"
-                                style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                        <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                             <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
@@ -229,32 +222,45 @@
                              jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
                              JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
                              zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
-                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K"/>
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
                         </button>
                     </form>
-
-                    <!--회원정보-->
+                    <!-- 회원정보 -->
                     <li>
-                        <a href="#">📖비회원</a>
-                        <ul>
-                            <li id="loginTab"><a href="">로그인</a></li>
+                        <a href="#">📖
+                            <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                            <input type="hidden" name="sub" th:value="${sub}">
 
-                            <li id="myPageTab"><a>마이페이지&hellip;</a>
-                                <ul>
-                                    <li><a href="">내정보 보기</a></li>
-                                    <li><a href="">회원정보 수정</a></li>
-                                    <li id="applyTab"><a href="">신청게시판</a></li>&lt;!&ndash; 관리자 전용 &ndash;&gt;
-                                    <li><a href="">회원탈퇴</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="">Q&A</a></li>
-                            <li id="logoutTab"><a href="">로그아웃</a></li>
+                            <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
+                            <input type="hidden" name="sessionType" value="${sessionType}">
+
+                        </a>
+                        <ul>
+                            <th:block th:if="${memberNum} == null">
+                                <li id="loginTab"><a href="/member/login">로그인</a></li>
+                                <li><a  href="/main/qna">Q&A</a></li>
+                            </th:block>
+
+                            <th:block th:if="${memberNum} != null">
+                                <li id="myPageTab"><a>마이페이지&hellip;</a>
+                                    <ul>
+                                        <li><a href="/member/mypage">내정보 보기</a></li>
+                                        <li><a href="/member/memberModify">회원정보 수정</a></li>
+                                        <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
+                                        <li><a  href="/member/withdraw">회원탈퇴</a></li>
+                                    </ul>
+                                </li>
+                                <li><a  href="/main/qna">Q&A</a></li>
+                                <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
+                            </th:block>
+
                         </ul>
                     </li>
                 </ul>
             </nav>
 
         </div>
+        <!--  Header  끝-->
     </div>
 
 <!-- 메인 화면 -->
@@ -268,7 +274,7 @@
 
             <br>
             <div class="payment-detail">
-                <p class="title" style="text-align: left;"><b>구독 월 정기구독</b></p>
+                <p class="title" style="text-align: left;"><b>정기구독</b></p>
                 <div id="card-text">
                     <span class="detail-text" >구독기간</span> <span style="font-size: 20px;" th:text="${date}" id="subscribe-card-text"></span>
                 </div>
@@ -338,7 +344,7 @@
                 </div>
 
                 <div>
-                    <input type="button" value="0원 결제하기" id="submitBTN" onclick="submit()">
+                    <input type="button" value="결제하기" id="submitBTN" onclick="submit()">
                 </div>
             </div>
             <form id="register"></form>
@@ -554,17 +560,15 @@
             }else if(paymentType === "1"){ // 카드 버튼 눌렀을 때
                 console.log("카드 결제 진행");
                 if([[${monthType}]] == "1"){
-                    iamport(100);
+                    iamport(9900);
                 }else{
-                    iamport(120);
+                    iamport(99000);
                 }
             }
                 // 카드 결제 하고, 멤버 구독했다는것을 넣어주기 (금액을 어떻게 가져올지 고민해보기)
             else{ // 아무것도 안눌렀을때
                 alert("결제 방법을 선택해 주세요!");
             }
-
-
         }
 
 
