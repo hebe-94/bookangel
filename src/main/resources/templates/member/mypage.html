@@ -370,6 +370,15 @@
 </script>
 
 <script th:inline="javascript">
+    let sessionType = [[${sessionType}]];
+    var applyTab = document.getElementById("applyTab");
+
+    if(sessionType == 0){
+        applyTab.style.display="none";
+    } else if(sessionType == 1){
+        applyTab.style.display="inline";
+    }
+
 
     // 책읽기 띄우기
     function openPop(){
