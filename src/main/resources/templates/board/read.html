@@ -160,6 +160,7 @@
                             <!--                        </form>-->
                             <th:block th:if="${memberNum} eq 81">
                             <input type="submit" method="post" value="승인" formaction="/board/read" name="updateOk" onclick="showPopup()" style="z-index: 0;box-sizing: inherit;width: 9px;font-size: 12px;text-align: center;display: grid;">
+                                <input type="hidden" th:field="${board.memberNum}">
                             <li><input type="button" value="거절" onclick="showPopup()"></li>
                             </th:block>
                             <th:block th:if="${memberNum} ne 81">

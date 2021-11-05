@@ -364,5 +364,7 @@ public class MemberController {
         }
         return result;
     }
+    @PostMapping("pickBookCancel")
+    public void pickBookCancel(){}
 }
 
