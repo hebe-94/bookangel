@@ -219,7 +219,7 @@
 
         <!-- Main -->
         <div id="main">
-            <div class="wrapper">
+            <div class="wrapper" style="padding: 0em 0 0 0;">
                 <div class="inner">
 
 
@@ -246,11 +246,8 @@
                     <!-- Table _ Main Content -->
 
                     <div class="content">
-                        <div class="fields" th:object="${book}">
-
+                        <div class="fields" th:object="${book}" style="padding: 0em 15em 0 15em;">
                             <div class="bookDataDiv">
-
-
                                 <div class="bookImg">
                                     <img th:alt="*{bookName}" style="width: 150px; height: 210px; box-sizing: border-box;" th:src="|/bookImages/*{bookImageSrc}|">
                                 </div>
