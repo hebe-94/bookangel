@@ -200,6 +200,7 @@ public class BoardController {
 
         if(boardService.updateOk(boardNum)){
             rttr.addAttribute("boardNum", boardVO.getBoardNum());
+            rttr.addAttribute("memberNum",boardVO.getMemberNum());
             try {
                 makeCoupon(3l, request, rttr);
             } catch (Exception e) {
@@ -212,12 +213,13 @@ public class BoardController {
         return new RedirectView("read");
     }
 
-    private void makeCoupon(long couponAmount , HttpServletRequest request, RedirectAttributes rttr) throws Exception {
+    private void makeCoupon(long couponAmount , BoardVO boardVO, HttpServletRequest request, RedirectAttributes rttr) throws Exception {
 
         HttpSession session = request.getSession();
 
         CouponVO couponVO = new CouponVO();
         couponVO.setMemberNum((long) session.getAttribute("memberNum"));
+//        couponVO.setMemberNum(boardVO.getMemberNum());
 
         log.info("쿠폰 생성하기 [생성 수량 : " + couponAmount + "개]");
         String data = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
