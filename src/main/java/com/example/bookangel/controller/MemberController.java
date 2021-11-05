@@ -1,5 +1,6 @@
 package com.example.bookangel.controller;
 
+import com.example.bookangel.beans.vo.BookBasketVO;
 import com.example.bookangel.beans.vo.MemberVO;
 import com.example.bookangel.beans.vo.PaymentVO;
 import com.example.bookangel.services.*;
@@ -365,6 +366,18 @@ public class MemberController {
         return result;
     }
     @PostMapping("pickBookCancel")
-    public void pickBookCancel(){}
+    @ResponseBody
+    public String pickBookCancel(Long memberNum, Long bookNum){
+        String result = null;
+        if(bookBasketService.delete(memberNum, bookNum)){
+            if(bookBasketService.myBasketCNT(memberNum)==0){
+                return "none";
+            }
+            result = "success";
+        }else{
+            result = "false";
+        }
+        return result;
+    }
 }
 
