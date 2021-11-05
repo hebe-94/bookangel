@@ -43,7 +43,6 @@
 </head>
 
 <body style="background-color: white;">
-<c:set var="origin_pw" value="${session_pw }"></c:set>
 <div id="page-wrapper">
 
     <!-- Header -->
@@ -54,7 +53,7 @@
             <!-- 기북천사 로고 -->
             <div>
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
                 <!-- 검색 -->
@@ -407,8 +406,14 @@
             searchForm.submit();
         }
     })
+    let sessionType = [[${sessionType}]];
+    var applyTab = $("li#applyTab");
 
-
+    if(sessionType == 0){
+        applyTab.css("display","none");
+    } else if(sessionType == 1){
+        applyTab.css("display","inline");
+    }
 
 </script>
 </html>

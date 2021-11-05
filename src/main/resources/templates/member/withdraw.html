@@ -50,7 +50,7 @@
             <!-- 기북천사 로고 -->
             <div>
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
                 <!-- 검색 -->
@@ -163,6 +163,14 @@
 <script src="/js/main.js"></script>
 </body>
 <script th:inline="javascript">
+    let sessionType = [[${sessionType}]];
+    var applyTab = $("li#applyTab");
+
+    if(sessionType == 0){
+        applyTab.css("display","none");
+    } else if(sessionType == 1){
+        applyTab.css("display","inline");
+    }
     $("input#memberPw").keydown(function (e) {
         if(e.keyCode==13){
             e.preventDefault();

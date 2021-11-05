@@ -68,7 +68,7 @@
             <!-- 기북천사 로고 -->
             <div>
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
                 <!-- 검색 -->
@@ -168,7 +168,7 @@
             <tr align="center" valign="middle">
             </tr>
         </table>
-        <div id="sub" th:if="${memberType}==0">
+        <div id="sub" th:if="${sessionType}==0">
             <h2 style="font-size: 25px; display: inline; padding:0 18%">이용권</h2>
             <table style="text-align: center;">
                 <thead>
@@ -209,7 +209,7 @@
 
         </th:block>
 
-        <th:block th:if="${memberType}==1">
+        <th:block th:if="${sessionType}==1">
             <div>
                 <h2 style="font-size: 25px; display: inline; padding:0 18%">쿠폰</h2>
                 <table style="text-align: center;">
@@ -245,7 +245,7 @@
         <!--  Carousel -->
 
 
-        <section id="basketForm" class="carousel" th:if="${memberType}==0">
+        <section id="basketForm" class="carousel" th:if="${sessionType}==0">
             <p id="category" style="font-size: 30px; margin-left: 2.5%;">나의 책가방</p>
             <div class="reel">
 
@@ -263,8 +263,8 @@
                                         <img src="/images/ebookread.png" /></a>
                                     </span>
                                     <span>
-                                        <p style="margin-bottom: 0;">상세보기</p> <a id="more" href="#"><img
-                                            src="/images/backpack.png" /></a>
+                                        <p style="margin-bottom: 0;">삭제하기</p> <a id="more" href="#"><img
+                                            src="/images/backpack.png" width="20px"height="20px" /></a>
                                     </span>
                                 </div>
                             </figcaption>
@@ -281,7 +281,7 @@
 
         <!-- 쿠폰리스트 -->
         <br>
-        <div id="couponForm" th:if="${memberType}==1"> <!-- 추가 -->
+        <div id="couponForm" th:if="${sessionType}==1"> <!-- 추가 -->
             <div style="width: 65%; height: 3em; margin: 0 auto;">
                 <h2 style="font-size: 25px; display: inline; float: left;margin-right: 0;">쿠폰 보관함</h2>
             </div>
@@ -373,12 +373,12 @@
 
 <script th:inline="javascript">
     let sessionType = [[${sessionType}]];
-    var applyTab = document.getElementById("applyTab");
+    var applyTab = $("li#applyTab");
 
     if(sessionType == 0){
-        applyTab.style.display="none";
+        applyTab.css("display","none");
     } else if(sessionType == 1){
-        applyTab.style.display="inline";
+        applyTab.css("display","inline");
     }
 
 

@@ -43,7 +43,7 @@ public class MemberController {
         }
         String memberId = (String)session.getAttribute("memberId");
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
-        model.addAttribute("memberType", session.getAttribute("memberType"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", memberId);
         model.addAttribute("memberName", session.getAttribute("memberName"));
         model.addAttribute("sub", session.getAttribute("sub"));
