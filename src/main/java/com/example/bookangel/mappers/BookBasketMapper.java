@@ -26,4 +26,7 @@ public interface BookBasketMapper {
 
     // 회원이 가지고 있는 basket 리스트 개수
     public long myBasketCNT(long memberNum);
+
+    // 책가방에서 제거
+    public long delete(long memberNum, long bookNum);
 }

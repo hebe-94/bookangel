@@ -46,4 +46,11 @@ public class BookBasketServiceTest {
         log.info("[Service]-책가방 담겨있는지 확인...............");
         log.info(bookBasketService.myBasketCNT(21L) + "");
     }
+
+    // 책가방 몇개 담겨 있는지
+    @Test
+    public void delete(){
+        log.info("[Service]-책가방 담겨있는지 확인...............");
+        log.info(bookBasketService.delete(21L,1l) + "");
+    }
 }

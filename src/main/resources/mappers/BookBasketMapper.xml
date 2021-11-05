@@ -38,4 +38,9 @@
         INSERT INTO BOOK_BASKET ( bookNum, memberNum)
 		VALUES(#{bookNum},#{memberNum})
     </insert>
+
+    <delete id="delete">
+        DELETE FROM HR.BOOK_BASKET
+        WHERE BOOKNUM=#{bookNum} AND MEMBERNUM=#{memberNum}
+    </delete>
 </mapper>
