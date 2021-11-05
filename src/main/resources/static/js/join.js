@@ -181,6 +181,7 @@ function checkId(memberId){
                 //DOM
                 $("#idCheck_text").text("사용 불가");
                 $("#idCheck_text").css("color", "red");
+                check = false;
             }
         },
         error:function(){
