@@ -363,7 +363,7 @@
 
                 <div>
                     <input th:if="${subExist.toString().equals('false')}" type="button" value="결제하기" id="submitBTN"
-                           onclick="submit(0)">
+                           onclick="submit(100)">
                     <input th:if="${subExist.toString().equals('true') && monthType.toString().equals('1')}"
                            type="button" value="결제하기" id="submitBTN" onclick="submit(9900)">
                     <input th:if="${subExist.toString().equals('true') && monthType.toString().equals('12')}"

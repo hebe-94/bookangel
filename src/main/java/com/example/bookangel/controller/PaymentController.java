@@ -339,6 +339,7 @@ public class PaymentController {
 
             if(paymentService.subscribe(paymentVO)){
                 log.info("결제 완료!");
+                session.setAttribute("sub", "true");
 
             }else{
                 log.info("결제 실패");
