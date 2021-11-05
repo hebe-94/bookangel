@@ -50,4 +50,10 @@ public class BookBasketService {
         log.info("[Service]-책가방 리스트 개수...............");
         return bookBasketDAO.myBasketCNT(memberNum);
     }
+
+    // 책가방에서 제거
+    public boolean delete(long memberNum, long bookNum){
+        log.info("[Service]-책가방에서 삭제...............");
+        return bookBasketDAO.delete(memberNum, bookNum);
+    }
 }

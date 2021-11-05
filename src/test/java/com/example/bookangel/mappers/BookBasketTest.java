@@ -39,4 +39,10 @@ public class BookBasketTest {
         log.info("책가방 담기 : "+ bookBasketMapper.addBookBasketToBookNum(10l,21l));
 
     }
+
+    @Test
+    public void delete(){
+        log.info("[]-책가방에서 삭제...............");
+        log.info("[] - "+ bookBasketMapper.delete(21l, 11));
+    }
 }
