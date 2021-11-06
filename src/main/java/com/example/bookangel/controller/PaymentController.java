@@ -142,6 +142,7 @@ public class PaymentController {
                 model.addAttribute("couponDate", "| " + now.toString() + " ~ " + after30.toString());
                 model.addAttribute("nextPayment", "| " +nextPayment.toString());
                 model.addAttribute("price", "9,900");
+
                 model.addAttribute("monthType", "1");
                 model.addAttribute("subExist","true");
             }else{ // 구독이력이 없음
@@ -149,6 +150,7 @@ public class PaymentController {
                 model.addAttribute("couponDate", "| " + now.toString() + " ~ " + after60.toString());
                 model.addAttribute("nextPayment", "| " +nextPayment.toString());
                 model.addAttribute("price", "9,900");
+                model.addAttribute("salePrice","9,800");
                 model.addAttribute("monthType", "1");
                 model.addAttribute("subExist","false");
 
@@ -183,6 +185,7 @@ public class PaymentController {
                 model.addAttribute("date", "| " + now.toString() + " ~ " + afterYear.toString());
                 model.addAttribute("nextPayment", "| " +nextPayment.toString());
                 model.addAttribute("price", "99,900원");
+                model.addAttribute("salePrice","99,800");
                 model.addAttribute("monthType", "12");
                 model.addAttribute("subExist","false");
 
