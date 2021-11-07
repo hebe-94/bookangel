@@ -50,7 +50,7 @@
             <!-- 기북천사 로고 -->
             <div>
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
                 <!-- 검색 -->
@@ -138,12 +138,16 @@
                             <li style="width: 49.5%; margin-left: 0.5%;"><input type="button" value="취소" class="primary" style="width: 100%;font-size:1em;" onclick="history.back()"/></li>
                         </ul>
                     </div>
-                    <ul class="menu" style="text-align: center;">
-                        <li>&copy; Kibook Angel. All rights reserved.</li>
-                    </ul>
                 </div>
             </div>
         </section>
+<hr>
+        <div class="copyright" style="height: 10em">
+            <p style="margin-bottom: 0.5em; font-weight: 600; font-size: 20px; margin-left: 0.5em;text-align: left;font-size: 16px;">기북천사</p>
+            <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">대표자 : 한동석, 일사천리 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동 736-7 3~4층</p>
+            <label for="intro" style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;"><a style="text-decoration: none" id="intro" href="/main/introduce">기북천사 소개</a></label>
+            <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">&copy; Kibook Angel. All rights reserved.</p>
+        </div>
     </div>
 </div>
 
@@ -159,6 +163,14 @@
 <script src="/js/main.js"></script>
 </body>
 <script th:inline="javascript">
+    let sessionType = [[${sessionType}]];
+    var applyTab = $("li#applyTab");
+
+    if(sessionType == 0){
+        applyTab.css("display","none");
+    } else if(sessionType == 1){
+        applyTab.css("display","inline");
+    }
     $("input#memberPw").keydown(function (e) {
         if(e.keyCode==13){
             e.preventDefault();

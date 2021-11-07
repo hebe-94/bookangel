@@ -1,5 +1,6 @@
 package com.example.bookangel.controller;
 
+import com.example.bookangel.beans.vo.BookBasketVO;
 import com.example.bookangel.beans.vo.MemberVO;
 import com.example.bookangel.beans.vo.PaymentVO;
 import com.example.bookangel.services.*;
@@ -43,7 +44,7 @@ public class MemberController {
         }
         String memberId = (String)session.getAttribute("memberId");
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
-        model.addAttribute("memberType", session.getAttribute("memberType"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", memberId);
         model.addAttribute("memberName", session.getAttribute("memberName"));
         model.addAttribute("sub", session.getAttribute("sub"));
@@ -358,6 +359,20 @@ public class MemberController {
         }
         log.info("전화번호 : "+memberTel);
         if(memberTel.equals(memberService.checkIdForTel(memberId))){
+            result = "success";
+        }else{
+            result = "false";
+        }
+        return result;
+    }
+    @PostMapping("pickBookCancel")
+    @ResponseBody
+    public String pickBookCancel(Long memberNum, Long bookNum){
+        String result = null;
+        if(bookBasketService.delete(memberNum, bookNum)){
+            if(bookBasketService.myBasketCNT(memberNum)==0){
+                return "none";
+            }
             result = "success";
         }else{
             result = "false";
