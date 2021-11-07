@@ -302,19 +302,19 @@
                         <li>
                             <!--                            model.addAttribute("subExist","true")-->
                             <p>할인금액</p>
-                            <!--첫달무료-->
+                            <!--첫달 100원-->
                             <div th:if="${subExist.toString().equals('false')}"><p style="border-bottom: 1px #8a8a8a">
-                                <span>첫 달 무료</span>(-) <span th:text="${price}"></span></p></div>
+                                <span>첫 달 100원 &nbsp;</span>(-) <span th:text="${salePrice}"></span></p></div>
                             <!--재 구독-->
                             <div th:if="${subExist.toString().equals('true')}"><p style="border-bottom: 1px #8a8a8a">
                                 -</p></div>
                         </li>
-                        <hr style="border: solid 0.5px #8a8a8a;">
+                        <hr style="border: solid 0.5px #8a8a8a;height: 0.5px;">
                         <li>
                             <!--                            model.addAttribute("monthType", "1");-->
 
                             <p>총 결제금액</p>
-                            <p th:if="${subExist.toString().equals('false')}">0원</p>
+                            <p th:if="${subExist.toString().equals('false')}">100원</p>
                             <p th:if="${subExist.toString().equals('true') && monthType.toString().equals('1')}">
                                 9,900원</p>
                             <p th:if="${subExist.toString().equals('true') && monthType.toString().equals('12')}">
