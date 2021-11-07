@@ -142,13 +142,18 @@ public class PaymentController {
                 model.addAttribute("couponDate", "| " + now.toString() + " ~ " + after30.toString());
                 model.addAttribute("nextPayment", "| " +nextPayment.toString());
                 model.addAttribute("price", "9,900");
+
                 model.addAttribute("monthType", "1");
+                model.addAttribute("subExist","true");
             }else{ // 구독이력이 없음
                 model.addAttribute("date", "| " + now.toString() + " ~ " + after30.toString());
                 model.addAttribute("couponDate", "| " + now.toString() + " ~ " + after60.toString());
                 model.addAttribute("nextPayment", "| " +nextPayment.toString());
                 model.addAttribute("price", "9,900");
+                model.addAttribute("salePrice","9,800");
                 model.addAttribute("monthType", "1");
+                model.addAttribute("subExist","false");
+
             }
 
             log.info("현재 날짜 : " + now.toString());
@@ -172,13 +177,18 @@ public class PaymentController {
                 model.addAttribute("nextPayment", "| " +nextPayment.toString());
                 model.addAttribute("price", "99,900원");
                 model.addAttribute("monthType", "12");
+                model.addAttribute("subExist","true");
+
             }else{ // 구독이력이 없음
                 afterYear = now.plusYears(1).plusMonths(1).minusDays(1);
                 nextPayment = now.plusMonths(1);
                 model.addAttribute("date", "| " + now.toString() + " ~ " + afterYear.toString());
                 model.addAttribute("nextPayment", "| " +nextPayment.toString());
                 model.addAttribute("price", "99,900원");
+                model.addAttribute("salePrice","99,800");
                 model.addAttribute("monthType", "12");
+                model.addAttribute("subExist","false");
+
             }
 
             log.info("현재 날짜 : " + now.toString());
@@ -332,6 +342,7 @@ public class PaymentController {
 
             if(paymentService.subscribe(paymentVO)){
                 log.info("결제 완료!");
+                session.setAttribute("sub", "true");
 
             }else{
                 log.info("결제 실패");

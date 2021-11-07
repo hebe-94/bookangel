@@ -220,6 +220,7 @@
 <div id="page-wrapper">
 
 
+    <!--  Header -->
     <div id="header">
         <!-- Nav --> <!-- 상단탭(아마 모든 분들이 쓰셔야 할 코드..) -->
         <nav id="nav">
@@ -227,14 +228,14 @@
             <!-- 기북천사 로고 -->
             <div>
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
-
                 <!-- 검색 -->
                 <form id="searchForm" style="width: 261px;float:left; padding: 0px;" action="/book/list" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
+                        <!--                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">-->
                     </div>
                     <button onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                         <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
@@ -247,13 +248,15 @@
                              8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
                     </button>
                 </form>
-
-
-
+                <!-- 회원정보 -->
                 <li>
                     <a href="#">📖
-                        <th:block th:text="${memberName}" />
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
+                        <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
+
                     </a>
                     <ul>
                         <th:block th:if="${memberNum} == null">
@@ -265,13 +268,13 @@
                             <li id="myPageTab"><a>마이페이지&hellip;</a>
                                 <ul>
                                     <li><a href="/member/mypage">내정보 보기</a></li>
-                                    <li><a href="/member/AllModify">회원정보 수정</a></li>
+                                    <li><a href="/member/memberModify">회원정보 수정</a></li>
                                     <li id="applyTab"><a href="/board/list">신청게시판</a></li><!-- 관리자 전용 -->
                                     <li><a  href="/member/withdraw">회원탈퇴</a></li>
                                 </ul>
                             </li>
                             <li><a  href="/main/qna">Q&A</a></li>
-                            <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                            <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
                         </th:block>
 
                     </ul>
@@ -326,7 +329,7 @@
 
                 <div class="bookList listViewStyle">
                     <th:block th:each="book : ${list}">
-                            <ul class="listWrap" th:object="${book}">
+                        <ul class="listWrap" th:object="${book}">
                             <li>
                                 <div class="bookArea" style="position: relative; border: 1px solid #e2e2e2; padding: 30px 25px; display: block;">
                                     <div class="bookImg" style="position: absolute; left: 25px; top: 30px; width: 150px; height: 210px; box-sizing: border-box;">
@@ -351,19 +354,18 @@
                                             </ul>
                                         </div>
 
-                                        <!--상세보기에서 나오기 때문에 검색결과페이지에서는 생략-->
-                                        <!-- 바로읽기와 책가방에 넣기 -->
-                                        <!--<div class="bookBtnWrap">
+<!--                                        &lt;!&ndash; 바로읽기와 책가방에 넣기 &ndash;&gt;-->
+<!--                                        <div class="bookBtnWrap">-->
 
-                                            <ul>
-                                                <li>
-                                                    <a href="#popUp" target="_self" onclick="openPop()" class="apply themeBtn" title="새창열림">바로 보기</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" onclick="addBookBasket('')" class="apply smallBtn">책가방담기</a>
-                                                </li>
-                                            </ul>
-                                        </div>-->
+<!--                                            <ul>-->
+<!--                                                <li>-->
+<!--                                                    <a href="#popUp" target="_self" onclick="openPop()" class="apply themeBtn" title="새창열림">바로 보기</a>-->
+<!--                                                </li>-->
+<!--                                                <li>-->
+<!--                                                    <a href="#" onclick="addBookBasket('')" class="apply smallBtn">책가방담기</a>-->
+<!--                                                </li>-->
+<!--                                            </ul>-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                             </li>
@@ -467,12 +469,7 @@
     </div>
 
     <hr class="copyright" style="margin-bottom: 15em;  height: 4px; top: 14.5em;">
-</div>
-<!-- Copyright -->
-<div class="copyright">
-    <ul class="menu">
-        <li>&copy; Kibook Angel. All rights reserved.</li>
-    </ul>
+
 </div>
 
 <!-- Scripts -->
@@ -482,6 +479,15 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+
+<!--  Copyright -->
+<div class="copyright" style="height: 10em">
+    <p style="margin-bottom: 0.5em; font-weight: 600; font-size: 20px; margin-left: 0.5em;text-align: left;font-size: 16px;">기북천사</p>
+    <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">대표자 : 한동석, 일사천리 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동 736-7 3~4층</p>
+    <label for="intro" style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;"><a style="text-decoration: none" id="intro" href="/main/introduce">기북천사 소개</a></label>
+    <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">&copy; Kibook Angel. All rights reserved.</p>
+</div>
+
 </body>
 <script th:inline="javascript">
     // 글 등록 시 전달받는 게시글 번호를 alert으로 출력
@@ -532,4 +538,34 @@
         }
     })
 </script>
+
+<!--kkh 2021.11.03 새로 작성한 코드-->
+<script th:inline="javascript">
+    // 글 등록 시 전달받는 게시글 번호를 alert으로 출력
+    let searchForm = $(document.searchForm);
+
+
+    $("button.search").on("click", function(e){  /*$("a.search").on("click", function(e){*/
+        e.preventDefault();
+
+
+        if(!searchForm.find("input#keyword").val()){
+            alert("키워드를 입력하세요");
+            return;
+        }
+        searchForm.submit();
+    });
+
+    $("input#keyword").on("keydown", function(e){
+        if(e.keyCode == 13){
+            e.preventDefault();
+            if(!searchForm.find("input#keyword").val()){
+                alert("키워드를 입력하세요");
+                return;
+            }
+            searchForm.submit();
+        }
+    })
+</script>
+<!--위 kkh 2021.11.03 새로 작성한 코드-->
 </html>

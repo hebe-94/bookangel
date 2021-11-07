@@ -1,11 +1,9 @@
 package com.example.bookangel.controller;
 
+import com.example.bookangel.beans.vo.BookBasketVO;
 import com.example.bookangel.beans.vo.MemberVO;
 import com.example.bookangel.beans.vo.PaymentVO;
-import com.example.bookangel.services.CouponService;
-import com.example.bookangel.services.MemberService;
-import com.example.bookangel.services.PaymentService;
-import com.example.bookangel.services.PaymentServiceImple;
+import com.example.bookangel.services.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
@@ -28,7 +26,7 @@ public class MemberController {
     private final MemberService memberService;
     private final PaymentService paymentService;
     private final CouponService couponService;
-
+    private final BookBasketService bookBasketService;
     // 페이지 이동
     @GetMapping("mypage")
     public void mypage(HttpServletRequest request, Model model){
@@ -39,9 +37,14 @@ public class MemberController {
             model.addAttribute("endSub", paymentVO.getExpireDate().substring(0,10));
             model.addAttribute("end",paymentVO.getSubMonth());
         }
+        if(bookBasketService.myBasketCNT((Long)session.getAttribute("memberNum"))!=0){
+            model.addAttribute("myBaskets",bookBasketService.myBasket((Long)session.getAttribute("memberNum")));
+        }else{
+            model.addAttribute("myBaskets","null");
+        }
         String memberId = (String)session.getAttribute("memberId");
         model.addAttribute("memberNum",session.getAttribute("memberNum"));
-        model.addAttribute("memberType", session.getAttribute("memberType"));
+        model.addAttribute("sessionType", session.getAttribute("memberType"));
         model.addAttribute("memberId", memberId);
         model.addAttribute("memberName", session.getAttribute("memberName"));
         model.addAttribute("sub", session.getAttribute("sub"));
@@ -209,10 +212,10 @@ public class MemberController {
     @PostMapping("withdraw")
     public String withdraw(HttpServletRequest request){
         HttpSession session = request.getSession();
-        int memberNum = (int)session.getAttribute("memberNum");
+        Long memberNum = (Long)session.getAttribute("memberNum");
         memberService.withDraw(memberNum);
         session.invalidate();
-        return "member/login";
+        return "/member/login";
     }
     @GetMapping("membersmscheck")
     public @ResponseBody
@@ -228,26 +231,28 @@ public class MemberController {
         } else if(memberTel.length() == 12) {
             memberTel.replaceAll("-","");
         }
+        log.info(memberTel);
 
-//        String api_key = "NCSLANK8RO9KSPQQ";
-//        String api_secret = "0DD9JD7EQ7OGNTDHLBHV7CST45CHMZ0V";
-//        Message coolsms = new Message(api_key, api_secret);
-//
-//        // 4 params(to, from, type, text) are mandatory. must be filled
-//        HashMap<String, String> params = new HashMap<String, String>();
-//        params.put("to", memberTel);    // 수신전화번호
-//        params.put("from", "01055599401");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
-//        params.put("type", "SMS");
-//        params.put("text", "기북천사 본인인증 : 인증번호는" + "["+numStr+"]" + "입니다.");
-//        params.put("app_version", "test app 1.2"); // application name and version
-//
-//        try {
-//            JSONObject obj = (JSONObject) coolsms.send(params);
-//            System.out.println(obj.toString());
-//        } catch (CoolsmsException e) {
-//            System.out.println(e.getMessage());
-//            System.out.println(e.getCode());
-//        }
+        // sms 내용
+        String api_key = "NCS0OXJFNLRCFSIL";
+        String api_secret = "PFCZMBB5WUFEQ1URON4VWOMFHIBROBZG";
+        Message coolsms = new Message(api_key, api_secret);
+
+        // 4 params(to, from, type, text) are mandatory. must be filled
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("to", memberTel);    // 수신전화번호
+        params.put("from", "01055599401");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
+        params.put("type", "SMS");
+        params.put("text", "기북천사 본인인증 : 인증번호는" + "["+numStr+"]" + "입니다.");
+        params.put("app_version", "test app 1.2"); // application name and version
+
+        try {
+            JSONObject obj = (JSONObject) coolsms.send(params);
+            System.out.println(obj.toString());
+        } catch (CoolsmsException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCode());
+        }
         log.info(numStr);
         return numStr;
     }
@@ -342,6 +347,37 @@ public class MemberController {
         }else {
             return "success";
         }
+    }
+    @PostMapping("checkIdForTel")
+    @ResponseBody
+    public String checkIdForTel(String memberId,String memberTel){
+        String result = null;
+        if(memberTel.length() == 10) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 6) + "-" + memberTel.substring(6, 10);
+        } else if(memberTel.length() == 11) {
+            memberTel = memberTel.substring(0, 3) + "-" + memberTel.substring(3, 7) + "-" + memberTel.substring(7, 11);
+        }
+        log.info("전화번호 : "+memberTel);
+        if(memberTel.equals(memberService.checkIdForTel(memberId))){
+            result = "success";
+        }else{
+            result = "false";
+        }
+        return result;
+    }
+    @PostMapping("pickBookCancel")
+    @ResponseBody
+    public String pickBookCancel(Long memberNum, Long bookNum){
+        String result = null;
+        if(bookBasketService.delete(memberNum, bookNum)){
+            if(bookBasketService.myBasketCNT(memberNum)==0){
+                return "none";
+            }
+            result = "success";
+        }else{
+            result = "false";
+        }
+        return result;
     }
 }
 

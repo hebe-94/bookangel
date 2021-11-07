@@ -50,15 +50,16 @@
             <!-- 기북천사 로고 -->
             <div>
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
                 <!-- 검색 -->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
+                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" action="/book/list" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
-                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
+                        <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
+                        <!--                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">-->
                     </div>
-                    <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                    <button onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                         <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
@@ -66,11 +67,14 @@
                              jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
                              JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
                              zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
-                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
                     </button>
                 </form>
                 <li>
                     <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
                         <th:block th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
@@ -116,7 +120,7 @@
             <div style="display:flex; justify-content:space-evenly; color:black;">
                 <div style="width:40%;margin-bottom: 70px;">
                     <div>
-                        <form name="withdraw" id="withdraw">
+                        <form method="post", action="/member/withdraw" name="withdraw" id="withdraw">
                             <div class="col-6 col-12-xsmall" style="width:100%">
                                 <p style="margin-bottom: 2%;">비밀번호 재확인</p>
                                 <input type="password" style="margin-bottom: 3%; position:inherit;" name="memberPw" id="memberPw" value=""/>
@@ -134,12 +138,16 @@
                             <li style="width: 49.5%; margin-left: 0.5%;"><input type="button" value="취소" class="primary" style="width: 100%;font-size:1em;" onclick="history.back()"/></li>
                         </ul>
                     </div>
-                    <ul class="menu" style="text-align: center;">
-                        <li>&copy; Kibook Angel. All rights reserved.</li>
-                    </ul>
                 </div>
             </div>
         </section>
+<hr>
+        <div class="copyright" style="height: 10em">
+            <p style="margin-bottom: 0.5em; font-weight: 600; font-size: 20px; margin-left: 0.5em;text-align: left;font-size: 16px;">기북천사</p>
+            <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">대표자 : 한동석, 일사천리 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동 736-7 3~4층</p>
+            <label for="intro" style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;"><a style="text-decoration: none" id="intro" href="/main/introduce">기북천사 소개</a></label>
+            <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">&copy; Kibook Angel. All rights reserved.</p>
+        </div>
     </div>
 </div>
 
@@ -155,6 +163,14 @@
 <script src="/js/main.js"></script>
 </body>
 <script th:inline="javascript">
+    let sessionType = [[${sessionType}]];
+    var applyTab = $("li#applyTab");
+
+    if(sessionType == 0){
+        applyTab.css("display","none");
+    } else if(sessionType == 1){
+        applyTab.css("display","inline");
+    }
     $("input#memberPw").keydown(function (e) {
         if(e.keyCode==13){
             e.preventDefault();
@@ -174,10 +190,8 @@
                     if(confirm("정말로 탈퇴하시겠습니까?"))
                     {
                         alert("탈퇴가 완료되었습니다.");
-                        var frm = document.withdraw;
+                        var frm = $("form#withdraw");
 
-                        frm.method = "post";
-                        frm.action = "/member/withdraw";
                         frm.submit();
                         return;
                     }
@@ -185,6 +199,8 @@
                 }
                 else{
                     alert("잘못된 비밀번호 입니다.");
+                    $("input#memberPw").val("");
+                    $("input#memberPw").focus();
                     return;
                 }
             }
@@ -200,5 +216,32 @@ $(document).ready(function(){
         location.href="/member/login";
     }
 })
+    // <!--kkh 2021.11.03 새로 작성한 코드-->
+    // 글 등록 시 전달받는 게시글 번호를 alert으로 출력
+    let searchForm = $(document.searchForm);
+
+
+    $("button.search").on("click", function(e){  /*$("a.search").on("click", function(e){*/
+        e.preventDefault();
+
+
+        if(!searchForm.find("input#keyword").val()){
+            alert("키워드를 입력하세요");
+            return;
+        }
+        searchForm.submit();
+    });
+
+    $("input#keyword").on("keydown", function(e){
+        if(e.keyCode == 13){
+            e.preventDefault();
+            if(!searchForm.find("input#keyword").val()){
+                alert("키워드를 입력하세요");
+                return;
+            }
+            searchForm.submit();
+        }
+    })
+
 </script>
 </html>

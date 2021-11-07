@@ -24,4 +24,6 @@ public class BookMapperTest {
         criteria.setPageNum(1);
         bookMapper.getList(criteria).forEach(bookVO -> log.info(bookVO.toString()));
     }
+
+
 }

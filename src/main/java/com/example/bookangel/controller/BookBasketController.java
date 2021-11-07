@@ -3,7 +3,11 @@ package com.example.bookangel.controller;
 import com.example.bookangel.beans.vo.BookVO;
 import com.example.bookangel.beans.vo.Criteria;
 import com.example.bookangel.beans.vo.PageDTO;
+import com.example.bookangel.beans.vo.PaymentVO;
 import com.example.bookangel.services.BookBasketService;
+import com.example.bookangel.services.CouponService;
+import com.example.bookangel.services.MemberService;
+import com.example.bookangel.services.PaymentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -21,24 +25,27 @@ import java.util.List;
 public class BookBasketController {
 
     private final BookBasketService bookBasketService;
+    private final PaymentService paymentService;
+    private final CouponService couponService;
+    private final MemberService memberService;
 
     // main에서 책담을때 사용하는것
     @PostMapping("addBookBasket")
+    @ResponseBody
     public String addBookBasket(@RequestParam("imgSrc") String imgSrc, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
 
         long memberNum = Long.parseLong(session.getAttribute("memberNum").toString());
         if (bookBasketService.isExist(imgSrc, memberNum) == 0) { // 0이면 책가방에 안담겨있음
             if(bookBasketService.addBookBasket(imgSrc, memberNum)){
-                // 책가방 담기 성공
+                return "success";
             }else{
-                // 책가방 담기 실패
+                return "false";
             }
         } else { // 책가방에 담겨있음
-
+            return "overlap";
         }
 
-        return "main/mainPage";
     }
 
     /*2021.11.04 kkh*/
@@ -64,9 +71,37 @@ public class BookBasketController {
         } else { // 책가방에 담겨있음
             model.addAttribute("result","fail");
         }
-        String referer = request.getHeader("Referer");
 
-        return "redirect"+referer;
+
+        if(session.getAttribute("sub").equals("true")) {
+            PaymentVO paymentVO = paymentService.searchPayment((Long) session.getAttribute("memberNum"));
+            model.addAttribute("startSub", paymentVO.getSubDate().substring(0,10));
+            model.addAttribute("endSub", paymentVO.getExpireDate().substring(0,10));
+            model.addAttribute("end",paymentVO.getSubMonth());
+        }
+
+        if(bookBasketService.myBasketCNT((Long)session.getAttribute("memberNum"))!=0){
+            model.addAttribute("myBaskets",bookBasketService.myBasket((Long)session.getAttribute("memberNum")));
+        }else{
+            model.addAttribute("myBaskets","null");
+        }
+
+        String memberId = (String)session.getAttribute("memberId");
+        model.addAttribute("memberNum",session.getAttribute("memberNum"));
+        model.addAttribute("memberType", session.getAttribute("memberType"));
+        model.addAttribute("memberId", memberId);
+        model.addAttribute("memberName", session.getAttribute("memberName"));
+        model.addAttribute("sub", session.getAttribute("sub"));
+        model.addAttribute("myCouponCnt", couponService.companyCouponListCNT((Long)session.getAttribute("memberNum")));
+        log.info("쿠폰"+couponService.companyCouponListCNT((Long)session.getAttribute("memberNum")));
+        model.addAttribute("myInfo", memberService.getMyInfo(memberId));
+        if(couponService.companyCouponListCNT((Long)session.getAttribute("memberNum"))!=0){
+            model.addAttribute("coupons",couponService.companyCouponList((Long)session.getAttribute("memberNum")));
+        }else{
+            model.addAttribute("coupons", "null");
+        }
+
+        return "member/mypage";
         /*return "member/mypage";*/
     }
 

@@ -16,7 +16,7 @@ public interface MemberMapper {
     //탈퇴 비밀번호 확인
     public int check(MemberVO memberVO);
     //회원탈퇴
-    public void status(int memberNum);
+    public void status(Long memberNum);
     //비밀번호 변경
     public void change(MemberVO memberVO);
     //아이디 찾기
@@ -25,4 +25,5 @@ public interface MemberMapper {
     public void modify(MemberVO memberVO);
     //휴대폰번호 중복검사
     public int countTel(String memberTel);
+    public String findPhone(String memberId);
 }

@@ -58,4 +58,9 @@
         FROM BOOK_MEMBER
         WHERE MEMBERTEL = #{memberTel}
     </select>
+    <select id="findPhone" resultType="string">
+        SELECT MEMBERTEL
+        FROM BOOK_MEMBER
+        WHERE MEMBERID = #{memberId}
+    </select>
 </mapper>

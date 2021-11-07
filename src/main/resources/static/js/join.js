@@ -12,7 +12,6 @@ $("input#btnCheckSMS").on("click",function () {
         data:{"memberTel":memberTel},
         success:function(result){
             if(result=="success"){
-                alert(result);
                 checksms();
 
             }else if(result=="false"){
@@ -182,6 +181,7 @@ function checkId(memberId){
                 //DOM
                 $("#idCheck_text").text("사용 불가");
                 $("#idCheck_text").css("color", "red");
+                check = false;
             }
         },
         error:function(){

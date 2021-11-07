@@ -51,10 +51,6 @@
             background: #121212;
             color: #bbb;
         }
-
-        a {
-            color: #3ea6ff;
-        }
         h3{
             color: #bbb;
         }
@@ -63,13 +59,11 @@
     html {
         --bg-color: #fff;
         --text-color: #343434;
-        --link-color: #0000ee;
     }
 
     html.dark {
         --bg-color: #121212;
         --text-color: #bbb;
-        --link-color: #3ea6ff;
     }
 
     .wrapper{
@@ -82,11 +76,6 @@
         color: var(--text-color);
     }
 
-
-
-    a {
-        color: var(--link-color);
-    }
 
     /* body 기본 폰트 전체 적용 */
     body{
@@ -276,7 +265,7 @@
                                 </ul>
                             </li>
                             <li><a  href="/main/qna">Q&A</a></li>
-                            <li id="logoutTab"><a  href="/member/MemberLogout">로그아웃</a></li>
+                            <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
                         </th:block>
 
                     </ul>
@@ -1875,32 +1864,15 @@
 
     </div>
 
-
-    <!-- Features -->
-    <div class="wrapper style1">
-
-        <section id="features" class="container special">
-
-    </div>
-    </section>
-
-</div>
-</section>
-<hr>
 <!--  Copyright -->
-<div class="copyright">
-    <ul class="menu">
-        <li>&copy; Kibook Angel. All rights reserved.</li>
-    </ul>
+<div class="copyright" style="height: 10em;margin-top: 40%;">
+        <hr>
+        <p style="margin-bottom: 0.5em; font-weight: 600; font-size: 20px; margin-left: 0.5em;">기북천사</p>
+        <p style="margin-bottom: 0.2em;margin-left: 0.5em;">대표자 : 한동석, 일사천리 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동 736-7 3~4층</p>
+        <label for="intro" style="margin-bottom: 0.2em;margin-left: 0.5em;"><a style="text-decoration: none" id="intro" href="/main/introduce">기북천사 소개</a></label>
+        <p style="margin-bottom: 0.2em;margin-left: 0.5em;">&copy; Kibook Angel. All rights reserved.</p>
 </div>
 
-</div>
-
-</div>
-</div>
-</div>
-
-</div>
 
 <!-- <script>
 var loginTab = document.getElementById("loginTab");
@@ -1931,17 +1903,37 @@ if(${session_id  eq '' || empty session_id}){
     // 책 바스켓에 넣기
     function addBookBasket(img_src){
         let memberNum = [[${memberNum}]];
-        if(memberNum == null){
-            // 비회원이라면
-            alert("책가방 담기는 로그인 후 가능합니다.")
-            location.href="/member/login";
+        let memberType = [[${memberType}]];
+        if(sessionType==0) {
+            if (memberNum == null) {
+                // 비회원이라면
+                alert("책가방 담기는 로그인 후 가능합니다.")
+                location.href = "/member/login";
 
+            } else {
+                $.ajax({
+                    url: "/bookBasket/addBookBasket",
+                    type: "post",
+                    data: {"imgSrc": img_src},
+                    success: function (result) {
+                        if (result == "success") {
+                            alert("책가방에 담겼습니다.\n내정보에서 확인해 주세요.");
+                            return;
+                        } else if (result == "overlap") {
+                            alert("이미 책가방에 들어있습니다.");
+                            return;
+                        } else {
+                            alert("오류");
+                            return;
+                        }
+                    }
+                })
+
+            }
         }else{
-            /*  alert(img_src); */
-            location.href="/book/addBookBasket.oo?img_src=" + img_src;
-
+            alert("일반회원만 이용 가능합니다.");
+            return;
         }
-
 
     }
 </script>
@@ -1963,18 +1955,18 @@ if(${session_id  eq '' || empty session_id}){
     let sub = [[${sub}]];
     let memberNum = [[${memberNum}]];
         function openPop(){
-            if(sub == false || memberNum  == null){
+            if(sub == 'false' || memberNum  == null){
                 alert("구독한 회원만 읽을 수 있습니다.");
                 return false;
-            } else if(sub == true || memberNum  != null){
+            } else if(sub == 'true' || memberNum  != null){
             window.open('/main/expressBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
         }
     }
     function dreamOpenPop(){
-        if(sub == false || memberNum  == null){
+        if(sub == 'false' || memberNum  == null){
             alert("구독한 회원만 읽을 수 있습니다.");
             return false;
-        } else if(sub == true || memberNum  != null){
+        } else if(sub == 'true' || memberNum  != null){
             window.open('/main/dreamBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
         }
     }
@@ -2002,8 +1994,7 @@ if(${session_id  eq '' || empty session_id}){
             }
         })
     })
-
-</script>
+    </script>
 
 
 <!-- <script>

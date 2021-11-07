@@ -55,4 +55,10 @@ public class BookBasketDAO {
         return bookBasketMapper.myBasketCNT(memberNum);
     }
 
+    // 책가방에서 제거
+    public boolean delete(long memberNum, long bookNum){
+        log.info("[DAO]-책가방에서 삭제...............");
+        return bookBasketMapper.delete(memberNum, bookNum) == 1;
+    }
+
 }

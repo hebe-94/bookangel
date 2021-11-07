@@ -24,7 +24,6 @@
     <link rel="stylesheet" type="text/css" href="/css/default.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-    <script src="../assets/js/modernizr.custom.js"></script>
 
     <!-- logo 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,15 +67,16 @@
             <!-- 기북천사 로고 -->
             <div>
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
                 <!-- 검색 -->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" method="post" action="/book/BookSearchOk" name="searchForm">
+                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" action="/book/list" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
-                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">
+                        <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
+                        <!--                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">-->
                     </div>
-                    <button onclick="document.searchForm.submit();" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                    <button onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                         <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
@@ -84,11 +84,14 @@
                              jLTQuNjEyLDQuNjE0LTQuNjEyLDEyLjEyMSwwLDE2LjczNQ0KCQljNC4xMDgsNC4xMDcsMTAuNTA2LDQuNTQ3LDE1LjExNiwxLjM0YzAuMDk3LDAuNDU5LDAuMzE5LDAuODk3LDAuNjc2LDEuMjU0bDYuNzE4LDYuNzE4YzAuOTc5LDAuOTc3LDIuNTYxLDAuOTc3LDMuNTM1LDANCgk
                              JYzAuOTc4LTAuOTc4LDAuOTc4LTIuNTYsMC0zLjUzNWwtNi43MTgtNi43MmMtMC4zNTUtMC4zNTQtMC43OTQtMC41NzctMS4yNTMtMC42NzRDMjQuNzQzLDEzLjk2NywyNC4zMDMsNy41NywyMC4xOTQsMy40NnoNCgkJIE0xOC4wNzMsMTguMDc0Yy0zLjQ0NCwzLjQ0NC05LjA0OSw
                              zLjQ0NC0xMi40OTIsMGMtMy40NDItMy40NDQtMy40NDItOS4wNDgsMC0xMi40OTJjMy40NDMtMy40NDMsOS4wNDgtMy40NDMsMTIuNDkyLDANCgkJQzIxLjUxNyw5LjAyNiwyMS41MTcsMTQuNjMsMTguMDczLDE4LjA3NHoiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo
-                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K">
+                             8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
                     </button>
                 </form>
                 <li>
                     <a href="#">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
                         <th:block th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
@@ -120,7 +123,8 @@
     <!-- 마이페이지(회원 및 기업 정보표시) -->
 
 
-    <div class="table-wrapper" style="margin-top: 7%; margin-bottom: 7%;margin-left:auto; margin-right:auto; width: 80%"  th:object="${myInfo}">
+    <div class="table-wrapper" style="margin-top: 7%; margin-bottom: 7%;margin-left:auto; margin-right:auto; width: 100%"  th:object="${myInfo}">
+       <div style="width: 80%; margin: auto;">
         <div>
             <h2 style="font-size: 25px; display: inline;padding:1% 1% 1% 18%; display: inline; float: left" th:text="|*{memberId}님의 정보입니다. 변경을 원하시면 정보수정을 눌러주세요|"></h2>
         </div>
@@ -164,7 +168,7 @@
             <tr align="center" valign="middle">
             </tr>
         </table>
-        <div id="sub" th:if="${memberType}==0">
+        <div id="sub" th:if="${sessionType}==0">
             <h2 style="font-size: 25px; display: inline; padding:0 18%">이용권</h2>
             <table style="text-align: center;">
                 <thead>
@@ -205,7 +209,7 @@
 
         </th:block>
 
-        <th:block th:if="${memberType}==1">
+        <th:block th:if="${sessionType}==1">
             <div>
                 <h2 style="font-size: 25px; display: inline; padding:0 18%">쿠폰</h2>
                 <table style="text-align: center;">
@@ -232,7 +236,7 @@
             </div> <!-- 추가 -->
 
         </th:block>
-
+       </div>
 
 
 
@@ -241,32 +245,38 @@
         <!--  Carousel -->
 
 
-        <section id="basketForm" class="carousel" th:if="${memberType}==0">
+        <section id="basketForm" class="carousel" th:if="${sessionType}==0">
             <p id="category" style="font-size: 30px; margin-left: 2.5%;">나의 책가방</p>
             <div class="reel">
 
-                <c:forEach var="book" items="${books}" varStatus="status">
-                    <article class="grid cs-style-4">
-                        <figure>
-                            <div>
-                                <img src="/bookImages/02dream.jpg" height="262" width="175" alt="">
-                            </div>
-                            <figcaption>
-                                <div style="margin-top: 50%;">
-                                    <span>
-                                        <p style="margin-bottom: 0;">바로읽기</p>
-                                        <a id="read" href="#popUp" target="_self" onclick="openPop()">
-                                        <img src="/images/ebookread.png" /></a>
-                                    </span>
-                                    <span>
-                                        <p style="margin-bottom: 0;">상세보기</p> <a id="more" href="#"><img
-                                            src="/images/backpack.png" /></a>
-                                    </span>
+                <th:block th:if="${myBaskets}!='null'">
+                    <th:block  th:each="b, i:${myBaskets}">
+                        <article class="grid cs-style-4"  th:id="${i.index}">
+                            <figure>
+                                <div>
+                                    <input type="hidden" th:value="${b.bookNum}" th:class="${i.index}">
+                                    <img th:src="|/bookImages/${b.bookImageSrc}|" height="262" width="175" alt="">
                                 </div>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </c:forEach>
+                                <figcaption style="width:100%">
+                                    <div style="margin-top: 25%;">
+                                        <span>
+                                            <p style="margin-bottom: 0;">바로읽기</p>
+                                            <a id="read" href="#popUp" target="_self" onclick="openPop()">
+                                            <img src="/images/ebookread.png" /></a>
+                                        </span>
+                                        <span>
+                                            <p style="margin-bottom: 0;">삭제하기</p> <a th:onclick="|deleteBook(${i.index})|" id="more" ><img
+                                                src="/images/book.png" width="20px"height="20px" /></a>
+                                        </span>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </th:block>
+                </th:block>
+                <th:block th:if="${myBaskets}=='null'">
+                    <div style="display: flex;justify-content: center; margin-top: 8%;margin-bottom: 8%"><h5 style="font-weight: 900;font-size: 45px;">아직 들어있는 책이 없어요!</h5></div>
+                </th:block>
             </div>
         </section>
 
@@ -274,7 +284,7 @@
 
         <!-- 쿠폰리스트 -->
         <br>
-        <div id="couponForm" th:if="${memberType}==1"> <!-- 추가 -->
+        <div id="couponForm" th:if="${sessionType}==1"> <!-- 추가 -->
             <div style="width: 65%; height: 3em; margin: 0 auto;">
                 <h2 style="font-size: 25px; display: inline; float: left;margin-right: 0;">쿠폰 보관함</h2>
             </div>
@@ -319,17 +329,20 @@
             </table>
         </div>
 
-        <!--  Copyright -->
-        <div class="copyright">
-            <ul class="menu">
-                <li>&copy; Kibook Angel. All rights reserved.</li>
-            </ul>
-        </div>
 
+    </div>
+    <!--  Copyright -->
+
+    <div class="copyright" style="height: 10em">
+        <hr>
+        <p style="margin-bottom: 0.5em; font-weight: 600; font-size: 20px; margin-left: 0.5em;text-align: left;font-size: 16px;">기북천사</p>
+        <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">대표자 : 한동석, 일사천리 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동 736-7 3~4층</p>
+        <label for="intro" style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;"><a style="text-decoration: none" id="intro" href="/main/introduce">기북천사 소개</a></label>
+        <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">&copy; Kibook Angel. All rights reserved.</p>
     </div>
 
 </div>
-</div>
+
 
 
 <!-- Scripts -->
@@ -347,8 +360,8 @@
 <!-- 검색 -->
 
 <script th:inline="javascript">
+    var memberNum = [[${memberNum}]];
     function subscribeCancel(){
-        var memberNum = [[${memberNum}]];
         $.ajax({
             url:"/member/subscribeCancel",
             type:"post",
@@ -360,42 +373,76 @@
             }
         });
     }
-</script>
+    let sessionType = [[${sessionType}]];
+    var applyTab = $("li#applyTab");
 
-<script th:inline="javascript">
+    if(sessionType == 0){
+        applyTab.css("display","none");
+    } else if(sessionType == 1){
+        applyTab.css("display","inline");
+    }
+
 
     // 책읽기 띄우기
     function openPop(){
-        if(${session_sub_status eq 0 || session_id  eq '' || empty session_id}){
-            alert("구독한 회원만 읽을 수 있습니다.");
+        let sub = [[${sub}]];
+            if(sub == "false" || memberNum  == null){
+                alert("구독한 회원만 읽을 수 있습니다.");
+                return false;
+            } else if(sub == "true" || memberNum  != null){
+                window.open('/main/dreamBook', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
+            }
         }
 
-        if(${session_sub_status eq 1}){
-            var popup = window.open('${pageContext.request.contextPath}/app/book/bookViewer.jsp', '기북천사 뷰어', 'width=800px,height=900px,scrollbars=yes');
-        }
 
-    }
 
-    // 검색어 내용 확인
-    function checkSearch(){
-        var form = document.searchForm;
-        if(!form.search_text.value){
-            alert("검색어를 입력해주세요.");
+    // <!--kkh 2021.11.03 새로 작성한 코드-->
+    // 글 등록 시 전달받는 게시글 번호를 alert으로 출력
+    let searchForm = $(document.searchForm);
+
+
+    $("button.search").on("click", function(e){  /*$("a.search").on("click", function(e){*/
+        e.preventDefault();
+
+
+        if(!searchForm.find("input#keyword").val()){
+            alert("키워드를 입력하세요");
             return;
         }
-        form.submit();
-    }
+        searchForm.submit();
+    });
 
-    // 엔터 키 작동
-    function enterkey() {
-        if (window.event.keyCode == 13) {
-            searchData();
+    $("input#keyword").on("keydown", function(e){
+        if(e.keyCode == 13){
+            e.preventDefault();
+            if(!searchForm.find("input#keyword").val()){
+                alert("키워드를 입력하세요");
+                return;
+            }
+            searchForm.submit();
         }
-    }
-
-    // 책 검색
-    function searchData(){
-        location.href="${pageContext.request.contextPath}/app/book/searchResult.jsp";
+    })
+    function deleteBook(index) {
+        var bookNum = $('input.'+index).val();
+        $.ajax({
+            url:"/member/pickBookCancel",
+            type:"post",
+            data:{"memberNum":memberNum,"bookNum":bookNum},
+            success:function (result) {
+                if(result=="success"){
+                    alert("삭제가 완료됐습니다.");
+                    $("article#"+index).remove();
+                }if(result=="none"){
+                    alert("삭제가 완료됐습니다.");
+                    $("article#"+index).remove();
+                    var str = null
+                    str +="<div style='display: flex;justify-content: center; margin-top: 8%;margin-bottom: 8%'>"
+                    str +="<h5 style='font-weight: 900;font-size: 45px;'>"
+                    str +="아직 들어있는 책이 없어요!</h5></div>"
+                    $("div.reel").html(str);
+                }
+            }
+        })
     }
 </script>
 </html>

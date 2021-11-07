@@ -14,7 +14,6 @@
         WHERE BOOKNUM = #{bookNum} AND memberNum = #{memberNum}
     </select>
 
-
     <!--책가방에 담기-->
     <insert id="addBookBasket">
         INSERT INTO BOOK_BASKET ( bookNum, memberNum)
@@ -39,4 +38,9 @@
         INSERT INTO BOOK_BASKET ( bookNum, memberNum)
 		VALUES(#{bookNum},#{memberNum})
     </insert>
+
+    <delete id="delete">
+        DELETE FROM BOOK_BASKET
+        WHERE BOOKNUM=#{bookNum} AND MEMBERNUM=#{memberNum}
+    </delete>
 </mapper>
