@@ -40,7 +40,7 @@
     </insert>
 
     <delete id="delete">
-        DELETE FROM HR.BOOK_BASKET
+        DELETE FROM BOOK_BASKET
         WHERE BOOKNUM=#{bookNum} AND MEMBERNUM=#{memberNum}
     </delete>
 </mapper>

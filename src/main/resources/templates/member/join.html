@@ -119,7 +119,7 @@
             <!-- 기북천사 로고 -->
             <div>
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
                 <!-- 검색 -->
@@ -241,7 +241,7 @@
                             <p style="margin-bottom: 2%;border-bottom: solid 7px #f5F3f3;padding: 33px;margin-bottom: 5%;"></p>
                         </div>
 
-                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;">우편번호</p>
+                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;"><span style="color:red;">*</span>우편번호</p>
 
                         <div style="display:flex; justify-content: space-between; position: inherit; ">
                             <input style="z-index: 0;margin-bottom: 5%;font-family:inherit;font-size:12px;position: inherit;width: 70%;" type="text" name="memberZipcode" id="memberZipcode" class="postcodify_postcode5" value="" />
@@ -253,13 +253,13 @@
                             </ul>
                         </div>
 
-                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;">주소</p>
+                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;"><span style="color:red;">*</span>주소</p>
                         <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="memberAddress" id="memberAddress" class="postcodify_address" value=""/>
 
-                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;">상세주소</p>
+                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;"><span style="color:red;">*</span>상세주소</p>
                         <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="memberAddressDetail" id="memberAddressDetail" class="postcodify_details" value=""/>
 
-                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;">참고항목</p>
+                        <p style="margin-bottom: 2%; text-align:left; font-size: 25px;"><span style="color:red;">*</span>참고항목</p>
                         <input type="text" style="margin-bottom: 5%;font-family:inherit;font-size:15px;position: inherit;" name="memberAddressEtc" id="memberAddressEtc" class="postcodify_extra_info" value="" />
 
                         <p style="margin-bottom: 2%;border-bottom: solid 7px #f5F3f3; padding: 27px;margin-bottom: 5%;"></p>
@@ -272,14 +272,12 @@
             </div>
         </form>
     </section>
-
-
-
-    <hr>
-    <div class="copyright">
-        <ul class="menu">
-            <li>&copy; Kibook Angel. All rights reserved.</li>
-        </ul>
+<hr>
+    <div class="copyright" style="height: 10em">
+        <p style="margin-bottom: 0.5em; font-weight: 600; font-size: 20px; margin-left: 0.5em;text-align: left;font-size: 16px;">기북천사</p>
+        <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">대표자 : 한동석, 일사천리 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동 736-7 3~4층</p>
+        <label for="intro" style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;"><a style="text-decoration: none" id="intro" href="/main/introduce">기북천사 소개</a></label>
+        <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">&copy; Kibook Angel. All rights reserved.</p>
     </div>
 </div>
 

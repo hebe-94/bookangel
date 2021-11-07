@@ -24,7 +24,6 @@
     <link rel="stylesheet" type="text/css" href="/css/default.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-    <script src="../assets/js/modernizr.custom.js"></script>
 
     <!-- logo 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +67,7 @@
             <!-- 기북천사 로고 -->
             <div>
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
-                    <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
+                    <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
                 <!-- 검색 -->
@@ -124,7 +123,8 @@
     <!-- 마이페이지(회원 및 기업 정보표시) -->
 
 
-    <div class="table-wrapper" style="margin-top: 7%; margin-bottom: 7%;margin-left:auto; margin-right:auto; width: 80%"  th:object="${myInfo}">
+    <div class="table-wrapper" style="margin-top: 7%; margin-bottom: 7%;margin-left:auto; margin-right:auto; width: 100%"  th:object="${myInfo}">
+       <div style="width: 80%; margin: auto;">
         <div>
             <h2 style="font-size: 25px; display: inline;padding:1% 1% 1% 18%; display: inline; float: left" th:text="|*{memberId}님의 정보입니다. 변경을 원하시면 정보수정을 눌러주세요|"></h2>
         </div>
@@ -168,7 +168,7 @@
             <tr align="center" valign="middle">
             </tr>
         </table>
-        <div id="sub" th:if="${memberType}==0">
+        <div id="sub" th:if="${sessionType}==0">
             <h2 style="font-size: 25px; display: inline; padding:0 18%">이용권</h2>
             <table style="text-align: center;">
                 <thead>
@@ -209,7 +209,7 @@
 
         </th:block>
 
-        <th:block th:if="${memberType}==1">
+        <th:block th:if="${sessionType}==1">
             <div>
                 <h2 style="font-size: 25px; display: inline; padding:0 18%">쿠폰</h2>
                 <table style="text-align: center;">
@@ -236,7 +236,7 @@
             </div> <!-- 추가 -->
 
         </th:block>
-
+       </div>
 
 
 
@@ -245,31 +245,34 @@
         <!--  Carousel -->
 
 
-        <section id="basketForm" class="carousel" th:if="${memberType}==0">
+        <section id="basketForm" class="carousel" th:if="${sessionType}==0">
             <p id="category" style="font-size: 30px; margin-left: 2.5%;">나의 책가방</p>
             <div class="reel">
 
                 <th:block th:if="${myBaskets}!='null'">
-                    <article class="grid cs-style-4" th:each="b, i:${myBaskets}">
-                        <figure>
-                            <div>
-                                <img th:src="|/bookImages/${b.bookImageSrc}|" height="262" width="175" alt="">
-                            </div>
-                            <figcaption>
-                                <div style="margin-top: 25%;">
-                                    <span>
-                                        <p style="margin-bottom: 0;">바로읽기</p>
-                                        <a id="read" href="#popUp" target="_self" onclick="openPop()">
-                                        <img src="/images/ebookread.png" /></a>
-                                    </span>
-                                    <span>
-                                        <p style="margin-bottom: 0;">상세보기</p> <a id="more" href="#"><img
-                                            src="/images/backpack.png" /></a>
-                                    </span>
+                    <th:block  th:each="b, i:${myBaskets}">
+                        <article class="grid cs-style-4"  th:id="${i.index}">
+                            <figure>
+                                <div>
+                                    <input type="hidden" th:value="${b.bookNum}" th:class="${i.index}">
+                                    <img th:src="|/bookImages/${b.bookImageSrc}|" height="262" width="175" alt="">
                                 </div>
-                            </figcaption>
-                        </figure>
-                    </article>
+                                <figcaption style="width:100%">
+                                    <div style="margin-top: 25%;">
+                                        <span>
+                                            <p style="margin-bottom: 0;">바로읽기</p>
+                                            <a id="read" href="#popUp" target="_self" onclick="openPop()">
+                                            <img src="/images/ebookread.png" /></a>
+                                        </span>
+                                        <span>
+                                            <p style="margin-bottom: 0;">삭제하기</p> <a th:onclick="|deleteBook(${i.index})|" id="more" ><img
+                                                src="/images/book.png" width="20px"height="20px" /></a>
+                                        </span>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </th:block>
                 </th:block>
                 <th:block th:if="${myBaskets}=='null'">
                     <div style="display: flex;justify-content: center; margin-top: 8%;margin-bottom: 8%"><h5 style="font-weight: 900;font-size: 45px;">아직 들어있는 책이 없어요!</h5></div>
@@ -281,7 +284,7 @@
 
         <!-- 쿠폰리스트 -->
         <br>
-        <div id="couponForm" th:if="${memberType}==1"> <!-- 추가 -->
+        <div id="couponForm" th:if="${sessionType}==1"> <!-- 추가 -->
             <div style="width: 65%; height: 3em; margin: 0 auto;">
                 <h2 style="font-size: 25px; display: inline; float: left;margin-right: 0;">쿠폰 보관함</h2>
             </div>
@@ -326,17 +329,20 @@
             </table>
         </div>
 
-        <!--  Copyright -->
-        <div class="copyright">
-            <ul class="menu">
-                <li>&copy; Kibook Angel. All rights reserved.</li>
-            </ul>
-        </div>
 
+    </div>
+    <!--  Copyright -->
+
+    <div class="copyright" style="height: 10em">
+        <hr>
+        <p style="margin-bottom: 0.5em; font-weight: 600; font-size: 20px; margin-left: 0.5em;text-align: left;font-size: 16px;">기북천사</p>
+        <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">대표자 : 한동석, 일사천리 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동 736-7 3~4층</p>
+        <label for="intro" style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;"><a style="text-decoration: none" id="intro" href="/main/introduce">기북천사 소개</a></label>
+        <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">&copy; Kibook Angel. All rights reserved.</p>
     </div>
 
 </div>
-</div>
+
 
 
 <!-- Scripts -->
@@ -354,8 +360,8 @@
 <!-- 검색 -->
 
 <script th:inline="javascript">
+    var memberNum = [[${memberNum}]];
     function subscribeCancel(){
-        var memberNum = [[${memberNum}]];
         $.ajax({
             url:"/member/subscribeCancel",
             type:"post",
@@ -367,14 +373,19 @@
             }
         });
     }
-</script>
+    let sessionType = [[${sessionType}]];
+    var applyTab = $("li#applyTab");
 
-<script th:inline="javascript">
+    if(sessionType == 0){
+        applyTab.css("display","none");
+    } else if(sessionType == 1){
+        applyTab.css("display","inline");
+    }
+
 
     // 책읽기 띄우기
     function openPop(){
         let sub = [[${sub}]];
-        let memberNum = [[${memberNum}]];
             if(sub == "false" || memberNum  == null){
                 alert("구독한 회원만 읽을 수 있습니다.");
                 return false;
@@ -411,6 +422,27 @@
             searchForm.submit();
         }
     })
-
+    function deleteBook(index) {
+        var bookNum = $('input.'+index).val();
+        $.ajax({
+            url:"/member/pickBookCancel",
+            type:"post",
+            data:{"memberNum":memberNum,"bookNum":bookNum},
+            success:function (result) {
+                if(result=="success"){
+                    alert("삭제가 완료됐습니다.");
+                    $("article#"+index).remove();
+                }if(result=="none"){
+                    alert("삭제가 완료됐습니다.");
+                    $("article#"+index).remove();
+                    var str = null
+                    str +="<div style='display: flex;justify-content: center; margin-top: 8%;margin-bottom: 8%'>"
+                    str +="<h5 style='font-weight: 900;font-size: 45px;'>"
+                    str +="아직 들어있는 책이 없어요!</h5></div>"
+                    $("div.reel").html(str);
+                }
+            }
+        })
+    }
 </script>
 </html>
