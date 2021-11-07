@@ -326,7 +326,7 @@
 
                 <div class="bookList listViewStyle">
                     <th:block th:each="book : ${list}">
-                        <ul class="listWrap" th:object="${book}">
+                            <ul class="listWrap" th:object="${book}">
                             <li>
                                 <div class="bookArea" style="position: relative; border: 1px solid #e2e2e2; padding: 30px 25px; display: block;">
                                     <div class="bookImg" style="position: absolute; left: 25px; top: 30px; width: 150px; height: 210px; box-sizing: border-box;">
@@ -351,8 +351,9 @@
                                             </ul>
                                         </div>
 
+                                        <!--상세보기에서 나오기 때문에 검색결과페이지에서는 생략-->
                                         <!-- 바로읽기와 책가방에 넣기 -->
-                                        <div class="bookBtnWrap">
+                                        <!--<div class="bookBtnWrap">
 
                                             <ul>
                                                 <li>
@@ -362,7 +363,7 @@
                                                     <a href="#" onclick="addBookBasket('')" class="apply smallBtn">책가방담기</a>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </li>

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,14 +21,17 @@ import java.io.IOException;
 public class MyBatisConfig {
     private final ApplicationContext applicationContext;
 
-    @Bean
+/*    @Bean
     @ConfigurationProperties(prefix = "spring.datasource.hikari")
-    public HikariConfig hikariConfig() { return new HikariConfig(); }
+    public HikariConfig hikariConfig() { return new HikariConfig(); }*/
 
     @Bean
-    public DataSource dataSource() {
-        return new HikariDataSource(hikariConfig());
-    }
+    public DataSource dataSource(){ return DataSourceBuilder.create().build(); }
+
+//    @Bean
+//    public DataSource dataSource() {
+//        return new HikariDataSource(hikariConfig());
+//    }
 
     @Bean
     public SqlSessionFactory sqlSessionFactory() throws IOException {
