@@ -1982,7 +1982,7 @@ body.homepage.is-preload #header:after {
 input, button {
 	position: relative;
 	width: 120px;
-	height: 39px;
+	height: 40px;
 	padding: 0;
 	display: flex;
 	float: left;
