@@ -123,7 +123,8 @@
     <!-- 마이페이지(회원 및 기업 정보표시) -->
 
 
-    <div class="table-wrapper" style="margin-top: 7%; margin-bottom: 7%;margin-left:auto; margin-right:auto; width: 80%"  th:object="${myInfo}">
+    <div class="table-wrapper" style="margin-top: 7%; margin-bottom: 7%;margin-left:auto; margin-right:auto; width: 100%"  th:object="${myInfo}">
+       <div style="width: 80%; margin: auto;">
         <div>
             <h2 style="font-size: 25px; display: inline;padding:1% 1% 1% 18%; display: inline; float: left" th:text="|*{memberId}님의 정보입니다. 변경을 원하시면 정보수정을 눌러주세요|"></h2>
         </div>
@@ -235,7 +236,7 @@
             </div> <!-- 추가 -->
 
         </th:block>
-
+       </div>
 
 
 
@@ -328,15 +329,16 @@
             </table>
         </div>
 
-        <!--  Copyright -->
 
-        <div class="copyright" style="height: 10em">
-            <p style="margin-bottom: 0.5em; font-weight: 600; font-size: 20px; margin-left: 0.5em;text-align: left;font-size: 16px;">기북천사</p>
-            <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">대표자 : 한동석, 일사천리 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동 736-7 3~4층</p>
-            <label for="intro" style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;"><a style="text-decoration: none" id="intro" href="/main/introduce">기북천사 소개</a></label>
-            <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">&copy; Kibook Angel. All rights reserved.</p>
-        </div>
+    </div>
+    <!--  Copyright -->
 
+    <div class="copyright" style="height: 10em">
+        <hr>
+        <p style="margin-bottom: 0.5em; font-weight: 600; font-size: 20px; margin-left: 0.5em;text-align: left;font-size: 16px;">기북천사</p>
+        <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">대표자 : 한동석, 일사천리 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동 736-7 3~4층</p>
+        <label for="intro" style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;"><a style="text-decoration: none" id="intro" href="/main/introduce">기북천사 소개</a></label>
+        <p style="margin-bottom: 0.2em;margin-left: 0.5em;text-align: left;font-size: 16px;">&copy; Kibook Angel. All rights reserved.</p>
     </div>
 
 </div>
