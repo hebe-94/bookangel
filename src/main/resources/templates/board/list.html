@@ -28,6 +28,35 @@
     <style>
         .small-width {display: none;}
         .mediaPage {display: none;}
+        #searchForm {width: 261px;float:left; padding: 0px;}
+        .darkMode {width: 83px;text-align: initial; left: 37px; top: 12px; }
+        .label__on-off .off { padding-left: 30px; line-height: 25px; }
+        .wrapper {
+            padding-left: 2em;
+            padding-right: 2em;
+        }
+        .container {width: 80%; height: 61vh;}
+
+        @media (max-width: 918px) {
+            /*.writer {display: none;}*/
+            .regDate {display: none;}
+            .updateDate {display: none;}
+            .big-width {display: none;}
+            .small-width {display: block;}
+            #turtlelogo{display: none;}
+            div#searchWrap{display: block;}
+            select[name='type']{width: 100%;}
+            input[name='keyword']{width: 100%;}
+            a.search{width: 100%;}
+            .togetherMsg {font-size: 20px; padding-bottom: 7%;}
+            #searchForm {width: 230px;float:left;padding: 0px; left:-30px;}
+            .label__on-off .off {padding-left: 20px;line-height: 25px;}
+            .searchButton{width: 50px;}
+            .wrapper {padding-left: 0em;padding-right: 0em;}
+            .container {width: 96%; height: 70vh;}
+            #userName{font-size: 10px}
+        }
+
 
         @media (max-width: 768px) {
              #button{width: 28%}
@@ -37,9 +66,34 @@
             .mediaPage {display: inline-block;}
             .originalPage {display: none;}
             .big-width{display: none;}
-            #searchButton{width: 40px;}
+            #turtlelogo{display: none;}
+            #searchForm {width: 230px;float:left;padding: 0px; left: 5px; top: 10px;}
+            .searchButton{width: 50px;}
             .copyright{display: none;}
-            .label__on-off{width: 83px;text-align: initial;top: 33px;left: -75%;}
+            .label__on-off .off {padding-left: 20px;line-height: 25px;}
+            .darkMode{width: 74px;text-align: center;left: 40px;top: 15px;}
+            .container {width: 96%; height: 70vh;}
+            #userName{font-size: 10px}
+        }
+
+        @media (max-width: 480px) {
+            /*.writer {display: none;}*/
+            .regDate {display: none;}
+            .updateDate {display: none;}
+            .big-width {display: none;}
+            .small-width {display: block;}
+            #turtlelogo{display: none;}
+            div#searchWrap{display: block;}
+            select[name='type']{width: 100%;}
+            input[name='keyword']{width: 100%;}
+            a.search{width: 100%;}
+            .togetherMsg {font-size: 20px; padding-bottom: 7%;}
+            #searchForm {width: 230px;float:left;padding: 0px; left:-30px;}
+            .searchButton{width: 50px;}
+            .darkMode{width: 74px;text-align: center;left: -20px;top: 7px;}
+            .label__on-off .off {padding-left: 20px;line-height: 25px;}
+            .container {width: 96%; height: 70vh;}
+            #userName{font-size: 10px}
         }
 
         /* body 기본 폰트 전체 적용 */
@@ -90,9 +144,6 @@
             background: var(--bg-color);
             color: var(--text-color);
         }
-
-
-
     </style>
 
 <body class="no-sidebar is-preload">
@@ -102,24 +153,24 @@
         <nav id="nav">
 
             <!-- 기북천사 로고 -->
-            <div>
+            <div id="turtlelogo">
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
                     <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
             </div>
             <input type="checkbox" id="toggleTheme" name="switch1" class="input__on-off" >
-            <label for="toggleTheme" class="label__on-off" style="width: 83px;text-align: initial; left: 37px; top: 12px;">
+            <label for="toggleTheme" class="label__on-off darkMode">
                 <span class="marble"></span>
                 <span class="on">dark on</span> <span class="off">dark off</span>
             </label>
             <ul>
 
                 <!-- 검색 -->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" action="/book/list" name="searchForm">
+                <form id="searchForm" action="/book/list" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
                         <!--                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">-->
                     </div>
-                    <button onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                    <button class="searchButton" onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                         <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
@@ -131,7 +182,7 @@
                     </button>
                 </form>
                 <li>
-                    <a href="#">📖
+                    <a href="#" id="userName">📖
                         <th:block th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
                     </a>
@@ -174,13 +225,13 @@
                 <th:block th:if="${memberNum} ne 81">
                     <input type="button" id="button" class="btn btn-outline-success" value="글쓰기" onclick="goWrite()" style="left: 72%;padding: initial; top: -10px; z-index: 0;">
                 </th:block>
-                <div class="table-wrapper" style="margin: auto;">
+                <div class="table-wrapper">
 
                     <table style="text-align: center";>
                         <thead  style ="position: sticky; top:0;">
                         <tr style="background-color:#ceb980;" >
                             <th class="boarNum" style="width: 100px; text-align: center; ">번호</th>
-                            <th style="width: 200px; text-align: center; ">제목</th>
+                            <th style="width: 170px; text-align: center; ">제목</th>
                             <th style="width: 170px; text-align: center; ">작성자</th>
                             <th class="cBoardDate" style="width: 300px; text-align: center;">날짜</th>
                         </tr>
