@@ -39,7 +39,6 @@ input[type="checkbox"] { display: none; }
     -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .3);
     box-shadow: 0 0 10px rgba(0, 0, 0, .3); }
 .label__on-off .on { display: none; padding-left: 12px; }
-.label__on-off .off { padding-left: 30px; line-height: 25px; }
 .input__on-off:checked + .label__on-off { background-color: #0bba82; }
 .input__on-off:checked + .label__on-off .on { display: inline-block; }
 .input__on-off:checked + .label__on-off .off { display: none; }
