@@ -40,6 +40,64 @@
 
 </head>
 <style>
+    #qna1{
+        text-align:center;padding: 100px 300px 5px 300px;
+    }
+    #qna2{
+        margin: 0px 290px 50px 320px;
+    }
+    #qna3{
+        padding: 30px 400px 25px 50px;text-align: left;margin: 0 0 0 0;border-top: solid 11px;border-color: #f5f4f3; font-weight:bold;
+    }
+    #help{
+
+    }
+    #help2{
+        margin: 0px 0px 50px 77px;
+        border-top: solid 11px;
+        border-color: #f5f4f3;
+        padding: 30px;
+    }
+
+    #help{
+        margin: 5% 19% 7% 16%
+    }
+
+    #qna5{
+        font-weight:bold; font-size:25px;
+    }
+    a.toggle{
+        display: none;
+    }
+    #searchForm{width: 261px;float:left; padding: 0px;}
+
+    @media (max-width: 480px) {
+        #qna1 {
+            text-align: center;
+            padding: 162px 10px 5px 10px;
+             }
+        #qna2{
+            margin : 0px 0px 0px 0px;
+        }
+        #qna3{
+            padding: 30px 50px 30px 50px;
+            text-align: center;
+        }
+        #help2{
+            margin: 0px 0px 0px 0px;
+        }
+        #qna5{
+            font-size: 15px;
+        }
+        #help{
+            margin: 0px 0px 0px 0px;
+        }
+        #searchForm {width: 230px;float:left;padding: 0px;}
+        .searchButton{width: 50px;}
+        #turtlelogo{display: none;}
+
+    }
+
     /* body 기본 폰트 전체 적용 */
 
     body {
@@ -68,15 +126,6 @@
         background-color: #f5f5f5;
     }
 
-    #help{
-        margin: 5% 19% 7% 16%
-    }
-
-    #help2{
-        border-top: solid 11px;
-        border-color: #f5f4f3;
-        padding: 30px;
-    }
 
     .pure-group{
         margin: 2% 2% 0 2%;
@@ -117,7 +166,7 @@
         <nav id="nav">
 
             <!-- 기북천사 로고 -->
-            <div>
+            <div id="turtlelogo">
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
                     <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
@@ -125,12 +174,12 @@
             <ul>
 
                 <!-- 검색 -->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" action="/book/list" name="searchForm">
+                <form id="searchForm" action="/book/list" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
                         <!--                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">-->
                     </div>
-                    <button onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                    <button class="searchButton" onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                         <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
@@ -143,8 +192,9 @@
                 </form>
                 <!-- 회원정보 -->
                 <li>
-                    <a href="#">📖
+                    <a href="#" id="userName">📖
                         <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
 
                         <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
@@ -177,15 +227,15 @@
     </div>
 
 <section>
-    <header >
-        <div style="text-align:center;padding: 100px 300px 5px 300px;">
+    <header>
+        <div id="qna1">
             <h2 style="margin-left: 5%;padding-bottom: 40px;">무엇을 도와드릴까요?&nbsp;&nbsp;&nbsp;<img src="/images/qna.png" width="40" height="60"></h2>
             <p style="font-size: inherit;">접수된 문의는, 순차 답변 예정입니다.</p>
         </div>
     </header>
 
-    <div style="margin: 0px 290px 50px 320px;">
-        <h3 style="padding: 30px 400px 25px 50px;text-align: left;margin: 0 0 0 0;border-top: solid 11px;border-color: #f5f4f3; font-weight:bold;">자주 묻는 질문</h3>
+    <div id="qna2">
+        <h3 id="qna3" >자주 묻는 질문</h3>
 
         <details>
             <summary>[구독] 기북천사의 구독 서비스란 무엇인가요?</summary>
@@ -285,9 +335,9 @@
 
     <div id="help">
         <article style="text-align:center; color:black;">
-            <div id="help2" style="margin: 0px 0px 50px 77px;">
+            <div id="help2">
                 <p style="text-align:center;">
-                    <span style="font-weight:bold; font-size:25px;"> 찾으시는 내용이 없다면 1:1문의를 이용해주세요. </span>
+                    <span id="qna5"> 찾으시는 내용이 없다면 1:1문의를 이용해주세요. </span>
                 </p>
                 <div style="display: flex;">
                     <input type="button" onclick="showPopup()" style="  margin: auto;  width: 32%; margin-bottom: 3%;" value="문의하기"/>
