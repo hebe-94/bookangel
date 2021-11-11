@@ -110,6 +110,7 @@
         padding-left: 2em;
         padding-right: 2em;
     }
+    #goMain{display: none}
 
     @media (max-width: 768px) {
         .small-width {display: block;}
@@ -125,6 +126,7 @@
         .carousel article {width: 11em; margin: 0 1em 0 0;}
         #userName{font-size: 10px}
         #GBfooter {display: none;}
+        #goMain{display: block}
     }
 
     @media (max-width: 500px){
@@ -138,6 +140,7 @@
         .carousel article {width: 11em; margin: 0 1em 0 0;}
         #userName{font-size: 10px}
         #GBfooter {display: none;}
+        #goMain{display: block}
     }
 
     @media (max-width: 480px) {
@@ -153,6 +156,7 @@
         .carousel article {width: 11em; margin: 0 1em 0 0;}
         #userName{font-size: 10px}
         #GBfooter {display: none;}
+        #goMain{display: block}
     }
 
 </style>
@@ -229,11 +233,13 @@
                     </a>
                     <ul>
                         <th:block th:if="${memberNum} == null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
                             <li><a  href="/main/qna">Q&A</a></li>
                         </th:block>
 
                         <th:block th:if="${memberNum} != null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="myPageTab"><a>마이페이지&hellip;</a>
                                 <ul>
                                     <li><a href="/member/mypage">내정보 보기</a></li>
