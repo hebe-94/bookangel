@@ -259,11 +259,11 @@ hr:after {
 	}
 }
 
-@media screen and (max-width: 736px) {
+/*@media screen and (max-width: 736px) {
 	.container {
 		width: 100%;
 	}
-}
+}*/
 
 /* Row */
 .row {
@@ -2427,8 +2427,9 @@ button {
 	display: none;
 }
 
+/*
 @media screen and (max-width: 736px) {
-	/* Basic */
+	!* Basic *!
 	html, body {
 		overflow-x: hidden;
 	}
@@ -2447,7 +2448,7 @@ button {
 		margin-bottom: 6em;
 	}
 
-	/* Section/Article */
+	!* Section/Article *!
 	section, article {
 		margin-bottom: 2em;
 	}
@@ -2461,7 +2462,7 @@ button {
 		font-size: 1.25em;
 	}
 
-	/* Image */
+	!* Image *!
 	.image.featured {
 		margin: 0 0 2em 0;
 	}
@@ -2472,7 +2473,7 @@ button {
 		margin: 0 0 1em 0;
 	}
 
-	/* Actions */
+	!* Actions *!
 	form ul.actions {
 		margin-top: 0;
 	}
@@ -2484,7 +2485,7 @@ button {
 		margin-top: 0;
 	}
 
-	/* Menu */
+	!* Menu *!
 	ul.menu {
 		height: auto;
 		text-align: center;
@@ -2499,7 +2500,7 @@ button {
 		padding-top: 0;
 	}
 
-	/* Icons */
+	!* Icons *!
 	ul.icons {
 		font-size: 1em;
 		padding: 0.35em 0.5em 0.35em 0.5em;
@@ -2508,7 +2509,7 @@ button {
 		width: 2.25em;
 	}
 
-	/* Button */
+	!* Button *!
 	input[type="button"], input[type="submit"], input[type="reset"], button,
 		.button {
 		display: block;
@@ -2517,7 +2518,7 @@ button {
 		width: 100%;
 	}
 
-	/* Nav */
+	!* Nav *!
 	#page-wrapper {
 		-moz-backface-visibility: hidden;
 		-webkit-backface-visibility: hidden;
@@ -2620,7 +2621,7 @@ button {
 		top: 0;
 		width: 100%;
 		height: 100%;
-		/*background: url("/images/overlay.png");*/
+		!*background: url("/images/overlay.png");*!
 		background-size: 128px 128px;
 	}
 	#navPanel .link {
@@ -2657,9 +2658,9 @@ button {
 		width: 4em;
 	}
 
-	/* 후원기관 테이블 */
+	!* 후원기관 테이블 *!
 
-	/* Table */
+	!* Table *!
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
 		overflow-x: auto;
@@ -2739,6 +2740,7 @@ button {
 		border-color: rgba(67, 75, 86, 0.25);
 	}
 }
+*/
 
 
 /* 커스텀 태그 */
