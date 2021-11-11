@@ -44,6 +44,94 @@
 
 </head>
 <style>
+
+    /*개인 디자인 넣기*/
+    div.divMainImg{
+        margin-top: 6em;
+        width: 100%;
+        height: 25em;
+        background-image: url(/images/introduceImg.jpg);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    div.no1{
+        font-size: 25px;
+        font-weight: 600;
+        text-align: left;
+        width: 30%;
+        height: 150px;
+        float: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    div.no1-1{
+        font-size: 20px;
+        text-align: left;
+        width: 70%;
+        height: 150px;
+        float: right;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    div.sub{
+        width: 30%;
+    }
+    div.mainDiv{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #goMain{display: none}
+    #searchForm {width: 261px;float:left; padding: 0px;}
+    #tech{font-weight: 600; font-size: 25px;}
+    #tech2{background-image: url(/images/computer.jpg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 190%;}
+    #trust{font-weight: 600; font-size: 25px;}
+    #trust2{background-image: url(/images/trust.jpg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 190%;}
+    #hope{font-weight: 600; font-size: 25px;}
+    #hope2{
+        background-image: url(/images/hope.jpg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 190%;
+    }
+    #introduce{width: 70%; margin: 0 auto;height: 70em;}
+
+    @media (max-width: 480px) {
+        #goMain{display: block}
+        .searchButton{width: 50px;}
+        #turtlelogo{display: none;}
+        #searchForm {width: 230px;float:left; padding: 0px; top:5px;}
+        div.divMainImg{margin-top: 7em; height: 18em}
+        div.no1-1{height: 5px; font-size: 19px}
+        div.no1{height: 0px; font-size: 20px;}
+        #tech{font-size: 18px;}
+        #tech2{height: 22%}
+        #tech3{font-size: 15px;}
+        #trust{font-size: 18px;}
+        #trust2{height: 22%;}
+        #trust3{font-size: 15px;}
+        #hope{font-size: 18px;}
+        #hope2{height: 22%;}
+        #hope3{font-size: 15px;}
+        #introduce{height: 56em;}
+    }
+
+
     /* body 기본 폰트 전체 적용 */
 
     body {
@@ -111,47 +199,7 @@
         overflow: hidden;
     }
 
-    /*개인 디자인 넣기*/
-    div.divMainImg{
-        margin-top: 6em;
-        width: 100%;
-        height: 25em;
-        background-image: url(/images/introduceImg.jpg);
-        background-size: 100% 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 
-    div.no1{
-        font-size: 25px;
-        font-weight: 600;
-        text-align: left;
-        width: 30%;
-        height: 150px;
-        float: left;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    div.no1-1{
-        font-size: 20px;
-        text-align: left;
-        width: 70%;
-        height: 150px;
-        float: right;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    div.sub{
-        width: 30%;
-    }
-    div.mainDiv{
-        display: flex;
-        justify-content: space-between;
-    }
 </style>
 <body class="no-sidebar is-preload">
 <div id="page-wrapper">
@@ -163,18 +211,18 @@
         <nav id="nav">
 
             <!-- 기북천사 로고 -->
-            <div>
+            <div id="turtlelogo">
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
                     <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
                 <!-- 검색 -->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" action="/book/list" name="searchForm">
+                <form id="searchForm" action="/book/list" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
                         <!--                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">-->
                     </div>
-                    <button onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                    <button class="searchButton" onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                         <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
@@ -185,9 +233,10 @@
                              8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
                     </button>
                 </form>
+
                 <!-- 회원정보 -->
                 <li>
-                    <a href="#">📖
+                    <a href="#" id="userName">📖
                         <th:block th:if= "${memberNum} == null" th:text="비회원"/>
                         <input type="hidden" name="sub" th:value="${sub}">
 
@@ -197,11 +246,13 @@
                     </a>
                     <ul>
                         <th:block th:if="${memberNum} == null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
                             <li><a  href="/main/qna">Q&A</a></li>
                         </th:block>
 
                         <th:block th:if="${memberNum} != null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="myPageTab"><a>마이페이지&hellip;</a>
                                 <ul>
                                     <li><a href="/member/mypage">내정보 보기</a></li>
@@ -221,7 +272,7 @@
 
     </div>
     <!--  Header  끝-->
-    <div style="width: 70%; margin: 0 auto;height: 70em;">
+    <div id="introduce">
 
         <div style="text-align: center;">
             <div class="divMainImg" style="position: relative;">
@@ -253,36 +304,21 @@
 
         <div class="mainDiv">
             <div class="sub">
-                <div style="font-weight: 600; font-size: 25px;">Technology</div>
-                <div style="
-                    background-image: url(/images/computer.jpg);
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    width: 100%;
-                    height: 190%;"></div>
-                <div>기북천사만의 독서 플랫폼으로 사용자에게 더욱 편리한 독서의 방법을 제공합니다.</div>
+                <div id="tech">Technology</div>
+                <div id="tech2"></div>
+                <div id="tech3">기북천사만의 독서 플랫폼으로 사용자에게 더욱 편리한 독서의 방법을 제공합니다.</div>
             </div>
             <div class="sub">
-                <div style="font-weight: 600; font-size: 25px;">Trust</div>
-                <div style="
-                    background-image: url(/images/trust.jpg);
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    width: 100%;
-                    height: 190%;"></div>
-                <div>기북천사의 적극적인 활동은 고객과 더불어 모든 사용자에게 믿을 수 있는 독서 환경을 선사합니다.</div>
+                <div id="trust">Trust</div>
+                <div id="trust2"></div>
+                <div id="trust3">기북천사의 적극적인 활동은 고객과 더불어 모든 사용자에게 믿을 수 있는 독서 환경을 선사합니다.</div>
             </div>
 
 
             <div class="sub">
-                <div style="font-weight: 600; font-size: 25px;">Hope</div>
-                <div style="
-                    background-image: url(/images/hope.jpg);
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    width: 100%;
-                    height: 190%;"></div>
-                <div>기북천사와 사용자가 함께하는 사회공헌 플랫폼으로 함께하는 더 나은 삶을 만듭니다.</div>
+                <div id="hope">Hope</div>
+                <div id="hope2"></div>
+                <div id="hope3">기북천사와 사용자가 함께하는 사회공헌 플랫폼으로 함께하는 더 나은 삶을 만듭니다.</div>
             </div>
         </div>
     </div>

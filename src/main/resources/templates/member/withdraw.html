@@ -24,6 +24,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 </head>
 <style>
+    #goMain{display: none}
+    #searchForm {width: 261px;float:left; padding: 0px;}
+    #withdraw{display:flex; justify-content:space-evenly; color:black;}
+    .main{width: 74%; margin-left: 14%;}
+    #withdraw1{width:40%;margin-bottom: 70px;}
+    #cancel{width: 100%;font-size:1em;}
+
+    @media (max-width: 480px) {
+        #goMain{display: block}
+        .searchButton{width: 50px;}
+        #turtlelogo{display: none;}
+        #searchForm {width: 230px;float:left; padding: 0px; top:5px;}
+        #withdraw{width: 100%%;}
+        .main{width: 100%; margin-left: 0%}
+        #withdraw1{width: 92%; margin-bottom: 70px;}
+        #cancel{margin-top: -7%}
+    }
+
     /* body 기본 폰트 전체 적용 */
     body{
         font-family: 'Gowun Dodum', sans-serif;
@@ -48,18 +66,18 @@
         <nav id="nav">
 
             <!-- 기북천사 로고 -->
-            <div>
+            <div id="turtlelogo">
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
                     <img id="logoImg" src="/images/kibookLogo.png"></a>
             </div>
             <ul>
                 <!-- 검색 -->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" action="/book/list" name="searchForm">
+                <form id="searchForm" action="/book/list" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
                         <!--                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">-->
                     </div>
-                    <button onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                    <button class="searchButton" onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                         <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
@@ -70,21 +88,26 @@
                              8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
                     </button>
                 </form>
+
+                <!-- 회원정보 -->
                 <li>
-                    <a href="#">📖
+                    <a href="#" id="userName">📖
                         <th:block th:if= "${memberNum} == null" th:text="비회원"/>
                         <input type="hidden" name="sub" th:value="${sub}">
 
-                        <th:block th:text="${memberName}" />
+                        <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
+
                     </a>
                     <ul>
                         <th:block th:if="${memberNum} == null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
-                            <li><a  href="/member/QnA">Q&A</a></li>
+                            <li><a  href="/main/qna">Q&A</a></li>
                         </th:block>
 
                         <th:block th:if="${memberNum} != null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="myPageTab"><a>마이페이지&hellip;</a>
                                 <ul>
                                     <li><a href="/member/mypage">내정보 보기</a></li>
@@ -93,7 +116,7 @@
                                     <li><a  href="/member/withdraw">회원탈퇴</a></li>
                                 </ul>
                             </li>
-                            <li><a  href="/member/QnA">Q&A</a></li>
+                            <li><a  href="/main/qna">Q&A</a></li>
                             <li id="logoutTab"><a  href="/member/logout">로그아웃</a></li>
                         </th:block>
 
@@ -108,7 +131,7 @@
     <div class="inner">
 
         <!-- Main -->
-        <section class="main" style="width: 74%; margin-left: 14%;">
+        <section class="main">
             <!-- 끝 -->
 
             <!-- Main -->
@@ -117,8 +140,8 @@
                 <h1 style="text-align:center; font-size:30px">회원탈퇴</h1>
             </header>
 
-            <div style="display:flex; justify-content:space-evenly; color:black;">
-                <div style="width:40%;margin-bottom: 70px;">
+            <div id="withdraw">
+                <div id="withdraw1">
                     <div>
                         <form method="post", action="/member/withdraw" name="withdraw" id="withdraw">
                             <div class="col-6 col-12-xsmall" style="width:100%">
@@ -135,7 +158,7 @@
                     <div class="col-12" style="display: flex;justify-content: center;">
                         <ul class="actions" style="display:flex; text-align:center; width: 100%; margin-top: 5%;margin-bottom: 5%;">
                             <li style="width: 49.5%; margin-right: 0.5%;"><input type="button" value="확인" style="width: 100%;font-size:1em;" onclick="check()"/></li>
-                            <li style="width: 49.5%; margin-left: 0.5%;"><input type="button" value="취소" class="primary" style="width: 100%;font-size:1em;" onclick="history.back()"/></li>
+                            <li style="width: 49.5%; margin-left: 0.5%;"><input type="button" value="취소" class="primary" id="cancel" onclick="history.back()"/></li>
                         </ul>
                     </div>
                 </div>
