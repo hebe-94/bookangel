@@ -256,6 +256,7 @@ public class PaymentController {
                 paymentVO.setCouponNum((long)session.getAttribute("couponNum"));
                 // 결제하고 세션에 등록
                 session.setAttribute("sub", "true");
+
             }else if(paymentType == 1){ // 카드 1달
 //              #{memberNum}, #{couponNum = 0}, #{impUid}, #{merchantUid}, #{subMonth}, SYSDATE, SYSDATE+ '')
                 paymentVO = new PaymentVO();
@@ -267,6 +268,8 @@ public class PaymentController {
                 log.info("merchantUid : " + merchantUid);
                 paymentVO.setImpUid(impUid);
                 paymentVO.setMerchantUid(merchantUid);
+                // 결제하고 세션에 등록
+                session.setAttribute("sub", "true");
 
                 // 결제하고 세션에 등록
                 session.setAttribute("sub", "true");
@@ -323,6 +326,8 @@ public class PaymentController {
                 paymentVO.setSubMonth(2l);
                 paymentVO.setMemberNum((Long)session.getAttribute("memberNum"));
                 paymentVO.setCouponNum((Long)session.getAttribute("couponNum"));
+                // 결제하고 세션에 등록
+                session.setAttribute("sub", "true");
 
                 // 결제하고 세션에 등록
                 session.setAttribute("sub", "true");
@@ -337,6 +342,8 @@ public class PaymentController {
                 log.info("merchantUid : " + merchantUid);
                 paymentVO.setImpUid(impUid);
                 paymentVO.setMerchantUid(merchantUid);
+                // 결제하고 세션에 등록
+                session.setAttribute("sub", "true");
 
                 // 결제하고 세션에 등록
                 session.setAttribute("sub", "true");

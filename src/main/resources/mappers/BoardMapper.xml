@@ -30,17 +30,21 @@
         SELECT BOARDNUM, BOARDTITLE, MEMBERNAME, CBOARDDATE, MEMBERNUM
         FROM
         (
-            /*알리아스를 붙인 컬럼에 WHERE절에서 접근할 때에는 FROM절에 작성된 테이블의 컬럼과 동일한 이름으로만 사용이 가능하다.*/
-            SELECT /*+ INDEX_DESC(BOOK_C_APPLY_BOARD APPLY_BOARD_PK) */
-             ROWNUM R,BOOK_C_APPLY_BOARD.BOARDNUM, BOOK_C_APPLY_BOARD.BOARDTITLE,
-             BOOK_MEMBER.MEMBERNAME, BOOK_C_APPLY_BOARD.CBOARDDATE, BOOK_MEMBER.MEMBERNUM
-            FROM BOOK_C_APPLY_BOARD
-            JOIN BOOK_MEMBER
-            ON BOOK_MEMBER.MEMBERNUM = BOOK_C_APPLY_BOARD.MEMBERNUM AND
-        ]]>
-        <include refid="search"></include>
+            SELECT ROWNUM R, B.* FROM
+            (
+                /*알리아스를 붙인 컬럼에 WHERE절에서 접근할 때에는 FROM절에 작성된 테이블의 컬럼과 동일한 이름으로만 사용이 가능하다.*/
+                SELECT /*+ INDEX_DESC(BOOK_C_APPLY_BOARD APPLY_BOARD_PK) */
+                 BOOK_C_APPLY_BOARD.BOARDNUM, BOOK_C_APPLY_BOARD.BOARDTITLE,
+                 BOOK_MEMBER.MEMBERNAME, BOOK_C_APPLY_BOARD.CBOARDDATE, BOOK_MEMBER.MEMBERNUM
+                FROM BOOK_C_APPLY_BOARD
+                JOIN BOOK_MEMBER
+                ON BOOK_MEMBER.MEMBERNUM = BOOK_C_APPLY_BOARD.MEMBERNUM
+                ORDER BY BOARDNUM DESC
+            ) B WHERE
+            ]]>
+            <include refid="search"></include>
         <![CDATA[
-        ROWNUM <= #{pageNum} * #{amount}
+            ROWNUM <= #{pageNum} * #{amount}
         )
         WHERE R > (#{pageNum} - 1) * #{amount}
         ]]>

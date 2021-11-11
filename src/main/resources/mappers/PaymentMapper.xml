@@ -13,10 +13,10 @@
             <when test="subMonth == 2">/*1달 구독 첫 결제*/
                 <choose>
                     <when test="couponNum == null or couponNum == ''">/*카드결제*/
-                        VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, null, #{impUid}, #{merchantUid}, #{subMonth}, SYSDATE, SYSDATE+60)
+                        VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, null, #{impUid}, #{merchantUid}, #{subMonth}, SYSDATE, SYSDATE+30)
                     </when>
                     <when test="couponNum > 0">/*쿠폰결제*/
-                        VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, #{couponNum}, null, null, #{subMonth}, SYSDATE, SYSDATE+60)
+                        VALUES(PAYMENT_SEQ.NEXTVAL, #{memberNum}, #{couponNum}, null, null, #{subMonth}, SYSDATE, SYSDATE+30)
                     </when>
                 </choose>
             </when>
