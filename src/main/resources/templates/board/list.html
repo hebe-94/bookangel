@@ -36,6 +36,7 @@
             padding-right: 2em;
         }
         .container {width: 80%; height: 61vh;}
+        #goMain{display: none}
 
         @media (max-width: 918px) {
             /*.writer {display: none;}*/
@@ -55,6 +56,7 @@
             .wrapper {padding-left: 0em;padding-right: 0em;}
             .container {width: 96%; height: 70vh;}
             #userName{font-size: 10px}
+            #goMain{display: block}
         }
 
 
@@ -74,6 +76,7 @@
             .darkMode{width: 74px;text-align: center;left: 40px;top: 15px;}
             .container {width: 96%; height: 70vh;}
             #userName{font-size: 10px}
+            #goMain{display: block}
         }
 
         @media (max-width: 480px) {
@@ -88,12 +91,13 @@
             input[name='keyword']{width: 100%;}
             a.search{width: 100%;}
             .togetherMsg {font-size: 20px; padding-bottom: 7%;}
-            #searchForm {width: 230px;float:left;padding: 0px; left:-30px;}
+            #searchForm {width: 230px;float:left;padding: 0px; left:-30px; top: -10px;}
             .searchButton{width: 50px;}
             .darkMode{width: 74px;text-align: center;left: -20px;top: 7px;}
             .label__on-off .off {padding-left: 20px;line-height: 25px;}
             .container {width: 96%; height: 70vh;}
             #userName{font-size: 10px}
+            #goMain{display: block}
         }
 
         /* body 기본 폰트 전체 적용 */
@@ -181,18 +185,25 @@
                              8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
                     </button>
                 </form>
+                <!-- 회원정보 -->
                 <li>
                     <a href="#" id="userName">📖
-                        <th:block th:text="${memberName}" />
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
+                        <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
+
                     </a>
                     <ul>
                         <th:block th:if="${memberNum} == null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
                             <li><a  href="/main/qna">Q&A</a></li>
                         </th:block>
 
                         <th:block th:if="${memberNum} != null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="myPageTab"><a>마이페이지&hellip;</a>
                                 <ul>
                                     <li><a href="/member/mypage">내정보 보기</a></li>
@@ -209,6 +220,7 @@
                 </li>
             </ul>
         </nav>
+
     </div>
     <!-- Main -->
     <div class="wrapper style1">
