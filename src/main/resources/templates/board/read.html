@@ -27,11 +27,30 @@
     <style>
         .big-width {display: block;}
         .small-width {display: none;}
+        #boardTitle{
+            padding: 0;background: white; text-align:left; font-size: 1.5em; border: none; z-index: 0;
+        }
+        #hr{
+            top: 0.5em;   margin-bottom: 1em;
+        }
+        #ok{
+            z-index: 0;box-sizing: inherit;width: 9px;font-size: 12px;text-align: center;display: grid;
+        }
+        #goMain{display: none}
+        a.toggle{
+            display: none;
+        }
+        #searchForm{width: 261px;float:left; padding: 0px;}
 
-        @media (max-width: 918px) {
-            .writer {display: none;}
-            .regDate {display: none;}
-            .updateDate {display: none;}
+        @media (max-width: 480px) {
+            .ViewWrapper{width: 90%}
+            #boardTitle{margin-top: 20px}
+            #hr{display: none}
+            #ok{width: 68px}
+            #goMain{display: block}
+            #searchForm {width: 230px;float:left;padding: 0px;}
+            .searchButton{width: 50px;}
+            #turtlelogo{display: none;}
         }
 
         /* body 기본 폰트 전체 적용 */
@@ -65,18 +84,18 @@
         <nav id="nav">
 
             <!-- 기북천사 로고 -->
-            <div>
+            <div id="turtlelogo">
                 <a href="/main/mainPage"> <!-- 로고 클릭시 메인페이지로 이동 -->
                     <img id="logoImg" src="/images/kibookLogoBlack.png"></a>
             </div>
             <ul>
                 <!-- 검색 -->
-                <form id="searchForm" style="width: 261px;float:left; padding: 0px;" action="/book/list" name="searchForm">
+                <form id="searchForm" action="/book/list" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
                         <!--                        <input type="text" name="search_text" id="search_text" value="" style="display:inline-block; border:0; float:left; z-index:0;" placeholder="검색어 입력" onkeydown="javascript: if(event.keyCode == 13) {document.searchForm.submit();}">-->
                     </div>
-                    <button onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
+                    <button class="searchButton" onclick="javascript:void(0);" style="float: right; display:inline-block; margin-right: -51px; text-align:center; padding-top:10px;">
                         <img id="searchImg" style="margin-top: -8%; width: 26px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV
                              4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2l
                              vbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjMwLjIzOXB4IiBoZWlnaHQ9IjMwLjIzOXB4IiB2aWV3Qm9
@@ -87,19 +106,25 @@
                              8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
                     </button>
                 </form>
-                </form>
+                <!-- 회원정보 -->
                 <li>
-                    <a href="#">📖
-                        <th:block th:text="${memberName}" />
+                    <a href="#" id="userName">📖
+                        <th:block th:if= "${memberNum} == null" th:text="비회원"/>
+                        <input type="hidden" name="sub" th:value="${sub}">
+
+                        <th:block th:if= "${memberNum} != null" th:text="${memberName}" />
                         <input type="hidden" name="sessionType" value="${sessionType}">
+
                     </a>
                     <ul>
                         <th:block th:if="${memberNum} == null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
                             <li><a  href="/main/qna">Q&A</a></li>
                         </th:block>
 
                         <th:block th:if="${memberNum} != null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="myPageTab"><a>마이페이지&hellip;</a>
                                 <ul>
                                     <li><a href="/member/mypage">내정보 보기</a></li>
@@ -127,7 +152,7 @@
                         <form method="post" action="/board/remove">
                             <div class="fields" th:object="${board}">
                                 <!--<a class="field">-->
-                                   <input name="boardTitle" type="text" th:field="*{boardTitle}" style="padding: 0;background: white; text-align:left; font-size: 1.5em; border: none; z-index: 0;" readonly/>
+                                   <input name="boardTitle" type="text" th:field="*{boardTitle}" id="boardTitle" readonly/>
                                    <input name="boardMemberNum" type="hidden" th:field="*{memberNum}" style="text-align:left; background: white; font-size: 1em; border: none;" readonly/>
                                     <input name="boardNum" type="hidden" th:field="*{boardNum}"/>
                                     <!--<h2 style="text-align:left; font-size: 1.5em;"><a th:field="*{boardTitle}"></a></h2>-->
@@ -142,7 +167,7 @@
                                     </div>
                                 </div>
                 <br>
-                <hr style=" top: 0.5em;   margin-bottom: 1em;">
+                <hr id="hr">
                     <input name="siteLink" type="text" th:field="*{siteLink}" style="font-size: 1em;background: white; border: none; z-index: 0;" readonly/>
                     </div>
                 <div class="form-group">
@@ -159,7 +184,7 @@
 <!--                        <li><input type="button" value="승인" name="updateOk" onclick="showPopup()" style="z-index: 0;"></li>-->
                             <!--                        </form>-->
                             <th:block th:if="${memberNum} eq 81">
-                            <input type="submit" method="post" value="승인" formaction="/board/read" name="updateOk" onclick="showPopup()" style="z-index: 0;box-sizing: inherit;width: 9px;font-size: 12px;text-align: center;display: grid;">
+                            <input type="submit" method="post" value="승인" formaction="/board/read" name="updateOk" onclick="showPopup()" id="ok">
                                 <input type="hidden" th:field="${board.memberNum}">
                             <li><input type="button" value="거절" onclick="showPopup()"></li>
                             </th:block>

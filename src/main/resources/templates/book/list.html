@@ -36,6 +36,7 @@
         #searchForm{width: 261px;float:left; padding: 0px;}
         .darkMode {width: 83px;text-align: initial; left: 37px; top: 12px; }
         .label__on-off .off { padding-left: 30px; line-height: 25px; }
+        #goMain{display: none}
 
         @media (max-width: 918px) {
             /*.writer {display: none;}*/
@@ -49,6 +50,7 @@
             a.search{width: 100%;}
             .togetherMsg {font-size: 20px; padding-bottom: 7%;}
             .searchButton{width: 40px;}
+            #goMain{display: block}
         }
 
         @media (max-width: 768px) {
@@ -63,6 +65,7 @@
             a.search{width: 100%;}
             .togetherMsg {font-size: 20px; padding-bottom: 7%;}
             .searchButton{width: 40px;}
+            #goMain{display: block}
         }
 
         @media (max-width: 480px) {
@@ -77,6 +80,7 @@
             a.search{width: 100%;}
             .togetherMsg {font-size: 20px; padding-bottom: 7%;}
             .searchButton{width: 40px;}
+            #goMain{display: block}
         }
 
         header h1:before{
@@ -285,7 +289,7 @@
                 </form>
                 <!-- 회원정보 -->
                 <li>
-                    <a href="#">📖
+                    <a href="#" id="userName">📖
                         <th:block th:if= "${memberNum} == null" th:text="비회원"/>
                         <input type="hidden" name="sub" th:value="${sub}">
 
@@ -295,11 +299,13 @@
                     </a>
                     <ul>
                         <th:block th:if="${memberNum} == null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
                             <li><a  href="/main/qna">Q&A</a></li>
                         </th:block>
 
                         <th:block th:if="${memberNum} != null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="myPageTab"><a>마이페이지&hellip;</a>
                                 <ul>
                                     <li><a href="/member/mypage">내정보 보기</a></li>

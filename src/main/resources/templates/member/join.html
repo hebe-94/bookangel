@@ -55,6 +55,10 @@
     #join3{
         text-align:center;padding-bottom: 3%;font-size:40px;margin: 8% 23% 0px 28%;
     }
+    #join4{
+        text-align : center;margin: 20px 32% -1em 32%;border-bottom: solid 7px #F5F4F5;text-align:right;
+    }
+    #goMain{display: none}
     @media (max-width: 480px) {
         #join1{
             width: 100%;
@@ -71,6 +75,10 @@
             line-height: 5em;
             padding: 0px 0px 0px 0px;
         }
+        #join4{
+            margin: 18px 10px 0px 10px;
+        }
+        #goMain{display: block}
     }
 
     /* body 기본 폰트 전체 적용 */
@@ -186,11 +194,13 @@
                     </a>
                     <ul>
                         <th:block th:if="${memberNum} == null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
                             <li><a  href="/main/qna">Q&A</a></li>
                         </th:block>
 
                         <th:block th:if="${memberNum} != null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="myPageTab"><a>마이페이지&hellip;</a>
                                 <ul>
                                     <li><a href="/member/mypage">내정보 보기</a></li>
@@ -232,7 +242,7 @@
             </p>
             <br>
             <br>
-            <p style="text-align : center;margin: 20px 32% -1em 32%;border-bottom: solid 7px #F5F4F5;text-align:right;">
+            <p id="join4">
                 <span style="text-align:right; font-size:15px;">(<span style="color:red;"> * </span>)는 필수입력사항입니다.</span>
             </p>
         </header>

@@ -56,6 +56,7 @@
         display: none;
     }
     #searchForm{width: 261px;float:left; padding: 0px;}
+    #goMain{display: none}
 
     @media (max-width: 480px) {
         #login {
@@ -68,6 +69,7 @@
         #searchForm {width: 230px;float:left;padding: 0px;}
         .searchButton{width: 50px;}
         #turtlelogo{display: none;}
+        #goMain{display: block}
         }
 
     /* body 기본 폰트 전체 적용 */
@@ -151,7 +153,6 @@
             </div>
             <ul>
                 <!-- 검색 -->
-                <!-- 검색 -->
                 <form id="searchForm" action="/book/list" name="searchForm">
                     <div class="search" style="float: left; display:inline-block">
                         <input id="keyword" type="text" name="keyword" placeholder="검색어 입력" style="display:inline-block; border:0; float:left; z-index:0;">
@@ -168,6 +169,7 @@
                              8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" />
                     </button>
                 </form>
+                <!-- 회원정보 -->
                 <li>
                     <a href="#" id="userName">📖
                         <th:block th:if= "${memberNum} == null" th:text="비회원"/>
@@ -179,11 +181,13 @@
                     </a>
                     <ul>
                         <th:block th:if="${memberNum} == null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="loginTab"><a href="/member/login">로그인</a></li>
                             <li><a  href="/main/qna">Q&A</a></li>
                         </th:block>
 
                         <th:block th:if="${memberNum} != null">
+                            <li id="goMain"><a href="/main/mainPage">홈으로</a></li>
                             <li id="myPageTab"><a>마이페이지&hellip;</a>
                                 <ul>
                                     <li><a href="/member/mypage">내정보 보기</a></li>
