@@ -254,7 +254,8 @@ public class PaymentController {
                 paymentVO.setSubMonth(1l);
                 paymentVO.setMemberNum((long)session.getAttribute("memberNum"));
                 paymentVO.setCouponNum((long)session.getAttribute("couponNum"));
-
+                // 결제하고 세션에 등록
+                session.setAttribute("sub", "true");
             }else if(paymentType == 1){ // 카드 1달
 //              #{memberNum}, #{couponNum = 0}, #{impUid}, #{merchantUid}, #{subMonth}, SYSDATE, SYSDATE+ '')
                 paymentVO = new PaymentVO();
@@ -267,6 +268,8 @@ public class PaymentController {
                 paymentVO.setImpUid(impUid);
                 paymentVO.setMerchantUid(merchantUid);
 
+                // 결제하고 세션에 등록
+                session.setAttribute("sub", "true");
             }else if(paymentType == 12l){ // 카드 1년
                 paymentVO = new PaymentVO();
                 paymentVO.setMemberNum((Long)session.getAttribute("memberNum"));
@@ -274,6 +277,8 @@ public class PaymentController {
                 paymentVO.setSubMonth(12l);
                 paymentVO.setImpUid(impUid);
                 paymentVO.setMerchantUid(merchantUid);
+                // 결제하고 세션에 등록
+                session.setAttribute("sub", "true");
             } // 구독 한적 있음
 
             if(paymentService.resubscribe(paymentVO)){
@@ -319,6 +324,8 @@ public class PaymentController {
                 paymentVO.setMemberNum((Long)session.getAttribute("memberNum"));
                 paymentVO.setCouponNum((Long)session.getAttribute("couponNum"));
 
+                // 결제하고 세션에 등록
+                session.setAttribute("sub", "true");
             }else if(paymentType == 1l){ // 카드 1달
 //              #{memberNum}, #{couponNum = 0}, #{impUid}, #{merchantUid}, #{subMonth}, SYSDATE, SYSDATE+ '')
                 paymentVO = new PaymentVO();
@@ -331,6 +338,8 @@ public class PaymentController {
                 paymentVO.setImpUid(impUid);
                 paymentVO.setMerchantUid(merchantUid);
 
+                // 결제하고 세션에 등록
+                session.setAttribute("sub", "true");
             }else if(paymentType == 12l){ // 카드 1년
                 paymentVO = new PaymentVO();
                 paymentVO.setMemberNum((Long)session.getAttribute("memberNum"));
@@ -338,6 +347,8 @@ public class PaymentController {
                 paymentVO.setSubMonth(13l);
                 paymentVO.setImpUid(impUid);
                 paymentVO.setMerchantUid(merchantUid);
+                // 결제하고 세션에 등록
+                session.setAttribute("sub", "true");
             } // 구독 한적 있음
 
             if(paymentService.subscribe(paymentVO)){

@@ -234,14 +234,14 @@ public class MemberController {
         log.info(memberTel);
 
         // sms 내용
-        String api_key = "NCS0OXJFNLRCFSIL";
-        String api_secret = "PFCZMBB5WUFEQ1URON4VWOMFHIBROBZG";
+        String api_key = "NCS8DMXDKOGK0ARJ";
+        String api_secret = "7MNFLAGA5VL4Z1OXIEQCIGNXRLHQ6ODB";
         Message coolsms = new Message(api_key, api_secret);
 
         // 4 params(to, from, type, text) are mandatory. must be filled
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("to", memberTel);    // 수신전화번호
-        params.put("from", "01055599401");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
+        params.put("from", "01031203302");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
         params.put("type", "SMS");
         params.put("text", "기북천사 본인인증 : 인증번호는" + "["+numStr+"]" + "입니다.");
         params.put("app_version", "test app 1.2"); // application name and version

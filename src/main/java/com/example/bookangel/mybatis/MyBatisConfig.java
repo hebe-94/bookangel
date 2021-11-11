@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,7 @@ import java.io.IOException;
 public class MyBatisConfig {
     private final ApplicationContext applicationContext;
 
+//    히카리 포함한 config파일
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.hikari")
     public HikariConfig hikariConfig() { return new HikariConfig(); }
@@ -28,6 +30,20 @@ public class MyBatisConfig {
     public DataSource dataSource() {
         return new HikariDataSource(hikariConfig());
     }
+
+//    히카리 역할이 뭔지 확인해볼것!
+//    히카리 제거한 config파일 (위와 아래중 하나만 켜놓을것)
+//    @Bean
+//    public DataSource dataSource(){ return DataSourceBuilder.create().build(); }
+
+
+
+//    @Bean
+//    @ConfigurationProperties(prefix="spring.datasource")
+//    public DataSource dataSource() {
+//        return DataSourceBuilder.create().build();
+//    }
+
 
     @Bean
     public SqlSessionFactory sqlSessionFactory() throws IOException {

@@ -12,9 +12,14 @@
     <artifactId>bookangel</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>bookangel</name>
+    <!--히카리 제거 작업 후 배포를 위해 태그를 추가-->
+    <packaging>jar</packaging>
+
     <description>bookangel project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
+        <!--메인 지정-->
+        <start-class>com.example.bookangel.BookangelApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -151,6 +156,34 @@
             </resource>
         </resources>
         <plugins>
+        <!-- 플러그인 오류시 작성해주어야 할 추가 태그-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <!--여기까지-->
+
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--&lt;!&ndash;                    <mainClass>com.example.apps.BookangelApplication</mainClass>&ndash;&gt;-->
+<!--                    <mainClass>com.example.bookangel.BookangelApplication</mainClass>-->
+<!--                    <excludes>-->
+<!--                        <exclude>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                        </exclude>-->
+<!--                    </excludes>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+
+<!--            기본 프레임워크 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
