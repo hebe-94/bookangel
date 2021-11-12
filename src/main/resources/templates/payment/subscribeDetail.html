@@ -192,6 +192,88 @@
         background-color: #df7366;
 
     }
+
+    /*반응형을 위해 태그에 다이렉트 디자인 꺼내기*/
+    .payment{
+        margin-top: 5em;
+    }
+
+
+    /*미디어 쿼리*/
+    @media (max-width: 768px) {
+        body.homepage #header {
+            background-image: none;
+        }
+        .wrapper.style2{
+            margin-top: 10em;
+        }
+        div.payment {
+            width: 100%;
+            text-align: center;
+        }
+        .title{ /*메인 타이틀과 서브 타이틀*/
+            font-weight: 600;
+            font-size: 1.5em;
+        }
+
+        div#card-text{
+            display: flex;
+            font-size: 3em;
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 0.5em;
+        }
+        div#coupon-text{
+            display: flex;
+            font-size: 3em;
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 0.5em;
+
+        }
+        div#nextpay-text {
+            display: flex;
+            font-size: 3em;
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 0.5em;
+
+        }
+        .detail-text {
+            height: 1.2em;
+            text-align: left;
+            font-size: 0.4em;
+            width: 100%;
+            padding-left: 0.5em;
+            margin-bottom: 0.5em;
+
+        }
+        .checkbox{
+            height: 5em;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: auto;
+        }
+        #personal{
+            width: 10%;
+            cursor: pointer;
+            appearance: auto;
+            margin: 0;
+            margin-right: 5%;
+        }
+        #autopay{
+            width: 10%;
+            cursor: pointer;
+            appearance: auto;
+            margin: 0;
+            margin-right: 5%;
+        }
+
+    }
+
 </style>
 <body class="homepage is-preload" style="background-color:white;">
 <div class="wrapper style2">
@@ -266,7 +348,7 @@
     </div>
 
     <!-- 메인 화면 -->
-    <div class="payment" style="margin-top: 5em;">
+    <div class="payment">
         <!-- 테두리를 위한 div -->
         <div style="width: 95%">
             <!-- 폰트 18,16 픽셀 -->
@@ -286,8 +368,10 @@
                     <span class="detail-text">구독기간</span> <span style="font-size: 20px;" th:text="${couponDate}"
                     id="subscribe-coupon-text"></span>
                 </div>
-                <span class="detail-text">다음 결제일</span> <span style="font-size: 20px;" th:text="${nextPayment}"
-                    id="nextPayment"></span>
+                <div id="nextpay-text">
+                    <span class="detail-text">다음 결제일</span> <span style="font-size: 20px;" th:text="${nextPayment}"
+                     id="nextPayment"></span>
+                </div>
             </div>
             <br>
 
